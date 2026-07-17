@@ -1,0 +1,228 @@
+@font-face {
+    font-family: "Inter Tight";
+    src: url("../assets/fonts/Inter_Tight/static/InterTight-Light.woff2") format("woff2");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Inter Tight";
+    src: url("../assets/fonts/Inter_Tight/static/InterTight-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter Tight";
+    src: url("../assets/fonts/Inter_Tight/static/InterTight-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter Tight";
+    src: url("../assets/fonts/Inter_Tight/static/InterTight-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@layer utilities {
+    .font-inter-tight {
+        font-family: "Inter Tight", sans-serif;
+    }
+}
+/* ==========================================
+   1. RESET & BASE VARIABLE CONFIGURATION
+   ========================================== */
+:root {
+    --bg-color: #0A0A0A;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A1A1AA;
+    --accent-color: #22D3EE;
+    --accent-glow: rgba(34, 211, 238, 0.15);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-color);
+    font-family: var(--font-sans);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #1C1C1C;
+}
+
+/* ==========================================
+   2. FIXED BACKGROUND LAYOUT (CANVAS & VIGNETTE)
+   ========================================== */
+#dot-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none; /* Allows scrolling directly over the canvas */
+}
+
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    /* High-end radial vignette mimicking dark theme landing pages */
+    background: radial-gradient(
+        circle at center,
+        rgba(10, 10, 10, 0) 20%,
+        rgba(10, 10, 10, 0.6) 60%,
+        rgba(10, 10, 10, 0.95) 100%
+    );
+}
+
+/* ==========================================
+   3. STRUCTURAL CONTENT LAYOUT
+   ========================================== */
+main {
+    position: relative;
+    z-index: 1;
+}
+
+.section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Hero Section style start */
+
+/* Profile Animation */
+.elastic-stack{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.avatar{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    overflow:hidden;
+    border:2px solid white;
+    background-color: white;
+    margin-left:-16px;
+    transition:700ms;
+    transition-timing-function:
+        linear(
+            0,
+            .79 14.4%,
+            1.026 22.4%,
+            1.164 31.2%,
+            1.207 38.2%,
+            1.208 46.2%,
+            1.033 80%,
+            1
+        );
+    position:relative;
+    z-index:1;
+}
+
+.avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.avatar.active{
+    transform:scale(1.25);
+    z-index:100;
+}
+
+.hero-title{
+    font-family: "Inter", sans-serif;
+}
+
+.wchar{
+    display:inline-block;
+    font-variation-settings: "wght" 400;
+    transition: font-variation-settings .15s linear;
+}
+
+/* button hover effect */
+#hero-btn img {
+    width: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+#hero-btn:hover img {
+    width: 32px;
+    opacity: 1;
+}
+/* Hero Section style end */
+
+/* Second Section */
+
+.gold-gradient-bg {
+    background: radial-gradient(circle at top, rgba(212, 163, 89, 0.25) 0%, rgba(18, 18, 18, 1) 70%);
+}
+.gold-text-gradient {
+    background: linear-gradient(135deg, #FFE0A3 0%, #D4A359 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.gold-card-gradient {
+    background: linear-gradient(180deg, rgba(212, 163, 89, 0.15) 0%, rgba(18, 18, 18, 0.8) 100%);
+    border: 1px solid rgba(212, 163, 89, 0.2);
+}
+
+
+/* section 3 */
+/* Core 3D engine properties */
+.container-3d-perspective {
+    perspective: 1200px;
+}
+
+.flip-card-inner-box {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.face-side-front, 
+.face-side-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Backside rotates 180 degrees initially waiting for animation trigger */
+.face-side-back {
+    transform: rotateY(180deg);
+}
+
+
+
+
+
+
+

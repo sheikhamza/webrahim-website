@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Dot Matrix Sandbox</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Premium Interactive Background -->
+    <canvas id="dot-canvas"></canvas>
+    <div class="vignette"></div>
+
+    <!-- Scrollable Website Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="section hero">
+            <div class="container fade-in">
+                <span class="badge">Next-Gen Interface</span>
+                <h1 class="hero-title">Designing with <span class="gradient-text">Absolute Precision</span></h1>
+                <p class="hero-subtitle">Experience a dynamic, interactive grid interface designed to respond to your presence. Fully optimized for fluid 60 FPS performance.</p>
+                <div class="button-group">
+                    <a href="#explore" class="btn btn-primary">Explore Features</a>
+                    <a href="#tech" class="btn btn-secondary">Read Technical Spec</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Features -->
+        <section id="explore" class="section">
+            <div class="container">
+                <h2>Interactive Dynamics</h2>
+                <p class="section-desc">Move your mouse across the viewport to disturb the matrix. The dots dynamically scale up, transition to an electric cyan hue, and emit a soft radial glow using specialized canvas composite operations.</p>
+                <div class="grid-cards">
+                    <div class="card">
+                        <h3>Interactive Glow</h3>
+                        <p>Dynamic distance-based interpolation creates an organic liquid-like swelling effect around the cursor.</p>
+                    </div>
+                    <div class="card">
+                        <h3>60 FPS Performance</h3>
+                        <p>Leverages requestAnimationFrame and efficient mathematical boundary constraints to minimize layout thrashing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Mathematical Wave -->
+        <section id="tech" class="section">
+            <div class="container">
+                <h2>Mathematical Wave Propagation</h2>
+                <p class="section-desc">Even without user interaction, a slow, organic sine wave propagates diagonally across the coordinates. This ensures the background remains alive with a subtle breathing state.</p>
+            </div>
+        </section>
+
+        <!-- Section 3: Optimization -->
+        <section class="section">
+            <div class="container">
+                <h2>Sub-Pixel Optimization</h2>
+                <p class="section-desc">Engineered with absolute layout precision. The canvas detects and renders natively at the host machine's physical hardware pixel ratio, ensuring razor-sharp edges on ultra-wide and Retina screens.</p>
+            </div>
+        </section>
+
+        <!-- Section 4: Integration -->
+        <section class="section">
+            <div class="container">
+                <h2>Seamless Integration</h2>
+                <p class="section-desc">Built using zero external dependencies. No React, no GSAP, no bloated overhead. Just pure, hyper-optimized Vanilla JavaScript and HTML5 Canvas APIs wrapped in modern CSS.</p>
+            </div>
+        </section>
+
+        <!-- Section 5: CTA -->
+        <section class="section footer-section">
+            <div class="container">
+                <h2>Ready to deploy?</h2>
+                <p class="section-desc">Bring immersive UI experiences to your projects with minimal performance footprint.</p>
+                <button class="btn btn-primary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to Top</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webrahim</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <!-- Premium Interactive Background -->
+    <canvas id="dot-canvas"></canvas>
+    <div class="vignette"></div>
+
+    <!-- Scrollable Website Content -->
+    <main>
+        <!-- SECTION 1: HERO & HEADER -->
+        <header style="background-image:url('./assets/images/hero-image.png');" class="relative md:min-h-screen flex flex-col justify-between items-center py-5 px-4 text-center bg-cover bg-center">
+            <!-- Top Nav Info -->
+            <nav class="flex items-center justify-between w-full max-w-5xl bg-black/30 backdrop-blur-md border border-white/10 rounded-full px-4 py-3 md:w-auto md:justify-center md:gap-10 font-inter-tight font-light">
+                <img src="./assets/images/logo.png" class="h-8 md:h-10">
+                <div class="flex sm:gap-10 gap-5">
+                    <a href="#" class="text-[17px]">How it works</a>
+                    <a href="#" class="text-[17px]">Offers</a>
+                    <a href="#" class="text-[17px]">Reviews</a>
+                </div>
+                <img src="./assets/images/profile-image.png" class="h-8 md:h-10">
+            </nav>
+
+            <!-- Hero Content -->
+            <div class="max-w-4xl space-y-6 px-4 mt-10 md:mt-17">
+                <div class="elastic-stack gap-2 scale-75 md:scale-100" id="elasticStack">
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-1.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-2.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-3.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-4.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-5.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-6.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-7.png" alt="Profile Picture">
+                    </div>
+                    <div class="px-2">
+                        <p class="text-xs leading-[14px] font-inter-tight font-thin">
+                            Trusted By Coaches <br>
+                            Across 7 Countries
+                        </p>
+                    </div>
+                </div>
+                <h1 class="hero-title text-4xl sm:text-5xl lg:text-[60px] leading-[68px] font-inter-tight text-white font-thin">
+                    <span class="word">The</span>
+                    <span class="word">Calls</span>
+                    <span class="word">Draining</span>
+                    <br>
+                    <span class="word">Your</span>
+                    <span class="word">Week?</span>
+                    <span class="word">That's</span>
+                    <br>
+                    <span class="word">Your</span>
+                    <span class="word">Funnel's</span>
+                    <span class="word">Fault.</span>
+                </h1>
+                <p class="text-base sm:text-lg lg:text-[22px] leading-relaxed font-inter-tight leading-tight font-medium px-3 hero-subtitle">
+                    I build conversion systems for coaches that qualify leads before
+                    <br class="hidden md:block">
+                    they book and make you proud to send anyone to your site.
+                </p>
+                <div>
+                    <button id="hero-btn" class="flex items-center mx-auto bg-white text-black px-2 py-2 rounded-full text-[16px] transform hover:scale-105 cursor-pointer font-inter-tight font-medium">
+                        <span class="px-4">Talk With Ibrahim</span> <img src="./assets/images/profile-image.png" class="h-8" alt="Profile Picture" title="Call Me?"> 
+                    </button>
+                </div>
+            </div>
+            <!-- Inline Navigation Tabs -->
+            <div class="flex items-center justify-center w-full py-10 text-base sm:text-xl md:text-2xl lg:text-[40px] font-medium">
+                <!-- Left -->
+                <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden">
+                    <div id="leftCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
+                    <div id="leftNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
+                </div>
+                <!-- Center -->
+                <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden border-x-2 border-white">
+                    <div id="centerCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white"></div>
+                    <div id="centerNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white"></div>
+                </div>
+                <!-- Right -->
+                <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden">
+                    <div id="rightCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
+                    <div id="rightNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
+                </div>
+            </div>
+
+        </header>
+        <!-- SECTION 2: THREE-CARD OVERLAP SHOWCASE -->
+        <section class="portfolio h-[600vh] relative"> 
+    <!-- h-[600vh] rakha hai taake 6 cards ke liye smooth aur lamba scroll mile -->
+    
+    <div class="sticky top-0 h-screen w-full overflow-hidden flex justify-center items-center">
+        <div class="cards-container relative flex justify-center items-center w-full h-full">
+
+            <!-- Card 1 (Hidden Top / Pehle se guzra hua state) -->
+            <div class="card card-1 absolute left-[10%] top-[10%] h-[274px] w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Card 2 (Hidden Center / Jo pehle dekh chuke hain) -->
+            <div class="card card-2 absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 h-[400px] w-[472px] z-10 opacity-0 overflow-hidden rounded-lg shadow-2xl">
+                <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Card 3 (Starting Active Card - Center Leftish ya Rightish jahan se aap shuru karna chahein) -->
+            <!-- Shuruat mein yeh screen par active dikhega -->
+            <div class="card card-3 absolute right-[10%] bottom-[10%] h-[274px] w-[324px] opacity-25 overflow-hidden rounded-lg shadow-lg">
+                <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Card 4 (Queue 1 - Waiting at bottom) -->
+            <div class="card card-4 absolute right-[10%] -bottom-[10%] h-[274px] w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                <img src="./assets/images/Infograghy.png" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Card 5 (Queue 2 - Further down) -->
+            <div class="card card-5 absolute right-[10%] -bottom-[30%] h-[274px] w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                <img src="./assets/images/VRKAS.png" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Card 6 (Queue 3 - Deep down) -->
+            <div class="card card-6 absolute right-[10%] -bottom-[50%] h-[274px] w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                <img src="./assets/images/Marisa.png" class="w-full h-full object-cover">
+            </div>
+
+        </div>
+    </div>
+</section>
+        <!-- SYSTEM SECTION: COMBINED SCROLL SHOWCASE (Section 3 & 4 Merged) -->
+        <section id="scroll-pin-wrapper" class="py-20 px-[188px] relative overflow-hidden min-h-screen flex items-center">
+            <div class="w-full">
+                <!-- Badge / Section Header -->
+                <div class="text-center mb-16 animated-bage">
+                    <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
+                        <img src="./assets/images/hey.png" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
+                        Hey Coach! Is This You?
+                    </span>
+                </div>
+
+                <!-- The Main Animation Core Layout -->
+                <div class="flex gap-15 items-stretch relative h-[522px] w-full container-3d-perspective">
+                    
+                    <!-- LEFT LAYER: Dynamic Content Slot -->
+                    <div class="w-[380px] relative h-full">
+                        <!-- Top Content (Section 3 Left Boxes) -->
+                        <div class="cards-left-group absolute inset-0 flex flex-col justify-between h-full z-20">
+                            <div class="relative w-[373px] h-[194px] rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)]">
+                                <div class="absolute top-5 left-0 right-0 h-px bg-white/8"></div>
+                                <div class="absolute left-5 top-0 bottom-0 w-px bg-white/8"></div>
+                                <div class="absolute bottom-5 left-0 right-0 h-px bg-white/8"></div>
+                                <div class="absolute right-5 top-0 bottom-0 w-px bg-white/8"></div>
+                                <div class="relative z-10 flex flex-col justify-between h-full p-8">
+                                    <img src="./assets/images/computer.png" alt="computer icon" class="w-10 h-10 mb-4" onerror="this.style.display='none'">
+                                    <h3 class="text-[18px] leading-[1.3] font-thin text-white">Your online presence doesn't match the reputation you have offline.</h3>
+                                    <div class="flex justify-end mt-[16px] mr-[-10px]">
+                                        <span class="py-[0.6px] px-1 rounded border-[0.6px] border-white/70 text-white text-[12px]">And you know it, right?</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative w-[373px] rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)]">
+                                <div class="absolute top-5 left-0 right-0 h-px bg-white/8"></div>
+                                <div class="absolute left-5 top-0 bottom-0 w-px bg-white/8"></div>
+                                <div class="absolute bottom-5 left-0 right-0 h-px bg-white/8"></div>
+                                <div class="absolute right-5 top-0 bottom-0 w-px bg-white/8"></div>
+                                <div class="relative z-10 flex flex-col justify-between h-full p-8">
+                                    <img src="./assets/images/computer.png" alt="computer icon" class="w-10 h-10 mb-4" onerror="this.style.display='none'">
+                                    <h3 class="text-[18px] leading-[1.3] font-thin text-white mb-3">You're getting calls, but too many of them are wrong-fit prospects wasting your time.</h3>
+                                    <div class="flex justify-end mb-[-10px] mr-[-10px]">
+                                        <span class="py-[0.6px] px-1 rounded border-[0.6px] border-white/70 text-white text-[12px]">Isn't it so frustrating?</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Content (Section 4 Left Split Text - hidden initially) -->
+                        <!-- Hook added: "hero-title" class injected for dynamic line separation -->
+                        <div class="text-left-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-5">
+                            <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
+                                <img src="./assets/images/hey.png" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
+                                The Real Problem!
+                            </span>
+                            <h3 class="hero-title text-2xl sm:text-[45px] font-bold text-white leading-[1.1] tracking-tight mt-7">
+                                You're <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Not Losing</span> Leads Because You Need More Traffic.
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- CENTER LAYER: The 3D Flipping Card Anchor -->
+                    <div class="w-[294px] h-[522px] relative z-30 card-flipper-zone">
+                        <div class="flip-card-inner-box w-full h-full relative">
+                            <!-- Front View Container (Section 3 Image) -->
+                            <div class="face-side-front absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Front State Placeholder" class="w-full h-full object-cover rounded-xl">
+                            </div>
+                            <!-- Back View Container (Section 4 Image) -->
+                            <div class="face-side-back absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Back State Placeholder" class="w-full h-full object-cover rounded-xl">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT LAYER: Dynamic Content Slot -->
+                    <div class="w-[373px] relative h-full">
+                        <!-- Top Content (Section 3 Right Boxes) -->
+                        <div class="cards-right-group absolute inset-0 flex flex-col justify-between h-full z-20">
+                            <div class="relative w-[373px] h-[194px] rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)]">
+                                <div class="absolute top-5 left-0 right-0 h-px bg-white/8"></div>
+                                <div class="absolute left-5 top-0 bottom-0 w-px bg-white/8"></div>
+                                <div class="absolute bottom-5 left-0 right-0 h-px bg-white/8"></div>
+                                <div class="absolute right-5 top-0 bottom-0 w-px bg-white/8"></div>
+                                <div class="relative z-10 flex flex-col justify-between h-full p-8">
+                                    <img src="./assets/images/computer.png" alt="computer icon" class="w-10 h-10 mb-4" onerror="this.style.display='none'">
+                                    <h3 class="text-[18px] leading-[1.3] font-thin text-white">You feel embarrassed your website link in someone's DMs.</h3>
+                                    <div class="flex justify-end mt-[16px] mr-[-10px]">
+                                        <span class="py-[0.6px] px-1 rounded border-[0.6px] border-white/70 text-white text-[12px]">I can feel you pain!</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative w-[373px] rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)]">
+                                <div class="absolute top-5 left-0 right-0 h-px bg-white/8"></div>
+                                <div class="absolute left-5 top-0 bottom-0 w-px bg-white/8"></div>
+                                <div class="absolute bottom-5 left-0 right-0 h-px bg-white/8"></div>
+                                <div class="absolute right-5 top-0 bottom-0 w-px bg-white/8"></div>
+                                <div class="relative z-10 flex flex-col justify-between h-full p-8">
+                                    <img src="./assets/images/computer.png" alt="computer icon" class="w-10 h-10 mb-4" onerror="this.style.display='none'">
+                                    <h3 class="text-[18px] leading-[1.3] font-thin text-white mb-3">You've been meaning to fix this for six months but "haven't gotten around it.</h3>
+                                    <div class="flex justify-end mb-[-10px] mr-[-10px]">
+                                        <span class="py-[0.6px] px-1 rounded border-[0.6px] border-white/70 text-white text-[12px]">Not any more!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Content (Section 4 Right Description - hidden initially) -->
+                        <!-- Hook added: "hero-title" class injected for paragraph inline block transitions -->
+                        <div class="text-right-final absolute inset-0 opacity-0 pointer-events-none z-10">
+                            <p class="hero-title text-[20px] text-white/90 font-inter-tight tracking-tight font-[200] leading-relaxed">
+                                Most coaches who come to me aren't marketing wrong. They are posting daily, showing up, making it work. But there's a quieter problem nobody talks about: <span class="text-[#FFCD56]">Every prospect who visits your website and doesn't book is a real cost.</span> 
+                                <br><br>
+                                If your website should convert at 4% but converts at 1.5%, and you get 300 visitors/month at a $5,000 offer, <span class="text-[#FFCD56]">you're losing $37,500/month in opportunity cost.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 5: TWO VERTICAL CARDS (THE PLOTS & MORE CONTENTS) -->
+        <section class="py-24 px-4 text-center">
+            <div class="max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-mono text-amber-500 uppercase tracking-widest">CONTENT HUB</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">The Plot &amp; More <span class="text-amber-400">Contents.</span></h2>
+                <p class="text-zinc-400 text-sm max-w-lg mx-auto font-light">High impact breakdowns designed to map user behavior directly into strategic design choices.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-2 rounded-2xl h-[450px] shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=600&q=80" alt="Placeholder" class="w-full h-full object-cover rounded-xl">
+                </div>
+                <div class="bg-white p-2 rounded-2xl h-[450px] shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=80" alt="Placeholder" class="w-full h-full object-cover rounded-xl">
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 6: ONLINE PRESENCE (2 BIG BLOCKS) -->
+        <section class="py-24 px-4 text-center">
+            <div class="max-w-2xl mx-auto mb-16 space-y-2">
+                <span class="text-xs font-bold text-zinc-500 uppercase">PREVIEW ARCHITECTURE</span>
+                <h2 class="text-3xl font-extrabold text-white">This Could Be Your <br> Online Presence.</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-2 rounded-3xl h-96 shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="Placeholder" class="w-full h-full object-cover rounded-2xl">
+                </div>
+                <div class="bg-white p-2 rounded-3xl h-96 shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80" alt="Placeholder" class="w-full h-full object-cover rounded-2xl">
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 7: TRIPLE WHITE CARDS -->
+        <section class="py-24 px-4 bg-zinc-950/40 text-center">
+            <div class="max-w-2xl mx-auto mb-16 space-y-2">
+                <span class="text-xs font-bold text-amber-500 uppercase tracking-wider">CASE WORK</span>
+                <h2 class="text-3xl font-extrabold text-white">They Had The Same Doubts <br> You Do. Now They Don't.</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white p-2 rounded-2xl h-80 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=500&q=80" alt="Placeholder" class="w-full h-full object-cover rounded-xl">
+                </div>
+                <div class="bg-white p-2 rounded-2xl h-80 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=500&q=80" alt="Placeholder" class="w-full h-full object-cover rounded-xl">
+                </div>
+                <div class="bg-white p-2 rounded-2xl h-80 shadow-md">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=500&q=80" alt="Placeholder" class="w-full h-full object-cover rounded-xl">
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 8: THREE WAYS TO WORK TOGETHER (GOLD TILES) -->
+        <section class="py-24 px-4 max-w-5xl mx-auto text-center">
+            <div class="mb-16 space-y-2">
+                <span class="text-xs text-zinc-500 uppercase tracking-widest">OFFERINGS</span>
+                <h2 class="text-3xl font-extrabold text-white">Three Ways To Work Together</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <!-- Card 1 -->
+                <div class="gold-card-gradient p-8 rounded-2xl flex flex-col justify-between h-96">
+                    <div>
+                        <span class="text-xs text-amber-400 font-mono tracking-wider uppercase">Tier 01</span>
+                        <h3 class="text-lg font-bold text-white mt-2 mb-4">Conversion Opt. For Startups</h3>
+                        <p class="text-xs text-zinc-400 font-light leading-relaxed">Full breakdown structure targeting early traction markers, UI polish, and simple acquisition logic pipelines.</p>
+                    </div>
+                    <button class="bg-white text-black font-bold text-xs px-4 py-2.5 rounded-lg w-full mt-4 hover:bg-zinc-200 transition">Get Started</button>
+                </div>
+                <!-- Card 2 -->
+                <div class="gold-card-gradient p-8 rounded-2xl flex flex-col justify-between h-96 border-amber-500/50 shadow-lg shadow-amber-500/5">
+                    <div>
+                        <span class="text-xs text-amber-400 font-mono tracking-wider uppercase">Tier 02</span>
+                        <h3 class="text-lg font-bold text-white mt-2 mb-4">Vetted Scale Execution Plan</h3>
+                        <p class="text-xs text-zinc-400 font-light leading-relaxed">Advanced systematic changes built for organizations doing active volume. Deep tracking setup included.</p>
+                    </div>
+                    <button class="bg-white text-black font-bold text-xs px-4 py-2.5 rounded-lg w-full mt-4 hover:bg-zinc-200 transition">Get Started</button>
+                </div>
+                <!-- Card 3 -->
+                <div class="gold-card-gradient p-8 rounded-2xl flex flex-col justify-between h-96">
+                    <div>
+                        <span class="text-xs text-amber-400 font-mono tracking-wider uppercase">Tier 03</span>
+                        <h3 class="text-lg font-bold text-white mt-2 mb-4">Dedicated Multi-funnel System</h3>
+                        <p class="text-xs text-zinc-400 font-light leading-relaxed">Complete turnkey ecosystem deployment including copy engineering, brand style preservation, and assets.</p>
+                    </div>
+                    <button class="bg-white text-black font-bold text-xs px-4 py-2.5 rounded-lg w-full mt-4 hover:bg-zinc-200 transition">Get Started</button>
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 9: THREE GREY CARDS WITH SERIAL NUMBERS -->
+        <section class="py-24 px-4 bg-zinc-950/30">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16 space-y-2">
+                    <span class="text-xs text-amber-500 font-mono tracking-widest">THE GUARANTEE</span>
+                    <h2 class="text-3xl font-extrabold text-white">You Show Up Three Times. <br> Everything Else Is On Me.</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Box 1 -->
+                    <div class="space-y-4">
+                        <div class="bg-zinc-800/80 p-2 rounded-2xl h-56 shadow-inner">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80" alt="Placeholder" class="w-full h-full object-cover rounded-xl filter grayscale opacity-70">
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-white block">1</span>
+                            <h4 class="text-sm font-bold text-zinc-200 mt-1">Research Phase</h4>
+                            <p class="text-xs text-zinc-400 mt-1 font-light">Deep discovery sprint tracking structural bottlenecks across competitor baselines.</p>
+                        </div>
+                    </div>
+                    <!-- Box 2 -->
+                    <div class="space-y-4">
+                        <div class="bg-zinc-800/80 p-2 rounded-2xl h-56 shadow-inner">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500&q=80" alt="Placeholder" class="w-full h-full object-cover rounded-xl filter grayscale opacity-70">
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-white block">2</span>
+                            <h4 class="text-sm font-bold text-zinc-200 mt-1">UX Layout Map</h4>
+                            <p class="text-xs text-zinc-400 mt-1 font-light">Building pure performance blue prints without distracting fluff or aesthetic compromises.</p>
+                        </div>
+                    </div>
+                    <!-- Box 3 -->
+                    <div class="space-y-4">
+                        <div class="bg-zinc-800/80 p-2 rounded-2xl h-56 shadow-inner">
+                            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=500&q=80" alt="Placeholder" class="w-full h-full object-cover rounded-xl filter grayscale opacity-70">
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-white block">3</span>
+                            <h4 class="text-sm font-bold text-zinc-200 mt-1">Ready Delivery</h4>
+                            <p class="text-xs text-zinc-400 mt-1 font-light">Live deployment with complete documentation engineered for smooth execution workflows.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 10: REAL TESTIMONIAL ROW WITH AVATAR -->
+        <section class="py-20 px-4 max-w-4xl mx-auto">
+            <div class="bg-zinc-900/40 p-8 rounded-2xl border border-zinc-800/60 flex flex-col sm:flex-row items-center gap-6">
+                <div class="w-20 h-20 rounded-full overflow-hidden flex-shrink-0 border-2 border-amber-500/40">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Avatar User" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-2 text-center sm:text-left">
+                    <p class="text-white text-base sm:text-lg italic font-light leading-relaxed">
+                        "I love the vibrant flow layouts, especially calibrated layouts!"
+                    </p>
+                    <div class="text-xs text-zinc-400">
+                        <span class="font-bold text-amber-400">Sarah Jenkins</span> — Director of Growth Architecture
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 11: INTRO ABOUT ME SECTION -->
+        <section class="py-24 px-4 bg-zinc-950/50">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-xs font-mono text-zinc-500 uppercase">FOUNDER NOTE</span>
+                    <h2 class="text-3xl font-extrabold text-white">Hey, It's Rahmin</h2>
+                    <p class="text-sm text-zinc-400 font-light leading-relaxed">
+                        I spent the last half-decade stripping down unnecessary design details to isolate exactly what makes users click, buy, and convert. This funnel logic is the culmination of all that optimization.
+                    </p>
+                    <div>
+                        <button class="bg-zinc-800 hover:bg-zinc-700 text-white font-medium text-xs px-6 py-2.5 rounded-full transition border border-zinc-700">
+                            Read My Story
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-zinc-800/60 p-2 rounded-2xl h-64 shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Founder Portrait Placeholder" class="w-full h-full object-cover rounded-xl filter grayscale">
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 12: ACCORDION / LINKS LIST -->
+        <section class="py-24 px-4 max-w-2xl mx-auto text-center">
+            <div class="mb-12 space-y-2">
+                <span class="text-xs text-amber-500 font-mono uppercase tracking-widest">FAQ</span>
+                <h2 class="text-2xl font-bold text-white">Things You're Probably Thinking Right Now</h2>
+            </div>
+            <div class="text-left space-y-4 text-sm">
+                <div class="p-4 border-b border-zinc-800 flex justify-between items-center text-zinc-300 hover:text-white cursor-pointer transition">
+                    <span>Is this fully customizable to standard brands?</span>
+                    <span class="text-amber-500">+</span>
+                </div>
+                <div class="p-4 border-b border-zinc-800 flex justify-between items-center text-zinc-300 hover:text-white cursor-pointer transition">
+                    <span>How long does layout implementation take?</span>
+                    <span class="text-amber-500">+</span>
+                </div>
+                <div class="p-4 border-b border-zinc-800 flex justify-between items-center text-zinc-300 hover:text-white cursor-pointer transition">
+                    <span>Do you look over current active funnels?</span>
+                    <span class="text-amber-500">+</span>
+                </div>
+                <div class="p-4 border-b border-zinc-800 flex justify-between items-center text-zinc-300 hover:text-white cursor-pointer transition">
+                    <span>What is the core setup cost range?</span>
+                    <span class="text-amber-500">+</span>
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 13: FOOTER CALL TO ACTION -->
+        <footer class="py-24 px-4 text-center bg-zinc-950">
+            <div class="max-w-2xl mx-auto space-y-6">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-snug">
+                    Every Week Your Funnel Is Broken, <br> You're Paying For It.
+                </h2>
+                <p class="text-xs text-zinc-500 font-light max-w-md mx-auto">
+                    Stop burning capital on inefficient acquisition loops. Secure an audit spot right now and lock down your structural gaps.
+                </p>
+                <div class="pt-4">
+                    <button class="bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-black font-bold px-8 py-3 rounded-full text-xs shadow-lg shadow-amber-500/10 transition transform hover:scale-105">
+                        Start Now ➔
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+
+
+    <script src="./assets/js/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/CustomEase.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="./assets/js/ScrollTrigger.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
