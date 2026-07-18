@@ -681,3 +681,14 @@ tl.to(".card-4", { top: "-50%", opacity: 0, duration: 1 }, "step4")
     zIndex: 10,
     duration: 1
   }, "step4");
+
+
+
+// section 5
+let currentRevenue = 0; 
+const countTarget = document.getElementById('revenueValue'); 
+
+setInterval(() => { 
+currentRevenue += 1000; 
+countTarget.textContent = '$' + currentRevenue.toLocaleString(); 
+}, 1500);

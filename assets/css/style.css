@@ -222,6 +222,99 @@ main {
 
 
 
+/* Section 5 */
+.lf-wrap { 
+    position: relative; 
+    width: 100%; 
+    max-width: 1080px; 
+    margin: 0 auto; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    font-family: 'Segoe UI', Arial, sans-serif; 
+} 
+.lf-svg { 
+    display: block; 
+    width: 100%; 
+    height: auto; 
+} 
+.lf-line { 
+    fill: none; 
+    stroke: rgba(255,255,255,0.16); 
+    stroke-width: 1.4; 
+} 
+.lf-fo-body { 
+    margin: 0; 
+    padding: 0; 
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background: transparent; 
+} 
+.lf-node { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    padding: 14px 22px 14px 14px; 
+    border-radius: 999px; 
+    background: rgba(255,255,255,0.055); 
+    backdrop-filter: blur(16px); 
+    -webkit-backdrop-filter: blur(16px); 
+    border: 1px solid rgba(255,255,255,0.14); 
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06); 
+    white-space: nowrap; 
+} 
+
+.lf-node.lf-key { 
+    background: linear-gradient(90deg, #FFB300 0%, #FFCE55 50%, #FFB300 100%);
+    border: 1px solid rgba(255,255,255,0.60); 
+    box-shadow: 0 8px 28px rgba(0,0,0,0.2); 
+} 
+.lf-node.lf-key .lf-label {
+    color: #0A0A0A;
+    font-weight: 600;
+}
+.lf-node.lf-key .lf-chip {
+    background: rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* Pipeline box: 12px font and reduced padding by 3px */
+.lf-counter-pill { 
+    display: flex; 
+    align-items: center; 
+    padding: 7px 15px; 
+    border-radius: 999px; 
+    background: #FFFFFF; 
+    border: 1px solid #EAEAEA; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+    color: #0A0A0A; 
+    font-size: 12px; 
+    font-weight: 700; 
+    white-space: nowrap; 
+} 
+.lf-chip { 
+    width: 34px; 
+    height: 34px; 
+    border-radius: 9px; 
+    background: linear-gradient(145deg, rgba(255,179,0,0.35), rgba(255,179,0,0.12)); 
+    border: 1px solid rgba(255,179,0,0.4); 
+    flex: none; 
+} 
+.lf-label { 
+    color: #F3F1EC; 
+    font-size: 15px; 
+    font-weight: 500; 
+    letter-spacing: 0.1px; 
+} 
+.lf-icon { color: #FFFFFF; opacity: 0.95; } 
+.lf-icon circle.lf-badge { fill: currentColor; fill-opacity: 0.14; stroke: currentColor; stroke-opacity: 0.55; stroke-width: 1.2; } 
+.lf-icon .lf-glyph { fill: currentColor; } 
+@keyframes lfColorDown { 0% { color: #FFFFFF; } 20%, 100% { color: #FFB300; } } 
+.lf-tDown { animation: lfColorDown 3s linear infinite; } 
+.lf-tDown2 { animation: lfColorDown 3s linear infinite; animation-delay: -1.5s; }
+
 
 
 
