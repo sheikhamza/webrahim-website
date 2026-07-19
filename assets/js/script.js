@@ -661,13 +661,13 @@ solutiontTl.to(solutionTitle.lines, {
     duration: 1,
     stagger: 0.18,
     ease: "power4.out"
-})
+},0)
 .to(".solution-text, .lf-wrap", {
     y: 0,
     opacity: 1,
     duration: 0.5,
     ease: "power3.out"
-}, "-=0.4");
+},0.2);
 
 
 let currentRevenue = 0; 
