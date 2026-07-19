@@ -105,10 +105,8 @@
 
         </header>
         <!-- SECTION 2: THREE-CARD OVERLAP SHOWCASE -->
-        <section class="portfolio h-[600vh] relative"> 
-            <!-- h-[600vh] rakha hai taake 6 cards ke liye smooth aur lamba scroll mile -->
-            
-            <div class="sticky top-0 h-screen w-full overflow-hidden flex justify-center items-center">
+        <section class="portfolio h-screen relative">
+            <div class="cards-container h-screen w-full overflow-hidden flex justify-center items-center">
                 <div class="cards-container relative flex justify-center items-center w-full h-full">
 
                     <!-- Card 1 (Hidden Top / Pehle se guzra hua state) -->
@@ -146,23 +144,16 @@
             </div>
         </section>
         <!-- SYSTEM SECTION: COMBINED SCROLL SHOWCASE (Section 3 & 4 Merged) -->
-        <section id="scroll-pin-wrapper" class="py-20 px-[188px] relative overflow-hidden min-h-screen flex items-center">
-            <div class="w-full">
-                <!-- Badge / Section Header -->
-                <div class="text-center mb-16 animated-bage">
-                    <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                        <img src="./assets/images/hey.png" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
-                        Hey Coach! Is This You?
-                    </span>
-                </div>
-
-                <!-- The Main Animation Core Layout -->
-                <div class="flex gap-15 items-stretch relative h-[522px] w-full container-3d-perspective">
+        <section id="scroll-pin-wrapper" class="relative w-full" style="height: 200vh;">
+            
+            <!-- INNER CANVAS: Yeh sirf IS section ke andar pin (freeze) hoga, global body par nahi -->
+            <div class="animation-inner-sticky-canvas w-full h-screen flex items-center px-[188px] overflow-hidden relative">
+                <div class="w-full relative flex justify-between items-stretch h-[522px]">
                     
-                    <!-- LEFT LAYER: Dynamic Content Slot -->
+                    <!-- LEFT COLUMN BLOCK -->  
                     <div class="w-[380px] relative h-full">
-                        <!-- Top Content (Section 3 Left Boxes) -->
-                        <div class="cards-left-group absolute inset-0 flex flex-col justify-between h-full z-20">
+                        <!-- State 1: Top Boxes -->
+                        <div class="cards-left-group w-full absolute inset-0 flex flex-col justify-between h-full z-20">
                             <div class="relative w-[373px] h-[194px] rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)]">
                                 <div class="absolute top-5 left-0 right-0 h-px bg-white/8"></div>
                                 <div class="absolute left-5 top-0 bottom-0 w-px bg-white/8"></div>
@@ -176,52 +167,60 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="relative w-[373px] rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)]">
+                            <div class="relative w-[373px] h-[194px] rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)]">
                                 <div class="absolute top-5 left-0 right-0 h-px bg-white/8"></div>
                                 <div class="absolute left-5 top-0 bottom-0 w-px bg-white/8"></div>
                                 <div class="absolute bottom-5 left-0 right-0 h-px bg-white/8"></div>
                                 <div class="absolute right-5 top-0 bottom-0 w-px bg-white/8"></div>
                                 <div class="relative z-10 flex flex-col justify-between h-full p-8">
                                     <img src="./assets/images/computer.png" alt="computer icon" class="w-10 h-10 mb-4" onerror="this.style.display='none'">
-                                    <h3 class="text-[18px] leading-[1.3] font-thin text-white mb-3">You're getting calls, but too many of them are wrong-fit prospects wasting your time.</h3>
-                                    <div class="flex justify-end mb-[-10px] mr-[-10px]">
+                                    <h3 class="text-[18px] leading-[1.3] font-thin text-white">You're getting calls, but too many of them are wrong-fit prospects wasting your time.</h3>
+                                    <div class="flex justify-end mt-[16px] mr-[-10px]">
                                         <span class="py-[0.6px] px-1 rounded border-[0.6px] border-white/70 text-white text-[12px]">Isn't it so frustrating?</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Bottom Content (Section 4 Left Split Text - hidden initially) -->
-                        <!-- Hook added: "hero-title" class injected for dynamic line separation -->
-                        <div class="text-left-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-5">
-                            <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                                <img src="./assets/images/hey.png" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
-                                The Real Problem!
-                            </span>
-                            <h3 class="hero-title text-2xl sm:text-[45px] font-bold text-white leading-[1.1] tracking-tight mt-7">
+                        <!-- State 2: Bottom Reveal Text -->
+                        <div class="text-left-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-8">
+                            <div class="animated-bage mb-10">
+                                <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
+                                    <img src="./assets/images/hey.png" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
+                                    The Real Problem
+                                </span>
+                            </div>
+                            <h3 class="flip-title text-[40px] font-bold text-white leading-[1.3] tracking-tight">
                                 You're <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Not Losing</span> Leads Because You Need More Traffic.
                             </h3>
                         </div>
                     </div>
 
-                    <!-- CENTER LAYER: The 3D Flipping Card Anchor -->
-                    <div class="w-[294px] h-[522px] relative z-30 card-flipper-zone">
-                        <div class="flip-card-inner-box w-full h-full relative">
-                            <!-- Front View Container (Section 3 Image) -->
-                            <div class="face-side-front absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Front State Placeholder" class="w-full h-full object-cover rounded-xl">
-                            </div>
-                            <!-- Back View Container (Section 4 Image) -->
-                            <div class="face-side-back absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
-                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Back State Placeholder" class="w-full h-full object-cover rounded-xl">
-                            </div>
-                        </div>
-                    </div>
+                    <!-- CENTER BLOCK: Fixed in layout, flips on axis -->
+                     <div class="relative flex justify-center">
 
-                    <!-- RIGHT LAYER: Dynamic Content Slot -->
-                    <div class="w-[373px] relative h-full">
-                        <!-- Top Content (Section 3 Right Boxes) -->
-                        <div class="cards-right-group absolute inset-0 flex flex-col justify-between h-full z-20">
+                         <div class="text-center animated-bage absolute -top-[15%] flip-badge">
+                             <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
+                                 <img src="./assets/images/hey.png" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
+                                 Hey Coach! Is This You?
+                             </span>
+                         </div>
+                         <div class="w-[294px] h-[522px] relative z-30 container-3d-perspective">
+                             <div class="flip-card-inner-box w-full h-full relative">
+                                 <div class="face-side-front absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
+                                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Front Layer" class="w-full h-full object-cover">
+                                 </div>
+                                 <div class="face-side-back absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
+                                     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Back Layer" class="w-full h-full object-cover">
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+                    <!-- RIGHT COLUMN BLOCK -->
+                    <div class="w-[380px] relative h-full">
+                        <!-- State 1: Top Boxes -->
+                        <div class="cards-right-group w-full absolute inset-0 flex flex-col justify-between h-full z-20">
                             <div class="relative w-[373px] h-[194px] rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)]">
                                 <div class="absolute top-5 left-0 right-0 h-px bg-white/8"></div>
                                 <div class="absolute left-5 top-0 bottom-0 w-px bg-white/8"></div>
@@ -235,25 +234,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="relative w-[373px] rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)]">
+                            <div class="relative w-[373px] h-[194px] rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)]">
                                 <div class="absolute top-5 left-0 right-0 h-px bg-white/8"></div>
                                 <div class="absolute left-5 top-0 bottom-0 w-px bg-white/8"></div>
                                 <div class="absolute bottom-5 left-0 right-0 h-px bg-white/8"></div>
                                 <div class="absolute right-5 top-0 bottom-0 w-px bg-white/8"></div>
                                 <div class="relative z-10 flex flex-col justify-between h-full p-8">
                                     <img src="./assets/images/computer.png" alt="computer icon" class="w-10 h-10 mb-4" onerror="this.style.display='none'">
-                                    <h3 class="text-[18px] leading-[1.3] font-thin text-white mb-3">You've been meaning to fix this for six months but "haven't gotten around it.</h3>
-                                    <div class="flex justify-end mb-[-10px] mr-[-10px]">
+                                    <h3 class="text-[18px] leading-[1.3] font-thin text-white">You've been meaning to fix this for six months but "haven't gotten around it.</h3>
+                                    <div class="flex justify-end mt-[16px] mr-[-10px]">
                                         <span class="py-[0.6px] px-1 rounded border-[0.6px] border-white/70 text-white text-[12px]">Not any more!</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Bottom Content (Section 4 Right Description - hidden initially) -->
-                        <!-- Hook added: "hero-title" class injected for paragraph inline block transitions -->
-                        <div class="text-right-final absolute inset-0 opacity-0 pointer-events-none z-10">
-                            <p class="hero-title text-[20px] text-white/90 font-inter-tight tracking-tight font-[200] leading-relaxed">
+                        <!-- State 2: Bottom Reveal Text -->
+                        <div class="text-right-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-4">
+                            <p class=" text-[20px] text-white/90 font-inter-tight tracking-tight font-[200] leading-relaxed">
                                 Most coaches who come to me aren't marketing wrong. They are posting daily, showing up, making it work. But there's a quieter problem nobody talks about: <span class="text-[#FFCD56]">Every prospect who visits your website and doesn't book is a real cost.</span> 
                                 <br><br>
                                 If your website should convert at 4% but converts at 1.5%, and you get 300 visitors/month at a $5,000 offer, <span class="text-[#FFCD56]">you're losing $37,500/month in opportunity cost.</span>
@@ -265,7 +263,7 @@
             </div>
         </section>
         <!-- section 5 -->
-        <section class="py-10">
+        <section class="section-5 py-10 text-center">
             <div class="text-center mb-5 animated-bage">
                 <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
                     <img src="./assets/images/hey.png" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
@@ -273,10 +271,10 @@
                 </span>
             </div>
             <div class="w-[745px] mx-auto">
-                <h3 class="text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] tracking-tight mt-7">
+                <h3 class="solution-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] tracking-tight mt-7">
                     The Fix Isn't More <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Content</span>.
                 </h3>
-                <p class="text-[20px] text-center text-white font-inter-tight tracking-tight font-[200] mt-10 leading-relaxed">
+                <p class="solution-text text-[20px] text-center text-white font-inter-tight tracking-tight font-[200] mt-10 leading-relaxed">
                     It's three things: a website, a landing page, and a LinkedIn profile built to convert. At 4% instead of 1.5%, 300 visitors and a $5,000 offer means 12 calls instead of 4 - that's $40,000 in pipeline your current funnel is leaving on the table every month.
                 </p>
             </div>
@@ -389,6 +387,88 @@
                     </xhtml:div> 
                 </foreignObject> 
                 </svg> 
+            </div>
+        </section>
+
+        <!-- section 6 -->
+        <section class="section-6 min-h-screen py-10 text-center">
+            <div class="pin-wrap">
+                <div class="text-center mb-5 animated-bage">
+                    <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
+                        <img src="./assets/images/svg.svg" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
+                        Portfolio And Results
+                    </span>
+                </div>
+                <div class="mx-auto">
+                    <h3 class="portfolio-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] tracking-tight mt-7">
+                        They Could Be Your<br>Online Presence.
+                    </h3>
+                </div>
+                <div class="portfolio-slider flex gap-5 mt-30">
+
+                    <div class="portfolio-card h-[570px] w-[570px] shrink-0 overflow-hidden cursor-pointer"
+                        data-full="./assets/images/web-1.png">
+                        <img src="./assets/images/p-crad-1.png" class="w-full h-full object-contain">
+                    </div>
+
+                    <div class="portfolio-card h-[570px] w-[570px] shrink-0 overflow-hidden cursor-pointer"
+                        data-full="./assets/images/web-2.png">
+                        <img src="./assets/images/p-crad-2.png" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="portfolio-card h-[570px] w-[570px] shrink-0 overflow-hidden cursor-pointer"
+                        data-full="./assets/images/web-3.png">
+                        <img src="./assets/images/p-crad-3.png" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="portfolio-card h-[570px] w-[570px] shrink-0 overflow-hidden cursor-pointer"
+                        data-full="./assets/images/web-4.png">
+                        <img src="./assets/images/p-crad-4.png" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="portfolio-card h-[570px] w-[570px] shrink-0 overflow-hidden cursor-pointer"
+                        data-full="./assets/images/web-5.png">
+                        <img src="./assets/images/p-crad-5.png" class="w-full h-full object-cover">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio Modal -->
+        <div id="portfolioModal"
+            class="fixed inset-0 bg-transparent backdrop-blur-md z-[9999] hidden items-center justify-center p-8">
+
+            <!-- Close -->
+            <button id="closePortfolio"
+                class="absolute top-7 right-7 w-14 h-14 rounded-full bg-white/10 border border-white/20 text-white text-3xl transition duration-300 hover:bg-white hover:text-black hover:rotate-90 hover:scale-110">
+                ✕
+            </button>
+
+            <!-- Content -->
+            <div id="modalContent"
+                class="relative w-full max-w-[900px] h-[90vh] overflow-y-auto rounded-2xl bg-[#111] shadow-[0_30px_80px_rgba(0,0,0,.5)]">
+
+                <img id="modalImage"
+                    src=""
+                    class="w-full h-auto block"
+                    draggable="false">
+
+            </div>
+
+        </div>
+
+        <!-- section 7 -->
+        <section class="section-5 min-h-screen py-20 text-center">
+            <div class="text-center mb-5 animated-bage">
+                <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
+                    <img src="./assets/images/hey.png" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
+                    Video Testimonials
+                </span>
+            </div>
+            <div class="w-[745px] mx-auto">
+                <h3 class="solution-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] tracking-tight mt-7">
+                    They had the <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">same doubts</span><br> you do. Now they don't.
+                </h3>
             </div>
         </section>
     </main>
