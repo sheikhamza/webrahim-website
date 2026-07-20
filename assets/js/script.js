@@ -682,29 +682,36 @@ countTarget.textContent = '$' + currentRevenue.toLocaleString();
 
 // Section 6
 const slider = document.querySelector(".portfolio-slider");
+const wrapper = document.querySelector(".portfolio-wrapper");
 
-function initSlider() {
+function initSlider(){
 
-    // Screen width ka 20%
-    const startOffset = window.innerWidth * 0.8;
+    const startOffset = wrapper.clientWidth * 0.8;
 
-    const moveDistance = (slider.scrollWidth - window.innerWidth) + startOffset;
+    // Last card ko aur aage lane ke liye
+    const extraMove = wrapper.clientWidth * 0.25;
 
-    gsap.set(slider, {
-        x: startOffset
+    const moveDistance =
+        slider.scrollWidth -
+        wrapper.clientWidth +
+        startOffset +
+        extraMove;
+
+    gsap.set(slider,{
+        x:startOffset
     });
 
-    gsap.to(slider, {
-        x: -(moveDistance - startOffset),
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".section-6",
-            start: "30% top",
-            end: () => "+=" + moveDistance,
-            scrub: true,
-            pin: slider,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
+    gsap.to(slider,{
+        x:-(moveDistance-startOffset),
+        ease:"none",
+        scrollTrigger:{
+            trigger:".section-6",
+            start:"30% top",
+            end:()=>"+="+moveDistance,
+            scrub:true,
+            pin:".pin-wrap",
+            anticipatePin:1,
+            invalidateOnRefresh:true
         }
     });
 
@@ -712,12 +719,11 @@ function initSlider() {
 
 initSlider();
 
-window.addEventListener("resize", () => {
+window.addEventListener("resize",()=>{
+
     ScrollTrigger.refresh();
+
 });
-
-
-
 
 
 const modal = document.getElementById("portfolioModal");
@@ -811,4 +817,109 @@ document.addEventListener("keydown",(e)=>{
     }
 
 });
-  
+
+
+// Section 7 
+const videoSlider = document.querySelector(".video-testimonial-container");
+const videoWrapper = document.querySelector(".video-wrapper");
+
+function videoSliderFun(){
+
+    const videpStartOffset = videoWrapper.clientWidth * 0.8;
+
+    const extraMove = window.innerWidth * 0.1; // 30% aur aage
+
+    const moveDistance =
+        videoSlider.scrollWidth -
+        videoWrapper.clientWidth +
+        videpStartOffset +
+        extraMove;
+        
+    gsap.set(videoSlider,{
+        x:videpStartOffset
+    });
+
+    gsap.to(videoSlider,{
+        x:-(moveDistance-videpStartOffset),
+        ease:"none",
+        scrollTrigger:{
+            trigger:".video-section",
+            start:"10% top",
+            end:()=>"+="+moveDistance,
+            scrub:true,
+            pin:".video-section",
+            invalidateOnRefresh:true
+        }
+    });
+
+}
+
+videoSliderFun();
+
+
+document.querySelectorAll(".testimonial-card").forEach(card=>{
+
+    const video = card.querySelector("video");
+    const cursor = card.querySelector(".cursor-glass");
+
+    // smooth cursor
+    const moveX = gsap.quickTo(cursor,"x",{duration:.18,ease:"power3"});
+    const moveY = gsap.quickTo(cursor,"y",{duration:.18,ease:"power3"});
+
+    function updateIcon(){
+
+        cursor.innerHTML = video.paused ? "▶" : "❚❚";
+
+    }
+
+    updateIcon();
+
+    card.addEventListener("mouseenter",()=>{
+
+        updateIcon();
+
+        gsap.to(cursor,{
+            opacity:1,
+            scale:1,
+            duration:.25
+        });
+
+    });
+
+    card.addEventListener("mouseleave",()=>{
+
+        gsap.to(cursor,{
+            opacity:0,
+            scale:.5,
+            duration:.2
+        });
+
+    });
+
+    card.addEventListener("mousemove",(e)=>{
+
+        const rect = card.getBoundingClientRect();
+
+        moveX(e.clientX-rect.left);
+        moveY(e.clientY-rect.top);
+
+    });
+
+    // Play / Pause Toggle
+    card.addEventListener("click",()=>{
+
+        if(video.paused){
+
+            video.play();
+
+        }else{
+
+            video.pause();
+
+        }
+
+        updateIcon();
+
+    });
+
+});
