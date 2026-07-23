@@ -7,27 +7,27 @@
    ========================================================== */
 (function () {
     // Lenis smooth scroll
-    if (typeof Lenis !== "undefined") {
-        const lenis = new Lenis({
-            duration: 1.15,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-            smoothTouch: false
-        });
-        window.lenis = lenis;
+    // if (typeof Lenis !== "undefined") {
+    //     const lenis = new Lenis({
+    //         duration: 1.15,
+    //         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    //         smoothWheel: true,
+    //         smoothTouch: false
+    //     });
+    //     window.lenis = lenis;
 
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+    //     function raf(time) {
+    //         lenis.raf(time);
+    //         requestAnimationFrame(raf);
+    //     }
+    //     requestAnimationFrame(raf);
 
-        if (window.gsap && window.ScrollTrigger) {
-            lenis.on("scroll", ScrollTrigger.update);
-            gsap.ticker.add((time) => lenis.raf(time * 1000));
-            gsap.ticker.lagSmoothing(0);
-        }
-    }
+    //     if (window.gsap && window.ScrollTrigger) {
+    //         lenis.on("scroll", ScrollTrigger.update);
+    //         gsap.ticker.add((time) => lenis.raf(time * 1000));
+    //         gsap.ticker.lagSmoothing(0);
+    //     }
+    // }
 
     // Mobile nav
     document.addEventListener("DOMContentLoaded", () => {
