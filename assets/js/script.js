@@ -5,52 +5,52 @@
    - Debounced resize -> ScrollTrigger.refresh() (safe; all
      timelines already use invalidateOnRefresh)
    ========================================================== */
-(function () {
-    // Lenis smooth scroll
-    // if (typeof Lenis !== "undefined") {
-    //     const lenis = new Lenis({
-    //         duration: 1.15,
-    //         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    //         smoothWheel: true,
-    //         smoothTouch: false
-    //     });
-    //     window.lenis = lenis;
+// (function () {
+//     // Lenis smooth scroll
+//     if (typeof Lenis !== "undefined") {
+//         const lenis = new Lenis({
+//             duration: 1.15,
+//             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+//             smoothWheel: true,
+//             smoothTouch: false
+//         });
+//         window.lenis = lenis;
 
-    //     function raf(time) {
-    //         lenis.raf(time);
-    //         requestAnimationFrame(raf);
-    //     }
-    //     requestAnimationFrame(raf);
+//         function raf(time) {
+//             lenis.raf(time);
+//             requestAnimationFrame(raf);
+//         }
+//         requestAnimationFrame(raf);
 
-    //     if (window.gsap && window.ScrollTrigger) {
-    //         lenis.on("scroll", ScrollTrigger.update);
-    //         gsap.ticker.add((time) => lenis.raf(time * 1000));
-    //         gsap.ticker.lagSmoothing(0);
-    //     }
-    // }
+//         if (window.gsap && window.ScrollTrigger) {
+//             lenis.on("scroll", ScrollTrigger.update);
+//             gsap.ticker.add((time) => lenis.raf(time * 1000));
+//             gsap.ticker.lagSmoothing(0);
+//         }
+//     }
 
-    // Mobile nav
-    document.addEventListener("DOMContentLoaded", () => {
-        const btn = document.getElementById("mobileNavBtn");
-        const menu = document.getElementById("mobileNavMenu");
-        const closeBtn = document.getElementById("mobileNavClose");
-        if (!btn || !menu) return;
-        const open = () => { menu.classList.remove("hidden"); menu.classList.add("flex"); document.body.style.overflow = "hidden"; if (window.lenis) window.lenis.stop(); };
-        const close = () => { menu.classList.add("hidden"); menu.classList.remove("flex"); document.body.style.overflow = ""; if (window.lenis) window.lenis.start(); };
-        btn.addEventListener("click", open);
-        closeBtn && closeBtn.addEventListener("click", close);
-        menu.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
-    });
+//     // Mobile nav
+//     document.addEventListener("DOMContentLoaded", () => {
+//         const btn = document.getElementById("mobileNavBtn");
+//         const menu = document.getElementById("mobileNavMenu");
+//         const closeBtn = document.getElementById("mobileNavClose");
+//         if (!btn || !menu) return;
+//         const open = () => { menu.classList.remove("hidden"); menu.classList.add("flex"); document.body.style.overflow = "hidden"; if (window.lenis) window.lenis.stop(); };
+//         const close = () => { menu.classList.add("hidden"); menu.classList.remove("flex"); document.body.style.overflow = ""; if (window.lenis) window.lenis.start(); };
+//         btn.addEventListener("click", open);
+//         closeBtn && closeBtn.addEventListener("click", close);
+//         menu.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
+//     });
 
-    // Debounced resize -> ScrollTrigger refresh
-    let rTimer;
-    window.addEventListener("resize", () => {
-        clearTimeout(rTimer);
-        rTimer = setTimeout(() => {
-            if (window.ScrollTrigger) ScrollTrigger.refresh();
-        }, 200);
-    });
-})();
+//     // Debounced resize -> ScrollTrigger refresh
+//     let rTimer;
+//     window.addEventListener("resize", () => {
+//         clearTimeout(rTimer);
+//         rTimer = setTimeout(() => {
+//             if (window.ScrollTrigger) ScrollTrigger.refresh();
+//         }, 200);
+//     });
+// })();
 
 // gsap.registerPlugin(ScrollTrigger);
 

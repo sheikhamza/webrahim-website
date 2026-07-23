@@ -60,6 +60,9 @@ html {
     font-family: var(--font-sans);
     color: var(--text-primary)
 }
+body{
+    background-color: #1C1C1C;
+}
 .hero-title{
     font-family: "Coolvetica", sans-serif;
 }
@@ -710,7 +713,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 /* Section 9 — workflow horizontal scroll */
 @media (max-width: 1279px) {
     .workflow-track { gap: 70px; padding-left: 100px; }
-    .timeline { left: 100px; width: calc(100% - 200px); top: 130px; }
+    .timeline { left: 100px; width: calc(100% - 200px); top: 110px; }
     .step-card { width: 300px; }
     .number { font-size: 90px; margin-bottom: 45px; }
     .step-card h3 { font-size: 38px; }
@@ -718,7 +721,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 @media (max-width: 1023px) {
     .workflow-track { gap: 50px; padding-left: 60px; }
-    .timeline { left: 60px; width: calc(100% - 120px); top: 115px; }
+    .timeline { left: 60px; width: calc(100% - 120px); top: 90px; }
     .step-card { width: 260px; }
     .number { font-size: 76px; margin-bottom: 35px; }
     .step-card h3 { font-size: 32px; }
@@ -726,7 +729,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 @media (max-width: 767px) {
     .workflow-track { gap: 36px; padding-left: 32px; }
-    .timeline { left: 32px; width: calc(100% - 64px); top: 100px; }
+    .timeline { left: 32px; width: calc(100% - 64px); top: 80px;}
     .step-card { width: 220px; }
     .number { font-size: 64px; margin-bottom: 28px; }
     .step-card h3 { font-size: 26px; margin-bottom: 14px; }
@@ -734,7 +737,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 @media (max-width: 479px) {
     .workflow-track { gap: 28px; padding-left: 24px; }
-    .timeline { left: 24px; width: calc(100% - 48px); top: 92px; }
+    .timeline { left: 24px; width: calc(100% - 48px); top: 65px; }
     .step-card { width: 200px; }
     .number { font-size: 56px; margin-bottom: 24px; }
     .step-card h3 { font-size: 22px; }
