@@ -1,4 +1,11 @@
 @font-face {
+    font-family: "Coolvetica";
+    src: url("./assets/fonts/coolvetica/CoolveticaRg-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
     font-family: "Inter Tight";
     src: url("../fonts/Inter_Tight/static/InterTight-Light.woff2") format("woff2");
     font-weight: 200;
@@ -51,45 +58,13 @@ html {
     scroll-behavior: smooth;
     background-color: var(--bg-color);
     font-family: var(--font-sans);
-    color: var(--text-primary);
-    -webkit-font-smoothing: antialiased;
+    color: var(--text-primary)
 }
-
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #1C1C1C;
-    overflow-x: hidden;
+.hero-title{
+    font-family: "Coolvetica", sans-serif;
 }
-
-/* ==========================================
-   2. FIXED BACKGROUND LAYOUT (CANVAS & VIGNETTE)
-   ========================================== */
-#dot-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    pointer-events: none; /* Allows scrolling directly over the canvas */
-}
-
-.vignette {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    /* High-end radial vignette mimicking dark theme landing pages */
-    background: radial-gradient(
-        circle at center,
-        rgba(10, 10, 10, 0) 20%,
-        rgba(10, 10, 10, 0.6) 60%,
-        rgba(10, 10, 10, 0.95) 100%
-    );
+p{
+    font-family: 'Inter Tight';
 }
 
 /* ==========================================
@@ -123,6 +98,8 @@ main {
     align-items:center;
     justify-content:center;
     cursor:pointer;
+    flex-wrap:wrap;
+    row-gap:12px;
 }
 
 .avatar{
@@ -160,14 +137,25 @@ main {
     z-index:100;
 }
 
-.hero-title{
-    font-family: "Inter", sans-serif;
+
+.hero-subtitle{
+
+font-size:clamp(1rem,2vw,1.4rem);
+
+max-width:780px;
+
+margin:auto;
+
+line-height:1.5;
+
 }
 
-.wchar{
-    display:inline-block;
-    font-variation-settings: "wght" 400;
-    transition: font-variation-settings .15s linear;
+.review-card{
+    height: max-content;
+    opacity:0;
+    filter:blur(2px);
+    transform:translateY(20px);
+    pointer-events:none;
 }
 
 /* button hover effect */
@@ -177,9 +165,23 @@ main {
 }
 
 .hero-btn:hover img {
-    width: 32px;
+    width: 38px;
     opacity: 1;
 }
+.hero-title::first-line{
+    line-height: 91px;
+}
+
+@media(max-width:640px){
+
+    .elastic-stack{
+
+    transform:scale(.85);
+
+    }
+
+}
+
 /* Hero Section style end */
 
 
@@ -226,6 +228,9 @@ main {
     display: block;
     transform-style: preserve-3d;
 }
+
+
+
 /* Section 5 */
 .lf-wrap { 
     position: relative; 
@@ -326,49 +331,8 @@ main {
 
 .portfolio-wrapper{
     position:relative;
-    width:90%;
     margin:auto;
     overflow:hidden;
-}
-
-/* Left Fade */
-.portfolio-wrapper::before{
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    width:150px;
-    height:100%;
-    z-index:20;
-    pointer-events:none;
-
-    background:linear-gradient(
-        to right,
-        #0d0d0d 0%,
-        rgba(13,13,13,.95) 20%,
-        rgba(13,13,13,.55) 55%,
-        transparent 100%
-    );
-}
-
-/* Right Fade */
-.portfolio-wrapper::after{
-    content:"";
-    position:absolute;
-    right:0;
-    top:0;
-    width:150px;
-    height:100%;
-    z-index:20;
-    pointer-events:none;
-
-    background:linear-gradient(
-        to left,
-        #0d0d0d 0%,
-        rgba(13,13,13,.95) 20%,
-        rgba(13,13,13,.55) 55%,
-        transparent 100%
-    );
 }
 
 .portfolio-slider{
@@ -378,15 +342,43 @@ main {
 
 .portfolio-card{
     flex-shrink:0;
+    cursor: none;
+}
+
+.portfolio-cursor-glass{
+    position:absolute;
+    left:0;
+    top:0;
+
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.18);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+    font-size:25px;
+    padding: 10px;
+
+    pointer-events:none;
+
+    opacity:0;
+    scale:.5;
+
+    z-index:20;
 }
 
 .portfolio-slider{
     display:flex;
     width:max-content;
-}
-
-.pin-wrap{
-    min-height:100vh;
 }
 
 #modalContent::-webkit-scrollbar{
@@ -422,62 +414,6 @@ body.modal-open{
     overflow:hidden;
 }
 
-/* Left Gradient */
-
-.video-wrapper::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    top:0;
-
-    width:120px;
-    height:100%;
-
-    z-index:10;
-
-    pointer-events:none;
-
-    background:linear-gradient(
-        to right,
-        #0d0d0d 0%,
-        rgba(13,13,13,.95) 20%,
-        rgba(13,13,13,.6) 45%,
-        transparent 100%
-    );
-
-}
-
-/* Right Gradient */
-
-.video-wrapper::after{
-
-    content:"";
-
-    position:absolute;
-
-    right:0;
-    top:0;
-
-    width:120px;
-    height:100%;
-
-    z-index:10;
-
-    pointer-events:none;
-
-    background:linear-gradient(
-        to left,
-        #0d0d0d 0%,
-        rgba(13,13,13,.95) 20%,
-        rgba(13,13,13,.6) 45%,
-        transparent 100%
-    );
-
-}
-
 .video-testimonial-container{
     display:flex;
     gap:20px;
@@ -494,8 +430,8 @@ body.modal-open{
     left:0;
     top:0;
 
-    width:90px;
-    height:90px;
+    width:100px;
+    height:100px;
 
     border-radius:50%;
     backdrop-filter: blur(18px);
@@ -509,13 +445,363 @@ body.modal-open{
     justify-content:center;
 
     color:#fff;
-    font-size:34px;
+    font-size:30px;
     font-weight:600;
-
+    padding: 10px;
     pointer-events:none;
 
     opacity:0;
     scale:.5;
 
     z-index:20;
+}
+
+.speaker-btn{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
+    color:#fff;
+    cursor:pointer;
+    z-index:50;
+}
+
+.volume-popup{
+    position:absolute;
+    top:55px;
+    right:0;
+
+    width:50px;
+    height:160px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:20px;
+
+    background:rgba(20,20,20,.8);
+    backdrop-filter:blur(20px);
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+
+    transition:.25s;
+}
+
+.volume-popup.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.volume-slider{
+    width:120px;
+    transform:rotate(-90deg);
+    cursor:pointer;
+}
+
+.testimonial-card:hover .speaker-btn{
+    opacity:1;
+}
+
+
+/* Offer Section */
+.offer-card{
+    position: relative;
+    overflow: hidden;
+
+    background: rgba(255,255,255,.03);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 24px;
+}
+
+.offer-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: radial-gradient(
+        circle at top left,
+        rgba(255,255,255,.05),
+        transparent 60%
+    );
+    pointer-events:none;
+}
+
+
+/* section 9 */
+#workflow-section{
+    overflow:hidden;
+}
+
+.workflow-wrapper{
+    width:100%;
+    overflow:hidden;
+}
+
+.workflow-track{
+    position:relative;
+    display:flex;
+    gap:100px;
+    width:max-content;
+
+    padding-left:150px;
+}
+
+.timeline{
+    position:absolute;
+    left:150px;
+    top:145px;
+
+    width:calc(100% - 300px); /* 150 left + 150 right */
+
+    height:2px;
+
+    z-index:1;
+}
+
+.timeline-base{
+    position:absolute;
+    left:0;
+    top:0;
+
+    width:100%;
+    height:2px;
+
+    background:#3b3b3b;
+}
+
+.timeline-progress{
+    position:absolute;
+    left:0;
+    top:0;
+
+    width:520px;
+    height:2px;
+
+    background:#D6A019;
+}
+
+.step-card{
+    width:350px;
+    flex-shrink:0;
+    position:relative;
+    z-index:2;
+}
+
+.number{
+    font-size:110px;
+    font-weight:700;
+    color:#fff;
+    line-height:1;
+    margin-bottom:65px;
+}
+
+.step-card h3{
+    color:#fff;
+    font-size:46px;
+    line-height:1.1;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.step-card p{
+    width:260px;
+    color:#BDBDBD;
+    font-size:17px;
+    line-height:1.6;
+}
+
+
+/* section 10 */
+
+.testimonial-slide{
+    will-change: transform, opacity;
+}
+
+.testimonial-slide h3{
+    letter-spacing:-2px;
+}
+
+#prevBtn,
+#nextBtn{
+    transition:all .35s ease;
+}
+
+#prevBtn:hover,
+#nextBtn:hover{
+    transform:translateY(-2px);
+}
+
+#testimonialTrack{
+    overflow:hidden;
+}
+
+
+
+
+
+/* section 11 ribbon */
+.ribbon-track{
+    width:max-content;
+    will-change:transform;
+}
+
+
+
+/* section 12 */
+.faq-content{
+    height:0;
+}
+
+.faq-btn{
+    transition:.35s;
+}
+
+.faq-item:hover .faq-btn{
+    padding-left:12px;
+}
+
+.faq-item{
+    transition:.35s;
+}
+
+.faq-item:hover{
+    border-color:#D4A11E55;
+}
+
+.plus{
+    transition:.35s;
+}
+
+.faq-title{
+    letter-spacing:-2px;
+}
+/* ==========================================================
+   RESPONSIVE LAYER — appended
+   Preserves desktop pixel-perfect design; only adjusts
+   fixed-px CSS values at <= specific breakpoints.
+   Breakpoints: 1536, 1440, 1280, 1024, 768, 640, 480, 375
+   ========================================================== */
+
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* Mobile nav overlay */
+#mobileNavMenu.open { display: flex; }
+.mobile-nav-link { position: relative; }
+.mobile-nav-link:hover { color: #FFB300; }
+
+/* Hero title first-line huge line-height only on desktop */
+@media (max-width: 1023px) {
+    .hero-title::first-line { line-height: 1.05; }
+}
+
+/* Section 9 — workflow horizontal scroll */
+@media (max-width: 1279px) {
+    .workflow-track { gap: 70px; padding-left: 100px; }
+    .timeline { left: 100px; width: calc(100% - 200px); top: 130px; }
+    .step-card { width: 300px; }
+    .number { font-size: 90px; margin-bottom: 45px; }
+    .step-card h3 { font-size: 38px; }
+    .step-card p { font-size: 16px; width: 240px; }
+}
+@media (max-width: 1023px) {
+    .workflow-track { gap: 50px; padding-left: 60px; }
+    .timeline { left: 60px; width: calc(100% - 120px); top: 115px; }
+    .step-card { width: 260px; }
+    .number { font-size: 76px; margin-bottom: 35px; }
+    .step-card h3 { font-size: 32px; }
+    .step-card p { font-size: 15px; width: 220px; }
+}
+@media (max-width: 767px) {
+    .workflow-track { gap: 36px; padding-left: 32px; }
+    .timeline { left: 32px; width: calc(100% - 64px); top: 100px; }
+    .step-card { width: 220px; }
+    .number { font-size: 64px; margin-bottom: 28px; }
+    .step-card h3 { font-size: 26px; margin-bottom: 14px; }
+    .step-card p { font-size: 14px; width: 200px; line-height: 1.5; }
+}
+@media (max-width: 479px) {
+    .workflow-track { gap: 28px; padding-left: 24px; }
+    .timeline { left: 24px; width: calc(100% - 48px); top: 92px; }
+    .step-card { width: 200px; }
+    .number { font-size: 56px; margin-bottom: 24px; }
+    .step-card h3 { font-size: 22px; }
+    .step-card p { font-size: 13px; width: 180px; }
+}
+
+/* Section 5 — funnel SVG scales down naturally via viewBox; nothing to change */
+
+/* Portfolio cursor smaller on touch */
+@media (max-width: 1023px) {
+    .portfolio-cursor-glass, .cursor-glass { width: 80px; height: 80px; font-size: 18px; }
+    .portfolio-card, .testimonial-card { cursor: pointer; }
+}
+@media (max-width: 767px) {
+    .portfolio-cursor-glass, .cursor-glass { display: none; }
+}
+
+/* Section 8 offer cards padding */
+@media (max-width: 767px) {
+    .offer-card, [class*="rounded-3xl"].p-8 { padding: 1.5rem; }
+}
+
+/* About section — hide extra decorative cards on smaller screens (keep image card1 only) */
+@media (max-width: 1023px) {
+    .about-section .card2,
+    .about-section .card3,
+    .about-section .card4 { display: none; }
+    .about-section .card1 { position: relative !important; right: auto !important; margin: 0 auto; height: 480px; width: 380px; max-width: 100%; }
+}
+@media (max-width: 640px) {
+    .about-section .card1 { height: 380px; width: 300px; }
+}
+
+/* Testimonial slide bottom info spacing */
+@media (max-width: 1023px) {
+    .testimonial-slide .mt-16 { margin-top: 1.5rem; }
+}
+
+/* FAQ heading on mobile */
+@media (max-width: 640px) {
+    .faq-title { letter-spacing: -1px; }
+}
+
+/* Prevent portfolio modal overflow on small screens */
+@media (max-width: 640px) {
+    #portfolioModal { padding: 1rem; }
+    #modalContent { max-width: 100%; height: 85vh; }
+    #closePortfolio { top: 1rem; right: 1rem; width: 44px; height: 44px; font-size: 20px; }
+}
+
+/* Ribbon square separators */
+@media (max-width: 767px) {
+    .ribbon-item .w-8.h-8 { width: 18px; height: 18px; margin-left: 1.5rem; margin-right: 1.5rem; }
+}
+
+/* Video volume popup — keep tappable */
+@media (max-width: 640px) {
+    .speaker-btn { width: 38px; height: 38px; top: 10px; right: 10px; }
+}
+
+/* Elastic stack — smaller avatars on tiny screens */
+@media (max-width: 479px) {
+    .avatar { width: 26px; height: 26px; margin-left: -12px; }
+}
+
+/* Hero inline nav tabs — reduce height */
+@media (max-width: 640px) {
+    #leftCurrent, #centerCurrent, #rightCurrent,
+    #leftNext, #centerNext, #rightNext { font-size: 1.1rem; }
 }

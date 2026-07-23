@@ -1,172 +1,104 @@
-const canvas = document.getElementById('dot-canvas');
-const ctx = canvas.getContext('2d');
+/* ==========================================================
+   RESPONSIVE + LENIS BOOTSTRAP — prepended
+   - Lenis smooth scroll wired to GSAP ScrollTrigger
+   - Mobile nav open/close
+   - Debounced resize -> ScrollTrigger.refresh() (safe; all
+     timelines already use invalidateOnRefresh)
+   ========================================================== */
+(function () {
+    // Lenis smooth scroll
+    if (typeof Lenis !== "undefined") {
+        const lenis = new Lenis({
+            duration: 1.15,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            smoothTouch: false
+        });
+        window.lenis = lenis;
 
-// Configuration Constants
-const GRID_GAP = 15;          // Distance between dots in pixels
-const DOT_BASE_SIZE = 1;      // Radius of baseline dots (2px diameter)
-const INFLUENCE_RADIUS = 120; // Radius of mouse interaction in pixels
-const WAVE_SPEED = 0.0015;     // Speed of the organic wave animation
-const WAVE_FREQ = 0.015;      // Spatial frequency of the wave
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
 
-// Dynamic State Variables
-let width = 0;
-let height = 0;
-let cols = 0;
-let rows = 0;
-let dpr = 1;
-
-// Tracking Mouse Vectors (Normalized and Raw)
-const mouse = {
-    x: -1000,
-    y: -1000,
-    targetX: -1000,
-    targetY: -1000,
-    active: false
-};
-
-/**
- * Handles canvas resizing while taking into account high-DPI (Retina) monitors.
- * This prevents pixelation and keeps the dot borders perfectly sharp.
- */
-function resize() {
-    dpr = window.devicePixelRatio || 1;
-    width = window.innerWidth;
-    height = window.innerHeight;
-
-    // Scale canvas buffers for high resolution
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    
-    // Scale the context matrix once so coordinate computations remain at 1:1 scale
-    ctx.scale(dpr, dpr);
-
-    // Recompute grid constraints
-    cols = Math.ceil(width / GRID_GAP) + 1;
-    rows = Math.ceil(height / GRID_GAP) + 1;
-}
-
-// Attach High-Performance Resize Observer
-const resizeObserver = new ResizeObserver(() => resize());
-resizeObserver.observe(document.body);
-resize();
-
-// Mouse tracking with soft boundary resets if the cursor leaves the window
-window.addEventListener('mousemove', (e) => {
-    mouse.targetX = e.clientX;
-    mouse.targetY = e.clientY;
-    mouse.active = true;
-});
-
-window.addEventListener('mouseleave', () => {
-    mouse.active = false;
-});
-
-// Touch support for mobile devices
-window.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 0) {
-        mouse.targetX = e.touches[0].clientX;
-        mouse.targetY = e.touches[0].clientY;
-        mouse.active = true;
-    }
-}, { passive: true });
-
-window.addEventListener('touchend', () => {
-    mouse.active = false;
-});
-
-/**
- * Animation Loop: Renders the entire dot field, computes dynamic wave motions, 
- * interpolates mouse movement with easing, and draws effects inside a single loop.
- */
-function animate(time) {
-    requestAnimationFrame(animate);
-
-    // Clear Canvas with high performance
-    ctx.clearRect(0, 0, width, height);
-
-    // 1. Smoothly Ease Mouse Coordinates towards Targets
-    if (mouse.active) {
-        // Linear Interpolation (lerp) for buttery-smooth ease-in and ease-out
-        mouse.x += (mouse.targetX - mouse.x) * 0.12;
-        mouse.y += (mouse.targetY - mouse.y) * 0.12;
-    } else {
-        // Drifts the coordinates away slowly when the mouse is inactive to prevent hard jumps
-        mouse.x += (-1000 - mouse.x) * 0.08;
-        mouse.y += (-1000 - mouse.y) * 0.08;
-    }
-
-    // 2. Render Dot Matrix Grid
-    for (let c = 0; c < cols; c++) {
-        for (let r = 0; r < rows; r++) {
-            // Compute base positions
-            const x = c * GRID_GAP;
-            const y = r * GRID_GAP;
-
-            // Compute background Wave mechanics (combining diagonal coordinates for motion)
-            const waveValue = Math.sin(time * WAVE_SPEED + (x + y) * WAVE_FREQ);
-            const waveScale = (waveValue + 1) * 0.5; // Map from [-1, 1] to [0, 1]
-
-            // Baseline calculations
-            let scale = 1 + waveScale * 0.35; // Subtle breathing scaling (up to 35%)
-            let opacity = 0.2 + waveScale * 0.15; // Subtle opacity oscillation
-            let dotColor = '#404040';
-            let glowIntensity = 0;
-
-            // 3. Compute Mouse Interaction Mechanics
-            const dx = x - mouse.x;
-            const dy = y - mouse.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < INFLUENCE_RADIUS) {
-                // Calculate normalize proximity vector [1 = cursor center, 0 = edge of radius]
-                const factor = 1 - (distance / INFLUENCE_RADIUS);
-                // Smooth-step easing curve for non-linear, soft transitions
-                const smoothFactor = factor * factor * (3 - 2 * factor);
-
-                // Elevate sizing, transparency and transition color
-                scale += smoothFactor * 3.0; // Grows up to ~400%
-                opacity = opacity * (1 - smoothFactor) + (0.95 * smoothFactor);
-                
-                // Linear blend color values from Gray #404040 to Cyan #22D3EE
-                const grayVal = Math.round(64 * (1 - smoothFactor));
-                const rVal = Math.round(grayVal + (34 * smoothFactor));
-                const gVal = Math.round(grayVal + (211 * smoothFactor));
-                const bVal = Math.round(grayVal + (238 * smoothFactor));
-                dotColor = `#FFCD56`;
-                
-                glowIntensity = smoothFactor;
-            }
-
-            // 4. Draw Glow (Using shadow/blur selectively on active dots to avoid lag)
-            if (glowIntensity > 0.05) {
-                ctx.save();
-                ctx.shadowBlur = 10 * glowIntensity;
-                ctx.shadowColor = 'rgba(34, 211, 238, 0.4)';
-                ctx.fillStyle = dotColor;
-                ctx.globalAlpha = opacity;
-                ctx.beginPath();
-                ctx.arc(x, y, DOT_BASE_SIZE * scale, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            } else {
-                // Render fast standard dot path
-                ctx.fillStyle = dotColor;
-                ctx.globalAlpha = opacity;
-                ctx.beginPath();
-                ctx.arc(x, y, DOT_BASE_SIZE * scale, 0, Math.PI * 2);
-                ctx.fill();
-            }
+        if (window.gsap && window.ScrollTrigger) {
+            lenis.on("scroll", ScrollTrigger.update);
+            gsap.ticker.add((time) => lenis.raf(time * 1000));
+            gsap.ticker.lagSmoothing(0);
         }
     }
-}
 
-// Kickstart animation loop
-requestAnimationFrame(animate);
+    // Mobile nav
+    document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("mobileNavBtn");
+        const menu = document.getElementById("mobileNavMenu");
+        const closeBtn = document.getElementById("mobileNavClose");
+        if (!btn || !menu) return;
+        const open = () => { menu.classList.remove("hidden"); menu.classList.add("flex"); document.body.style.overflow = "hidden"; if (window.lenis) window.lenis.stop(); };
+        const close = () => { menu.classList.add("hidden"); menu.classList.remove("flex"); document.body.style.overflow = ""; if (window.lenis) window.lenis.start(); };
+        btn.addEventListener("click", open);
+        closeBtn && closeBtn.addEventListener("click", close);
+        menu.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
+    });
 
+    // Debounced resize -> ScrollTrigger refresh
+    let rTimer;
+    window.addEventListener("resize", () => {
+        clearTimeout(rTimer);
+        rTimer = setTimeout(() => {
+            if (window.ScrollTrigger) ScrollTrigger.refresh();
+        }, 200);
+    });
+})();
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// const scrollContainer = document.querySelector("[data-scroll-container]");
+
+// const locoScroll = new LocomotiveScroll({
+//     el: scrollContainer,
+//     smooth: true,
+//     smartphone: {
+//         smooth: true
+//     },
+//     tablet: {
+//         smooth: true
+//     }
+// });
+
+// locoScroll.on("scroll", ScrollTrigger.update);
+
+// ScrollTrigger.scrollerProxy(scrollContainer, {
+
+//     scrollTop(value) {
+//         return arguments.length
+//             ? locoScroll.scrollTo(value, {
+//                   duration: 0,
+//                   disableLerp: true
+//               })
+//             : locoScroll.scroll.instance.scroll.y;
+//     },
+
+//     getBoundingClientRect() {
+//         return {
+//             top: 0,
+//             left: 0,
+//             width: window.innerWidth,
+//             height: window.innerHeight
+//         };
+//     },
+
+//     pinType: scrollContainer.style.transform ? "transform" : "fixed"
+
+// });
+
+// ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+
+// ScrollTrigger.refresh();
 
 
 // Profiles Animation
-
 const avatars = document.querySelectorAll(".avatar");
 
 const overlap = 10;
@@ -221,40 +153,64 @@ document.querySelector(".elastic-stack").addEventListener("mouseleave", () => {
 
 });
 
-// hover effect for hero title words
-// Split every word into letters
-document.querySelectorAll(".hero-title .word").forEach(word => {
+// Review Slider
+document.querySelectorAll(".review-slider").forEach((slider, index) => {
 
-    const text = word.textContent;
-    word.innerHTML = "";
+    const cards = slider.querySelectorAll(".review-card");
 
-    [...text].forEach(letter => {
-        const span = document.createElement("span");
-        span.className = "char";
-        span.textContent = letter;
-        word.appendChild(span);
-    });
-});
+    let current = 0;
 
-// Hover animation
-document.querySelectorAll(".hero-title .word").forEach(word => {
-
-    const text = word.textContent;
-
-    word.innerHTML = [...text]
-        .map(char => `<span class="wchar">${char}</span>`)
-        .join("");
-
-});
-document.querySelectorAll(".wchar").forEach(letter => {
-
-    letter.addEventListener("mouseenter", () => {
-        letter.style.fontVariationSettings = `"wght" 700`;
+    // Initial State
+    gsap.set(cards, {
+        opacity: 0,
+        y: 10,
+        filter: "blur(10px)"
     });
 
-    letter.addEventListener("mouseleave", () => {
-        letter.style.fontVariationSettings = `"wght" 400`;
+    gsap.set(cards[0], {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)"
     });
+
+    // Second slider ko thoda delay de do
+    setTimeout(() => {
+
+        setInterval(() => {
+
+            const next = (current + 1) % cards.length;
+
+            const tl = gsap.timeline();
+
+            tl.to(cards[current], {
+                opacity: 0,
+                y: -10,
+                filter: "blur(10px)",
+                duration: 0.7,
+                ease: "power3.inOut"
+            });
+
+            tl.fromTo(cards[next],
+                {
+                    opacity: 0,
+                    y: 10,
+                    filter: "blur(10px)"
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    duration: 0.8,
+                    ease: "power3.out"
+                },
+                "-=0.25"
+            );
+
+            current = next;
+
+        }, 5000);
+
+    }, index * 2500); // 2nd slider 2.5 sec baad start hoga
 
 });
 
@@ -409,16 +365,32 @@ setInterval(() => {
 
 
 
-
+// Section 2 
 gsap.registerPlugin(ScrollTrigger);
+
+// Helper function: Responsive sizes target dynamic screens
+const getDimensions = () => {
+  const isMobile = window.innerWidth < 768;
+  return {
+    smallWidth: isMobile ? "210px" : "324px",
+    smallHeight: isMobile ? "180px" : "274px",
+    centerWidth: isMobile ? "310px" : "472px",
+    centerHeight: isMobile ? "260px" : "400px",
+    insetPos: isMobile ? "5%" : "10%"
+  };
+};
+
+const dim = getDimensions();
 
 const tl = gsap.timeline({
   scrollTrigger: {
     trigger: ".portfolio",
+    // scroller: "[data-scroll-container]",
     start: "top top",      
-    end: "bottom top",
+    end: "+=300%", // Timeline ki scroll distance smooth animation ke liye
     pin: true,
-    scrub: 1
+    scrub: 1,
+    invalidateOnRefresh: true // Screen resize par positions auto-calculate hongi
   }
 });
 
@@ -426,35 +398,35 @@ const tl = gsap.timeline({
 tl.to(".card-3", {
     left: "50%",
     top: "50%",
-    x: "-50%",
-    y: "-50%",
-    right: "auto", // right property clear karna zaroori hai taake left chal sakay
+    xPercent: -50,
+    yPercent: -50,
+    right: "auto",
     bottom: "auto",
-    width: "472px",
-    height: "400px",
+    width: dim.centerWidth,
+    height: dim.centerHeight,
     opacity: 1,
     zIndex: 10,
     duration: 1
   }, "step1")
   .to(".card-4", {
-    bottom: "10%", // out se screen ke andar bottom right par aaya
+    bottom: dim.insetPos,
     opacity: 0.25,
     duration: 1
   }, "step1")
   .to(".card-5", {
-    bottom: "-10%", // queue mein aik step upar aaya
+    bottom: "-10%",
     opacity: 0,
     duration: 1
   }, "step1");
 
 // --- STAGE 2: Card 3 moves to Top-Left, Card 4 moves to Center, Card 5 enters ---
 tl.to(".card-3", {
-    left: "10%",
-    top: "10%",
-    x: "0%",
-    y: "0%",
-    width: "324px",
-    height: "274px",
+    left: dim.insetPos,
+    top: dim.insetPos,
+    xPercent: 0,
+    yPercent: 0,
+    width: dim.smallWidth,
+    height: dim.smallHeight,
     opacity: 0.25,
     zIndex: 1,
     duration: 1
@@ -462,18 +434,18 @@ tl.to(".card-3", {
   .to(".card-4", {
     left: "50%",
     top: "50%",
-    x: "-50%",
-    y: "-50%",
+    xPercent: -50,
+    yPercent: -50,
     right: "auto",
     bottom: "auto",
-    width: "472px",
-    height: "400px",
+    width: dim.centerWidth,
+    height: dim.centerHeight,
     opacity: 1,
     zIndex: 10,
     duration: 1
   }, "step2")
   .to(".card-5", {
-    bottom: "10%",
+    bottom: dim.insetPos,
     opacity: 0.25,
     duration: 1
   }, "step2")
@@ -486,12 +458,12 @@ tl.to(".card-3", {
 // --- STAGE 3: Card 3 leaves screen, Card 4 to Top-Left, Card 5 to Center, Card 6 enters ---
 tl.to(".card-3", { top: "-50%", opacity: 0, duration: 1 }, "step3")
   .to(".card-4", {
-    left: "10%",
-    top: "10%",
-    x: "0%",
-    y: "0%",
-    width: "324px",
-    height: "274px",
+    left: dim.insetPos,
+    top: dim.insetPos,
+    xPercent: 0,
+    yPercent: 0,
+    width: dim.smallWidth,
+    height: dim.smallHeight,
     opacity: 0.25,
     zIndex: 1,
     duration: 1
@@ -499,21 +471,22 @@ tl.to(".card-3", { top: "-50%", opacity: 0, duration: 1 }, "step3")
   .to(".card-5", {
     left: "50%",
     top: "50%",
-    x: "-50%",
-    y: "-50%",
+    xPercent: -50,
+    yPercent: -50,
     right: "auto",
     bottom: "auto",
-    width: "472px",
-    height: "400px",
+    width: dim.centerWidth,
+    height: dim.centerHeight,
     opacity: 1,
     zIndex: 10,
     duration: 1
   }, "step3")
   .to(".card-6", {
-    bottom: "10%",
+    bottom: dim.insetPos,
     opacity: 0.25,
     duration: 1
   }, "step3");
+
 
 // --- STAGE 4: Card 4 leaves screen, Card 5 to Top-Left, Card 6 to Center ---
 tl.to(".card-4", { top: "-50%", opacity: 0, duration: 1 }, "step4")
@@ -558,7 +531,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const textLeftFinal = document.querySelector(".text-left-final");
     const textRightFinal = document.querySelector(".text-right-final");
 
-    // Initialize text splits
+    // Initialize SplitType text line split logic
     const textTargets = document.querySelectorAll(".flip-title");
     textTargets.forEach(target => {
         new SplitType(target, { types: "lines" });
@@ -567,24 +540,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const compiledLines = document.querySelectorAll(".flip-title .line");
     gsap.set(compiledLines, { y: "45px", opacity: 0, rotateX: -12 });
 
-    // MASTER PINNING TIMELINE
+    // Master Scroll Animation Timeline
     const scrollMaster = gsap.timeline({
         scrollTrigger: {
-            trigger: mainWrapper,          // Tracks the main 200vh section block
-            start: "top top",              // When wrapper hits top of viewport
-            end: "bottom bottom",          // Stops when full 200vh scroll tracks out
-            pin: innerCanvas,              // PIN ONLY THE INNER INNER ELEMENTS
-            pinSpacing: false,             // Handled natively by the 200vh height wrap
-            scrub: 1,                      
-            // markers: true,                 // LIVE TESTING MARKERS ACTIVE
+            trigger: mainWrapper, 
+            start: "top top", 
+            end: "bottom bottom", 
+            pin: innerCanvas, 
+            pinSpacing: false, 
+            scrub: 1, 
             invalidateOnRefresh: true
         }
     });
 
     scrollMaster
-    // Phase 1: Displace and hide the top state cards
+    // Step 1: Displace and hide the top cards
     .to([leftBoxes, rightBoxes, flipBadge], {
-        y: "-100%",
+        y: "-80%",
         opacity: 0,
         filter: "blur(12px)",
         webkitFilter: "blur(12px)",
@@ -592,21 +564,21 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power2.inOut"
     }, 0)
 
-    // Phase 2: Central spatial card flipping asset transition
+    // Step 2: 3D Flip center box
     .to(innerCardLoop, {
         rotateY: 180,
         duration: 1.6,
         ease: "none"
     }, 0)
 
-    // Phase 3: Trigger active container visibility configurations
+    // Step 3: Reveal revealable text sections
     .to([textLeftFinal, textRightFinal], {
         opacity: 1,
         pointerEvents: "auto",
         duration: 0.4
-    }, 1.5)
+    }, 1.2)
 
-    // Phase 4: Staggered text presentation timeline execution
+    // Step 4: Staggered text line animation
     .to(compiledLines, {
         y: "0px",
         opacity: 1,
@@ -614,7 +586,7 @@ document.addEventListener("DOMContentLoaded", () => {
         stagger: 0.08,
         duration: 1.2,
         ease: "power4.out"
-    }, 1.5);
+    }, 1.2);
 });
 
 // section 5
@@ -650,6 +622,7 @@ gsap.set(".lf-wrap", {
 const solutiontTl = gsap.timeline({
     scrollTrigger: {
         trigger: ".section-5",
+        // scroller:"[data-scroll-container]",
         start: "top top",
         end: "top top",
         toggleActions: "play none none none",
@@ -686,7 +659,7 @@ const wrapper = document.querySelector(".portfolio-wrapper");
 
 function initSlider(){
 
-    const startOffset = wrapper.clientWidth * 0.8;
+    const startOffset = wrapper.clientWidth * 0.5;
 
     // Last card ko aur aage lane ke liye
     const extraMove = wrapper.clientWidth * 0.25;
@@ -706,10 +679,11 @@ function initSlider(){
         ease:"none",
         scrollTrigger:{
             trigger:".section-6",
-            start:"30% top",
+            // scroller:"[data-scroll-container]",
+            start:"top top",
             end:()=>"+="+moveDistance,
             scrub:true,
-            pin:".pin-wrap",
+            pin:".portfolio-pin-wrap",
             anticipatePin:1,
             invalidateOnRefresh:true
         }
@@ -725,6 +699,46 @@ window.addEventListener("resize",()=>{
 
 });
 
+// Portfolio Mouse
+document.querySelectorAll(".portfolio-card").forEach(card=>{
+
+    const pCard = card.querySelector(".portfolio-card img");
+    const cursor = card.querySelector(".portfolio-cursor-glass");
+
+    // smooth cursor
+    const moveX = gsap.quickTo(cursor,"x",{duration:.18,ease:"power3"});
+    const moveY = gsap.quickTo(cursor,"y",{duration:.18,ease:"power3"});
+
+    pCard.addEventListener("mouseenter",()=>{
+
+        gsap.to(cursor,{
+            opacity:1,
+            scale:1,
+            duration:.25
+        });
+
+    });
+
+    pCard.addEventListener("mouseleave",()=>{
+
+        gsap.to(cursor,{
+            opacity:0,
+            scale:.5,
+            duration:.2
+        });
+
+    });
+
+    card.addEventListener("mousemove",(e)=>{
+
+        const rect = card.getBoundingClientRect();
+
+        moveX(e.clientX-rect.left);
+        moveY(e.clientY-rect.top);
+
+    });
+
+});
 
 const modal = document.getElementById("portfolioModal");
 const modalImage = document.getElementById("modalImage");
@@ -819,15 +833,16 @@ document.addEventListener("keydown",(e)=>{
 });
 
 
+
 // Section 7 
 const videoSlider = document.querySelector(".video-testimonial-container");
 const videoWrapper = document.querySelector(".video-wrapper");
 
 function videoSliderFun(){
 
-    const videpStartOffset = videoWrapper.clientWidth * 0.8;
+    const videpStartOffset = videoWrapper.clientWidth * 0.5;
 
-    const extraMove = window.innerWidth * 0.1; // 30% aur aage
+    const extraMove = window.innerWidth * 0.4; // 30% aur aage
 
     const moveDistance =
         videoSlider.scrollWidth -
@@ -844,6 +859,7 @@ function videoSliderFun(){
         ease:"none",
         scrollTrigger:{
             trigger:".video-section",
+            // scroller:"[data-scroll-container]",
             start:"10% top",
             end:()=>"+="+moveDistance,
             scrub:true,
@@ -857,68 +873,584 @@ function videoSliderFun(){
 videoSliderFun();
 
 
-document.querySelectorAll(".testimonial-card").forEach(card=>{
+let activeVideo = null;
+let activeCard = null;
+let activeState = null;
 
+document.querySelectorAll(".testimonial-card").forEach(card => {
+
+    // 1. Elements ko pehle query karein
     const video = card.querySelector("video");
     const cursor = card.querySelector(".cursor-glass");
+    const speaker = card.querySelector(".speaker-btn");
+    const volumePopup = card.querySelector(".volume-popup");
+    const volumeSlider = card.querySelector(".volume-slider");
+    const speakerIcon = card.querySelector(".speaker-icon");
 
-    // smooth cursor
-    const moveX = gsap.quickTo(cursor,"x",{duration:.18,ease:"power3"});
-    const moveY = gsap.quickTo(cursor,"y",{duration:.18,ease:"power3"});
+    // 2. Initial state set karein
+    if (video) {
+        video.muted = true;
+        video.volume = 1;
+        video.loop = true;
+    }
 
-    function updateIcon(){
+    if (volumeSlider) {
+        volumeSlider.value = 1;
+    }
 
-        cursor.innerHTML = video.paused ? "▶" : "❚❚";
+    if (speakerIcon) {
+        speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
+    }
+
+    let expanded = false;
+
+    // GSAP QuickTo setups
+    const moveX = gsap.quickTo(cursor, "x", { duration: 0.18 });
+    const moveY = gsap.quickTo(cursor, "y", { duration: 0.18 });
+
+    function updateCursor() {
+        if (cursor) {
+            cursor.innerHTML = expanded ? "Pause" : "Play";
+        }
+    }
+
+    updateCursor();
+
+    // Hover Effects
+    card.addEventListener("mouseenter", () => {
+        updateCursor();
+        gsap.to(cursor, {
+            opacity: 1,
+            scale: 1
+        });
+    });
+
+    card.addEventListener("mouseleave", () => {
+        gsap.to(cursor, {
+            opacity: 0,
+            scale: 0.5
+        });
+    });
+
+    card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+        moveX(e.clientX - rect.left);
+        moveY(e.clientY - rect.top);
+    });
+
+    // Reset video function (DRY Principle)
+    function resetVideoState() {
+        expanded = false;
+        if (video) {
+            video.currentTime = 0;
+            video.muted = true;
+            video.loop = true;
+            video.volume = 1;
+            video.play();
+        }
+        if (volumeSlider) {
+            volumeSlider.value = 1;
+        }
+        if (speakerIcon) {
+            speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
+        }
+        if (volumePopup) {
+            volumePopup.classList.remove("show");
+        }
+        updateCursor();
+    }
+
+    // Card Click Event
+    card.addEventListener("click", () => {
+
+        // Agar same video clicked ho to pause/reset karein
+        if (activeVideo === video) {
+            resetVideoState();
+            activeVideo = null;
+            activeState = null;
+            return;
+        }
+
+        // Agar koi doosri video active ho to usko reset karein
+        if (activeState && activeState.reset) {
+            activeState.reset();
+        }
+
+        // Nayi video play karein
+        expanded = true;
+        
+        if (video) {
+            video.currentTime = 0;
+            video.loop = false;
+            video.muted = false;
+            video.play();
+        }
+
+        activeVideo = video;
+        activeCard = card;
+        
+        activeState = {
+            video,
+            speaker,
+            volumeSlider,
+            reset: resetVideoState
+        };
+
+        updateCursor();
+    });
+
+    // Volume Popup controls
+    if (speaker) {
+        speaker.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // Prevents card click event
+
+            // Close other popups
+            document.querySelectorAll(".volume-popup").forEach(p => {
+                if (p !== volumePopup) p.classList.remove("show");
+            });
+
+            if (volumeSlider && video) {
+                volumeSlider.value = video.volume;
+            }
+
+            if (volumePopup) {
+                volumePopup.classList.toggle("show");
+            }
+        });
+    }
+
+    // Volume Popup ke clicks card tak na jayein
+    if (volumePopup) {
+        volumePopup.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+    }
+
+    // Volume Slider Input Handler
+    if (volumeSlider && video) {
+        volumeSlider.addEventListener("input", () => {
+            video.volume = parseFloat(volumeSlider.value);
+            video.muted = video.volume === 0;
+
+            if (speakerIcon) {
+                if (video.volume === 0) {
+                    speakerIcon.className = "fa-solid fa-volume-xmark speaker-icon";
+                } else if (video.volume < 0.5) {
+                    speakerIcon.className = "fa-solid fa-volume-low speaker-icon";
+                } else {
+                    speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
+                }
+            }
+        });
+    }
+});
+
+// Outside click hone par volume popups close karne ke liye
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".speaker-btn") && !e.target.closest(".volume-popup")) {
+        document.querySelectorAll(".volume-popup").forEach(p => p.classList.remove("show"));
+    }
+});
+
+
+
+
+// SECTION 9
+gsap.registerPlugin(ScrollTrigger);
+
+const section = document.querySelector("#workflow-section");
+const track = document.querySelector(".workflow-track");
+const progress = document.querySelector(".timeline-progress");
+
+function initWorkflow() {
+
+    // Purane triggers remove
+    ScrollTrigger.getAll().forEach(st => {
+        if (st.trigger === section) st.kill();
+    });
+
+    // Reset
+    gsap.set(track, { x: 0 });
+    gsap.set(progress, { width: 520 });
+
+    const moveDistance = track.scrollWidth - window.innerWidth;
+
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: () => "+=" + moveDistance,
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+        }
+    });
+
+    // Cards move
+    tl.to(track, {
+        x: -moveDistance,
+        ease: "none"
+    }, 0);
+
+    // Golden line grow
+    tl.to(progress, {
+        width: track.scrollWidth - 200,
+        ease: "none"
+    }, 0);
+
+}
+
+initWorkflow();
+
+window.addEventListener("resize", () => {
+    ScrollTrigger.refresh();
+});
+
+
+
+
+
+// section 10
+gsap.registerPlugin();
+
+const slides = gsap.utils.toArray(".testimonial-slide");
+
+const nextBtn = document.querySelector("#nextBtn");
+const prevBtn = document.querySelector("#prevBtn");
+const counter = document.querySelector("#slide-count");
+
+let current = 0;
+let isAnimating = false;
+
+// Initial State
+slides.forEach((slide, i) => {
+
+    if(i !== 0){
+
+        gsap.set(slide,{
+            x:120,
+            opacity:0,
+            pointerEvents:"none"
+        });
+
+    }else{
+
+        gsap.set(slide,{
+            x:0,
+            opacity:1
+        });
 
     }
 
-    updateIcon();
+});
 
-    card.addEventListener("mouseenter",()=>{
+function updateCounter(){
 
-        updateIcon();
+    counter.innerHTML =
+        `${String(current+1).padStart(2,"0")} / ${String(slides.length).padStart(2,"0")}`;
 
-        gsap.to(cursor,{
-            opacity:1,
-            scale:1,
-            duration:.25
-        });
+}
 
+updateCounter();
+
+function goTo(index){
+
+    if(isAnimating) return;
+
+    if(index === current) return;
+
+    isAnimating = true;
+
+    const currentSlide = slides[current];
+    const nextSlide = slides[index];
+
+    gsap.set(nextSlide,{
+        x:120,
+        opacity:0,
+        pointerEvents:"auto"
     });
 
-    card.addEventListener("mouseleave",()=>{
+    const tl = gsap.timeline({
 
-        gsap.to(cursor,{
-            opacity:0,
-            scale:.5,
-            duration:.2
-        });
+        defaults:{
+            duration:.75,
+            ease:"power3.inOut"
+        },
 
-    });
+        onComplete(){
 
-    card.addEventListener("mousemove",(e)=>{
-
-        const rect = card.getBoundingClientRect();
-
-        moveX(e.clientX-rect.left);
-        moveY(e.clientY-rect.top);
-
-    });
-
-    // Play / Pause Toggle
-    card.addEventListener("click",()=>{
-
-        if(video.paused){
-
-            video.play();
-
-        }else{
-
-            video.pause();
+            currentSlide.style.pointerEvents="none";
+            current=index;
+            updateCounter();
+            isAnimating=false;
 
         }
 
-        updateIcon();
+    });
+
+    tl.to(currentSlide,{
+        x:-120,
+        opacity:0
+    },0);
+
+    tl.to(nextSlide,{
+        x:0,
+        opacity:1
+    },0.15);
+
+}
+
+nextBtn.addEventListener("click",()=>{
+
+    let next=current+1;
+
+    if(next>=slides.length){
+
+        next=0;
+
+    }
+
+    goTo(next);
+
+});
+
+prevBtn.addEventListener("click",()=>{
+
+    let prev=current-1;
+
+    if(prev<0){
+
+        prev=slides.length-1;
+
+    }
+
+    goTo(prev);
+
+});
+
+
+// Keyboard Support
+
+window.addEventListener("keydown",(e)=>{
+
+    if(e.key==="ArrowRight"){
+
+        nextBtn.click();
+
+    }
+
+    if(e.key==="ArrowLeft"){
+
+        prevBtn.click();
+
+    }
+
+});
+
+
+// Auto Play
+
+let auto = setInterval(()=>{
+
+    nextBtn.click();
+
+},10000);
+
+
+// Pause on Hover
+
+// const testimonialSection = document.querySelector(".testimonial-section");
+
+// testimonialSection.addEventListener("mouseenter",()=>{
+
+//     clearInterval(auto);
+
+// });
+
+// testimonialSection.addEventListener("mouseleave",()=>{
+
+//     auto=setInterval(()=>{
+
+//         nextBtn.click();
+
+//     },2000);
+
+// });
+
+
+// section 11 About 
+const aboutTl = gsap.timeline({
+    scrollTrigger:{
+        trigger:".about-section",
+        start:"7% top",
+        end:"+=300",
+        scrub:2,
+        pin:true,
+        anticipatePin:1
+    }
+
+})
+// LEFT CONTENT
+aboutTl.to(".about-content",{
+    y:-70,
+    opacity:.25,
+    ease:"none"
+},0);
+// BIG TEXT
+aboutTl.fromTo(".hero-word",{
+    y:80,
+    opacity:0,
+    scale:0.8
+},{
+    y:0,
+    opacity:1,
+    scale:1,
+    ease:"none",
+    duration:2
+},0);
+// CARD 1
+aboutTl.to(".card1",{
+    y:-140,
+    rotation:0,
+    scale:0.98,
+    ease:"none",
+    duration:2
+},0);
+// CARD 2
+aboutTl.to(".card2",{
+    y:-140,
+    rotate:-20,
+    ease:"none",
+    duration:2
+},0);
+// CARD 3
+aboutTl.to(".card3",{
+    y:-140,
+    x:-100,
+    rotate:18,
+    ease:"none",
+    duration:2
+},0);
+// CARD 4
+aboutTl.to(".card4",{
+    y:-200,
+    x:-90,
+    rotate:18,
+    ease:"none",
+    duration:2
+},0);
+
+
+
+
+const ribbonTrack = document.querySelector(".ribbon-track");
+const item = document.querySelector(".ribbon-item");
+
+function buildRibbon() {
+
+    ribbonTrack.querySelectorAll(".clone").forEach(el => el.remove());
+
+    const itemWidth = item.offsetWidth;
+
+    // Screen se 2x zyada content
+    const required = Math.ceil((window.innerWidth * 2) / itemWidth) + 6;
+
+    for (let i = 0; i < required; i++) {
+        const clone = item.cloneNode(true);
+        clone.classList.add("clone");
+        ribbonTrack.appendChild(clone);
+    }
+
+    // Track ki width lock karo
+    ribbonTrack.style.width = "max-content";
+}
+
+buildRibbon();
+window.addEventListener("resize", buildRibbon);
+
+gsap.to(".ribbon-track", {
+    x: () => -(item.offsetWidth * 2), // sirf 2 items jitna move
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".about-section",
+        start: "20% top",
+        end: "+=2500",      // jitna bada utna slow
+        scrub: 2            // smooth catch-up
+    }
+});
+
+
+// section 12 FAQ
+gsap.registerPlugin();
+
+gsap.set(".faq-content", {
+    height: 0
+});
+
+document.querySelectorAll(".faq-item").forEach((item) => {
+
+    const btn = item.querySelector(".faq-btn");
+    const content = item.querySelector(".faq-content");
+    const inner = content.firstElementChild;
+    const plus = item.querySelector(".plus");
+
+    let open = false;
+
+    btn.addEventListener("click", () => {
+
+        document.querySelectorAll(".faq-item").forEach((other) => {
+
+            if (other !== item) {
+
+                gsap.to(other.querySelector(".faq-content"), {
+                    height: 0,
+                    duration: .45,
+                    ease: "power3.inOut"
+                });
+
+                gsap.to(other.querySelector(".plus"), {
+                    rotation: 0,
+                    duration: .35
+                });
+
+                other.open = false;
+
+            }
+
+        });
+
+        if (!open) {
+
+            gsap.to(content, {
+                height: inner.offsetHeight,
+                duration: .55,
+                ease: "power3.inOut"
+            });
+
+            gsap.to(plus, {
+                rotation: 45,
+                duration: .35,
+                ease: "power2.out"
+            });
+
+        } else {
+
+            gsap.to(content, {
+                height: 0,
+                duration: .45,
+                ease: "power3.inOut"
+            });
+
+            gsap.to(plus, {
+                rotation: 0,
+                duration: .35
+            });
+
+        }
+
+        open = !open;
 
     });
 
