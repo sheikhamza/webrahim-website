@@ -6,6 +6,7 @@
      timelines already use invalidateOnRefresh)
    ========================================================== */
 // (function () {
+
 //     // Lenis smooth scroll
 //     if (typeof Lenis !== "undefined") {
 //         const lenis = new Lenis({
@@ -99,8 +100,108 @@
 
 
 // Profiles Animation
-const avatars = document.querySelectorAll(".avatar");
 
+
+
+// function createStars(container, count, size){
+
+//     const layer = document.getElementById(container);
+
+//     for(let i=0;i<count;i++){
+
+//         const star=document.createElement("span");
+
+//         star.className="star";
+
+//         star.style.width=size+"px";
+//         star.style.height=size+"px";
+
+//         star.style.left=Math.random()*100+"%";
+//         star.style.top=Math.random()*200+"%";
+
+//         star.style.opacity=Math.random();
+
+//         layer.appendChild(star);
+
+//     }
+
+// }
+
+// createStars("stars",700,1);
+// createStars("stars2",250,2);
+// createStars("stars3",120,3);
+
+
+
+gsap.registerPlugin(ScrollTrigger);
+const canvas = document.getElementById("galaxy");
+
+if (canvas) {
+    const ctx = canvas.getContext("2d");
+
+    let w, h;
+
+    function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    const stars = [];
+    const STAR_COUNT = 1400;
+
+    for (let i = 0; i < STAR_COUNT; i++) {
+        stars.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 1,
+            speed: 0.05 + Math.random() * 0.25,
+            twinkle: Math.random() * Math.PI * 2
+        });
+    }
+
+    function draw() {
+
+        ctx.clearRect(0, 0, w, h);
+
+        stars.forEach(s => {
+
+            s.y -= s.speed;
+
+            if (s.y < 0) {
+                s.y = h;
+                s.x = Math.random() * w;
+            }
+
+            s.twinkle += 0.02;
+
+            const alpha = 0.3 + 0.7 * Math.sin(s.twinkle);
+
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fill();
+
+        });
+
+        requestAnimationFrame(draw);
+
+    }
+
+    draw();
+
+}
+
+
+
+
+
+
+
+
+const avatars = document.querySelectorAll(".avatar");
 const overlap = 10;
 const pushForce = 4;
 

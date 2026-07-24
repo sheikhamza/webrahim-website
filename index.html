@@ -13,1345 +13,1323 @@
     <link rel="stylesheet" href="./assets/fonts/coolvetica/CoolveticaRg-Bold.ttf">
 </head>
 <body class="overflow-x-hidden">
-    <div data-scroll-container>
-        <!-- Scrollable Website Content -->
-        <main>
-            <!-- SECTION 1: HERO & HEADER -->
-            <header style="background-image:url('./assets/images/hero-image.png');" class="relative lg:min-h-screen flex flex-col justify-between items-center py-5 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 text-center bg-cover bg-center overflow-hidden">
-                <!-- Top Nav Info -->
-                <nav class=" flex items-center justify-between gap-3 sm:gap-6 lg:gap-10 rounded-full border border-white/10 bg-black/30 backdrop-blur-md px-4 sm:px-6 lg:px-4 py-3">
-                    <img src="./assets/images/logo.png" class="h-8 sm:h-9 lg:h-10 xl:h-11">
-                    <div class="flex gap-4 sm:gap-8 lg:gap-10">
-                        <a href="#" class="text-xs sm:text-sm md:text-base lg:text-[17px]">How it works</a>
-                        <a href="#" class="text-xs sm:text-sm md:text-base lg:text-[17px]">Offers</a>
-                        <a href="#" class="text-xs sm:text-sm md:text-base lg:text-[17px]">Reviews</a>
-                    </div>
-                    <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10 xl:h-11">
-                </nav>
+    <div class="galaxy-bg">
+        <canvas id="galaxy"></canvas>
 
-                <!-- Hero Content -->
+        <div class="nebula nebula1"></div>
+        <div class="nebula nebula2"></div>
+        <div class="nebula nebula3"></div>
+
+        <div class="vignette"></div>
+    </div>
+    <!-- Scrollable Website Content -->
+    <main class="relative z-10">
+        <!-- SECTION 1: HERO & HEADER -->
+        <header style="background-image:url('./assets/images/hero-image.png');" class="relative lg:min-h-screen flex flex-col justify-between items-center py-5 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 text-center bg-cover bg-center overflow-hidden">
+            <!-- Top Nav Info -->
+            <nav class="flex items-center justify-between gap-3 sm:gap-6 lg:gap-10 rounded-full border border-white/10 bg-black/30 backdrop-blur-md px-4 sm:px-6 lg:px-4 py-3">
+                <img src="./assets/images/logo.png" class="h-8 sm:h-9 lg:h-10 xl:h-11">
+                <div class="flex gap-4 sm:gap-8 lg:gap-10 font-inter-tight font-thin">
+                    <a href="#" class="text-xs sm:text-sm md:text-base lg:text-[17px]">How it works</a>
+                    <a href="#" class="text-xs sm:text-sm md:text-base lg:text-[17px]">Offers</a>
+                    <a href="#" class="text-xs sm:text-sm md:text-base lg:text-[17px]">Reviews</a>
+                </div>
+                <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10 xl:h-11">
+            </nav>
+
+            <!-- Hero Content -->
+            <div class="relative mx-auto space-y-3 sm:space-y-8 lg:space-y-4 px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 lg:mt-15">
+                <!-- hero testimonial slider -->
+                <div class="review-slider hidden xl:block absolute -left-52 top-10 w-[220px] font-inter-tight tracking-[0.05em] font-thin">
+                    <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
+                        <!-- Top -->
+                        <div class="flex gap-3">
+                            <img src="./assets/images/elastic-5.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+                            <div class="flex-1">
+                                <p class="text-start text-[11px] leading-[1.25] text-white ">
+                                    He is proactive with follow-ups and always takes care of changes promptly, no matter how big or small.
+                                </p>
+                                <div class="flex items-center justify-between mt-4">
+                                    <span class="text-[10px] text-white font-medium">
+                                        – Edward
+                                    </span>
+                                    <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
+                                        21k followers
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
+                        <!-- Top -->
+                        <div class="flex gap-3">
+                            <img src="./assets/images/elastic-2.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+                            <div class="flex-1">
+                                <p class="text-start text-[11px] leading-[1.25] text-white ">
+                                    Ibrahim is a rare combination of a technically proficient web developer who ALSO has an eye for design. 
+                                </p>
+                                <div class="flex items-center justify-between mt-4">
+                                    <span class="text-[10px] text-white font-medium">
+                                        – James
+                                    </span>
+                                    <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
+                                        7k followers
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
+                        <!-- Top -->
+                        <div class="flex gap-3">
+                            <img src="./assets/images/elastic-3.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+                            <div class="flex-1">
+                                <p class="text-start text-[11px] leading-[1.25] text-white ">
+                                    The onboarding process was incredibly smooth, and his creativity shines through in every detail.
+                                </p>
+                                <div class="flex items-center justify-between mt-4">
+                                    <span class="text-[10px] text-white font-medium">
+                                        – Quandeel
+                                    </span>
+                                    <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
+                                        7k followers
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-slider hidden xl:block absolute -right-50 top-35 top-10 w-[220px] font-inter-tight tracking-[0.05em] font-thin">
+                    <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
+                        <!-- Top -->
+                        <div class="flex gap-3">
+                            <img src="./assets/images/elastic-1.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+                            <div class="flex-1">
+                                <p class="text-start text-[11px] leading-[1.25] text-white ">
+                                    It’s rare to find creatives who have both the skill and the intuition.
+                                </p>
+                                <div class="flex items-center justify-between mt-4">
+                                    <span class="text-[10px] text-white font-medium">
+                                        – Shahkar
+                                    </span>
+                                    <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
+                                        7k followers
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
+                        <!-- Top -->
+                        <div class="flex gap-3">
+                            <img src="./assets/images/elastic-4.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+                            <div class="flex-1">
+                                <p class="text-start text-[11px] leading-[1.25] text-white ">
+                                    I am thrilled with the final outcome of my website's homepage. The entire experience exceeded my expectations.
+                                </p>
+                                <div class="flex items-center justify-between mt-4">
+                                    <span class="text-[10px] text-white font-medium">
+                                        – Ayesha
+                                    </span>
+                                    <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
+                                        78k followers
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="elastic-stack gap-2 scale-[.72] sm:scale-90 md:scale-100" id="elasticStack">
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-1.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-2.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-3.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-4.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-5.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-6.png" alt="Profile Picture">
+                    </div>
+                    <div class="avatar">
+                        <img src="./assets/images/elastic-7.png" alt="Profile Picture">
+                    </div>
+                    <div class="px-2">
+                        <p class="text-xs leading-[14px] font-inter-tight font-thin">
+                            Trusted By Coaches <br>
+                            Across 7 Countries
+                        </p>
+                    </div>
+                </div>
+                <h1 class="hero-title font-bold text-white text-[32px] sm:text-[42px] md:text-[52px] lg:text-[65px] leading-[1]">
+                    The Calls Draining <br>
+                    Your Week? That's <br>
+                    Your Funnel's Fault.
+                </h1>
+                <p class="hero-subtitl mx-auto max-w-3xl font-inter-tight font-medium text-white text-[clamp(1rem,2vw,1.4rem)] leading-[1.5] px-3">
+                    I build conversion systems for coaches that qualify leads before they 
+                    <br class="hidden md:block">
+                    book and make you proud to send anyone to your site.
+                </p>
+                <div>
+                    <button class="hero-btn mx-auto items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
+                        <span class="px-3 sm:px-4 lg:px-5">Talk With Ibrahim</span> <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture" title="Call Me?"> 
+                    </button>
+                </div>
+            </div>
+            <!-- Inline Navigation Tabs -->
+            <div class="lg:w-[900px] w-full flex items-center justify-center py-8 sm:py-10 lg:py-14 text-[clamp(1rem,4vw,2.5rem)] font-medium">
+                <!-- Left -->
+                <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden">
+                    <div id="leftCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
+                    <div id="leftNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
+                </div>
+                <!-- Center -->
+                <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden border-x-2 border-white">
+                    <div id="centerCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white"></div>
+                    <div id="centerNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white"></div>
+                </div>
+                <!-- Right -->
+                <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden">
+                    <div id="rightCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
+                    <div id="rightNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
+                </div>
+            </div>
+
+        </header>
+        <!-- SECTION 2: THREE-CARD OVERLAP SHOWCASE -->
+        <section class="portfolio h-screen relative">
+            <div class="cards-container h-screen w-full overflow-hidden flex justify-center items-center">
+                <div class="cards-wrapper relative flex justify-center items-center w-full h-full">
+
+                    <!-- Card 1 (Hidden Top / Past State) -->
+                    <div class="card card-1 absolute left-[5%] sm:left-[10%] top-[5%] sm:top-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                        <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Card 2 (Hidden Center / Past Active) -->
+                    <div class="card card-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[260px] w-[310px] md:h-[400px] md:w-[472px] z-10 opacity-0 overflow-hidden rounded-lg shadow-2xl">
+                        <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Card 3 (Starting Active Card - Bottom Right) -->
+                    <div class="card card-3 absolute right-[5%] sm:right-[10%] bottom-[5%] sm:bottom-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-25 overflow-hidden rounded-lg shadow-lg">
+                        <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Card 4 (Queue 1 - Waiting at bottom) -->
+                    <div class="card card-4 absolute right-[5%] sm:right-[10%] -bottom-[15%] sm:-bottom-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                        <img src="./assets/images/Infograghy.png" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Card 5 (Queue 2 - Further down) -->
+                    <div class="card card-5 absolute right-[5%] sm:right-[10%] -bottom-[35%] sm:-bottom-[30%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                        <img src="./assets/images/VRKAS.png" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Card 6 (Queue 3 - Deep down) -->
+                    <div class="card card-6 absolute right-[5%] sm:right-[10%] -bottom-[55%] sm:-bottom-[50%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                        <img src="./assets/images/Marisa.png" class="w-full h-full object-cover">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- SECTION: COMBINED SCROLL SHOWCASE (Fully Responsive) -->
+        <section id="scroll-pin-wrapper" class="relative w-full max-w-[1200px] mx-auto min-h-[180vh] md:min-h-[200vh]">
+
+            <!-- INNER CANVAS: Sticky animation zone -->
+            <div class="animation-inner-sticky-canvas w-full h-screen flex items-center justify-center overflow-hidden relative px-4 md:px-8">
                 
-                <div class="relative mx-auto space-y-3 sm:space-y-8 lg:space-y-4 px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 lg:mt-15">
-                    <!-- hero testimonial slider -->
-                    <div class="review-slider hidden xl:block absolute -left-52 top-10 w-[220px]">
-                        <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
-                            <!-- Top -->
-                            <div class="flex gap-3">
-                                <img src="./assets/images/elastic-1.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
-                                <div class="flex-1">
-                                    <p class="text-start text-[11px] leading-[1.25] text-white ">
-                                        He is proactive with follow-ups and always takes care of
-                                        changes promptly, no matter how big or small.
-                                    </p>
-                                    <div class="flex items-center justify-between mt-4">
-                                        <span class="text-[10px] text-white font-medium">
-                                            – Edward
-                                        </span>
-                                        <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
-                                            72k followers
-                                        </span>
+                <div class="w-full relative flex flex-col md:flex-row justify-between items-center md:items-stretch gap-6 md:gap-8 h-auto md:h-[522px]">
+
+                    <!-- LEFT COLUMN BLOCK -->
+                    <div class="w-full md:w-[360px] lg:w-[380px] relative h-[280px] md:h-full flex-shrink-0">
+                        
+                        <!-- State 1: Top Boxes -->
+                        <div class="cards-left-group w-full absolute inset-0 flex flex-col justify-between h-full z-20 gap-4 md:gap-0">
+                            
+                            <!-- Card 1 -->
+                            <div class="relative w-full h-[130px] md:h-[248px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)] p-4 md:p-6 flex flex-col justify-between">
+                                <div class="absolute top-4 left-0 right-0 h-px bg-white/10"></div>
+                                <div class="absolute left-4 top-0 bottom-0 w-px bg-white/10"></div>
+                                <div class="absolute bottom-4 left-0 right-0 h-px bg-white/10"></div>
+                                <div class="absolute right-4 top-0 bottom-0 w-px bg-white/10"></div>
+                                <div class="relative z-10 flex flex-col justify-between h-full">
+                                    <img src="./assets/images/computer.png" alt="computer icon" class="w-6 h-6 md:w-8 md:h-8 mb-2" onerror="this.style.display='none'">
+                                    <h3 class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">Your online presence doesn't match the reputation you have offline.</h3>
+                                    <div class="flex justify-end mt-2">
+                                        <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">And you know it, right?</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
-                            <!-- Top -->
-                            <div class="flex gap-3">
-                                <img src="./assets/images/elastic-2.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
-                                <div class="flex-1">
-                                    <p class="text-start text-[11px] leading-[1.25] text-white ">
-                                        He is proactive with follow-ups and always takes care of
-                                        changes promptly, no matter how big or small.
-                                    </p>
-                                    <div class="flex items-center justify-between mt-4">
-                                        <span class="text-[10px] text-white font-medium">
-                                            – Edward
-                                        </span>
-                                        <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
-                                            72k followers
-                                        </span>
+
+                            <!-- Card 2 -->
+                            <div class="relative w-full h-[130px] md:h-[248px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)] p-4 md:p-6 flex flex-col justify-between">
+                                <div class="absolute top-4 left-0 right-0 h-px bg-white/10"></div>
+                                <div class="absolute left-4 top-0 bottom-0 w-px bg-white/10"></div>
+                                <div class="absolute bottom-4 left-0 right-0 h-px bg-white/10"></div>
+                                <div class="absolute right-4 top-0 bottom-0 w-px bg-white/10"></div>
+                                <div class="relative z-10 flex flex-col justify-between h-full">
+                                    <img src="./assets/images/computer.png" alt="computer icon" class="w-6 h-6 md:w-8 md:h-8 mb-2" onerror="this.style.display='none'">
+                                    <h3 class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You're getting calls, but too many of them are wrong-fit prospects wasting your time.</h3>
+                                    <div class="flex justify-end mt-2">
+                                        <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">Isn't it so frustrating?</span>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                        <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
-                            <!-- Top -->
-                            <div class="flex gap-3">
-                                <img src="./assets/images/elastic-3.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
-                                <div class="flex-1">
-                                    <p class="text-start text-[11px] leading-[1.25] text-white ">
-                                        He is proactive with follow-ups and always takes care of
-                                        changes promptly, no matter how big or small.
-                                    </p>
-                                    <div class="flex items-center justify-between mt-4">
-                                        <span class="text-[10px] text-white font-medium">
-                                            – Edward
-                                        </span>
-                                        <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
-                                            72k followers
-                                        </span>
-                                    </div>
-                                </div>
+
+                        <!-- State 2: Bottom Reveal Text -->
+                        <div class="text-left-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-2 md:pt-6 flex flex-col">
+                            <div class="animated-bage mb-4 md:mb-8">
+                                <span class="px-3 md:px-5 py-2 md:py-3 rounded-full text-[12px] md:text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white inline-flex items-center">
+                                    <img src="./assets/images/wired-outline-1140-error-hover-oscillate.png" alt="wired-outline-1140-error-hover-oscillate" class="h-[18px] md:h-[25px] mr-2" onerror="this.style.display='none'">
+                                    The Real Problem
+                                </span>
                             </div>
+                            <h3 class="flip-title  text-[24px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-bold text-white leading-[1.25] tracking-tight">
+                                You're <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Not Losing</span> Leads Because You Need More Traffic.
+                            </h3>
                         </div>
-                    </div>
-                    <div class="review-slider hidden xl:block absolute -right-50 top-35 top-10 w-[220px]">
-                        <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
-                            <!-- Top -->
-                            <div class="flex gap-3">
-                                <img src="./assets/images/elastic-4.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
-                                <div class="flex-1">
-                                    <p class="text-start text-[11px] leading-[1.25] text-white ">
-                                        He is proactive with follow-ups and always takes care of
-                                        changes promptly, no matter how big or small.
-                                    </p>
-                                    <div class="flex items-center justify-between mt-4">
-                                        <span class="text-[10px] text-white font-medium">
-                                            – Edward
-                                        </span>
-                                        <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
-                                            72k followers
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
-                            <!-- Top -->
-                            <div class="flex gap-3">
-                                <img src="./assets/images/elastic-5.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
-                                <div class="flex-1">
-                                    <p class="text-start text-[11px] leading-[1.25] text-white ">
-                                        He is proactive with follow-ups and always takes care of
-                                        changes promptly, no matter how big or small.
-                                    </p>
-                                    <div class="flex items-center justify-between mt-4">
-                                        <span class="text-[10px] text-white font-medium">
-                                            – Edward
-                                        </span>
-                                        <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
-                                            72k followers
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
-                            <!-- Top -->
-                            <div class="flex gap-3">
-                                <img src="./assets/images/elastic-6.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
-                                <div class="flex-1">
-                                    <p class="text-start text-[11px] leading-[1.25] text-white ">
-                                        He is proactive with follow-ups and always takes care of
-                                        changes promptly, no matter how big or small.
-                                    </p>
-                                    <div class="flex items-center justify-between mt-4">
-                                        <span class="text-[10px] text-white font-medium">
-                                            – Edward
-                                        </span>
-                                        <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
-                                            72k followers
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
-                    <div class="elastic-stack gap-2 scale-[.72] sm:scale-90 md:scale-100" id="elasticStack">
-                        <div class="avatar">
-                            <img src="./assets/images/elastic-1.png" alt="Profile Picture">
+                    <!-- CENTER BLOCK -->
+                    <div class="relative flex justify-center items-center w-full md:w-[260px] lg:w-[294px] h-[300px] md:h-full flex-shrink-0">
+
+                        <div class="text-center animated-bage absolute -top-8 md:-top-17 z-40 flip-badge">
+                            <span class="px-4 md:px-5 py-2 md:py-3 rounded-full text-[12px] md:text-[15px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white inline-flex items-center whitespace-nowrap">
+                                <img src="./assets/images/hey.png" alt="Coach" class="h-[18px] md:h-[22px] mr-2" onerror="this.style.display='none'">
+                                Hey Coach! Is This You?
+                            </span>
                         </div>
-                        <div class="avatar">
-                            <img src="./assets/images/elastic-2.png" alt="Profile Picture">
+
+                        <div class="w-full h-full relative z-30 container-3d-perspective">
+                            <div class="flip-card-inner-box w-full h-full relative">
+                                <div class="face-side-front absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Front Layer" class="w-full h-full object-cover">
+                                </div>
+                                <div class="face-side-back absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
+                                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Back Layer" class="w-full h-full object-cover">
+                                </div>
+                            </div>
                         </div>
-                        <div class="avatar">
-                            <img src="./assets/images/elastic-3.png" alt="Profile Picture">
+
+                    </div>
+
+                    <!-- RIGHT COLUMN BLOCK -->
+                    <div class="w-full md:w-[360px] lg:w-[380px] relative h-[280px] md:h-full flex-shrink-0">
+                        
+                        <!-- State 1: Top Boxes -->
+                        <div class="cards-right-group w-full absolute inset-0 flex flex-col justify-between h-full z-20 gap-4 md:gap-0">
+                            
+                            <!-- Card 1 -->
+                            <div class="relative w-full h-[130px] md:h-[248px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)] p-4 md:p-6 flex flex-col justify-between">
+                                <div class="absolute top-4 left-0 right-0 h-px bg-white/10"></div>
+                                <div class="absolute left-4 top-0 bottom-0 w-px bg-white/10"></div>
+                                <div class="absolute bottom-4 left-0 right-0 h-px bg-white/10"></div>
+                                <div class="absolute right-4 top-0 bottom-0 w-px bg-white/10"></div>
+                                <div class="relative z-10 flex flex-col justify-between h-full">
+                                    <img src="./assets/images/computer.png" alt="computer icon" class="w-6 h-6 md:w-8 md:h-8 mb-2" onerror="this.style.display='none'">
+                                    <h3 class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You feel embarrassed sharing your website link in someone's DMs.</h3>
+                                    <div class="flex justify-end mt-2">
+                                        <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">I can feel your pain!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="relative w-full h-[130px] md:h-[248px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)] p-4 md:p-6 flex flex-col justify-between">
+                                <div class="absolute top-4 left-0 right-0 h-px bg-white/10"></div>
+                                <div class="absolute left-4 top-0 bottom-0 w-px bg-white/10"></div>
+                                <div class="absolute bottom-4 left-0 right-0 h-px bg-white/10"></div>
+                                <div class="absolute right-4 top-0 bottom-0 w-px bg-white/10"></div>
+                                <div class="relative z-10 flex flex-col justify-between h-full">
+                                    <img src="./assets/images/computer.png" alt="computer icon" class="w-6 h-6 md:w-8 md:h-8 mb-2" onerror="this.style.display='none'">
+                                    <h3 class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You've been meaning to fix this for six months but "haven't gotten around to it".</h3>
+                                    <div class="flex justify-end mt-2">
+                                        <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">Not anymore!</span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="avatar">
-                            <img src="./assets/images/elastic-4.png" alt="Profile Picture">
-                        </div>
-                        <div class="avatar">
-                            <img src="./assets/images/elastic-5.png" alt="Profile Picture">
-                        </div>
-                        <div class="avatar">
-                            <img src="./assets/images/elastic-6.png" alt="Profile Picture">
-                        </div>
-                        <div class="avatar">
-                            <img src="./assets/images/elastic-7.png" alt="Profile Picture">
-                        </div>
-                        <div class="px-2">
-                            <p class="text-xs leading-[14px] font-inter-tight font-thin">
-                                Trusted By Coaches <br>
-                                Across 7 Countries
+
+                        <!-- State 2: Bottom Reveal Text -->
+                        <div class="text-right-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-2 md:pt-4 flex">
+                            <p class="text-[13px] sm:text-[15px] md:text-[17px] lg:text-[20px] text-white  font-thin leading-relaxed">
+                                Most coaches who come to me aren't marketing wrong. They are posting daily, showing up, making it work. But there's a quieter problem nobody talks about: <span class="text-[#FFCD56]">Every prospect who visits your website and doesn't book is a real cost.</span> 
+                                <br class="hidden sm:block"><br class="hidden sm:block">
+                                If your website should convert at 4% but converts at 1.5%, and you get 300 visitors/month at a $5,000 offer, <span class="text-[#FFCD56]">you're losing $37,500/month in opportunity cost.</span>
                             </p>
                         </div>
+
                     </div>
-                    <h1 class="hero-title font-coolvetica font-bold text-white text-[32px] sm:text-[42px] md:text-[52px] lg:text-[65px] leading-[1] tracking-[-0.03em]">
-                        The Calls Draining <br>
-                        Your Week? That's <br>
-                        Your Funnel's Fault.
-                    </h1>
-                    <p class="hero-subtitl mx-auto max-w-3xl font-inter-tight font-medium text-white text-[clamp(1rem,2vw,1.4rem)] leading-[1.5] px-3">
-                        I build conversion systems for coaches that qualify leads before they 
-                        <br class="hidden md:block">
-                        book and make you proud to send anyone to your site.
-                    </p>
-                    <div>
-                        <button class="hero-btn mx-auto items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
-                            <span class="px-3 sm:px-4 lg:px-5">Talk With Ibrahim</span> <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture" title="Call Me?"> 
+
+                </div>
+            </div>
+        </section>
+        <!-- section 5 -->
+        <section class="section-5 py-10 text-center">
+            <div class="text-center mb-5 animated-bage">
+                <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
+                    <img src="./assets/images/wired-outline-3152-puzzle-square-hover-detach.png" alt="wired-outline-3152-puzzle-square-hover-detach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
+                    The Solution
+                </span>
+            </div>
+            <div class="w-full max-w-[745px] px-4 mx-auto">
+                <h3 class="solution-title text-center  text-2xl sm:text-[45px] font-bold text-white leading-[1.1] mt-7">
+                    The Fix Isn't More <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Content</span>.
+                </h3>
+                <p class="solution-text text-[20px] text-center text-white font-inter-tight tracking-tight font-[200] mt-10 leading-relaxed">
+                    It's three things: a website, a landing page, and a LinkedIn profile built to convert. At 4% instead of 1.5%, 300 visitors and a $5,000 offer means 12 calls instead of 4 - that's $40,000 in pipeline your current funnel is leaving on the table every month.
+                </p>
+            </div>
+            <div class="lf-wrap">
+                <svg class="lf-svg" viewBox="0 0 1080 600" xmlns="http://www.w3.org/2000/svg"> 
+                <!-- Master Vector Tracks --> 
+                <path id="pathLeft" class="lf-line" d="M540,105 C 380,140 240,180 240,260 C 240,280 240,310 320,350 C 370,375 440,390 540,406"/> 
+                <path id="pathCenter" class="lf-line" d="M540,105 L540,406"/> 
+                <path id="pathRight" class="lf-line" d="M540,105 C 700,140 840,180 840,260 C 840,280 840,310 760,350 C 710,375 640,390 540,406"/> 
+                <path id="pathDown" class="lf-line" d="M540,406 L540,534"/> 
+
+                <!-- Left Path Stream (The single icon that passes through) --> 
+                <g class="lf-icon"> 
+                    <circle class="lf-badge" r="12"/> 
+                    <circle class="lf-glyph" cy="-4" r="3.6"/> 
+                    <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
+                    <animateMotion dur="6s" repeatCount="indefinite" path="M540,105 C 380,140 240,180 240,260 C 240,280 240,310 320,350 C 370,375 440,390 540,406"/> 
+                </g> 
+                <g class="lf-icon"> 
+                    <circle class="lf-badge" r="12"/> 
+                    <circle class="lf-glyph" cy="-4" r="3.6"/> 
+                    <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
+                    <animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M540,105 C 380,140 240,180 240,260 C 240,280 240,310 320,350 C 370,375 440,390 540,406"/> 
+                </g> 
+
+                <!-- Center Path Stream (UNQUALIFIED) --> 
+                <g class="lf-icon"> 
+                    <circle class="lf-badge" r="12"/> 
+                    <circle class="lf-glyph" cy="-4" r="3.6"/> 
+                    <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
+                    <animateMotion dur="6s" repeatCount="indefinite" path="M540,105 L540,406"/> 
+                    <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.98;1" dur="6s" repeatCount="indefinite" /> 
+                </g> 
+                <g class="lf-icon"> 
+                    <circle class="lf-badge" r="12"/> 
+                    <circle class="lf-glyph" cy="-4" r="3.6"/> 
+                    <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
+                    <animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M540,105 L540,406"/> 
+                    <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.98;1" dur="6s" repeatCount="indefinite" begin="-3s" /> 
+                </g> 
+
+                <!-- Right Path Stream (UNQUALIFIED) --> 
+                <g class="lf-icon"> 
+                    <circle class="lf-badge" r="12"/> 
+                    <circle class="lf-glyph" cy="-4" r="3.6"/> 
+                    <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
+                    <animateMotion dur="6s" repeatCount="indefinite" path="M540,105 C 700,140 840,180 840,260 C 840,280 840,310 760,350 C 710,375 640,390 540,406"/> 
+                    <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.98;1" dur="6s" repeatCount="indefinite" /> 
+                </g> 
+                <g class="lf-icon"> 
+                    <circle class="lf-badge" r="12"/> 
+                    <circle class="lf-glyph" cy="-4" r="3.6"/> 
+                    <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
+                    <animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M540,105 C 700,140 840,180 840,260 C 840,280 840,310 760,350 C 710,375 640,390 540,406"/> 
+                    <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.98;1" dur="6s" repeatCount="indefinite" begin="-3s" /> 
+                </g> 
+
+                <!-- Bottom Path Stream --> 
+                <g class="lf-icon lf-tDown"> 
+                    <circle class="lf-badge" r="12"/> 
+                    <circle class="lf-glyph" cy="-4" r="3.6"/> 
+                    <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
+                    <animateMotion dur="3s" repeatCount="indefinite" path="M540,406 L540,534"/> 
+                </g> 
+                <g class="lf-icon lf-tDown2"> 
+                    <circle class="lf-badge" r="12"/> 
+                    <circle class="lf-glyph" cy="-4" r="3.6"/> 
+                    <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
+                    <animateMotion dur="3s" repeatCount="indefinite" begin="-1.5s" path="M540,406 L540,534"/> 
+                </g> 
+
+                <!-- HTML Cards Layers --> 
+                <foreignObject x="340" y="100" width="400" height="64"> 
+                    <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip"></div><div class="lf-label">Existing traffic you're getting</div></div></xhtml:div> 
+                </foreignObject> 
+
+                <foreignObject x="40" y="228" width="400" height="64"> 
+                    <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip"></div><div class="lf-label">Optimized LinkedIn profile</div></div></xhtml:div> 
+                </foreignObject> 
+
+                <foreignObject x="340" y="228" width="400" height="64"> 
+                    <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip"></div><div class="lf-label">Conversion focused website</div></div></xhtml:div> 
+                </foreignObject> 
+
+                <foreignObject x="640" y="228" width="400" height="64"> 
+                    <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip"></div><div class="lf-label">High converting landing page</div></div></xhtml:div> 
+                </foreignObject> 
+
+                <foreignObject x="340" y="350" width="400" height="64"> 
+                    <xhtml:div class="lf-fo-body"><div class="lf-node lf-key"><div class="lf-chip"></div><div class="lf-label">Lead qualification system</div></div></xhtml:div> 
+                </foreignObject> 
+
+                <!-- Main Card Locked Back at Center (x=340) --> 
+                <foreignObject x="340" y="502" width="400" height="64"> 
+                    <xhtml:div class="lf-fo-body">
+                    <div class="lf-node">
+                        <div class="lf-chip"></div>
+                        <div class="lf-label">Qualified booked calls</div>
+                    </div> 
+                    </xhtml:div> 
+                </foreignObject> 
+
+                <!-- Pipeline Box: Placed precisely at x=666 to sit exactly 30px to the right of the central text content --> 
+                <foreignObject x="666" y="502" width="180" height="64"> 
+                    <xhtml:div class="lf-fo-body" style="justify-content: flex-start;"> 
+                    <div class="lf-counter-pill"> 
+                        <span>Pipeline: </span> 
+                        <span id="revenueValue" style="margin-left: 6px; color: #00B074;">$0</span> 
+                    </div> 
+                    </xhtml:div> 
+                </foreignObject> 
+                </svg> 
+            </div>
+        </section>
+        <!-- section 6 -->
+        <section class="section-6 min-h-screen py-10 text-center">
+            <div class="portfolio-pin-wrap h-screen">
+                <div class="text-center mb-5 animated-bage">
+                    <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
+                        <img src="./assets/images/wired-outline-153-bar-chart-morph-diversified.png" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
+                        Portfolio And Results
+                    </span>
+                </div>
+                <div class="mx-auto">
+                    <h3 class="portfolio-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] mt-7">
+                        They Could Be Your<br>Online Presence.
+                    </h3>
+                </div>
+                <div class="portfolio-wrapper mx-auto">
+                    <div class="portfolio-slider flex gap-5">
+    
+                        <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
+                            data-full="./assets/images/web-1.png">
+                            <img src="./assets/images/p-crad-1.png" class="w-full h-full object-contain">
+                            <div class="portfolio-cursor-glass text-sm">CLICK</div>
+                        </div>
+    
+                        <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
+                            data-full="./assets/images/web-2.png">
+                            <img src="./assets/images/p-crad-2.png" class="w-full h-full object-cover">
+                            <div class="portfolio-cursor-glass text-sm">CLICK</div>
+                        </div>
+    
+                        <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
+                            data-full="./assets/images/web-3.png">
+                            <img src="./assets/images/p-crad-3.png" class="w-full h-full object-cover">
+                            <div class="portfolio-cursor-glass text-sm">CLICK</div>
+                        </div>
+    
+                        <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
+                            data-full="./assets/images/web-4.png">
+                            <img src="./assets/images/p-crad-4.png" class="w-full h-full object-cover">
+                            <div class="portfolio-cursor-glass text-sm">CLICK</div>
+                        </div>
+    
+                        <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
+                            data-full="./assets/images/web-5.png">
+                            <img src="./assets/images/p-crad-5.png" class="w-full h-full object-cover">
+                            <div class="portfolio-cursor-glass text-sm">CLICK</div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio Modal -->
+        <div id="portfolioModal"
+            class="fixed inset-0 bg-transparent backdrop-blur-md z-[9999] hidden items-center justify-center p-8">
+
+            <!-- Close -->
+            <button id="closePortfolio"
+                class="absolute top-7 right-7 w-14 h-14 rounded-full bg-white/10 border border-white/20 text-white text-3xl transition duration-300 hover:bg-white hover:text-black hover:rotate-90 hover:scale-110">
+                ✕
+            </button>
+
+            <!-- Content -->
+            <div id="modalContent"
+                class="relative w-full max-w-[900px] h-[90vh] overflow-y-auto rounded-2xl bg-[#111] shadow-[0_30px_80px_rgba(0,0,0,.5)]">
+
+                <img id="modalImage"
+                    src=""
+                    class="w-full h-auto block"
+                    draggable="false">
+
+            </div>
+
+        </div>
+        <!-- section 7 -->
+        <section class="video-section lg:min-h-screen py-20 text-center">
+            <div class="text-center mb-5 animated-bage">
+                <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
+                    <img src="./assets/images/wired-outline-499-clipboard-film-clap-hover-pinch.png" alt="wired-outline-499-clipboard-film-clap-hover-pinch" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
+                    Video Testimonials
+                </span>
+            </div>
+            <div class="w-full max-w-[745px] px-4 mx-auto">
+                <h3 class="solution-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] mt-7">
+                    They had the <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">same doubts</span><br> you do. Now they don't.
+                </h3>
+            </div>
+            <div class="video-wrapper w-[92%] md:w-[85%] lg:w-[80%] mx-auto pt-15">
+                <div class="video-testimonial-container flex gap-5">
+                    <div class="testimonial-card relative h-[380px] w-[214px] sm:h-[440px] sm:w-[248px] md:h-[480px] md:w-[270px] lg:h-[522px] lg:w-[294px] shrink-0 overflow-hidden rounded-2xl">
+                        <video src="./assets/videos/Testimonial-1.mp4" autoplay loop muted playsinline></video>
+                        <div class="speaker-btn">
+                            <i class="fa-solid fa-volume-high speaker-icon"></i>
+
+                            <div class="volume-popup">
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
+                            </div>
+                        </div>
+                        <div class="cursor-glass">
+                            PLAY
+                        </div>
+                    </div>
+                    <div class="testimonial-card relative h-[380px] w-[214px] sm:h-[440px] sm:w-[248px] md:h-[480px] md:w-[270px] lg:h-[522px] lg:w-[294px] shrink-0 overflow-hidden rounded-2xl">
+                        <video src="./assets/videos/Testimonial-2.mp4" autoplay loop muted playsinline></video>
+                        <div class="speaker-btn">
+                            <i class="fa-solid fa-volume-high speaker-icon"></i>
+
+                            <div class="volume-popup">
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
+                            </div>
+                        </div>
+                        <div class="cursor-glass">
+                            PLAY
+                        </div>
+                    </div>
+                    <div class="testimonial-card relative h-[380px] w-[214px] sm:h-[440px] sm:w-[248px] md:h-[480px] md:w-[270px] lg:h-[522px] lg:w-[294px] shrink-0 overflow-hidden rounded-2xl">
+                        <video src="./assets/videos/Testimonial-3.mp4" autoplay loop muted playsinline></video>
+                        <div class="speaker-btn">
+                            <i class="fa-solid fa-volume-high speaker-icon"></i>
+
+                            <div class="volume-popup">
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
+                            </div>
+                        </div>
+                        <div class="cursor-glass">
+                            PLAY
+                        </div>
+                    </div>
+                    <div class="testimonial-card relative h-[380px] w-[214px] sm:h-[440px] sm:w-[248px] md:h-[480px] md:w-[270px] lg:h-[522px] lg:w-[294px] shrink-0 overflow-hidden rounded-2xl">
+                        <video src="./assets/videos/Testimonial-4.mp4" autoplay loop muted playsinline></video>
+                        <div class="speaker-btn">
+                            <i class="fa-solid fa-volume-high speaker-icon"></i>
+
+                            <div class="volume-popup">
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
+                            </div>
+                        </div>
+                        <div class="cursor-glass">
+                            PLAY
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section 8 -->
+        <section class="offer-section lg:min-h-screen py-20 text-center">
+            <div class="text-center mb-5 animated-bage">
+                <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
+                    <img src="./assets/images/wired-outline-56-document-hover-swipe.png" alt="wired-outline-56-document-hover-swipe" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
+                    The Offer
+                </span>
+            </div>
+            <div class="w-full max-w-[745px] px-4 mx-auto">
+                <h3 class="solution-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] mt-7">
+                    Three ways to work together.
+                </h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-[92%] xl:w-[85%] items-stretch mx-auto mt-12 md:mt-20">
+                <!-- Card 1 -->
+                <div class="relative overflow-hidden rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
+                    <!-- Background Glow -->
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,.05),transparent_60%)] pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <p class="text-white/70 text-xl font-light mb-3">
+                            Launch
+                        </p>
+                        <h3 class="text-white text-[28px] leading-[40px] font-semibold mb-12">
+                            Convert The Traffic
+                            <br>
+                            You Already Have.
+                        </h3>
+                        <ul class="space-y-6 text-white">
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>Offer Clarity Guide.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>Landing Page / Website.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>Full WordPress Development.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>AI Search Visibility Setup.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>Launch Announcement Carousel.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>AI Launch Video.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="relative z-10 mt-8">
+                        <button class="hero-btn items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
+                            <span class="px-3 sm:px-4 lg:px-5">
+                                Talk With Ibrahim
+                            </span>
+                            <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
                         </button>
                     </div>
                 </div>
-                <!-- Inline Navigation Tabs -->
-                <div class="lg:w-[900px] w-full flex items-center justify-center py-8 sm:py-10 lg:py-14 text-[clamp(1rem,4vw,2.5rem)] font-medium">
-                    <!-- Left -->
-                    <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden">
-                        <div id="leftCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
-                        <div id="leftNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
+                <!-- Card 2 -->
+                <div class="relative overflow-hidden rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
+                    <!-- Background Glow -->
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,.05),transparent_60%)] pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <p class="text-white/70 text-xl font-light mb-3">
+                            Scale
+                        </p>
+                        <h3 class="text-white text-[28px] leading-[40px] font-semibold mb-12">
+                            Build Trust Before Traffic
+                            <br>
+                            Even Hits Your Site.
+                        </h3>
+                        <ul class="space-y-6 text-white">
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>Everything in Launch, plus: </span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>LinkedIn Profile Redesign.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>Content Creation Guide.</span>
+                            </li>
+                        </ul>
                     </div>
-                    <!-- Center -->
-                    <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden border-x-2 border-white">
-                        <div id="centerCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white"></div>
-                        <div id="centerNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white"></div>
-                    </div>
-                    <!-- Right -->
-                    <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden">
-                        <div id="rightCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
-                        <div id="rightNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
-                    </div>
-                </div>
-
-            </header>
-            <!-- SECTION 2: THREE-CARD OVERLAP SHOWCASE -->
-            <section class="portfolio h-screen relative">
-                <div class="cards-container h-screen w-full overflow-hidden flex justify-center items-center">
-                    <div class="cards-wrapper relative flex justify-center items-center w-full h-full">
-
-                        <!-- Card 1 (Hidden Top / Past State) -->
-                        <div class="card card-1 absolute left-[5%] sm:left-[10%] top-[5%] sm:top-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
-                            <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
-                        </div>
-
-                        <!-- Card 2 (Hidden Center / Past Active) -->
-                        <div class="card card-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[260px] w-[310px] md:h-[400px] md:w-[472px] z-10 opacity-0 overflow-hidden rounded-lg shadow-2xl">
-                            <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
-                        </div>
-
-                        <!-- Card 3 (Starting Active Card - Bottom Right) -->
-                        <div class="card card-3 absolute right-[5%] sm:right-[10%] bottom-[5%] sm:bottom-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-25 overflow-hidden rounded-lg shadow-lg">
-                            <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
-                        </div>
-
-                        <!-- Card 4 (Queue 1 - Waiting at bottom) -->
-                        <div class="card card-4 absolute right-[5%] sm:right-[10%] -bottom-[15%] sm:-bottom-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
-                            <img src="./assets/images/Infograghy.png" class="w-full h-full object-cover">
-                        </div>
-
-                        <!-- Card 5 (Queue 2 - Further down) -->
-                        <div class="card card-5 absolute right-[5%] sm:right-[10%] -bottom-[35%] sm:-bottom-[30%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
-                            <img src="./assets/images/VRKAS.png" class="w-full h-full object-cover">
-                        </div>
-
-                        <!-- Card 6 (Queue 3 - Deep down) -->
-                        <div class="card card-6 absolute right-[5%] sm:right-[10%] -bottom-[55%] sm:-bottom-[50%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
-                            <img src="./assets/images/Marisa.png" class="w-full h-full object-cover">
-                        </div>
-
+                    <div class="relative z-10 mt-8">
+                        <button class="hero-btn items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
+                            <span class="px-3 sm:px-4 lg:px-5">
+                                Talk With Ibrahim
+                            </span>
+                            <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
+                        </button>
                     </div>
                 </div>
-            </section>
-            <!-- SECTION: COMBINED SCROLL SHOWCASE (Fully Responsive) -->
-            <section id="scroll-pin-wrapper" class="relative w-full max-w-[1200px] mx-auto min-h-[180vh] md:min-h-[200vh]">
-
-                <!-- INNER CANVAS: Sticky animation zone -->
-                <div class="animation-inner-sticky-canvas w-full h-screen flex items-center justify-center overflow-hidden relative px-4 md:px-8">
-                    
-                    <div class="w-full relative flex flex-col md:flex-row justify-between items-center md:items-stretch gap-6 md:gap-8 h-auto md:h-[522px]">
-
-                        <!-- LEFT COLUMN BLOCK -->
-                        <div class="w-full md:w-[360px] lg:w-[380px] relative h-[280px] md:h-full flex-shrink-0">
-                            
-                            <!-- State 1: Top Boxes -->
-                            <div class="cards-left-group w-full absolute inset-0 flex flex-col justify-between h-full z-20 gap-4 md:gap-0">
-                                
-                                <!-- Card 1 -->
-                                <div class="relative w-full h-[130px] md:h-[248px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)] p-4 md:p-6 flex flex-col justify-between">
-                                    <div class="absolute top-4 left-0 right-0 h-px bg-white/10"></div>
-                                    <div class="absolute left-4 top-0 bottom-0 w-px bg-white/10"></div>
-                                    <div class="absolute bottom-4 left-0 right-0 h-px bg-white/10"></div>
-                                    <div class="absolute right-4 top-0 bottom-0 w-px bg-white/10"></div>
-                                    <div class="relative z-10 flex flex-col justify-between h-full">
-                                        <img src="./assets/images/computer.png" alt="computer icon" class="w-6 h-6 md:w-8 md:h-8 mb-2" onerror="this.style.display='none'">
-                                        <h3 class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">Your online presence doesn't match the reputation you have offline.</h3>
-                                        <div class="flex justify-end mt-2">
-                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">And you know it, right?</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Card 2 -->
-                                <div class="relative w-full h-[130px] md:h-[248px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)] p-4 md:p-6 flex flex-col justify-between">
-                                    <div class="absolute top-4 left-0 right-0 h-px bg-white/10"></div>
-                                    <div class="absolute left-4 top-0 bottom-0 w-px bg-white/10"></div>
-                                    <div class="absolute bottom-4 left-0 right-0 h-px bg-white/10"></div>
-                                    <div class="absolute right-4 top-0 bottom-0 w-px bg-white/10"></div>
-                                    <div class="relative z-10 flex flex-col justify-between h-full">
-                                        <img src="./assets/images/computer.png" alt="computer icon" class="w-6 h-6 md:w-8 md:h-8 mb-2" onerror="this.style.display='none'">
-                                        <h3 class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You're getting calls, but too many of them are wrong-fit prospects wasting your time.</h3>
-                                        <div class="flex justify-end mt-2">
-                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">Isn't it so frustrating?</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- State 2: Bottom Reveal Text -->
-                            <div class="text-left-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-2 md:pt-6 flex flex-col">
-                                <div class="animated-bage mb-4 md:mb-8">
-                                    <span class="px-3 md:px-5 py-2 md:py-3 rounded-full text-[12px] md:text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white inline-flex items-center">
-                                        <img src="./assets/images/wired-outline-1140-error-hover-oscillate.png" alt="wired-outline-1140-error-hover-oscillate" class="h-[18px] md:h-[25px] mr-2" onerror="this.style.display='none'">
-                                        The Real Problem
-                                    </span>
-                                </div>
-                                <h3 class="flip-title text-[24px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-bold text-white leading-[1.25] tracking-tight">
-                                    You're <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Not Losing</span> Leads Because You Need More Traffic.
-                                </h3>
-                            </div>
-
-                        </div>
-
-                        <!-- CENTER BLOCK -->
-                        <div class="relative flex justify-center items-center w-full md:w-[260px] lg:w-[294px] h-[300px] md:h-full flex-shrink-0">
-
-                            <div class="text-center animated-bage absolute -top-8 md:-top-17 z-40 flip-badge">
-                                <span class="px-4 md:px-5 py-2 md:py-3 rounded-full text-[12px] md:text-[15px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white inline-flex items-center whitespace-nowrap">
-                                    <img src="./assets/images/hey.png" alt="Coach" class="h-[18px] md:h-[22px] mr-2" onerror="this.style.display='none'">
-                                    Hey Coach! Is This You?
-                                </span>
-                            </div>
-
-                            <div class="w-full h-full relative z-30 container-3d-perspective">
-                                <div class="flip-card-inner-box w-full h-full relative">
-                                    <div class="face-side-front absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
-                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Front Layer" class="w-full h-full object-cover">
-                                    </div>
-                                    <div class="face-side-back absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
-                                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Back Layer" class="w-full h-full object-cover">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- RIGHT COLUMN BLOCK -->
-                        <div class="w-full md:w-[360px] lg:w-[380px] relative h-[280px] md:h-full flex-shrink-0">
-                            
-                            <!-- State 1: Top Boxes -->
-                            <div class="cards-right-group w-full absolute inset-0 flex flex-col justify-between h-full z-20 gap-4 md:gap-0">
-                                
-                                <!-- Card 1 -->
-                                <div class="relative w-full h-[130px] md:h-[248px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)] p-4 md:p-6 flex flex-col justify-between">
-                                    <div class="absolute top-4 left-0 right-0 h-px bg-white/10"></div>
-                                    <div class="absolute left-4 top-0 bottom-0 w-px bg-white/10"></div>
-                                    <div class="absolute bottom-4 left-0 right-0 h-px bg-white/10"></div>
-                                    <div class="absolute right-4 top-0 bottom-0 w-px bg-white/10"></div>
-                                    <div class="relative z-10 flex flex-col justify-between h-full">
-                                        <img src="./assets/images/computer.png" alt="computer icon" class="w-6 h-6 md:w-8 md:h-8 mb-2" onerror="this.style.display='none'">
-                                        <h3 class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You feel embarrassed sharing your website link in someone's DMs.</h3>
-                                        <div class="flex justify-end mt-2">
-                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">I can feel your pain!</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Card 2 -->
-                                <div class="relative w-full h-[130px] md:h-[248px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_20px_40px_rgba(0,0,0,.35)] p-4 md:p-6 flex flex-col justify-between">
-                                    <div class="absolute top-4 left-0 right-0 h-px bg-white/10"></div>
-                                    <div class="absolute left-4 top-0 bottom-0 w-px bg-white/10"></div>
-                                    <div class="absolute bottom-4 left-0 right-0 h-px bg-white/10"></div>
-                                    <div class="absolute right-4 top-0 bottom-0 w-px bg-white/10"></div>
-                                    <div class="relative z-10 flex flex-col justify-between h-full">
-                                        <img src="./assets/images/computer.png" alt="computer icon" class="w-6 h-6 md:w-8 md:h-8 mb-2" onerror="this.style.display='none'">
-                                        <h3 class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You've been meaning to fix this for six months but "haven't gotten around to it".</h3>
-                                        <div class="flex justify-end mt-2">
-                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">Not anymore!</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- State 2: Bottom Reveal Text -->
-                            <div class="text-right-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-2 md:pt-4 flex">
-                                <p class="text-[13px] sm:text-[15px] md:text-[17px] lg:text-[19px] text-white/90 tracking-tight font-light leading-relaxed">
-                                    Most coaches who come to me aren't marketing wrong. They are posting daily, showing up, making it work. But there's a quieter problem nobody talks about: <span class="text-[#FFCD56]">Every prospect who visits your website and doesn't book is a real cost.</span> 
-                                    <br class="hidden sm:block"><br class="hidden sm:block">
-                                    If your website should convert at 4% but converts at 1.5%, and you get 300 visitors/month at a $5,000 offer, <span class="text-[#FFCD56]">you're losing $37,500/month in opportunity cost.</span>
-                                </p>
-                            </div>
-
-                        </div>
-
+                <!-- Card 3 -->
+                <div class="relative overflow-hidden rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
+                    <!-- Background Glow -->
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,.05),transparent_60%)] pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <p class="text-white/70 text-xl font-light mb-3">
+                            Aura
+                        </p>
+                        <h3 class="text-white text-[28px] leading-[40px] font-semibold mb-12">
+                            Build The Full Attention-To
+                            <br>
+                            -Revenue System.
+                        </h3>
+                        <ul class="space-y-6 text-white">
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>Everything in Elevate, plus: </span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
+                                <span>Content Design System - carousels and graphics that attract premium buyers (retainer)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="relative z-10 mt-8">
+                        <button class="hero-btn items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
+                            <span class="px-3 sm:px-4 lg:px-5">
+                                Talk With Ibrahim
+                            </span>
+                            <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
+                        </button>
                     </div>
                 </div>
-            </section>
-            <!-- section 5 -->
-            <section class="section-5 py-10 text-center">
-                <div class="text-center mb-5 animated-bage">
-                    <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                        <img src="./assets/images/wired-outline-3152-puzzle-square-hover-detach.png" alt="wired-outline-3152-puzzle-square-hover-detach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
-                        The Solution
+            </div>
+        </section>
+        <!-- Section 9 -->
+        <section id="workflow-section" class="relative py-20 overflow-hidden">
+            <div class="container mx-auto">
+                <!-- Heading -->
+                <div class="text-center mb-5">
+                    <span
+                        class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] text-white">
+                        <img src="./assets/images/wired-outline-12-layers-hover-slide.png" alt="wired-outline-12-layers-hover-slide" class="inline-block h-6 mr-2">
+                        How It Works
                     </span>
                 </div>
-                <div class="w-full max-w-[745px] px-4 mx-auto">
-                    <h3 class="solution-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] tracking-tight mt-7">
-                        The Fix Isn't More <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Content</span>.
-                    </h3>
-                    <p class="solution-text text-[20px] text-center text-white font-inter-tight tracking-tight font-[200] mt-10 leading-relaxed">
-                        It's three things: a website, a landing page, and a LinkedIn profile built to convert. At 4% instead of 1.5%, 300 visitors and a $5,000 offer means 12 calls instead of 4 - that's $40,000 in pipeline your current funnel is leaving on the table every month.
-                    </p>
-                </div>
-                <div class="lf-wrap">
-                    <svg class="lf-svg" viewBox="0 0 1080 600" xmlns="http://www.w3.org/2000/svg"> 
-                    <!-- Master Vector Tracks --> 
-                    <path id="pathLeft" class="lf-line" d="M540,105 C 380,140 240,180 240,260 C 240,280 240,310 320,350 C 370,375 440,390 540,406"/> 
-                    <path id="pathCenter" class="lf-line" d="M540,105 L540,406"/> 
-                    <path id="pathRight" class="lf-line" d="M540,105 C 700,140 840,180 840,260 C 840,280 840,310 760,350 C 710,375 640,390 540,406"/> 
-                    <path id="pathDown" class="lf-line" d="M540,406 L540,534"/> 
-
-                    <!-- Left Path Stream (The single icon that passes through) --> 
-                    <g class="lf-icon"> 
-                        <circle class="lf-badge" r="12"/> 
-                        <circle class="lf-glyph" cy="-4" r="3.6"/> 
-                        <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
-                        <animateMotion dur="6s" repeatCount="indefinite" path="M540,105 C 380,140 240,180 240,260 C 240,280 240,310 320,350 C 370,375 440,390 540,406"/> 
-                    </g> 
-                    <g class="lf-icon"> 
-                        <circle class="lf-badge" r="12"/> 
-                        <circle class="lf-glyph" cy="-4" r="3.6"/> 
-                        <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
-                        <animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M540,105 C 380,140 240,180 240,260 C 240,280 240,310 320,350 C 370,375 440,390 540,406"/> 
-                    </g> 
-
-                    <!-- Center Path Stream (UNQUALIFIED) --> 
-                    <g class="lf-icon"> 
-                        <circle class="lf-badge" r="12"/> 
-                        <circle class="lf-glyph" cy="-4" r="3.6"/> 
-                        <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
-                        <animateMotion dur="6s" repeatCount="indefinite" path="M540,105 L540,406"/> 
-                        <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.98;1" dur="6s" repeatCount="indefinite" /> 
-                    </g> 
-                    <g class="lf-icon"> 
-                        <circle class="lf-badge" r="12"/> 
-                        <circle class="lf-glyph" cy="-4" r="3.6"/> 
-                        <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
-                        <animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M540,105 L540,406"/> 
-                        <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.98;1" dur="6s" repeatCount="indefinite" begin="-3s" /> 
-                    </g> 
-
-                    <!-- Right Path Stream (UNQUALIFIED) --> 
-                    <g class="lf-icon"> 
-                        <circle class="lf-badge" r="12"/> 
-                        <circle class="lf-glyph" cy="-4" r="3.6"/> 
-                        <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
-                        <animateMotion dur="6s" repeatCount="indefinite" path="M540,105 C 700,140 840,180 840,260 C 840,280 840,310 760,350 C 710,375 640,390 540,406"/> 
-                        <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.98;1" dur="6s" repeatCount="indefinite" /> 
-                    </g> 
-                    <g class="lf-icon"> 
-                        <circle class="lf-badge" r="12"/> 
-                        <circle class="lf-glyph" cy="-4" r="3.6"/> 
-                        <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
-                        <animateMotion dur="6s" repeatCount="indefinite" begin="-3s" path="M540,105 C 700,140 840,180 840,260 C 840,280 840,310 760,350 C 710,375 640,390 540,406"/> 
-                        <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.98;1" dur="6s" repeatCount="indefinite" begin="-3s" /> 
-                    </g> 
-
-                    <!-- Bottom Path Stream --> 
-                    <g class="lf-icon lf-tDown"> 
-                        <circle class="lf-badge" r="12"/> 
-                        <circle class="lf-glyph" cy="-4" r="3.6"/> 
-                        <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
-                        <animateMotion dur="3s" repeatCount="indefinite" path="M540,406 L540,534"/> 
-                    </g> 
-                    <g class="lf-icon lf-tDown2"> 
-                        <circle class="lf-badge" r="12"/> 
-                        <circle class="lf-glyph" cy="-4" r="3.6"/> 
-                        <path class="lf-glyph" d="M -5.5 6 Q 0 -1 5.5 6 Z"/> 
-                        <animateMotion dur="3s" repeatCount="indefinite" begin="-1.5s" path="M540,406 L540,534"/> 
-                    </g> 
-
-                    <!-- HTML Cards Layers --> 
-                    <foreignObject x="340" y="100" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip"></div><div class="lf-label">Existing traffic you're getting</div></div></xhtml:div> 
-                    </foreignObject> 
-
-                    <foreignObject x="40" y="228" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip"></div><div class="lf-label">Optimized LinkedIn profile</div></div></xhtml:div> 
-                    </foreignObject> 
-
-                    <foreignObject x="340" y="228" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip"></div><div class="lf-label">Conversion focused website</div></div></xhtml:div> 
-                    </foreignObject> 
-
-                    <foreignObject x="640" y="228" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip"></div><div class="lf-label">High converting landing page</div></div></xhtml:div> 
-                    </foreignObject> 
-
-                    <foreignObject x="340" y="350" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body"><div class="lf-node lf-key"><div class="lf-chip"></div><div class="lf-label">Lead qualification system</div></div></xhtml:div> 
-                    </foreignObject> 
-
-                    <!-- Main Card Locked Back at Center (x=340) --> 
-                    <foreignObject x="340" y="502" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body">
-                        <div class="lf-node">
-                            <div class="lf-chip"></div>
-                            <div class="lf-label">Qualified booked calls</div>
-                        </div> 
-                        </xhtml:div> 
-                    </foreignObject> 
-
-                    <!-- Pipeline Box: Placed precisely at x=666 to sit exactly 30px to the right of the central text content --> 
-                    <foreignObject x="666" y="502" width="180" height="64"> 
-                        <xhtml:div class="lf-fo-body" style="justify-content: flex-start;"> 
-                        <div class="lf-counter-pill"> 
-                            <span>Pipeline: </span> 
-                            <span id="revenueValue" style="margin-left: 6px; color: #00B074;">$0</span> 
-                        </div> 
-                        </xhtml:div> 
-                    </foreignObject> 
-                    </svg> 
-                </div>
-            </section>
-
-            <!-- section 6 -->
-            <section class="section-6 min-h-screen py-10 text-center">
-                <div class="portfolio-pin-wrap h-screen">
-                    <div class="text-center mb-5 animated-bage">
-                        <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                            <img src="./assets/images/wired-outline-153-bar-chart-morph-diversified.png" alt="Coach" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
-                            Portfolio And Results
-                        </span>
+                <h3
+                    class="text-center text-white text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px] leading-[1.1] font-bold max-w-[760px] mx-auto mb-12 md:mb-24 px-4">
+                    You Show Up Three Times.<br>
+                    Everything Else Is On Me.
+                </h3>
+            </div>
+            <!-- Horizontal Wrapper -->
+            <div class="workflow-wrapper">
+                <div class="workflow-track ">
+                    <div class="timeline">
+                        <div class="timeline-base"></div>
+                        <div class="timeline-progress"></div>
                     </div>
-                    <div class="mx-auto">
-                        <h3 class="portfolio-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] tracking-tight mt-7">
-                            They Could Be Your<br>Online Presence.
-                        </h3>
+                    <!-- Card -->
+                    <div class="step-card">
+                        <div class="number">01</div>
+                        <h3>Onboarding</h3>
+                        <p>
+                            You answer a few questions. I turn that
+                            into your Offer Doc and ICP Doc,
+                            the brief everything else runs on.
+                        </p>
                     </div>
-                    <div class="portfolio-wrapper mx-auto">
-                        <div class="portfolio-slider flex gap-5">
-        
-                            <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
-                                data-full="./assets/images/web-1.png">
-                                <img src="./assets/images/p-crad-1.png" class="w-full h-full object-contain">
-                                <div class="portfolio-cursor-glass text-sm">CLICK</div>
+                    <!-- Card -->
+                    <div class="step-card">
+                        <div class="number">02</div>
+                        <h3>Wireframe</h3>
+                        <p>
+                            I map the full layout and conversion
+                            architecture using my proven
+                            structure frameworks.
+                        </p>
+                    </div>
+                    <!-- Card -->
+                    <div class="step-card">
+                        <div class="number">03</div>
+                        <h3>Design Review</h3>
+                        <p>
+                            I send the full design. You look at it, tell me what to change, I fix it. One round and we're moving.
+                        </p>
+                    </div>
+                    <!-- Card -->
+                    <div class="step-card">
+                        <div class="number">04</div>
+                        <h3>LinkedIn Rebrand</h3>
+                        <p>
+                            If you're on Scale or Aura, while design is approved and dev kicks off, I'm rebuilding your LinkedIn in parallel.
+                        </p>
+                    </div>
+                    <!-- Card -->
+                    <div class="step-card">
+                        <div class="number">05</div>
+                        <h3>Development</h3>
+                        <p>
+                            I build it live. You click around, make sure everything feels right.
+                        </p>
+                    </div>
+                    <!-- Card -->
+                    <div class="step-card">
+                        <div class="number">06</div>
+                        <h3>Launch</h3>
+                        <p>
+                            We go live. You get a conversion system that's ready for traffic, not a project that needs three more weeks of your attention to actually work.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 10 -->
+        <section class="testimonial-section pt-24 overflow-hidden">
+            <div class="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8">
+                <!-- ================= Header (Fixed) ================= -->
+                <div class="flex flex-wrap gap-4 justify-between items-center mb-10 md:mb-20">
+                    <div class="flex items-center gap-6 md:gap-10 lg:gap-16">
+                        <div class="mb-5">
+                            <span
+                                class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] text-white">
+                                <img src="./assets/images/wired-outline-237-star-rating-hover-wink.png" alt="wired-outline-237-star-rating-hover-wink" class="inline-block h-6 mr-2">
+                                How It Works
+                            </span>
+                        </div>
+                        <div id="slide-count" class="text-[#7D7D7D] text-xl tracking-wide">
+                            01 / 09
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <button id="prevBtn"
+                            class="w-12 h-12 border border-white/30 flex items-center justify-center hover:bg-white hover:text-black duration-300">
+                            ←
+                        </button>
+                        <button id="nextBtn"
+                            class="w-12 h-12 border border-white/30 flex items-center justify-center hover:bg-white hover:text-black duration-300">
+                            →
+                        </button>
+                    </div>
+                </div>
+                <!-- ================= Slider ================= -->
+                <div class="relative overflow-hidden">
+                    <div id="testimonialTrack" class="relative h-[560px] sm:h-[500px] md:h-[460px] lg:h-[430px]">
+                        <!-- Slide 1 -->
+                        <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                            <!-- Left -->
+                            <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                <img src="./assets/images/testimonial-1.png" class="rounded-2xl w-full">
                             </div>
-        
-                            <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
-                                data-full="./assets/images/web-2.png">
-                                <img src="./assets/images/p-crad-2.png" class="w-full h-full object-cover">
-                                <div class="portfolio-cursor-glass text-sm">CLICK</div>
+                            <!-- Right -->
+                            <div class="flex-1">
+                                <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    “Ibrahim has been absolutely integral to the design, setup, and ongoing success of my online business. He consistently goes above & beyond to ensure everything runs smoothly. He is proactive with follow-ups & always takes care of updates and changes promptly, no matter how big or small.”
+                                </h4>
+                                <div class="mt-16">
+                                    <h4 class="text-white text-2xl">
+                                        Edward Curtain
+                                    </h4>
+                                    <p class="text-[#7C7C7C] mt-1">
+                                        Founder @WorldWellness® Group
+                                    </p>
+                                </div>
                             </div>
-        
-                            <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
-                                data-full="./assets/images/web-3.png">
-                                <img src="./assets/images/p-crad-3.png" class="w-full h-full object-cover">
-                                <div class="portfolio-cursor-glass text-sm">CLICK</div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                            <!-- Left -->
+                            <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                <img src="./assets/images/testimonial-2.png" class="rounded-2xl w-full">
                             </div>
-        
-                            <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
-                                data-full="./assets/images/web-4.png">
-                                <img src="./assets/images/p-crad-4.png" class="w-full h-full object-cover">
-                                <div class="portfolio-cursor-glass text-sm">CLICK</div>
+                            <!-- Right -->
+                            <div class="flex-1">
+                                <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    “Now I know, anyone coming my way asking for a website will be instantly redirected to Ibrahim… because he DESERVES IT, and honestly, way more than just the credit.”
+                                </h4>
+                                <div class="mt-16">
+                                    <h4 class="text-white text-2xl">
+                                        Shahkar Khan
+                                    </h4>
+                                    <p class="text-[#7C7C7C] mt-1">
+                                        Co-Founder @Podcutz
+                                    </p>
+                                </div>
                             </div>
-        
-                            <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
-                                data-full="./assets/images/web-5.png">
-                                <img src="./assets/images/p-crad-5.png" class="w-full h-full object-cover">
-                                <div class="portfolio-cursor-glass text-sm">CLICK</div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                            <!-- Left -->
+                            <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                <img src="./assets/images/testimonial-3.png" class="rounded-2xl w-full">
                             </div>
-        
+                            <!-- Right -->
+                            <div class="flex-1">
+                                <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    “Ibrahim is a rare combination of a technically proficient web developer who ALSO has an eye for design. This means he can bring a client brief to life with incredible accuracy, which is exactly what I experienced, from the service itself, to the final outcome.”
+                                </h4>
+                                <div class="mt-16">
+                                    <h4 class="text-white text-2xl">
+                                        James Pitt
+                                    </h4>
+                                    <p class="text-[#7C7C7C] mt-1">
+                                        Founder @Sunbearmarketing
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                            <!-- Left -->
+                            <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                <img src="./assets/images/testimonial-4.png" class="rounded-2xl w-full">
+                            </div>
+                            <!-- Right -->
+                            <div class="flex-1">
+                                <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    “He is one of the most famous website designer and developer on LinkedIn, he proved it straight away by delivering exceptional outcomes and the biggest one being me closing 4 high ticket clients in 48hrs (Just because I had a great website in place haha)”
+                                </h4>
+                                <div class="mt-16">
+                                    <h4 class="text-white text-2xl">
+                                        Obeidullah Siddiqui
+                                    </h4>
+                                    <p class="text-[#7C7C7C] mt-1">
+                                        Founder @Obiicreatives
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                            <!-- Left -->
+                            <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                <img src="./assets/images/testimonial-5.png" class="rounded-2xl w-full">
+                            </div>
+                            <!-- Right -->
+                            <div class="flex-1">
+                                <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    “I had the pleasure of working with Muhammad Ibrahim on LinkedIn banner designs for my clients, and the experience was fantastic from start to finish. His process is so easy and seamless, which made collaborating with him an absolute breeze.”
+                                </h4>
+                                <div class="mt-16">
+                                    <h4 class="text-white text-2xl">
+                                        Yonelly Gutierrez
+                                    </h4>
+                                    <p class="text-[#7C7C7C] mt-1">
+                                        Senior Project Manager
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 6 -->
+                        <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                            <!-- Left -->
+                            <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                <img src="./assets/images/testimonial-6.png" class="rounded-2xl w-full">
+                            </div>
+                            <!-- Right -->
+                            <div class="flex-1">
+                                <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    “From the very beginning, the collaboration was seamless. Ibrahim demonstrated exceptional professionalism and was highly responsive to feedback, making all requested adjustments without hesitation. I am thrilled with the final outcome of my website’s homepage. The entire experience exceeded my expectations.”
+                                </h4>
+                                <div class="mt-16">
+                                    <h4 class="text-white text-2xl">
+                                        Ayesha Ameer
+                                    </h4>
+                                    <p class="text-[#7C7C7C] mt-1">
+                                        Founder @Mentoriadigitals
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 7 -->
+                        <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                            <!-- Left -->
+                            <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                <img src="./assets/images/testimonial-7.png" class="rounded-2xl w-full">
+                            </div>
+                            <!-- Right -->
+                            <div class="flex-1">
+                                <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    “Ibrahim is truly a pro when it comes to web design. The onboarding process was incredibly smooth, and his creativity shines through in every detail. I always wanted a modern website, and he delivered an amazing and responsive landing page, far better than I expected. Hiring him for my agency’s website was the best decision.“
+                                </h4>
+                                <div class="mt-16">
+                                    <h4 class="text-white text-2xl">
+                                        Quandeel Mazhar
+                                    </h4>
+                                    <p class="text-[#7C7C7C] mt-1">
+                                        Founder @Brandsbydeel
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 8 -->
+                        <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                            <!-- Left -->
+                            <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                <img src="./assets/images/testimonial-8.png" class="rounded-2xl w-full">
+                            </div>
+                            <!-- Right -->
+                            <div class="flex-1">
+                                <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    “From the very beginning, the collaboration was seamless. Ibrahim demonstrated exceptional professionalism and was highly responsive to feedback, making all requested adjustments without hesitation. I am thrilled with the final outcome of my website’s homepage. The entire experience exceeded my expectations.”
+                                </h4>
+                                <div class="mt-16">
+                                    <h4 class="text-white text-2xl">
+                                        Francis
+                                    </h4>
+                                    <p class="text-[#7C7C7C] mt-1">
+                                        Founder @Mentoriadigitals
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 9 -->
+                        <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                            <!-- Left -->
+                            <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                <img src="./assets/images/testimonial-9.png" class="rounded-2xl w-full">
+                            </div>
+                            <!-- Right -->
+                            <div class="flex-1">
+                                <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    “Not only Ibrahim is extremely talented he is also very fast responsive reliable and an amazing communicator. He works with integrity and I highly recommend him to anyone looking to have an amazing landing page. Catch him now, he is becoming the next star.”
+                                </h4>
+                                <div class="mt-16">
+                                    <h4 class="text-white text-2xl">
+                                        Sandra Macele
+                                    </h4>
+                                    <p class="text-[#7C7C7C] mt-1">
+                                        Founder @Markantmedia
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- Portfolio Modal -->
-            <div id="portfolioModal"
-                class="fixed inset-0 bg-transparent backdrop-blur-md z-[9999] hidden items-center justify-center p-8">
+            </div>
+        </section>
+        <!-- SECTION 11: INTRO ABOUT ME SECTION -->
+        <section class="about-section relative lg:min-h-screen overflow-hidden">
+            <div class="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 lg:min-h-screen flex items-center py-16 lg:py-0">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full">
+                    <!-- LEFT CONTENT -->
+                    <div class="about-content relative z-10">
+                        <div class="mb-5">
+                            <span
+                                class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] text-white">
+                                <img src="./assets/images/wired-outline-268-avatar-man-hover-glance.png" alt="wired-outline-268-avatar-man-hover-glance" class="inline-block h-6 mr-2">
+                                About Founder
+                            </span>
+                        </div>
 
-                <!-- Close -->
-                <button id="closePortfolio"
-                    class="absolute top-7 right-7 w-14 h-14 rounded-full bg-white/10 border border-white/20 text-white text-3xl transition duration-300 hover:bg-white hover:text-black hover:rotate-90 hover:scale-110">
-                    ✕
-                </button>
+                        <h3 class="hero-title text-white text-[40px] sm:text-[52px] md:text-[60px] lg:text-[72px] leading-[0.95] font-semibold mb-6 lg:mb-8">
+                        Hey, It’s Ibrahim
+                        </h3>
 
-                <!-- Content -->
-                <div id="modalContent"
-                    class="relative w-full max-w-[900px] h-[90vh] overflow-y-auto rounded-2xl bg-[#111] shadow-[0_30px_80px_rgba(0,0,0,.5)]">
+                        <p class="hero-desc text-white text-lg leading-8 max-w-[460px] mb-10">
+                        The coaches I work with aren’t starting from zero. They have real proof, real results, and real audiences. What they don’t have is a system designed to capture all of it. That’s the gap I close.
+                        </p>
 
-                    <img id="modalImage"
-                        src=""
-                        class="w-full h-auto block"
-                        draggable="false">
+                        <div class="hero-actions flex items-center gap-4">
+                        <a href="#" class="px-6 py-3 rounded-full bg-white text-black font-medium">Talk With Ibrahim</a>
+                        <a href="#" class="px-6 py-3 rounded-full border border-white/15 text-white">Explore My Work</a>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT VISUAL -->
+                    <div class="relative z-10 cards-wrap h-[420px] sm:h-[520px] md:h-[620px] lg:h-screen pt-[60px] lg:pt-[180px] hidden md:block">
+                            <div class="card card1 absolute z-4  right-15 h-[590px] w-[472px] rounded-[28px]">
+                                <img src="./assets/images/ibrahim.png" alt="Ibrahim" class="h-full w-full">
+                            </div>
+                            <div class="card card2 absolute  right-35 h-[590px] w-[472px] rounded-[28px] bg-gradient-to-b from-[#FFB3005A] to-transparent backdrop-blur-[5px]"></div>
+                            <div class="card card3 absolute z-1 left-35 h-[590px] w-[472px] rounded-[28px] bg-gradient-to-b from-black to-transparent backdrop-blur-[5px]"></div>
+                            <div class="card card4 absolute  left-25 h-[590px] w-[472px] rounded-[28px] bg-black/30"></div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- BIG BLURRED TEXT -->
+            <h3 class="hero-word pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-[30px] lg:bottom-[50px] text-[80px] sm:text-[120px] md:text-[180px] lg:text-[260px] font-semibold text-white leading-none select-none op whitespace-nowrap">
+                Webrahim
+            </h3>
+        </section>
+        <section class="py-20 overflow-hidden">
+
+            <div class="ribbon h-[60px] sm:h-[80px] lg:h-[100px] overflow-hidden bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] flex items-center">
+
+                <div class="ribbon-track flex items-center whitespace-nowrap">
+
+                    <div class="ribbon-item flex items-center shrink-0">
+                        <span class="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] font-black text-[#121212] uppercase px-6 sm:px-8 md:px-12">
+                            Premium Websites
+                        </span>
+
+                        <div class="w-8 h-8 rounded-md bg-[#121212] mx-16"></div>
+
+                        <span class="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] font-black text-[#121212] uppercase px-6 sm:px-8 md:px-12">
+                            Landing Pages
+                        </span>
+
+                        <div class="w-8 h-8 rounded-md bg-[#121212] mx-16"></div>
+
+                        <span class="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] font-black text-[#121212] uppercase px-6 sm:px-8 md:px-12">
+                            Content Design
+                        </span>
+
+                        <div class="w-8 h-8 rounded-md bg-[#121212] mx-16"></div>
+                    </div>
 
                 </div>
 
             </div>
 
-            <!-- section 7 -->
-            <section class="video-section lg:min-h-screen py-20 text-center">
-                <div class="text-center mb-5 animated-bage">
-                    <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                        <img src="./assets/images/wired-outline-499-clipboard-film-clap-hover-pinch.png" alt="wired-outline-499-clipboard-film-clap-hover-pinch" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
-                        Video Testimonials
+        </section>
+        <!-- SECTION 12: ACCORDION / LINKS LIST -->
+        <section class="faq-section lg:min-h-screen flex items-center pt-20 md:pt-28 pb-24 md:pb-32">
+            <div class="max-w-3xl mx-auto w-full px-6">
+                <!-- Badge -->
+                <div class="text-center mb-5">
+                    <span
+                        class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] text-white">
+                        <img src="./assets/images/wired-outline-981-consultation-hover-conversation.png" alt="wired-outline-981-consultation-hover-conversation" class="inline-block h-6 mr-2">
+                        FAQs
                     </span>
                 </div>
-                <div class="w-full max-w-[745px] px-4 mx-auto">
-                    <h3 class="solution-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] tracking-tight mt-7">
-                        They had the <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">same doubts</span><br> you do. Now they don't.
-                    </h3>
-                </div>
-                <div class="video-wrapper w-[92%] md:w-[85%] lg:w-[80%] mx-auto pt-15">
-                    <div class="video-testimonial-container flex gap-5">
-                        <div class="testimonial-card relative h-[380px] w-[214px] sm:h-[440px] sm:w-[248px] md:h-[480px] md:w-[270px] lg:h-[522px] lg:w-[294px] shrink-0 overflow-hidden rounded-2xl">
-                            <video src="./assets/videos/Testimonial-1.mp4" autoplay loop muted playsinline></video>
-                            <div class="speaker-btn">
-                                <i class="fa-solid fa-volume-high speaker-icon"></i>
+                <!-- Heading -->
+                <h3 class="faq-title text-center text-white font-bold leading-none text-5xl md:text-6xl  mb-20">
 
-                                <div class="volume-popup">
-                                    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
-                                </div>
-                            </div>
-                            <div class="cursor-glass">
-                                PLAY
-                            </div>
-                        </div>
-                        <div class="testimonial-card relative h-[380px] w-[214px] sm:h-[440px] sm:w-[248px] md:h-[480px] md:w-[270px] lg:h-[522px] lg:w-[294px] shrink-0 overflow-hidden rounded-2xl">
-                            <video src="./assets/videos/Testimonial-2.mp4" autoplay loop muted playsinline></video>
-                            <div class="speaker-btn">
-                                <i class="fa-solid fa-volume-high speaker-icon"></i>
+                    Things You're Probably
+                    <br>
+                    Thinking Right Now.
 
-                                <div class="volume-popup">
-                                    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
-                                </div>
-                            </div>
-                            <div class="cursor-glass">
-                                PLAY
-                            </div>
-                        </div>
-                        <div class="testimonial-card relative h-[380px] w-[214px] sm:h-[440px] sm:w-[248px] md:h-[480px] md:w-[270px] lg:h-[522px] lg:w-[294px] shrink-0 overflow-hidden rounded-2xl">
-                            <video src="./assets/videos/Testimonial-3.mp4" autoplay loop muted playsinline></video>
-                            <div class="speaker-btn">
-                                <i class="fa-solid fa-volume-high speaker-icon"></i>
-
-                                <div class="volume-popup">
-                                    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
-                                </div>
-                            </div>
-                            <div class="cursor-glass">
-                                PLAY
-                            </div>
-                        </div>
-                        <div class="testimonial-card relative h-[380px] w-[214px] sm:h-[440px] sm:w-[248px] md:h-[480px] md:w-[270px] lg:h-[522px] lg:w-[294px] shrink-0 overflow-hidden rounded-2xl">
-                            <video src="./assets/videos/Testimonial-4.mp4" autoplay loop muted playsinline></video>
-                            <div class="speaker-btn">
-                                <i class="fa-solid fa-volume-high speaker-icon"></i>
-
-                                <div class="volume-popup">
-                                    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
-                                </div>
-                            </div>
-                            <div class="cursor-glass">
-                                PLAY
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Section 8 -->
-            <section class="offer-section lg:min-h-screen py-20 text-center">
-                <div class="text-center mb-5 animated-bage">
-                    <span class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                        <img src="./assets/images/wired-outline-56-document-hover-swipe.png" alt="wired-outline-56-document-hover-swipe" class="h-[25px] inline-block mr-2" onerror="this.style.display='none'">
-                        The Offer
-                    </span>
-                </div>
-                <div class="w-full max-w-[745px] px-4 mx-auto">
-                    <h3 class="solution-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] tracking-tight mt-7">
-                        Three ways to work together.
-                    </h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-[92%] xl:w-[85%] items-stretch mx-auto mt-12 md:mt-20">
-                    <!-- Card 1 -->
-                    <div class="relative overflow-hidden rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
-                        <!-- Background Glow -->
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,.05),transparent_60%)] pointer-events-none"></div>
-                        <div class="relative z-10">
-                            <p class="text-white/70 text-xl font-light mb-3">
-                                Launch
-                            </p>
-                            <h3 class="text-white text-[28px] leading-[40px] font-semibold mb-12">
-                                Convert The Traffic
-                                <br>
-                                You Already Have.
-                            </h3>
-                            <ul class="space-y-6 text-white">
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>Offer Clarity Guide.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>Landing Page / Website.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>Full WordPress Development.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>AI Search Visibility Setup.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>Launch Announcement Carousel.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>AI Launch Video.</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="relative z-10 mt-8">
-                            <button class="hero-btn items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
-                                <span class="px-3 sm:px-4 lg:px-5">
-                                    Talk With Ibrahim
-                                </span>
-                                <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="relative overflow-hidden rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
-                        <!-- Background Glow -->
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,.05),transparent_60%)] pointer-events-none"></div>
-                        <div class="relative z-10">
-                            <p class="text-white/70 text-xl font-light mb-3">
-                                Scale
-                            </p>
-                            <h3 class="text-white text-[28px] leading-[40px] font-semibold mb-12">
-                                Build Trust Before Traffic
-                                <br>
-                                Even Hits Your Site.
-                            </h3>
-                            <ul class="space-y-6 text-white">
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>Everything in Launch, plus: </span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>LinkedIn Profile Redesign.</span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>Content Creation Guide.</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="relative z-10 mt-8">
-                            <button class="hero-btn items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
-                                <span class="px-3 sm:px-4 lg:px-5">
-                                    Talk With Ibrahim
-                                </span>
-                                <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="relative overflow-hidden rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
-                        <!-- Background Glow -->
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,.05),transparent_60%)] pointer-events-none"></div>
-                        <div class="relative z-10">
-                            <p class="text-white/70 text-xl font-light mb-3">
-                                Aura
-                            </p>
-                            <h3 class="text-white text-[28px] leading-[40px] font-semibold mb-12">
-                                Build The Full Attention-To
-                                <br>
-                                -Revenue System.
-                            </h3>
-                            <ul class="space-y-6 text-white">
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>Everything in Elevate, plus: </span>
-                                </li>
-                                <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>Content Design System - carousels and graphics that attract premium buyers (retainer)</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="relative z-10 mt-8">
-                            <button class="hero-btn items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
-                                <span class="px-3 sm:px-4 lg:px-5">
-                                    Talk With Ibrahim
-                                </span>
-                                <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Section 9 -->
-            <section id="workflow-section" class="relative py-20 overflow-hidden">
-                <div class="container mx-auto">
-                    <!-- Heading -->
-                    <div class="text-center mb-5">
-                        <span
-                            class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] text-white">
-                            <img src="./assets/images/wired-outline-12-layers-hover-slide.png" alt="wired-outline-12-layers-hover-slide" class="inline-block h-6 mr-2">
-                            How It Works
-                        </span>
-                    </div>
-                    <h2
-                        class="text-center text-white text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px] leading-[1.1] font-bold max-w-[760px] mx-auto mb-12 md:mb-24 px-4">
-                        You Show Up Three Times.<br>
-                        Everything Else Is On Me.
-                    </h2>
-                </div>
-                <!-- Horizontal Wrapper -->
-                <div class="workflow-wrapper">
-                    <div class="workflow-track ">
-                        <div class="timeline">
-                            <div class="timeline-base"></div>
-                            <div class="timeline-progress"></div>
-                        </div>
-                        <!-- Card -->
-                        <div class="step-card">
-                            <div class="number">01</div>
-                            <h3>Onboarding</h3>
-                            <p>
-                                You answer a few questions. I turn that
-                                into your Offer Doc and ICP Doc,
-                                the brief everything else runs on.
-                            </p>
-                        </div>
-                        <!-- Card -->
-                        <div class="step-card">
-                            <div class="number">02</div>
-                            <h3>Wireframe</h3>
-                            <p>
-                                I map the full layout and conversion
-                                architecture using my proven
-                                structure frameworks.
-                            </p>
-                        </div>
-                        <!-- Card -->
-                        <div class="step-card">
-                            <div class="number">03</div>
-                            <h3>Design Review</h3>
-                            <p>
-                                I send the full design. You look at it, tell me what to change, I fix it. One round and we're moving.
-                            </p>
-                        </div>
-                        <!-- Card -->
-                        <div class="step-card">
-                            <div class="number">04</div>
-                            <h3>LinkedIn Rebrand</h3>
-                            <p>
-                                If you're on Scale or Aura, while design is approved and dev kicks off, I'm rebuilding your LinkedIn in parallel.
-                            </p>
-                        </div>
-                        <!-- Card -->
-                        <div class="step-card">
-                            <div class="number">05</div>
-                            <h3>Development</h3>
-                            <p>
-                                I build it live. You click around, make sure everything feels right.
-                            </p>
-                        </div>
-                        <!-- Card -->
-                        <div class="step-card">
-                            <div class="number">06</div>
-                            <h3>Launch</h3>
-                            <p>
-                                We go live. You get a conversion system that's ready for traffic, not a project that needs three more weeks of your attention to actually work.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- SECTION 10 -->
-            <section class="testimonial-section pt-24 overflow-hidden">
-                <div class="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8">
-                    <!-- ================= Header (Fixed) ================= -->
-                    <div class="flex flex-wrap gap-4 justify-between items-center mb-10 md:mb-20">
-                        <div class="flex items-center gap-6 md:gap-10 lg:gap-16">
-                            <div class="mb-5">
-                                <span
-                                    class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] text-white">
-                                    <img src="./assets/images/wired-outline-237-star-rating-hover-wink.png" alt="wired-outline-237-star-rating-hover-wink" class="inline-block h-6 mr-2">
-                                    How It Works
-                                </span>
-                            </div>
-                            <div id="slide-count" class="text-[#7D7D7D] text-xl tracking-wide">
-                                01 / 09
-                            </div>
-                        </div>
-                        <div class="flex gap-3">
-                            <button id="prevBtn"
-                                class="w-12 h-12 border border-white/30 flex items-center justify-center hover:bg-white hover:text-black duration-300">
-                                ←
-                            </button>
-                            <button id="nextBtn"
-                                class="w-12 h-12 border border-white/30 flex items-center justify-center hover:bg-white hover:text-black duration-300">
-                                →
-                            </button>
-                        </div>
-                    </div>
-                    <!-- ================= Slider ================= -->
-                    <div class="relative overflow-hidden">
-                        <div id="testimonialTrack" class="relative h-[560px] sm:h-[500px] md:h-[460px] lg:h-[430px]">
-                            <!-- Slide 1 -->
-                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
-                                <!-- Left -->
-                                <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-1.png" class="rounded-2xl w-full">
-                                </div>
-                                <!-- Right -->
-                                <div class="flex-1">
-                                    <h3 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
-                                        “Ibrahim has been absolutely integral to the design, setup, and ongoing success of my online business. He consistently goes above & beyond to ensure everything runs smoothly. He is proactive with follow-ups & always takes care of updates and changes promptly, no matter how big or small.”
-                                    </h3>
-                                    <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
-                                            Edward Curtain
-                                        </h4>
-                                        <p class="text-[#7C7C7C] mt-1">
-                                            Founder @WorldWellness® Group
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 2 -->
-                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
-                                <!-- Left -->
-                                <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-2.png" class="rounded-2xl w-full">
-                                </div>
-                                <!-- Right -->
-                                <div class="flex-1">
-                                    <h3 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
-                                        “Now I know, anyone coming my way asking for a website will be instantly redirected to Ibrahim… because he DESERVES IT, and honestly, way more than just the credit.”
-                                    </h3>
-                                    <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
-                                            Shahkar Khan
-                                        </h4>
-                                        <p class="text-[#7C7C7C] mt-1">
-                                            Co-Founder @Podcutz
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 3 -->
-                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
-                                <!-- Left -->
-                                <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-3.png" class="rounded-2xl w-full">
-                                </div>
-                                <!-- Right -->
-                                <div class="flex-1">
-                                    <h3 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
-                                        “Ibrahim is a rare combination of a technically proficient web developer who ALSO has an eye for design. This means he can bring a client brief to life with incredible accuracy, which is exactly what I experienced, from the service itself, to the final outcome.”
-                                    </h3>
-                                    <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
-                                            James Pitt
-                                        </h4>
-                                        <p class="text-[#7C7C7C] mt-1">
-                                            Founder @Sunbearmarketing
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 4 -->
-                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
-                                <!-- Left -->
-                                <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-4.png" class="rounded-2xl w-full">
-                                </div>
-                                <!-- Right -->
-                                <div class="flex-1">
-                                    <h3 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
-                                        “He is one of the most famous website designer and developer on LinkedIn, he proved it straight away by delivering exceptional outcomes and the biggest one being me closing 4 high ticket clients in 48hrs (Just because I had a great website in place haha)”
-                                    </h3>
-                                    <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
-                                            Obeidullah Siddiqui
-                                        </h4>
-                                        <p class="text-[#7C7C7C] mt-1">
-                                            Founder @Obiicreatives
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 5 -->
-                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
-                                <!-- Left -->
-                                <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-5.png" class="rounded-2xl w-full">
-                                </div>
-                                <!-- Right -->
-                                <div class="flex-1">
-                                    <h3 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
-                                        “I had the pleasure of working with Muhammad Ibrahim on LinkedIn banner designs for my clients, and the experience was fantastic from start to finish. His process is so easy and seamless, which made collaborating with him an absolute breeze.”
-                                    </h3>
-                                    <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
-                                            Yonelly Gutierrez
-                                        </h4>
-                                        <p class="text-[#7C7C7C] mt-1">
-                                            Senior Project Manager
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 6 -->
-                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
-                                <!-- Left -->
-                                <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-6.png" class="rounded-2xl w-full">
-                                </div>
-                                <!-- Right -->
-                                <div class="flex-1">
-                                    <h3 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
-                                        “From the very beginning, the collaboration was seamless. Ibrahim demonstrated exceptional professionalism and was highly responsive to feedback, making all requested adjustments without hesitation. I am thrilled with the final outcome of my website’s homepage. The entire experience exceeded my expectations.”
-                                    </h3>
-                                    <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
-                                            Ayesha Ameer
-                                        </h4>
-                                        <p class="text-[#7C7C7C] mt-1">
-                                            Founder @Mentoriadigitals
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 7 -->
-                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
-                                <!-- Left -->
-                                <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-7.png" class="rounded-2xl w-full">
-                                </div>
-                                <!-- Right -->
-                                <div class="flex-1">
-                                    <h3 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
-                                        “Ibrahim is truly a pro when it comes to web design. The onboarding process was incredibly smooth, and his creativity shines through in every detail. I always wanted a modern website, and he delivered an amazing and responsive landing page, far better than I expected. Hiring him for my agency’s website was the best decision.“
-                                    </h3>
-                                    <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
-                                            Quandeel Mazhar
-                                        </h4>
-                                        <p class="text-[#7C7C7C] mt-1">
-                                            Founder @Brandsbydeel
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 8 -->
-                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
-                                <!-- Left -->
-                                <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-8.png" class="rounded-2xl w-full">
-                                </div>
-                                <!-- Right -->
-                                <div class="flex-1">
-                                    <h3 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
-                                        “From the very beginning, the collaboration was seamless. Ibrahim demonstrated exceptional professionalism and was highly responsive to feedback, making all requested adjustments without hesitation. I am thrilled with the final outcome of my website’s homepage. The entire experience exceeded my expectations.”
-                                    </h3>
-                                    <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
-                                            Francis
-                                        </h4>
-                                        <p class="text-[#7C7C7C] mt-1">
-                                            Founder @Mentoriadigitals
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Slide 9 -->
-                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
-                                <!-- Left -->
-                                <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-9.png" class="rounded-2xl w-full">
-                                </div>
-                                <!-- Right -->
-                                <div class="flex-1">
-                                    <h3 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
-                                        “Not only Ibrahim is extremely talented he is also very fast responsive reliable and an amazing communicator. He works with integrity and I highly recommend him to anyone looking to have an amazing landing page. Catch him now, he is becoming the next star.”
-                                    </h3>
-                                    <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
-                                            Sandra Macele
-                                        </h4>
-                                        <p class="text-[#7C7C7C] mt-1">
-                                            Founder @Markantmedia
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- SECTION 11: INTRO ABOUT ME SECTION -->
-            <section class="about-section relative lg:min-h-screen overflow-hidden">
-                <div class="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 lg:min-h-screen flex items-center py-16 lg:py-0">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full">
-                        <!-- LEFT CONTENT -->
-                        <div class="about-content relative z-10">
-                            <div class="mb-5">
-                                <span
-                                    class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] text-white">
-                                    <img src="./assets/images/wired-outline-268-avatar-man-hover-glance.png" alt="wired-outline-268-avatar-man-hover-glance" class="inline-block h-6 mr-2">
-                                    About Founder
-                                </span>
-                            </div>
-
-                            <h1 class="hero-title text-white text-[40px] sm:text-[52px] md:text-[60px] lg:text-[72px] leading-[0.95] font-semibold mb-6 lg:mb-8">
-                            Hey, It’s Ibrahim
-                            </h1>
-
-                            <p class="hero-desc text-white text-lg leading-8 max-w-[460px] mb-10">
-                            The coaches I work with aren’t starting from zero. They have real proof, real results, and real audiences. What they don’t have is a system designed to capture all of it. That’s the gap I close.
-                            </p>
-
-                            <div class="hero-actions flex items-center gap-4">
-                            <a href="#" class="px-6 py-3 rounded-full bg-white text-black font-medium">Talk With Ibrahim</a>
-                            <a href="#" class="px-6 py-3 rounded-full border border-white/15 text-white">Explore My Work</a>
-                            </div>
-                        </div>
-
-                        <!-- RIGHT VISUAL -->
-                        <div class="relative z-10 cards-wrap h-[420px] sm:h-[520px] md:h-[620px] lg:h-screen pt-[60px] lg:pt-[180px] hidden md:block">
-                                <div class="card card1 absolute z-4  right-15 h-[590px] w-[472px] rounded-[28px]">
-                                    <img src="./assets/images/ibrahim.png" alt="Ibrahim" class="h-full w-full">
-                                </div>
-                                <div class="card card2 absolute  right-35 h-[590px] w-[472px] rounded-[28px] bg-gradient-to-b from-[#FFB3005A] to-transparent backdrop-blur-[5px]"></div>
-                                <div class="card card3 absolute z-1 left-35 h-[590px] w-[472px] rounded-[28px] bg-gradient-to-b from-black to-transparent backdrop-blur-[5px]"></div>
-                                <div class="card card4 absolute  left-25 h-[590px] w-[472px] rounded-[28px] bg-black/30"></div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-- BIG BLURRED TEXT -->
-                <div class="hero-word pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-[30px] lg:bottom-[50px] text-[80px] sm:text-[120px] md:text-[180px] lg:text-[260px] font-semibold text-white leading-none select-none op whitespace-nowrap">
-                    Webrahim
-                </div>
-            </section>
-            <section class="py-20 overflow-hidden">
-
-                <div class="ribbon h-[60px] sm:h-[80px] lg:h-[100px] overflow-hidden bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] flex items-center">
-
-                    <div class="ribbon-track flex items-center whitespace-nowrap">
-
-                        <div class="ribbon-item flex items-center shrink-0">
-                            <span class="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] font-black text-[#121212] uppercase px-6 sm:px-8 md:px-12">
-                                Premium Websites
+                </h3>
+                <div class="space-y-1">
+                    <!-- Item -->
+                    <div class="faq-item border-b border-white/10">
+                        <button class="faq-btn w-full flex justify-between items-center py-7 text-left">
+                            <span class="text-white text-lg">
+                                Our Current Website Already Gets Us Leads...
                             </span>
-
-                            <div class="w-8 h-8 rounded-md bg-[#121212] mx-16"></div>
-
-                            <span class="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] font-black text-[#121212] uppercase px-6 sm:px-8 md:px-12">
-                                Landing Pages
+                            <span class="plus text-[#D4A11E] text-3xl font-light">
+                                +
                             </span>
-
-                            <div class="w-8 h-8 rounded-md bg-[#121212] mx-16"></div>
-
-                            <span class="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] font-black text-[#121212] uppercase px-6 sm:px-8 md:px-12">
-                                Content Design
-                            </span>
-
-                            <div class="w-8 h-8 rounded-md bg-[#121212] mx-16"></div>
+                        </button>
+                        <div class="faq-content overflow-hidden">
+                            <div class="pb-7 pr-12 text-[#A8A8A8] leading-8">
+                                Getting some leads isn't the question.
+                                The question is how many you're losing.
+                                A funnel built for conversions doesn't just look
+                                good—it turns visitors into buyers.
+                            </div>
                         </div>
-
                     </div>
-
+                    <!-- Item -->
+                    <div class="faq-item border-b border-white/10">
+                        <button class="faq-btn w-full flex justify-between items-center py-7">
+                            <span class="text-white text-lg">
+                                Can You Guarantee Results?
+                            </span>
+                            <span class="plus text-[#D4A11E] text-3xl">
+                                +
+                            </span>
+                        </button>
+                        <div class="faq-content overflow-hidden">
+                            <div class="pb-7 pr-12 text-[#A8A8A8] leading-8">
+                                We can't guarantee exact numbers, but we build
+                                everything around proven conversion principles.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item border-b border-white/10">
+                        <button class="faq-btn w-full flex justify-between items-center py-7">
+                            <span class="text-white text-lg">
+                                Why Not Just Hire Someone Cheaper?
+                            </span>
+                            <span class="plus text-[#D4A11E] text-3xl">
+                                +
+                            </span>
+                        </button>
+                        <div class="faq-content overflow-hidden">
+                            <div class="pb-7 pr-12 text-[#A8A8A8] leading-8">
+                                Cheap websites cost more in lost sales.
+                                We build assets that pay for themselves.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item border-b border-white/10">
+                        <button class="faq-btn w-full flex justify-between items-center py-7">
+                            <span class="text-white text-lg">
+                                How Long Does It Actually Take?
+                            </span>
+                            <span class="plus text-[#D4A11E] text-3xl">
+                                +
+                            </span>
+                        </button>
+                        <div class="faq-content overflow-hidden">
+                            <div class="pb-7 pr-12 text-[#A8A8A8] leading-8">
+                                Usually 2–4 weeks depending on project size.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item border-b border-white/10">
+                        <button class="faq-btn w-full flex justify-between items-center py-7">
+                            <span class="text-white text-lg">
+                                What If I Need Changes After Launch?
+                            </span>
+                            <span class="plus text-[#D4A11E] text-3xl">
+                                +
+                            </span>
+                        </button>
+                        <div class="faq-content overflow-hidden">
+                            <div class="pb-7 pr-12 text-[#A8A8A8] leading-8">
+                                We offer ongoing support and optimization after
+                                launch.
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
+        <!-- SECTION 13: FOOTER CALL TO ACTION -->
+        <footer class="relative overflow-hidden min-h-[100vh] md:min-h-[120vh] lg:min-h-[140vh]">
+            <!-- Background -->
+            <img
+                src="./assets/images/footer.png"
+                class="absolute inset-0 w-full h-full object-cover -z-10"
+                alt=""
+            >
 
-            </section>
-            <!-- SECTION 12: ACCORDION / LINKS LIST -->
-            <section class="faq-section lg:min-h-screen flex items-center pt-20 md:pt-28 pb-24 md:pb-32">
-                <div class="max-w-3xl mx-auto w-full px-6">
-                    <!-- Badge -->
-                    <div class="text-center mb-5">
-                        <span
-                            class="px-5 py-3 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] text-white">
-                            <img src="./assets/images/wired-outline-981-consultation-hover-conversation.png" alt="wired-outline-981-consultation-hover-conversation" class="inline-block h-6 mr-2">
-                            FAQs
-                        </span>
-                    </div>
-                    <!-- Heading -->
-                    <h2
-                        class="faq-title text-center text-white font-bold leading-none text-5xl md:text-6xl tracking-tight mb-20">
-
-                        Things You're Probably
+            <!-- Content -->
+            <div class="relative z-10 max-w-[1280px] mx-auto min-h-screen flex flex-col px-4 sm:px-6 md:px-8 pt-16">
+                <!-- Top Content -->
+                <div class="-pt-20 text-center">
+                    <h3 class="text-[32px] sm:text-[40px] md:text-[50px] lg:text-[60px] leading-[1.05] font-semibold text-white mx-auto px-4">
+                        Every Week Your Funnel Is
                         <br>
-                        Thinking Right Now.
-
-                    </h2>
-                    <div class="space-y-1">
-                        <!-- Item -->
-                        <div class="faq-item border-b border-white/10">
-                            <button class="faq-btn w-full flex justify-between items-center py-7 text-left">
-                                <span class="text-white text-lg">
-                                    Our Current Website Already Gets Us Leads...
-                                </span>
-                                <span class="plus text-[#D4A11E] text-3xl font-light">
-                                    +
-                                </span>
-                            </button>
-                            <div class="faq-content overflow-hidden">
-                                <div class="pb-7 pr-12 text-[#A8A8A8] leading-8">
-                                    Getting some leads isn't the question.
-                                    The question is how many you're losing.
-                                    A funnel built for conversions doesn't just look
-                                    good—it turns visitors into buyers.
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Item -->
-                        <div class="faq-item border-b border-white/10">
-                            <button class="faq-btn w-full flex justify-between items-center py-7">
-                                <span class="text-white text-lg">
-                                    Can You Guarantee Results?
-                                </span>
-                                <span class="plus text-[#D4A11E] text-3xl">
-                                    +
-                                </span>
-                            </button>
-                            <div class="faq-content overflow-hidden">
-                                <div class="pb-7 pr-12 text-[#A8A8A8] leading-8">
-                                    We can't guarantee exact numbers, but we build
-                                    everything around proven conversion principles.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="faq-item border-b border-white/10">
-                            <button class="faq-btn w-full flex justify-between items-center py-7">
-                                <span class="text-white text-lg">
-                                    Why Not Just Hire Someone Cheaper?
-                                </span>
-                                <span class="plus text-[#D4A11E] text-3xl">
-                                    +
-                                </span>
-                            </button>
-                            <div class="faq-content overflow-hidden">
-                                <div class="pb-7 pr-12 text-[#A8A8A8] leading-8">
-                                    Cheap websites cost more in lost sales.
-                                    We build assets that pay for themselves.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="faq-item border-b border-white/10">
-                            <button class="faq-btn w-full flex justify-between items-center py-7">
-                                <span class="text-white text-lg">
-                                    How Long Does It Actually Take?
-                                </span>
-                                <span class="plus text-[#D4A11E] text-3xl">
-                                    +
-                                </span>
-                            </button>
-                            <div class="faq-content overflow-hidden">
-                                <div class="pb-7 pr-12 text-[#A8A8A8] leading-8">
-                                    Usually 2–4 weeks depending on project size.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="faq-item border-b border-white/10">
-                            <button class="faq-btn w-full flex justify-between items-center py-7">
-                                <span class="text-white text-lg">
-                                    What If I Need Changes After Launch?
-                                </span>
-                                <span class="plus text-[#D4A11E] text-3xl">
-                                    +
-                                </span>
-                            </button>
-                            <div class="faq-content overflow-hidden">
-                                <div class="pb-7 pr-12 text-[#A8A8A8] leading-8">
-                                    We offer ongoing support and optimization after
-                                    launch.
-                                </div>
-                            </div>
-                        </div>
+                        Broken,
+                        <span class="text-[#FFB300]">You're Paying</span>
+                        For It.
+                    </h3>
+                    <p class="mt-6 md:mt-8 text-white text-[15px] sm:text-[17px] md:text-[20px] lg:text-[22px] leading-[1.6] max-w-[763px] mx-auto px-4">
+                        Not In Ad Spend. In The Leads That Visited, Got Curious, And
+                        Decided You Weren't Ready For Them. Book A Free Strategy Call
+                        And We'll Look At Exactly Where Your Funnel Is Leaking,
+                        Whether We Work Together Or Not.
+                    </p>
+                    <div class="mt-10">
+                        <button class="hero-btn mx-auto items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
+                            <span class="px-3 sm:px-4 lg:px-5">Talk With Ibrahim</span> <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture" title="Call Me?"> 
+                        </button>
                     </div>
                 </div>
-            </section>
-            <!-- SECTION 13: FOOTER CALL TO ACTION -->
-            <footer class="relative overflow-hidden min-h-[100vh] md:min-h-[120vh] lg:min-h-[140vh]">
-                <!-- Background -->
-                <img
-                    src="./assets/images/footer.png"
-                    class="absolute inset-0 w-full h-full object-cover -z-10"
-                    alt=""
-                >
-
-                <!-- Content -->
-                <div class="relative z-10 max-w-[1280px] mx-auto min-h-screen flex flex-col px-4 sm:px-6 md:px-8 pt-16">
-                    <!-- Top Content -->
-                    <div class="-pt-20 text-center">
-                        <h2 class="text-[32px] sm:text-[40px] md:text-[50px] lg:text-[60px] leading-[1.05] font-semibold text-white mx-auto px-4">
-                            Every Week Your Funnel Is
-                            <br>
-                            Broken,
-                            <span class="text-[#FFB300]">You're Paying</span>
-                            For It.
-                        </h2>
-                        <p class="mt-6 md:mt-8 text-white text-[15px] sm:text-[17px] md:text-[20px] lg:text-[22px] leading-[1.6] max-w-[763px] mx-auto px-4">
-                            Not In Ad Spend. In The Leads That Visited, Got Curious, And
-                            Decided You Weren't Ready For Them. Book A Free Strategy Call
-                            And We'll Look At Exactly Where Your Funnel Is Leaking,
-                            Whether We Work Together Or Not.
+                <!-- Bottom -->
+                <div class="mt-auto pb-30">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                        <!-- Social -->
+                        <div class="flex gap-5">
+                            <a href="#">
+                                <i class="fa-brands fa-instagram text-white text-3xl"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa-brands fa-linkedin text-white text-3xl"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa-solid fa-envelope text-white text-3xl"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa-brands fa-whatsapp text-white text-3xl"></i>
+                            </a>
+                        </div>
+                        <!-- Copyright -->
+                        <p class="text-white text-[14px] sm:text-[18px]  lg:text-[22px] text-center sm:text-right">
+                            © 2026 Webrahim. All Rights Reserved.
                         </p>
-                        <div class="mt-10">
-                            <button class="hero-btn mx-auto items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
-                                <span class="px-3 sm:px-4 lg:px-5">Talk With Ibrahim</span> <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture" title="Call Me?"> 
-                            </button>
-                        </div>
                     </div>
-                    <!-- Bottom -->
-                    <div class="mt-auto pb-30">
-                        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
-                            <!-- Social -->
-                            <div class="flex gap-5">
-                                <a href="#">
-                                    <i class="fa-brands fa-instagram text-white text-3xl"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa-brands fa-linkedin text-white text-3xl"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa-solid fa-envelope text-white text-3xl"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa-brands fa-whatsapp text-white text-3xl"></i>
-                                </a>
-                            </div>
-                            <!-- Copyright -->
-                            <p class="text-white text-[14px] sm:text-[18px]  lg:text-[22px] text-center sm:text-right">
-                                © 2026 Webrahim. All Rights Reserved.
-                            </p>
-                        </div>
-                        <div class="h-px bg-white/30 mt-12"></div>
-                    </div>
+                    <div class="h-px bg-white/30 mt-12"></div>
                 </div>
-            </footer>
-        </main>
-    </div>
+            </div>
+        </footer>
+    </main>
 
 
     <script src="./assets/js/gsap.min.js"></script>
@@ -1359,10 +1337,6 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/CustomEase.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
     <script src="./assets/js/ScrollTrigger.min.js"></script>
-    
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
-
-<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
