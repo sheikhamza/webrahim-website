@@ -17,6 +17,35 @@
     <!-- Background animation canvases (matter-in-motion style) -->
     <canvas id="atmosphere"></canvas>
     <canvas id="webgl"></canvas>
+
+    <!-- Loader Overlay -->
+    <!-- <div id="loader" class="fixed inset-0 z-50 flex flex-col justify-between p-8 md:p-12 bg-[#080808] select-none">
+        <div class="flex justify-between items-center text-xs tracking-widest text-zinc-500 uppercase">
+            <span>[ SYSTEM INITIALIZATION ]</span>
+            <span>AXISFORM // 2026</span>
+        </div>
+
+        <div class="flex items-end justify-between">
+            <div>
+                <p class="text-xs text-zinc-400 mb-2 tracking-wider">LOADING EXPERIENCE</p>
+                <div class="flex items-center gap-2">
+                    <span class="inline-block w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                    <span class="text-xs text-orange-500 font-mono">ESTABLISHING SECURE PIPELINE</span>
+                </div>
+            </div>
+            
+            <div class="text-right">
+                <span id="counter" class="text-7xl md:text-9xl font-bold tracking-tighter text-zinc-100 font-mono">00</span>
+                <span class="text-3xl md:text-5xl text-orange-500 font-light">%</span>
+            </div>
+        </div>
+
+        
+        <div class="w-full bg-zinc-900 h-[2px] relative overflow-hidden">
+            <div id="progress-bar" class="absolute top-0 left-0 h-full bg-orange-500 w-0"></div>
+        </div>
+    </div> -->
+
     <!-- Scrollable Website Content -->
     <div data-scroll-container>
         <main class="relative z-10">
@@ -208,39 +237,39 @@
 
                         <!-- Card 1 (Hidden Top / Past State) -->
                         <div class="card card-1 absolute left-[5%] sm:left-[10%] top-[5%] sm:top-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
-                            <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
+                            <img loading="lazy" decoding="async" src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Card 2 (Hidden Center / Past Active) -->
                         <div class="card card-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[260px] w-[310px] md:h-[400px] md:w-[472px] z-10 opacity-0 overflow-hidden rounded-lg shadow-2xl">
-                            <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
+                            <img loading="lazy" decoding="async" src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Card 3 (Starting Active Card - Bottom Right) -->
                         <div class="card card-3 absolute right-[5%] sm:right-[10%] bottom-[5%] sm:bottom-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-25 overflow-hidden rounded-lg shadow-lg">
-                            <img src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
+                            <img loading="lazy" decoding="async" src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Card 4 (Queue 1 - Waiting at bottom) -->
                         <div class="card card-4 absolute right-[5%] sm:right-[10%] -bottom-[15%] sm:-bottom-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
-                            <img src="./assets/images/Infograghy.png" class="w-full h-full object-cover">
+                            <img loading="lazy" decoding="async" src="./assets/images/Infograghy.png" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Card 5 (Queue 2 - Further down) -->
                         <div class="card card-5 absolute right-[5%] sm:right-[10%] -bottom-[35%] sm:-bottom-[30%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
-                            <img src="./assets/images/VRKAS.png" class="w-full h-full object-cover">
+                            <img loading="lazy" decoding="async" src="./assets/images/VRKAS.png" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Card 6 (Queue 3 - Deep down) -->
                         <div class="card card-6 absolute right-[5%] sm:right-[10%] -bottom-[55%] sm:-bottom-[50%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
-                            <img src="./assets/images/Marisa.png" class="w-full h-full object-cover">
+                            <img loading="lazy" decoding="async" src="./assets/images/Marisa.png" class="w-full h-full object-cover">
                         </div>
 
                     </div>
                 </div>
             </section>
             <!-- SECTION: COMBINED SCROLL SHOWCASE (Fully Responsive) -->
-            <section id="scroll-pin-wrapper" class="relative w-full max-w-[1200px] mx-auto min-h-[180vh] md:min-h-[200vh]">
+            <section id="scroll-pin-wrapper" class="relative w-full max-w-[1200px] mx-auto min-h-[180vh] lg:min-h-[200vh]">
 
                 <!-- INNER CANVAS: Sticky animation zone -->
                 <div class="animation-inner-sticky-canvas w-full h-screen flex items-center justify-center overflow-hidden relative px-4 md:px-8">
@@ -256,7 +285,7 @@
                                 <!-- Card 1 -->
                                 <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] p-4 md:p-6 flex flex-col justify-between">
                                     <div class="relative z-10 flex flex-col justify-between h-full pr-8">
-                                        <img src="./assets/icons/site-icons/computer.gif" alt="And you know it, right" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
+                                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/computer.gif" alt="And you know it, right" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
                                         <p class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">Your online presence doesn't match the reputation you have offline.</p>
                                         <div class="flex mt-4">
                                             <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">And you know it, right?</span>
@@ -267,7 +296,7 @@
                                 <!-- Card 2 -->
                                 <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] p-4 md:p-6 flex flex-col justify-between">
                                     <div class="relative z-10 flex flex-col justify-between h-full pr-8">
-                                        <img src="./assets/icons/site-icons/Isn’t-it-so-frustrating.gif" alt="Isn’t it so frustrating" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
+                                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Isn’t-it-so-frustrating.gif" alt="Isn’t it so frustrating" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
                                         <p class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You're getting calls, but too many of them are wrong-fit prospects wasting your time.</p>
                                         <div class="flex mt-4">
                                             <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">Isn't it so frustrating?</span>
@@ -281,7 +310,7 @@
                             <div class="text-left-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-2 md:pt-6 flex flex-col">
                                 <div class="animated-bage mb-4 md:mb-8">
                                     <span class="px-3 md:px-5 py-2 rounded-full text-[12px] md:text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white inline-flex items-center">
-                                        <img src="./assets/icons/site-icons/The-Real-Problem.gif" alt="The Real Problem" class="h-8 md:h-10 mr-1" onerror="this.style.display='none'">
+                                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Real-Problem.gif" alt="The Real Problem" class="h-8 md:h-10 mr-1" onerror="this.style.display='none'">
                                         The Real Problem
                                     </span>
                                 </div>
@@ -297,7 +326,7 @@
 
                             <div class="text-center animated-bage absolute -top-8 md:-top-17 z-40 flip-badge">
                                 <span class="px-4 md:px-5 py-2 md:py-3 rounded-full text-[12px] md:text-[15px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white inline-flex items-center whitespace-nowrap">
-                                    <img src="./assets/images/hey.png" alt="Coach" class="h-[18px] md:h-[22px] mr-2" onerror="this.style.display='none'">
+                                    <img loading="lazy" decoding="async" src="./assets/images/hey.png" alt="Coach" class="h-[18px] md:h-[22px] mr-2" onerror="this.style.display='none'">
                                     Hey Coach! Is This You?
                                 </span>
                             </div>
@@ -305,10 +334,10 @@
                             <div class="w-full h-full relative z-30 container-3d-perspective">
                                 <div class="flip-card-inner-box w-full h-full relative">
                                     <div class="face-side-front absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
-                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Front Layer" class="w-full h-full object-cover">
+                                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Front Layer" class="w-full h-full object-cover">
                                     </div>
                                     <div class="face-side-back absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
-                                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Back Layer" class="w-full h-full object-cover">
+                                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Back Layer" class="w-full h-full object-cover">
                                     </div>
                                 </div>
                             </div>
@@ -324,7 +353,7 @@
                                 <!-- Card 1 -->
                                 <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] p-4 md:p-6 flex flex-col justify-between">
                                     <div class="relative z-10 flex flex-col justify-between h-full pr-8">
-                                        <img src="./assets/icons/site-icons/I-can-feel-you-pain!.gif" alt="I-can-feel-you-pain!" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
+                                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/I-can-feel-you-pain!.gif" alt="I-can-feel-you-pain!" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
                                         <p class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You feel embarrassed sharing your website link in someone's DMs.</p>
                                         <div class="flex mt-4">
                                             <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">I can feel your pain!</span>
@@ -335,7 +364,7 @@
                                 <!-- Card 2 -->
                                 <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] p-4 md:p-6 flex flex-col justify-between">
                                     <div class="relative z-10 flex flex-col justify-between h-full pr-8">
-                                        <img src="./assets/icons/site-icons/Not-any-more!.gif" alt="Not any more!" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
+                                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Not-any-more!.gif" alt="Not any more!" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
                                         <p class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You've been meaning to fix this for six months but "haven't gotten around to it".</p>
                                         <div class="flex mt-4">
                                             <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">Not anymore!</span>
@@ -363,7 +392,7 @@
             <section class="section-5 py-10 text-center">
                 <div class="text-center mb-5 animated-bage">
                     <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                        <img src="./assets/icons/site-icons/The-Solution.gif" alt="The Solution" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Solution.gif" alt="The Solution" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
                         The Solution
                     </span>
                 </div>
@@ -446,31 +475,31 @@
                     <!-- HTML Cards Layers --> 
                     <foreignObject x="340" y="100" width="400" height="64"> 
                         <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip flex items-center justify-center">
-                            <img src="./assets/icons/icons-graphic/Existing-traffic-you’re-getting.svg" alt="Existing traffic you’re getting">
+                            <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/Existing-traffic-you’re-getting.svg" alt="Existing traffic you’re getting">
                         </div><div class="lf-label">Existing traffic you're getting</div></div></xhtml:div> 
                     </foreignObject> 
 
                     <foreignObject x="40" y="228" width="400" height="64"> 
                         <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip  flex items-center justify-center">
-                            <img src="./assets/icons/icons-graphic/Optimized-LinkedIn-Profile.svg" alt="Optimized LinkedIn Profile">
+                            <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/Optimized-LinkedIn-Profile.svg" alt="Optimized LinkedIn Profile">
                         </div><div class="lf-label">Optimized LinkedIn profile</div></div></xhtml:div> 
                     </foreignObject> 
 
                     <foreignObject x="340" y="228" width="400" height="64"> 
                         <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip  flex items-center justify-center">
-                            <img src="./assets/icons/icons-graphic/Conversion-Focused-Website.svg" alt="Conversion Focused Website">
+                            <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/Conversion-Focused-Website.svg" alt="Conversion Focused Website">
                         </div><div class="lf-label">Conversion focused website</div></div></xhtml:div> 
                     </foreignObject> 
 
                     <foreignObject x="640" y="228" width="400" height="64"> 
                         <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip  flex items-center justify-center">
-                            <img src="./assets/icons/icons-graphic/High-converting-landing-page.svg" alt="High converting landing page">
+                            <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/High-converting-landing-page.svg" alt="High converting landing page">
                         </div><div class="lf-label">High converting landing page</div></div></xhtml:div> 
                     </foreignObject> 
 
                     <foreignObject x="340" y="350" width="400" height="64"> 
                         <xhtml:div class="lf-fo-body"><div class="lf-node lf-key"><div class="lf-chip  flex items-center justify-center">
-                            <img src="./assets/icons/icons-graphic/Lead-Qualification-system.svg" alt="Lead Qualification system">
+                            <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/Lead-Qualification-system.svg" alt="Lead Qualification system">
                         </div><div class="lf-label">Lead qualification system</div></div></xhtml:div> 
                     </foreignObject> 
 
@@ -479,7 +508,7 @@
                         <xhtml:div class="lf-fo-body">
                         <div class="lf-node">
                             <div class="lf-chip flex items-center justify-center">
-                                <img src="./assets/icons/icons-graphic/Qualified-Booked-Calls.svg" alt="Qualified Booked Calls">
+                                <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/Qualified-Booked-Calls.svg" alt="Qualified Booked Calls">
                             </div>
                             <div class="lf-label">Qualified booked calls</div>
                         </div> 
@@ -503,7 +532,7 @@
                 <div class="portfolio-pin-wrap lg:h-screen">
                     <div class="text-center mb-5 animated-bage">
                         <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                            <img src="./assets/icons/site-icons/Portfolio-And-Results.gif" alt="Portfolio And Results" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                            <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Portfolio-And-Results.gif" alt="Portfolio And Results" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
                             Portfolio And Results
                         </span>
                     </div>
@@ -517,31 +546,31 @@
         
                             <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
                                 data-full="./assets/images/web-1.png">
-                                <img src="./assets/images/p-crad-1.png" class="w-full h-full object-contain">
+                                <img loading="lazy" decoding="async" src="./assets/images/p-crad-1.png" class="w-full h-full object-contain">
                                 <div class="portfolio-cursor-glass text-sm">CLICK</div>
                             </div>
         
                             <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
                                 data-full="./assets/images/web-2.png">
-                                <img src="./assets/images/p-crad-2.png" class="w-full h-full object-cover">
+                                <img loading="lazy" decoding="async" src="./assets/images/p-crad-2.png" class="w-full h-full object-cover">
                                 <div class="portfolio-cursor-glass text-sm">CLICK</div>
                             </div>
         
                             <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
                                 data-full="./assets/images/web-3.png">
-                                <img src="./assets/images/p-crad-3.png" class="w-full h-full object-cover">
+                                <img loading="lazy" decoding="async" src="./assets/images/p-crad-3.png" class="w-full h-full object-cover">
                                 <div class="portfolio-cursor-glass text-sm">CLICK</div>
                             </div>
         
                             <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
                                 data-full="./assets/images/web-4.png">
-                                <img src="./assets/images/p-crad-4.png" class="w-full h-full object-cover">
+                                <img loading="lazy" decoding="async" src="./assets/images/p-crad-4.png" class="w-full h-full object-cover">
                                 <div class="portfolio-cursor-glass text-sm">CLICK</div>
                             </div>
         
                             <div class="portfolio-card h-[280px] w-[280px] sm:h-[360px] sm:w-[360px] md:h-[440px] md:w-[440px] lg:h-[500px] lg:w-[500px] shrink-0 overflow-hidden cursor-pointer"
                                 data-full="./assets/images/web-5.png">
-                                <img src="./assets/images/p-crad-5.png" class="w-full h-full object-cover">
+                                <img loading="lazy" decoding="async" src="./assets/images/p-crad-5.png" class="w-full h-full object-cover">
                                 <div class="portfolio-cursor-glass text-sm">CLICK</div>
                             </div>
         
@@ -575,7 +604,7 @@
             <section class="video-section lg:min-h-screen py-20 text-center">
                 <div class="text-center mb-5 animated-bage">
                     <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                        <img src="./assets/icons/site-icons/Video-Testimonials.gif" alt="Video Testimonials" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Video-Testimonials.gif" alt="Video Testimonials" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
                         Video Testimonials
                     </span>
                 </div>
@@ -645,7 +674,7 @@
             <section class="offer-section lg:min-h-screen py-20 text-center">
                 <div class="text-center mb-5 animated-bage">
                     <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                        <img src="./assets/icons/site-icons/The-Offer.gif" alt="The Offer" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Offer.gif" alt="The Offer" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
                         The Offer
                     </span>
                 </div>
@@ -700,7 +729,7 @@
                                 <span class="px-3 sm:px-4 lg:px-5">
                                     Talk With Ibrahim
                                 </span>
-                                <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
+                                <img loading="lazy" decoding="async" src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
                             </button>
                         </div>
                     </div>
@@ -737,7 +766,7 @@
                                 <span class="px-3 sm:px-4 lg:px-5">
                                     Talk With Ibrahim
                                 </span>
-                                <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
+                                <img loading="lazy" decoding="async" src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
                             </button>
                         </div>
                     </div>
@@ -770,7 +799,7 @@
                                 <span class="px-3 sm:px-4 lg:px-5">
                                     Talk With Ibrahim
                                 </span>
-                                <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
+                                <img loading="lazy" decoding="async" src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture">
                             </button>
                         </div>
                     </div>
@@ -782,7 +811,7 @@
                     <!-- Heading -->
                     <div class="text-center mb-5 animated-bage">
                         <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                            <img src="./assets/icons/site-icons/How-It-Works.gif" alt="How It Work" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                            <img loading="lazy" decoding="async" src="./assets/icons/site-icons/How-It-Works.gif" alt="How It Work" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
                             How It Works
                         </span>
                     </div>
@@ -862,7 +891,7 @@
                         <div class="flex items-center gap-6 md:gap-10 lg:gap-16">
                             <div class="text-center mb-5 animated-bage">
                                 <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                                    <img src="./assets/icons/site-icons/Happy-Clients.gif" alt="Happy Clients" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                                    <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Happy-Clients.gif" alt="Happy Clients" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
                                     Happy Clients
                                 </span>
                             </div>
@@ -888,7 +917,7 @@
                             <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
                                 <!-- Left -->
                                 <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-1.png" class="rounded-2xl w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/testimonial-1.png" class="rounded-2xl w-full">
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
@@ -909,7 +938,7 @@
                             <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
                                 <!-- Left -->
                                 <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-2.png" class="rounded-2xl w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/testimonial-2.png" class="rounded-2xl w-full">
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
@@ -930,7 +959,7 @@
                             <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
                                 <!-- Left -->
                                 <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-3.png" class="rounded-2xl w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/testimonial-3.png" class="rounded-2xl w-full">
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
@@ -951,7 +980,7 @@
                             <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
                                 <!-- Left -->
                                 <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-4.png" class="rounded-2xl w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/testimonial-4.png" class="rounded-2xl w-full">
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
@@ -972,7 +1001,7 @@
                             <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
                                 <!-- Left -->
                                 <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-5.png" class="rounded-2xl w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/testimonial-5.png" class="rounded-2xl w-full">
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
@@ -993,7 +1022,7 @@
                             <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
                                 <!-- Left -->
                                 <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-6.png" class="rounded-2xl w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/testimonial-6.png" class="rounded-2xl w-full">
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
@@ -1014,7 +1043,7 @@
                             <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
                                 <!-- Left -->
                                 <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-7.png" class="rounded-2xl w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/testimonial-7.png" class="rounded-2xl w-full">
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
@@ -1035,7 +1064,7 @@
                             <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
                                 <!-- Left -->
                                 <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-8.png" class="rounded-2xl w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/testimonial-8.png" class="rounded-2xl w-full">
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
@@ -1056,7 +1085,7 @@
                             <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
                                 <!-- Left -->
                                 <div class="w-[110px] md:w-[140px] lg:w-[170px] flex-shrink-0">
-                                    <img src="./assets/images/testimonial-9.png" class="rounded-2xl w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/testimonial-9.png" class="rounded-2xl w-full">
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
@@ -1085,7 +1114,7 @@
                         <div class="about-content relative z-10">
                             <div class="text-start mb-5 animated-bage">
                                 <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                                    <img src="./assets/icons/site-icons/about-founder.gif" alt="About Founder" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                                    <img loading="lazy" decoding="async" src="./assets/icons/site-icons/about-founder.gif" alt="About Founder" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
                                     About Founder
                                 </span>
                             </div>
@@ -1107,7 +1136,7 @@
                         <!-- RIGHT VISUAL -->
                         <div class="relative z-10 cards-wrap h-[420px] sm:h-[520px] md:h-[620px] lg:h-screen pt-[60px] lg:pt-[180px] hidden md:block">
                                 <div class="card card1 absolute z-4  right-15 h-[590px] w-[472px] rounded-[28px]">
-                                    <img src="./assets/images/ibrahim.png" alt="Ibrahim" class="h-full w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/ibrahim.png" alt="Ibrahim" class="h-full w-full">
                                 </div>
                                 <div class="card card2 absolute  right-35 h-[590px] w-[472px] rounded-[28px] bg-gradient-to-b from-[#FFB3005A] to-transparent backdrop-blur-[5px]"></div>
                                 <div class="card card3 absolute z-1 left-35 h-[590px] w-[472px] rounded-[28px] bg-gradient-to-b from-black to-transparent backdrop-blur-[5px]"></div>
@@ -1159,7 +1188,7 @@
                     <!-- Badge -->
                     <div class="text-center mb-5 animated-bage">
                         <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                            <img src="./assets/icons/site-icons/FAQs.gif" alt="FAQs" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                            <img loading="lazy" decoding="async" src="./assets/icons/site-icons/FAQs.gif" alt="FAQs" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
                             FAQs
                         </span>
                     </div>
@@ -1286,7 +1315,7 @@
                         </p>
                         <div class="mt-10">
                             <button class="hero-btn mx-auto items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
-                                <span class="px-3 sm:px-4 lg:px-5">Talk With Ibrahim</span> <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture" title="Call Me?"> 
+                                <span class="px-3 sm:px-4 lg:px-5">Talk With Ibrahim</span> <img loading="lazy" decoding="async" src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture" title="Call Me?"> 
                             </button>
                         </div>
                     </div>
