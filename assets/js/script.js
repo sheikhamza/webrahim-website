@@ -1,58 +1,31 @@
-/* ==========================================================
-   RESPONSIVE + LENIS BOOTSTRAP — prepended
-   - Lenis smooth scroll wired to GSAP ScrollTrigger
-   - Mobile nav open/close
-   - Debounced resize -> ScrollTrigger.refresh() (safe; all
-     timelines already use invalidateOnRefresh)
-   ========================================================== */
-// (function () {
+// const counterElement = document.getElementById('counter');
+// const loaderProgressBar = document.getElementById('progress-bar');
+// const loader = document.getElementById('loader');
 
-//     // Lenis smooth scroll
-//     if (typeof Lenis !== "undefined") {
-//         const lenis = new Lenis({
-//             duration: 1.15,
-//             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-//             smoothWheel: true,
-//             smoothTouch: false
+// let loaderProgress = { value: 0 };
+
+// gsap.to(loaderProgress, {
+//     value: 100,
+//     duration: 2.2,
+//     ease: "power4.inOut",
+//     onUpdate: function() {
+//         let currentVal = Math.round(loaderProgress.value);
+//         counterElement.textContent = currentVal < 10 ? "0" + currentVal : currentVal;
+//         loaderProgressBar.style.width = currentVal + "%";
+//     },
+//     onComplete: function() {
+//         // Curtain slide-up effect
+//         gsap.to(loader, {
+//             yPercent: -100,
+//             duration: 1.0,
+//             ease: "power4.inOut",
+//             onComplete: function() {
+//                 loader.style.display = 'none';
+//                 document.body.classList.remove('overflow-hidden');
+//             }
 //         });
-//         window.lenis = lenis;
-
-//         function raf(time) {
-//             lenis.raf(time);
-//             requestAnimationFrame(raf);
-//         }
-//         requestAnimationFrame(raf);
-
-//         if (window.gsap && window.ScrollTrigger) {
-//             lenis.on("scroll", ScrollTrigger.update);
-//             gsap.ticker.add((time) => lenis.raf(time * 1000));
-//             gsap.ticker.lagSmoothing(0);
-//         }
 //     }
-
-//     // Mobile nav
-//     document.addEventListener("DOMContentLoaded", () => {
-//         const btn = document.getElementById("mobileNavBtn");
-//         const menu = document.getElementById("mobileNavMenu");
-//         const closeBtn = document.getElementById("mobileNavClose");
-//         if (!btn || !menu) return;
-//         const open = () => { menu.classList.remove("hidden"); menu.classList.add("flex"); document.body.style.overflow = "hidden"; if (window.lenis) window.lenis.stop(); };
-//         const close = () => { menu.classList.add("hidden"); menu.classList.remove("flex"); document.body.style.overflow = ""; if (window.lenis) window.lenis.start(); };
-//         btn.addEventListener("click", open);
-//         closeBtn && closeBtn.addEventListener("click", close);
-//         menu.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
-//     });
-
-//     // Debounced resize -> ScrollTrigger refresh
-//     let rTimer;
-//     window.addEventListener("resize", () => {
-//         clearTimeout(rTimer);
-//         rTimer = setTimeout(() => {
-//             if (window.ScrollTrigger) ScrollTrigger.refresh();
-//         }, 200);
-//     });
-// })();
-
+// });
 
 
 
@@ -700,6 +673,23 @@ document.querySelectorAll(".portfolio-card").forEach(card=>{
 
 });
 
+// =========================
+// Portfolio Images Preload
+// =========================
+
+const portfolioImages = [
+    "./assets/images/web-1.png",
+    "./assets/images/web-2.png",
+    "./assets/images/web-3.png",
+    "./assets/images/web-4.png",
+    "./assets/images/web-5.png"
+];
+
+portfolioImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+});
+
 const modal = document.getElementById("portfolioModal");
 const modalImage = document.getElementById("modalImage");
 const modalContent = document.getElementById("modalContent");
@@ -709,7 +699,10 @@ document.querySelectorAll(".portfolio-card").forEach(card => {
 
     card.addEventListener("click", () => {
 
-        modalImage.src = card.dataset.full;
+        const imgSrc = card.dataset.full;
+
+        // Image cache se instantly load hogi
+        modalImage.src = imgSrc;
 
         modal.classList.remove("hidden");
         modal.classList.add("flex");
@@ -721,40 +714,39 @@ document.querySelectorAll(".portfolio-card").forEach(card => {
         gsap.fromTo(
             modalContent,
             {
-                scale:.85,
-                opacity:0,
-                y:60
+                scale: .85,
+                opacity: 0,
+                y: 60
             },
             {
-                scale:1,
-                opacity:1,
-                y:0,
-                duration:.45,
-                ease:"power3.out"
+                scale: 1,
+                opacity: 1,
+                y: 0,
+                duration: .45,
+                ease: "power3.out"
             }
         );
 
         gsap.fromTo(
             closeBtn,
             {
-                opacity:0,
-                rotate:-180,
-                scale:0
+                opacity: 0,
+                rotate: -180,
+                scale: 0
             },
             {
-                opacity:1,
-                rotate:0,
-                scale:1,
-                duration:.5,
-                delay:.15,
-                ease:"back.out(1.8)"
+                opacity: 1,
+                rotate: 0,
+                scale: 1,
+                duration: .5,
+                delay: .15,
+                ease: "back.out(1.8)"
             }
         );
 
     });
 
 });
-
 function closeModal(){
 
     gsap.to(modalContent,{
