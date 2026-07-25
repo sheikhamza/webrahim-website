@@ -80,7 +80,9 @@ h3 {
 p {
     font-family: 'Inter Tight', sans-serif;
 }
-
+ul li{
+    font-family: 'Inter Tight';
+}
 /* ================================
    BACKGROUND ANIMATION
    ================================ */
@@ -92,7 +94,7 @@ p {
     height: 100vh;
     z-index: -1;
     pointer-events: none;
-    background: radial-gradient(120% 90% at 50% 40%, rgba(20, 25, 35, 0.85) 0%, rgba(5, 5, 6, 1) 68%), #050506;
+    background: #1C1C1C;
 }
 
 #webgl {
@@ -218,6 +220,11 @@ line-height:1.5;
 }
 .hero-title::first-line{
     line-height: 91px;
+}
+
+.hero-text-slider{
+    font-family: 'Coolvetica';
+    letter-spacing: 1px;
 }
 
 @media(max-width:640px){
@@ -657,7 +664,6 @@ body.modal-open{
 }
 
 .step-card h3{
-    color:#fff;
     font-size:46px;
     line-height:1.1;
     font-weight:700;
@@ -666,7 +672,6 @@ body.modal-open{
 
 .step-card p{
     width:260px;
-    color:#BDBDBD;
     font-size:17px;
     line-height:1.6;
 }
@@ -704,6 +709,7 @@ body.modal-open{
 .ribbon-track{
     width:max-content;
     will-change:transform;
+    font-family: 'Coolvetica';
 }
 
 

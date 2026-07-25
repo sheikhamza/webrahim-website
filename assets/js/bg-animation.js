@@ -84,18 +84,6 @@
         ctx.fill();
       }
 
-      const mx = mouse.x * width;
-      const my = mouse.y * height;
-      const mr = Math.max(width, height) * (0.18 + mouse.pulse * 0.18);
-      const cursorGlow = ctx.createRadialGradient(mx, my, 0, mx, my, mr);
-      cursorGlow.addColorStop(0, `rgba(184, 199, 217, ${mouse.active ? 0.1 + mouse.pulse * 0.12 : 0.025})`);
-      cursorGlow.addColorStop(0.42, `rgba(213, 181, 116, ${mouse.active ? 0.05 + mouse.pulse * 0.08 : 0.01})`);
-      cursorGlow.addColorStop(1, "rgba(184, 199, 217, 0)");
-      ctx.fillStyle = cursorGlow;
-      ctx.beginPath();
-      ctx.arc(mx, my, mr, 0, Math.PI * 2);
-      ctx.fill();
-
       ctx.globalCompositeOperation = "source-over";
       requestAnimationFrame(draw);
     }
@@ -182,8 +170,8 @@
     let mx = 0, my = 0, tmx = 0, tmy = 0;
     
     window.addEventListener("pointermove", (e) => {
-      tmx = (e.clientX / window.innerWidth - 0.5) * 2;
-      tmy = (e.clientY / window.innerHeight - 0.5) * 2;
+      tmx = (e.clientX / window.innerWidth - 0.5) * 3;
+      tmy = (e.clientY / window.innerHeight - 0.5) * 3;
     }, { passive: true });
 
     let scrollY = 0;
