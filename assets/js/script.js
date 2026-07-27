@@ -258,19 +258,34 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.set(compiledLines, { yPercent: 110 });
     gsap.set([textLeftFinal, textRightFinal], { autoAlpha: 0, pointerEvents: "none" });
 
-    gsap.timeline({
-        scrollTrigger: {
-            trigger: mainWrapper,
-            start: "top top",
-            end: "bottom bottom",
-            pin: innerCanvas,
-            pinSpacing: false,
-            scrub: 1,
-            invalidateOnRefresh: true
-        }
-    })
-    .to([leftBoxes, rightBoxes, flipBadge], { y: "-80%", opacity: 0, filter: "blur(12px)", duration: 1.2, ease: "power2.inOut" }, 0)
-    .to(innerCardLoop, { rotateY: 180, duration: 1.6, ease: "none" }, 0);
+    const isCompactLayout = window.matchMedia("(max-width: 767px)").matches;
+
+    if (!isCompactLayout) {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: mainWrapper,
+                start: "top top",
+                end: "bottom bottom",
+                pin: innerCanvas,
+                pinSpacing: false,
+                scrub: 1,
+                invalidateOnRefresh: true
+            }
+        })
+        .to([leftBoxes, rightBoxes, flipBadge], { y: "-80%", opacity: 0, filter: "blur(12px)", duration: 1.2, ease: "power2.inOut" }, 0)
+        .to(innerCardLoop, { rotateY: 180, duration: 1.6, ease: "none" }, 0);
+    } else {
+        // Phone layout flows vertically, so use an entrance reveal instead of
+        // pinning a scene taller than the viewport. Desktop animation is untouched.
+        gsap.from([innerCardLoop, leftBoxes, rightBoxes], {
+            y: 28,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: { trigger: mainWrapper, start: "top 78%", once: true }
+        });
+    }
 
     let animating = false;
     function animateText() {
@@ -293,13 +308,15 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.set(textRightFinal, { autoAlpha: 0, y: 20, filter: "blur(0px)" });
     }
 
-    ScrollTrigger.create({
-        trigger: mainWrapper,
-        start: "top+=42% top",
-        onEnter: animateText,
-        onLeaveBack: resetText,
-        onEnterBack: animateText
-    });
+    if (!isCompactLayout) {
+        ScrollTrigger.create({
+            trigger: mainWrapper,
+            start: "top+=42% top",
+            onEnter: animateText,
+            onLeaveBack: resetText,
+            onEnterBack: animateText
+        });
+    }
 });
 
 // ==========================================

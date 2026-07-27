@@ -836,3 +836,106 @@ html, body { max-width: 100%; overflow-x: hidden; }
     #leftCurrent, #centerCurrent, #rightCurrent,
     #leftNext, #centerNext, #rightNext { font-size: 1.1rem; }
 }
+
+/* ==========================================================
+   MOBILE + TABLET SAFETY LAYER
+   These rules deliberately begin below the desktop breakpoint.
+   Desktop composition and animation values remain unchanged.
+   ========================================================== */
+@media (max-width: 1023px) {
+    h1 { font-size: clamp(2.4rem, 7vw, 4.2rem); }
+    h2 { font-size: clamp(2.2rem, 6vw, 3.1rem); }
+    h3 { font-size: clamp(1.9rem, 5vw, 2.7rem); }
+
+    .hero-section nav { width: min(100%, 680px); }
+    .hero-section > .relative.w-\[700px\] { width: min(100%, 700px); padding-inline: .5rem; }
+    .hero-title { width: min(100%, 640px) !important; }
+
+    .offer-section > .flex { flex-wrap: wrap; padding-inline: 1.5rem; }
+    .offer-card { width: min(380px, calc(50vw - 2.25rem)); }
+
+    .video-testimonial-container {
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 1rem 1rem;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    .video-testimonial-container::-webkit-scrollbar { display: none; }
+    .testimonial-card { scroll-snap-align: center; }
+
+    .faq-title { width: min(100%, 650px) !important; }
+    .footer { min-height: 720px; height: 100svh; }
+}
+
+@media (max-width: 767px) {
+    html { scroll-padding-top: 1rem; }
+    body { -webkit-tap-highlight-color: transparent; }
+
+    .hero-section { min-height: 100svh; padding-inline: 1rem; }
+    .hero-section nav { gap: .5rem; padding: .55rem .75rem; }
+    .hero-section nav > img { height: 1.55rem; }
+    .hero-section nav > div { gap: .55rem; }
+    .hero-section nav a { font-size: .76rem !important; white-space: nowrap; }
+    .hero-section .call-btn img { height: 1.7rem; }
+    .hero-subtitle { font-size: clamp(1rem, 4.5vw, 1.35rem) !important; }
+    .hero-text-slider { padding-block: 1.75rem !important; }
+
+    /* The original stacked 3D scene is too tall for a pinned phone viewport.
+       It becomes a flowing, touch-friendly scene while desktop remains pinned. */
+    #scroll-pin-wrapper { min-height: 0 !important; padding: 3rem 1rem; }
+    .animation-inner-sticky-canvas { height: auto !important; overflow: visible !important; padding: 0 !important; }
+    .animation-inner-sticky-canvas > div {
+        display: flex !important;
+        flex-direction: column;
+        height: auto !important;
+        gap: 1.5rem !important;
+    }
+    .animation-inner-sticky-canvas > div > div { width: 100% !important; height: auto !important; min-height: 0 !important; }
+    .animation-inner-sticky-canvas > div > div:nth-child(2) { order: -1; height: min(112vw, 390px) !important; }
+    .cards-left-group, .cards-right-group { position: relative !important; inset: auto !important; height: auto !important; gap: 1rem !important; }
+    .cards-left-group > div, .cards-right-group > div { width: 100% !important; min-height: 150px; padding: 1.25rem !important; }
+    .text-left-final, .text-right-final, .flip-badge { display: none !important; }
+
+    .section-5, .section-6, .video-section, .offer-section, .work-section,
+    .testimonial-section { padding-bottom: 5rem !important; }
+    .offer-section > .flex { flex-direction: column; align-items: stretch; margin-top: 2.5rem; padding-inline: 1rem; }
+    .offer-card { width: 100%; padding: 2rem 1.5rem; }
+    .offer-card h5 { margin-bottom: 2rem; }
+
+    .video-wrapper { width: 100% !important; padding-top: 2rem !important; }
+    .video-testimonial-container { gap: 1rem !important; padding-inline: max(1rem, calc((100vw - 214px) / 2)); }
+    .testimonial-card { width: 214px !important; height: 380px !important; }
+
+    .testimonial-section #testimonialTrack { height: 620px !important; }
+    .testimonial-section .testimonial-slide .mt-16 { margin-top: 1.25rem; }
+    .testimonial-section .testimonial-slide p { font-size: clamp(1.05rem, 5vw, 1.35rem) !important; }
+
+    .about-container { max-height: none; min-height: 620px; }
+    .about-section .hero-actions { flex-wrap: wrap; }
+    .faq-section { padding-bottom: 10rem !important; }
+    .faq-section .relative.max-w-3xl { padding-inline: 1.25rem; }
+    .faq-title { margin-bottom: 2.5rem; }
+    .faq-btn { gap: 1rem; padding-block: 1.25rem; }
+    .faq-btn span:first-child { font-size: 1rem; }
+    .faq-content > div { padding-right: 1rem; line-height: 1.6; }
+
+    .footer { min-height: 650px; height: 100svh; background-position: center bottom; }
+    .footer > div:first-child { top: -110px; }
+}
+
+@media (max-width: 479px) {
+    .hero-section nav > div { gap: .35rem; }
+    .hero-section nav a { font-size: .67rem !important; }
+    .hero-section nav > img { height: 1.35rem; }
+    .hero-section .call-btn img { height: 1.5rem; }
+    .hero-text-slider { font-size: .9rem !important; }
+    .testimonial-section #testimonialTrack { height: 670px !important; }
+    .footer > div:first-child { top: -85px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; }
+}
