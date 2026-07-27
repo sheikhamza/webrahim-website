@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./assets/fonts/Inter_Tight/static/InterTight-Light.woff2">
     <link rel="stylesheet" href="./assets/fonts/coolvetica/CoolveticaRg-Bold.ttf">
 </head>
-<body class="overflow-x-hidden">
+<body>
     <!-- Background animation canvases (matter-in-motion style) -->
     <canvas id="atmosphere"></canvas>
     <canvas id="webgl"></canvas>
@@ -50,22 +50,28 @@
     <div data-scroll-container>
         <main class="relative z-10">
             <!-- SECTION 1: HERO & HEADER -->
-            <header style="background-image:url('./assets/images/hero-image.png');" class="relative lg:min-h-screen flex flex-col justify-between items-center py-5 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 text-center bg-cover bg-center overflow-hidden">
+            <header style="background-image:url('./assets/images/hero-image.png');" class="relative panel hero-section lg:min-h-screen flex flex-col justify-between items-center py-[20px] px-4 sm:px-6 lg:px-8 text-center bg-cover bg-center overflow-hidden">
                 <!-- Top Nav Info -->
-                <nav class="flex items-center justify-between gap-3 sm:gap-6 lg:gap-10 rounded-full border border-white/10 bg-black/30 backdrop-blur-md px-4 sm:px-6 lg:px-4 py-3">
-                    <img src="./assets/images/logo.png" class="h-8 sm:h-9 lg:h-10 xl:h-11">
-                    <div class="flex gap-4 sm:gap-8 lg:gap-10 font-inter-tight font-thin">
-                        <a href="#" class="text-xs sm:text-sm md:text-base lg:text-[17px]">How it works</a>
-                        <a href="#" class="text-xs sm:text-sm md:text-base lg:text-[17px]">Offers</a>
-                        <a href="#" class="text-xs sm:text-sm md:text-base lg:text-[17px]">Reviews</a>
+                <nav class="flex items-center justify-between gap-3 sm:gap-6 lg:gap-12 rounded-full border border-white/10 bg-black/20 backdrop-blur-md px-4 sm:px-6 lg:px-2 py-[10px]">
+                    <img src="./assets/images/logo.png" class="sm:h-7 lg:h-9 xl:h-9">
+                    <div class="flex sm:gap-6 lg:gap-8 font-inter-tight font-thin">
+                        <a href="#workflow-section" class="text-[16px]">How it works</a>
+                        <a href="#offer-section" class="text-[16px]">Offers</a>
+                        <a href="#testimonials" class="text-[16px]">Reviews</a>
                     </div>
-                    <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10 xl:h-11">
+                    <a href="#contact" class="call-btn relative inline-flex items-center justify-center group">
+                        <img src="./assets/images/profile-image.png" class="sm:h-7 lg:h-9 xl:h-9" alt="Profile">
+                        <!-- Tooltip -->
+                        <span class="absolute top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded-full bg-white text-black text-sm font-medium whitespace-nowrap opacity-0 invisible translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                            Book Call
+                        </span>
+                    </a>
                 </nav>
 
                 <!-- Hero Content -->
-                <div class="relative mx-auto space-y-3 sm:space-y-8 lg:space-y-4 px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 lg:mt-15">
+                <div class="relative w-[700px] mx-auto space-y-3 sm:space-y-8 lg:space-y-[19px]  mt-12 sm:mt-16 lg:mt-20">
                     <!-- hero testimonial slider -->
-                    <div class="review-slider hidden xl:block absolute -left-52 top-10 w-[220px] font-inter-tight tracking-[0.05em] font-thin">
+                    <div class="review-slider hidden xl:block absolute -left-65  w-[220px] font-inter-tight tracking-[0.05em] font-thin">
                         <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
                             <!-- Top -->
                             <div class="flex gap-3">
@@ -94,12 +100,12 @@
                                         Ibrahim is a rare combination of a technically proficient web developer who ALSO has an eye for design. 
                                     </p>
                                     <div class="flex items-center justify-between mt-4">
-                                        <span class="text-[10px] text-white font-medium">
+                                        <p class="text-[10px] text-white font-medium">
                                             – James
-                                        </span>
-                                        <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
+                                        </p>
+                                        <p class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
                                             7k followers
-                                        </span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -113,18 +119,18 @@
                                         The onboarding process was incredibly smooth, and his creativity shines through in every detail.
                                     </p>
                                     <div class="flex items-center justify-between mt-4">
-                                        <span class="text-[10px] text-white font-medium">
+                                        <p class="text-[10px] text-white font-medium">
                                             – Quandeel
-                                        </span>
-                                        <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
+                                        </p>
+                                        <p class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
                                             7k followers
-                                        </span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="review-slider hidden xl:block absolute -right-50 top-35 top-10 w-[220px] font-inter-tight tracking-[0.05em] font-thin">
+                    <div class="review-slider hidden xl:block absolute -right-65 top-35 top-10 w-[220px] font-inter-tight tracking-[0.05em] font-thin">
                         <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
                             <!-- Top -->
                             <div class="flex gap-3">
@@ -134,12 +140,12 @@
                                         It’s rare to find creatives who have both the skill and the intuition.
                                     </p>
                                     <div class="flex items-center justify-between mt-4">
-                                        <span class="text-[10px] text-white font-medium">
+                                        <p class="text-[10px] text-white font-medium">
                                             – Shahkar
-                                        </span>
-                                        <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
+                                        </p>
+                                        <p class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
                                             7k followers
-                                        </span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -153,12 +159,31 @@
                                         I am thrilled with the final outcome of my website's homepage. The entire experience exceeded my expectations.
                                     </p>
                                     <div class="flex items-center justify-between mt-4">
-                                        <span class="text-[10px] text-white font-medium">
+                                        <p class="text-[10px] text-white font-medium">
                                             – Ayesha
-                                        </span>
-                                        <span class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
+                                        </p>
+                                        <p class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
                                             78k followers
-                                        </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
+                            <!-- Top -->
+                            <div class="flex gap-3">
+                                <img src="./assets/images/elastic-8.png" alt="" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+                                <div class="flex-1">
+                                    <p class="text-start text-[11px] leading-[1.25] text-white ">
+                                        Not only Ibrahim is extremely talented he is also very fast responsive reliable and an amazing communicator.
+                                    </p>
+                                    <div class="flex items-center justify-between mt-4">
+                                        <p class="text-[10px] text-white font-medium">
+                                            – Sandra
+                                        </p>
+                                        <p class="px-1 py-[1px] rounded bg-[#FFCD56]/60 text-white text-[10px] font-semibold">
+                                            11k followers
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -168,6 +193,9 @@
                     <div class="elastic-stack gap-2 scale-[.72] sm:scale-90 md:scale-100" id="elasticStack">
                         <div class="avatar">
                             <img src="./assets/images/elastic-1.png" alt="Profile Picture">
+                        </div>
+                        <div class="avatar">
+                            <img src="./assets/images/elastic-8.png" alt="Profile Picture">
                         </div>
                         <div class="avatar">
                             <img src="./assets/images/elastic-2.png" alt="Profile Picture">
@@ -188,42 +216,41 @@
                             <img src="./assets/images/elastic-7.png" alt="Profile Picture">
                         </div>
                         <div class="px-2">
-                            <p class="text-xs leading-[14px] font-inter-tight font-thin">
+                            <p class="text-start text-xs leading-[14px] font-inter-tight font-thin">
                                 Trusted By Coaches <br>
                                 Across 7 Countries
                             </p>
                         </div>
                     </div>
-                    <h1 class="hero-title font-bold text-white text-[32px] sm:text-[42px] md:text-[52px] lg:text-[65px] leading-[1]">
-                        The Calls Draining <br>
-                        Your Week? That's <br>
+                    <h1 class="hero-title mx-auto text-white w-[640px] text-[32px] sm:text-[42px] md:text-[52px] lg:text-[65px] leading-[0.9]">
+                        The Calls Draining
+                        Your Week? That's 
                         Your Funnel's Fault.
                     </h1>
-                    <p class="hero-subtitl mx-auto max-w-3xl font-inter-tight font-medium text-white text-[clamp(1rem,2vw,1.4rem)] leading-[1.5] px-3">
-                        I build conversion systems for coaches that qualify leads before they 
-                        <br class="hidden md:block">
+                    <p class="hero-subtitle mx-auto max-w-3xl font-inter-tight font-medium text-white text-[22px] leading-[1.2]">
+                        I build conversion systems for coaches that qualify leads before they
                         book and make you proud to send anyone to your site.
                     </p>
-                    <div>
+                    <div class="btn-box">
                         <button class="hero-btn mx-auto items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
                             <span class="px-3 sm:px-4 lg:px-5">Talk With Ibrahim</span> <img src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture" title="Call Me?"> 
                         </button>
                     </div>
                 </div>
                 <!-- Inline Navigation Tabs -->
-                <div class="hero-text-slider lg:w-[900px] w-full flex items-center justify-center py-8 sm:py-10 lg:py-14 text-[clamp(1rem,4vw,2.5rem)]">
+                <div class="hero-text-slider lg:w-[1000px] w-full flex items-center justify-center py-8 sm:py-10 lg:py-14 text-[clamp(1rem,4vw,2.5rem)]">
                     <!-- Left -->
-                    <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden">
+                    <div class="relative flex-1 min-w-[50px] h-[50px] sm:h-[60px] overflow-hidden">
                         <div id="leftCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
                         <div id="leftNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
                     </div>
                     <!-- Center -->
-                    <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden border-x-2 border-white">
+                    <div class="relative flex-1 min-w-[50px] h-[50px] sm:h-[60px] overflow-hidden border-x-2 border-white">
                         <div id="centerCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white"></div>
                         <div id="centerNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white"></div>
                     </div>
                     <!-- Right -->
-                    <div class="relative flex-1 min-w-0 h-[50px] sm:h-[60px] overflow-hidden">
+                    <div class="relative flex-1 min-w-[50px] h-[50px] sm:h-[60px] overflow-hidden">
                         <div id="rightCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
                         <div id="rightNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
                     </div>
@@ -231,37 +258,37 @@
 
             </header>
             <!-- SECTION 2: THREE-CARD OVERLAP SHOWCASE -->
-            <section class="portfolio h-screen relative">
+            <section class="portfolio panel  relative">
                 <div class="cards-container h-screen w-full overflow-hidden flex justify-center items-center">
                     <div class="cards-wrapper relative flex justify-center items-center w-full h-full">
 
                         <!-- Card 1 (Hidden Top / Past State) -->
-                        <div class="card card-1 absolute left-[5%] sm:left-[10%] top-[5%] sm:top-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                        <div class="card card-1 absolute left-[5%] sm:left-[10%] top-[5%] sm:top-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg">
                             <img loading="lazy" decoding="async" src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Card 2 (Hidden Center / Past Active) -->
-                        <div class="card card-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[260px] w-[310px] md:h-[400px] md:w-[472px] z-10 opacity-0 overflow-hidden rounded-lg shadow-2xl">
+                        <div class="card card-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[260px] w-[310px] md:h-[400px] md:w-[472px] z-10 opacity-0 overflow-hidden rounded-lg">
                             <img loading="lazy" decoding="async" src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Card 3 (Starting Active Card - Bottom Right) -->
-                        <div class="card card-3 absolute right-[5%] sm:right-[10%] bottom-[5%] sm:bottom-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-25 overflow-hidden rounded-lg shadow-lg">
+                        <div class="card card-3 absolute right-[5%] sm:right-[10%] bottom-[5%] sm:bottom-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-25 overflow-hidden rounded-lg">
                             <img loading="lazy" decoding="async" src="./assets/images/Sun-bear.png" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Card 4 (Queue 1 - Waiting at bottom) -->
-                        <div class="card card-4 absolute right-[5%] sm:right-[10%] -bottom-[15%] sm:-bottom-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                        <div class="card card-4 absolute right-[5%] sm:right-[10%] -bottom-[15%] sm:-bottom-[10%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg">
                             <img loading="lazy" decoding="async" src="./assets/images/Infograghy.png" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Card 5 (Queue 2 - Further down) -->
-                        <div class="card card-5 absolute right-[5%] sm:right-[10%] -bottom-[35%] sm:-bottom-[30%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                        <div class="card card-5 absolute right-[5%] sm:right-[10%] -bottom-[35%] sm:-bottom-[30%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg">
                             <img loading="lazy" decoding="async" src="./assets/images/VRKAS.png" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Card 6 (Queue 3 - Deep down) -->
-                        <div class="card card-6 absolute right-[5%] sm:right-[10%] -bottom-[55%] sm:-bottom-[50%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg shadow-lg">
+                        <div class="card card-6 absolute right-[5%] sm:right-[10%] -bottom-[55%] sm:-bottom-[50%] h-[180px] w-[210px] md:h-[274px] md:w-[324px] opacity-0 overflow-hidden rounded-lg">
                             <img loading="lazy" decoding="async" src="./assets/images/Marisa.png" class="w-full h-full object-cover">
                         </div>
 
@@ -269,7 +296,7 @@
                 </div>
             </section>
             <!-- SECTION: COMBINED SCROLL SHOWCASE (Fully Responsive) -->
-            <section id="scroll-pin-wrapper" class="relative w-full max-w-[1200px] mx-auto min-h-[180vh] lg:min-h-[200vh]">
+            <section id="scroll-pin-wrapper" class="relative panel section-3 w-full max-w-[1200px] mx-auto min-h-[180vh] lg:min-h-[200vh]">
 
                 <!-- INNER CANVAS: Sticky animation zone -->
                 <div class="animation-inner-sticky-canvas w-full h-screen flex items-center justify-center overflow-hidden relative px-4 md:px-8">
@@ -283,23 +310,23 @@
                             <div class="cards-left-group w-full absolute inset-0 flex flex-col justify-between h-full z-20 gap-4 md:gap-0">
                                 
                                 <!-- Card 1 -->
-                                <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] p-4 md:p-6 flex flex-col justify-between">
+                                <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-white/10 p-4 md:p-6 flex flex-col justify-between">
                                     <div class="relative z-10 flex flex-col justify-between h-full pr-8">
                                         <img loading="lazy" decoding="async" src="./assets/icons/site-icons/computer.gif" alt="And you know it, right" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
-                                        <p class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">Your online presence doesn't match the reputation you have offline.</p>
+                                        <p class="text-[13px] lg:text-[18px] leading-[1.3] font-light text-white">Your online presence doesn't match the reputation you have offline.</p>
                                         <div class="flex mt-4">
-                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">And you know it, right?</span>
+                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/20 text-white text-[10px] md:text-[12px]">And you know it, right?</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Card 2 -->
-                                <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] p-4 md:p-6 flex flex-col justify-between">
+                                <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-white/10 p-4 md:p-6 flex flex-col justify-between">
                                     <div class="relative z-10 flex flex-col justify-between h-full pr-8">
                                         <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Isn’t-it-so-frustrating.gif" alt="Isn’t it so frustrating" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
-                                        <p class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You're getting calls, but too many of them are wrong-fit prospects wasting your time.</p>
+                                        <p class="text-[13px] lg:text-[18px] leading-[1.3] font-light text-white">You're getting calls, but too many of them are wrong-fit prospects wasting your time.</p>
                                         <div class="flex mt-4">
-                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">Isn't it so frustrating?</span>
+                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/20 text-white text-[10px] md:text-[12px]">Isn't it so frustrating?</span>
                                         </div>
                                     </div>
                                 </div>
@@ -308,13 +335,11 @@
 
                             <!-- State 2: Bottom Reveal Text -->
                             <div class="text-left-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-2 md:pt-6 flex flex-col">
-                                <div class="animated-bage mb-4 md:mb-8">
-                                    <span class="px-3 md:px-5 py-2 rounded-full text-[12px] md:text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white inline-flex items-center">
-                                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Real-Problem.gif" alt="The Real Problem" class="h-8 md:h-10 mr-1" onerror="this.style.display='none'">
-                                        The Real Problem
-                                    </span>
+                                <div class="flex items-center gap-2 animated-bage mb-[20px] text-[16px]">
+                                    <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Real-Problem.gif" alt="The Real Problem" class="h-7 md:h-8 mr-[8px]" onerror="this.style.display='none'">
+                                    The Real Problem
                                 </div>
-                                <h3 class="flip-title  text-[24px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-bold text-white leading-[1.25] tracking-tight">
+                                <h3 class="flip-title  text-[24px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-bold text-white leading-[1.15]">
                                     You're <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Not Losing</span> Leads Because You Need More Traffic.
                                 </h3>
                             </div>
@@ -324,20 +349,18 @@
                         <!-- CENTER BLOCK -->
                         <div class="relative flex justify-center items-center w-full md:w-[260px] lg:w-[294px] h-[300px] md:h-full flex-shrink-0">
 
-                            <div class="text-center animated-bage absolute -top-8 md:-top-17 z-40 flip-badge">
-                                <span class="px-4 md:px-5 py-2 md:py-3 rounded-full text-[12px] md:text-[15px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white inline-flex items-center whitespace-nowrap">
-                                    <img loading="lazy" decoding="async" src="./assets/images/hey.png" alt="Coach" class="h-[18px] md:h-[22px] mr-2" onerror="this.style.display='none'">
-                                    Hey Coach! Is This You?
-                                </span>
+                            <div class="text-center flex absolute -top-15 z-40 flip-badge text-[16px]">
+                                <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Wave-hand.gif" alt="Coach" class="h-8 mr-[10px]" onerror="this.style.display='none'">
+                                Hey Coach! Is This You?
                             </div>
 
                             <div class="w-full h-full relative z-30 container-3d-perspective">
                                 <div class="flip-card-inner-box w-full h-full relative">
                                     <div class="face-side-front absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
-                                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Front Layer" class="w-full h-full object-cover">
+                                        <img loading="lazy" decoding="async" src="./assets/images/3d-image-1.png" alt="Front Layer" class="w-full h-full object-cover">
                                     </div>
                                     <div class="face-side-back absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
-                                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Back Layer" class="w-full h-full object-cover">
+                                        <img loading="lazy" decoding="async" src="./assets/images/3d-image-2.png" alt="Back Layer" class="w-full h-full object-cover">
                                     </div>
                                 </div>
                             </div>
@@ -351,23 +374,23 @@
                             <div class="cards-right-group w-full absolute inset-0 flex flex-col justify-between h-full z-20 gap-4 md:gap-0">
                                 
                                 <!-- Card 1 -->
-                                <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] p-4 md:p-6 flex flex-col justify-between">
+                                <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-white/10 p-4 md:p-6 flex flex-col justify-between">
                                     <div class="relative z-10 flex flex-col justify-between h-full pr-8">
                                         <img loading="lazy" decoding="async" src="./assets/icons/site-icons/I-can-feel-you-pain!.gif" alt="I-can-feel-you-pain!" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
-                                        <p class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You feel embarrassed sharing your website link in someone's DMs.</p>
+                                        <p class="text-[13px] lg:text-[18px] leading-[1.3] font-light text-white">You feel embarrassed sharing your website link in someone's DMs.</p>
                                         <div class="flex mt-4">
-                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">I can feel your pain!</span>
+                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/20 text-white text-[10px] md:text-[12px]">I can feel your pain!</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Card 2 -->
-                                <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#323232_0%,#252525_100%)] p-4 md:p-6 flex flex-col justify-between">
+                                <div class="relative w-[370px] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 bg-white/10 p-4 md:p-6 flex flex-col justify-between">
                                     <div class="relative z-10 flex flex-col justify-between h-full pr-8">
                                         <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Not-any-more!.gif" alt="Not any more!" class="w-8 h-8 md:w-10 md:h-10 mb-2" onerror="this.style.display='none'">
-                                        <p class="text-[13px] md:text-[16px] lg:text-[18px] leading-[1.3] font-light text-white">You've been meaning to fix this for six months but "haven't gotten around to it".</p>
+                                        <p class="text-[13px] lg:text-[18px] leading-[1.3] font-light text-white">You've been meaning to fix this for six months but "haven't gotten around to it".</p>
                                         <div class="flex mt-4">
-                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/70 text-white text-[10px] md:text-[12px]">Not anymore!</span>
+                                            <span class="py-[1px] px-2 rounded border-[0.6px] border-white/20 text-white text-[10px] md:text-[12px]">Not anymore!</span>
                                         </div>
                                     </div>
                                 </div>
@@ -389,17 +412,17 @@
                 </div>
             </section>
             <!-- section 5 -->
-            <section class="section-5 py-10 text-center">
+            <section class="section-5 panel pb-[150px] pt-[20px] text-center">
                 <div class="text-center mb-5 animated-bage">
-                    <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Solution.gif" alt="The Solution" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                    <span class="text-[16px]">
+                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Solution.gif" alt="The Solution" class="h-9 inline-block mr-[10px]" onerror="this.style.display='none'">
                         The Solution
                     </span>
                 </div>
                 <div class="w-full max-w-[745px] px-4 mx-auto">
-                    <h3 class="solution-title text-center  text-2xl sm:text-[45px] font-bold text-white leading-[1.1] mt-7">
-                        The Fix Isn't More <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Content</span>.
-                    </h3>
+                    <h2 class="solution-title text-center leading-[1.1] mt-7">
+                        The Fix Isn't More <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Content</span>
+                    </h2>
                     <p class="solution-text text-[20px] text-center text-white font-inter-tight tracking-tight font-[200] mt-10 leading-relaxed">
                         It's three things: a website, a landing page, and a LinkedIn profile built to convert. At 4% instead of 1.5%, 300 visitors and a $5,000 offer means 12 calls instead of 4 - that's $40,000 in pipeline your current funnel is leaving on the table every month.
                     </p>
@@ -474,31 +497,31 @@
 
                     <!-- HTML Cards Layers --> 
                     <foreignObject x="340" y="100" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip flex items-center justify-center">
+                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="flex items-center justify-center">
                             <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/Existing-traffic-you’re-getting.svg" alt="Existing traffic you’re getting">
                         </div><div class="lf-label">Existing traffic you're getting</div></div></xhtml:div> 
                     </foreignObject> 
 
                     <foreignObject x="40" y="228" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip  flex items-center justify-center">
+                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class=" flex items-center justify-center">
                             <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/Optimized-LinkedIn-Profile.svg" alt="Optimized LinkedIn Profile">
                         </div><div class="lf-label">Optimized LinkedIn profile</div></div></xhtml:div> 
                     </foreignObject> 
 
                     <foreignObject x="340" y="228" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip  flex items-center justify-center">
+                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class=" flex items-center justify-center">
                             <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/Conversion-Focused-Website.svg" alt="Conversion Focused Website">
                         </div><div class="lf-label">Conversion focused website</div></div></xhtml:div> 
                     </foreignObject> 
 
                     <foreignObject x="640" y="228" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class="lf-chip  flex items-center justify-center">
+                        <xhtml:div class="lf-fo-body"><div class="lf-node"><div class=" flex items-center justify-center">
                             <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/High-converting-landing-page.svg" alt="High converting landing page">
                         </div><div class="lf-label">High converting landing page</div></div></xhtml:div> 
                     </foreignObject> 
 
                     <foreignObject x="340" y="350" width="400" height="64"> 
-                        <xhtml:div class="lf-fo-body"><div class="lf-node lf-key"><div class="lf-chip  flex items-center justify-center">
+                        <xhtml:div class="lf-fo-body"><div class="lf-node lf-key"><div class=" flex items-center justify-center">
                             <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/Lead-Qualification-system.svg" alt="Lead Qualification system">
                         </div><div class="lf-label">Lead qualification system</div></div></xhtml:div> 
                     </foreignObject> 
@@ -507,7 +530,7 @@
                     <foreignObject x="340" y="502" width="400" height="64"> 
                         <xhtml:div class="lf-fo-body">
                         <div class="lf-node">
-                            <div class="lf-chip flex items-center justify-center">
+                            <div class="flex items-center justify-center">
                                 <img loading="lazy" decoding="async" src="./assets/icons/icons-graphic/Qualified-Booked-Calls.svg" alt="Qualified Booked Calls">
                             </div>
                             <div class="lf-label">Qualified booked calls</div>
@@ -528,18 +551,18 @@
                 </div>
             </section>
             <!-- section 6 -->
-            <section class="section-6 lg:min-h-screen py-10 text-center">
-                <div class="portfolio-pin-wrap lg:h-screen">
+            <section class="section-6 panel pb-[150px] pt-[20px] text-center">
+                <div class="portfolio-pin-wrap">
                     <div class="text-center mb-5 animated-bage">
-                        <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                            <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Portfolio-And-Results.gif" alt="Portfolio And Results" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                        <span class="text-[16px]">
+                            <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Portfolio-And-Results.gif" alt="Portfolio And Results" class="h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
                             Portfolio And Results
                         </span>
                     </div>
                     <div class="mx-auto">
-                        <h3 class="portfolio-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] mt-7">
-                            They Could Be Your<br>Online Presence.
-                        </h3>
+                        <h2 class="portfolio-title text-center leading-[1.2] mt-7 mb-5">
+                            They Could Be Your <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Online Presence</span>
+                        </h2>
                     </div>
                     <div class="portfolio-wrapper mx-auto">
                         <div class="portfolio-slider flex gap-5">
@@ -590,7 +613,7 @@
 
                 <!-- Content -->
                 <div id="modalContent"
-                    class="relative w-full max-w-[900px] h-[90vh] overflow-y-auto rounded-2xl bg-[#111] shadow-[0_30px_80px_rgba(0,0,0,.5)]">
+                    class="relative w-full max-w-[900px] h-[90vh] overflow-y-auto rounded-2xl bg-[#111]">
 
                     <img id="modalImage"
                         src=""
@@ -601,17 +624,17 @@
 
             </div>
             <!-- section 7 -->
-            <section class="video-section lg:min-h-screen py-20 text-center">
+            <section class="video-section panel pb-[150px] pt-[20px] text-center">
                 <div class="text-center mb-5 animated-bage">
-                    <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Video-Testimonials.gif" alt="Video Testimonials" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                    <span class="text-[16px]">
+                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Video-Testimonials.gif" alt="Video Testimonials" class="h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
                         Video Testimonials
                     </span>
                 </div>
-                <div class="w-full max-w-[745px] px-4 mx-auto">
-                    <h3 class="solution-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] mt-7">
-                        They had the <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">same doubts</span><br> you do. Now they don't.
-                    </h3>
+                <div class="w-full max-w-[650px] px-4 mx-auto">
+                    <h2 class="video-title text-center leading-[1.2] mt-7">
+                        They had the <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">same doubts</span> you do. Now they don't
+                    </h2>
                 </div>
                 <div class="video-wrapper w-[92%] md:w-[85%] lg:w-[80%] mx-auto pt-15">
                     <div class="video-testimonial-container flex gap-5">
@@ -671,33 +694,30 @@
                 </div>
             </section>
             <!-- Section 8 -->
-            <section class="offer-section lg:min-h-screen py-20 text-center">
+            <section id="offer-section" class="offer-section panel pb-[150px] pt-[20px] text-center">
                 <div class="text-center mb-5 animated-bage">
-                    <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Offer.gif" alt="The Offer" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                    <span class="text-[16px]">
+                        <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Offer.gif" alt="The Offer" class="h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
                         The Offer
                     </span>
                 </div>
                 <div class="w-full max-w-[745px] px-4 mx-auto">
-                    <h3 class="solution-title text-center text-2xl sm:text-[45px] font-bold text-white leading-[1.1] mt-7">
-                        Three ways to work together.
-                    </h3>
+                    <h2 class="offer-title text-center mt-7">
+                        Three ways to work together
+                    </h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-[92%] xl:w-[85%] items-stretch mx-auto mt-12 md:mt-20">
+                <div class="flex justify-center gap-[20px] mx-auto mt-12 md:mt-20">
                     <!-- Card 1 -->
-                    <div class="relative overflow-hidden rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
-                        <!-- Background Glow -->
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,.05),transparent_60%)] pointer-events-none"></div>
+                    <div class="offer-card relative w-[380px] rounded-3xl py-[45px] px-[25px] bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
                         <div class="relative z-10">
-                            <p class="text-white/70 text-xl font-light mb-3">
+                            <p class="text-white/70 text-[20px] font-light mb-3">
                                 Launch
                             </p>
-                            <h3 class="text-white text-[28px] leading-[40px] font-semibold mb-12">
-                                Convert The Traffic
-                                <br>
+                            <h5 class="text-white leading-[1] mb-[60px]">
+                                Convert The Traffic<br>
                                 You Already Have.
-                            </h3>
-                            <ul class="space-y-6 text-white">
+                            </h5>
+                            <ul class="space-y-[19px] text-white">
                                 <li class="flex gap-3">
                                     <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
                                     <span>Offer Clarity Guide.</span>
@@ -734,19 +754,15 @@
                         </div>
                     </div>
                     <!-- Card 2 -->
-                    <div class="relative overflow-hidden rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
-                        <!-- Background Glow -->
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,.05),transparent_60%)] pointer-events-none"></div>
+                    <div class="offer-card relative w-[380px] rounded-3xl py-[45px] px-[25px] bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
                         <div class="relative z-10">
-                            <p class="text-white/70 text-xl font-light mb-3">
+                            <p class="text-white/70 text-[20px] font-light mb-3">
                                 Scale
                             </p>
-                            <h3 class="text-white text-[28px] leading-[40px] font-semibold mb-12">
-                                Build Trust Before Traffic
-                                <br>
-                                Even Hits Your Site.
-                            </h3>
-                            <ul class="space-y-6 text-white">
+                            <h5 class="text-white leading-[1] mb-[60px]">
+                                Build Trust Before Traffic Even Hits Your Site
+                            </h5>
+                            <ul class="space-y-[19px] text-white">
                                 <li class="flex gap-3">
                                     <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
                                     <span>Everything in Launch, plus: </span>
@@ -771,26 +787,22 @@
                         </div>
                     </div>
                     <!-- Card 3 -->
-                    <div class="relative overflow-hidden rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
-                        <!-- Background Glow -->
-                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,.05),transparent_60%)] pointer-events-none"></div>
+                    <div class="offer-card relative w-[380px] rounded-3xl py-[45px] px-[25px] bg-white/[0.03] backdrop-blur-2xl border border-white/10 text-start">
                         <div class="relative z-10">
-                            <p class="text-white/70 text-xl font-light mb-3">
+                            <p class="text-white/70 text-[20px] font-light mb-3">
                                 Aura
                             </p>
-                            <h3 class="text-white text-[28px] leading-[40px] font-semibold mb-12">
-                                Build The Full Attention-To
-                                <br>
-                                -Revenue System.
-                            </h3>
-                            <ul class="space-y-6 text-white">
+                            <h5 class="text-white  leading-[1] mb-[60px]">
+                                Build The Full Attention-To-Revenue System.
+                            </h5>
+                            <ul class="space-y-[19px] text-white">
                                 <li class="flex gap-3">
                                     <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
                                     <span>Everything in Elevate, plus: </span>
                                 </li>
                                 <li class="flex gap-3">
-                                    <span class="w-2 h-2 mt-2 bg-[#FFB300]"></span>
-                                    <span>Content Design System - carousels and graphics that attract premium buyers (retainer)</span>
+                                    <span class="w-4 h-2 mt-2 bg-[#FFB300]"></span>
+                                    <span>Content Design System - carousels and graphics that attract premium buyers (retainer) </span>
                                 </li>
                             </ul>
                         </div>
@@ -806,20 +818,19 @@
                 </div>
             </section>
             <!-- Section 9 -->
-            <section id="workflow-section" class="relative py-20 overflow-hidden">
+            <section id="workflow-section" class="relative panel work-section pb-[150px] pt-[20px] overflow-hidden">
                 <div class="container mx-auto">
                     <!-- Heading -->
                     <div class="text-center mb-5 animated-bage">
-                        <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                            <img loading="lazy" decoding="async" src="./assets/icons/site-icons/How-It-Works.gif" alt="How It Work" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                        <span class="text-[16px]">
+                            <img loading="lazy" decoding="async" src="./assets/icons/site-icons/How-It-Works.gif" alt="How It Work" class="h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
                             How It Works
                         </span>
                     </div>
-                    <h3
-                        class="text-center text-white text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px] leading-[1.1] font-bold max-w-[760px] mx-auto mb-12 md:mb-24 px-4">
-                        You Show Up Three Times.<br>
-                        Everything Else Is On Me.
-                    </h3>
+                    <h2 class="workflow-title text-center  leading-[1.2] max-w-[760px] mx-auto mb-10 md:mb-24 px-4">
+                        You Show Up <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Three Times</span>
+                        Everything Else Is On Me
+                    </h2>
                 </div>
                 <!-- Horizontal Wrapper -->
                 <div class="workflow-wrapper">
@@ -884,14 +895,14 @@
                 </div>
             </section>
             <!-- SECTION 10 -->
-            <section class="testimonial-section pt-24 overflow-hidden">
+            <section id="testimonials" class="testimonial-section panel pb-[150px] pt-[20px] overflow-hidden">
                 <div class="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8">
                     <!-- ================= Header (Fixed) ================= -->
                     <div class="flex flex-wrap gap-4 justify-between items-center mb-10 md:mb-20">
                         <div class="flex items-center gap-6 md:gap-10 lg:gap-16">
                             <div class="text-center mb-5 animated-bage">
-                                <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                                    <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Happy-Clients.gif" alt="Happy Clients" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                                <span class="text-[16px]">
+                                    <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Happy-Clients.gif" alt="Happy Clients" class="h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
                                     Happy Clients
                                 </span>
                             </div>
@@ -921,13 +932,13 @@
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
-                                    <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    <p class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
                                         “Ibrahim has been absolutely integral to the design, setup, and ongoing success of my online business. He consistently goes above & beyond to ensure everything runs smoothly. He is proactive with follow-ups & always takes care of updates and changes promptly, no matter how big or small.”
-                                    </h4>
+                                    </p>
                                     <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
+                                        <p class="text-white text-2xl">
                                             Edward Curtain
-                                        </h4>
+                                        </p>
                                         <p class="text-[#7C7C7C] mt-1">
                                             Founder @WorldWellness® Group
                                         </p>
@@ -942,13 +953,13 @@
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
-                                    <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    <p class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
                                         “Now I know, anyone coming my way asking for a website will be instantly redirected to Ibrahim… because he DESERVES IT, and honestly, way more than just the credit.”
-                                    </h4>
+                                    </p>
                                     <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
+                                        <p class="text-white text-2xl">
                                             Shahkar Khan
-                                        </h4>
+                                        </p>
                                         <p class="text-[#7C7C7C] mt-1">
                                             Co-Founder @Podcutz
                                         </p>
@@ -963,13 +974,13 @@
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
-                                    <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    <p class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
                                         “Ibrahim is a rare combination of a technically proficient web developer who ALSO has an eye for design. This means he can bring a client brief to life with incredible accuracy, which is exactly what I experienced, from the service itself, to the final outcome.”
-                                    </h4>
+                                    </p>
                                     <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
+                                        <p class="text-white text-2xl">
                                             James Pitt
-                                        </h4>
+                                        </p>
                                         <p class="text-[#7C7C7C] mt-1">
                                             Founder @Sunbearmarketing
                                         </p>
@@ -984,13 +995,13 @@
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
-                                    <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    <p class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
                                         “He is one of the most famous website designer and developer on LinkedIn, he proved it straight away by delivering exceptional outcomes and the biggest one being me closing 4 high ticket clients in 48hrs (Just because I had a great website in place haha)”
-                                    </h4>
+                                    </p>
                                     <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
+                                        <p class="text-white text-2xl">
                                             Obeidullah Siddiqui
-                                        </h4>
+                                        </p>
                                         <p class="text-[#7C7C7C] mt-1">
                                             Founder @Obiicreatives
                                         </p>
@@ -1005,13 +1016,13 @@
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
-                                    <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    <p class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
                                         “I had the pleasure of working with Muhammad Ibrahim on LinkedIn banner designs for my clients, and the experience was fantastic from start to finish. His process is so easy and seamless, which made collaborating with him an absolute breeze.”
-                                    </h4>
+                                    </p>
                                     <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
+                                        <p class="text-white text-2xl">
                                             Yonelly Gutierrez
-                                        </h4>
+                                        </p>
                                         <p class="text-[#7C7C7C] mt-1">
                                             Senior Project Manager
                                         </p>
@@ -1026,13 +1037,13 @@
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
-                                    <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    <p class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
                                         “From the very beginning, the collaboration was seamless. Ibrahim demonstrated exceptional professionalism and was highly responsive to feedback, making all requested adjustments without hesitation. I am thrilled with the final outcome of my website’s homepage. The entire experience exceeded my expectations.”
-                                    </h4>
+                                    </p>
                                     <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
+                                        <p class="text-white text-2xl">
                                             Ayesha Ameer
-                                        </h4>
+                                        </p>
                                         <p class="text-[#7C7C7C] mt-1">
                                             Founder @Mentoriadigitals
                                         </p>
@@ -1047,13 +1058,13 @@
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
-                                    <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    <p class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
                                         “Ibrahim is truly a pro when it comes to web design. The onboarding process was incredibly smooth, and his creativity shines through in every detail. I always wanted a modern website, and he delivered an amazing and responsive landing page, far better than I expected. Hiring him for my agency’s website was the best decision.“
-                                    </h4>
+                                    </p>
                                     <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
+                                        <p class="text-white text-2xl">
                                             Quandeel Mazhar
-                                        </h4>
+                                        </p>
                                         <p class="text-[#7C7C7C] mt-1">
                                             Founder @Brandsbydeel
                                         </p>
@@ -1068,13 +1079,13 @@
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
-                                    <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    <p class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
                                         “From the very beginning, the collaboration was seamless. Ibrahim demonstrated exceptional professionalism and was highly responsive to feedback, making all requested adjustments without hesitation. I am thrilled with the final outcome of my website’s homepage. The entire experience exceeded my expectations.”
-                                    </h4>
+                                    </p>
                                     <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
+                                        <p class="text-white text-2xl">
                                             Francis
-                                        </h4>
+                                        </p>
                                         <p class="text-[#7C7C7C] mt-1">
                                             Founder @Mentoriadigitals
                                         </p>
@@ -1089,13 +1100,13 @@
                                 </div>
                                 <!-- Right -->
                                 <div class="flex-1">
-                                    <h4 class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                    <p class="text-[18px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
                                         “Not only Ibrahim is extremely talented he is also very fast responsive reliable and an amazing communicator. He works with integrity and I highly recommend him to anyone looking to have an amazing landing page. Catch him now, he is becoming the next star.”
-                                    </h4>
+                                    </p>
                                     <div class="mt-16">
-                                        <h4 class="text-white text-2xl">
+                                        <p class="text-white text-2xl">
                                             Sandra Macele
-                                        </h4>
+                                        </p>
                                         <p class="text-[#7C7C7C] mt-1">
                                             Founder @Markantmedia
                                         </p>
@@ -1107,51 +1118,53 @@
                 </div>
             </section>
             <!-- SECTION 11: INTRO ABOUT ME SECTION -->
-            <section class="about-section relative lg:min-h-screen overflow-hidden">
-                <div class="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8 lg:min-h-screen flex items-center py-16 lg:py-0">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full">
+            <section class="about-section panel relative overflow-hidden">
+                <div class="max-w-[1280px] about-container mx-auto px-4 sm:px-6 md:px-8 flex items-center py-16 lg:py-0 relative">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 relative items-center w-full">
                         <!-- LEFT CONTENT -->
                         <div class="about-content relative z-10">
                             <div class="text-start mb-5 animated-bage">
-                                <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                                    <img loading="lazy" decoding="async" src="./assets/icons/site-icons/about-founder.gif" alt="About Founder" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                                <span class="text-[16px]">
+                                    <img loading="lazy" decoding="async" src="./assets/icons/site-icons/about-founder.gif" alt="About Founder" class="h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
                                     About Founder
                                 </span>
                             </div>
 
-                            <h3 class="hero-title text-white text-[40px] sm:text-[52px] md:text-[60px] lg:text-[72px] leading-[0.95] font-semibold mb-6 lg:mb-8">
+                            <h2 class="about-title mb-6 lg:mb-8">
                             Hey, It’s Ibrahim
-                            </h3>
+                            </h2>
 
-                            <p class="hero-desc text-white text-lg leading-8 max-w-[460px] mb-10">
+                            <p class="hero-desc text-white text-[20px] leading-8 max-w-[460px] mb-10">
                             The coaches I work with aren’t starting from zero. They have real proof, real results, and real audiences. What they don’t have is a system designed to capture all of it. That’s the gap I close.
                             </p>
 
                             <div class="hero-actions flex items-center gap-4">
                             <a href="#" class="px-6 py-3 rounded-full bg-white text-black font-medium">Talk With Ibrahim</a>
-                            <a href="#" class="px-6 py-3 rounded-full border border-white/15 text-white">Explore My Work</a>
+                            <a href="#" class="px-6 py-3 rounded-full border border-white/15 bg-black/50 text-white">Explore My Work</a>
                             </div>
                         </div>
 
                         <!-- RIGHT VISUAL -->
                         <div class="relative z-10 cards-wrap h-[420px] sm:h-[520px] md:h-[620px] lg:h-screen pt-[60px] lg:pt-[180px] hidden md:block">
-                                <div class="card card1 absolute z-4  right-15 h-[590px] w-[472px] rounded-[28px]">
+                                <div class="card card1 absolute z-4  right-15 h-[590px] w-[472px] rounded-[28px] border border-black/40">
                                     <img loading="lazy" decoding="async" src="./assets/images/ibrahim.png" alt="Ibrahim" class="h-full w-full">
                                 </div>
                                 <div class="card card2 absolute  right-35 h-[590px] w-[472px] rounded-[28px] bg-gradient-to-b from-[#FFB3005A] to-transparent backdrop-blur-[5px]"></div>
-                                <div class="card card3 absolute z-1 left-35 h-[590px] w-[472px] rounded-[28px] bg-gradient-to-b from-black to-transparent backdrop-blur-[5px]"></div>
-                                <div class="card card4 absolute  left-25 h-[590px] w-[472px] rounded-[28px] bg-black/30"></div>
+                                <div class="card card3 absolute z-1 left-35 h-[590px] w-[472px] rounded-[28px] bg-black/50 backdrop-blur-[5px]"></div>
+                                <div class="card card4 absolute  left-25 h-[590px] w-[472px] rounded-[28px] bg-[#c9a891]"></div>
 
                         </div>
-
+                        
+                    </div>
+                    <!-- BIG TEXT -->
+                    <div class="absolute inset-x-0 bottom-[10%] overflow-hidden">
+                        <div class="hero-word text-center font-semibold leading-none whitespace-nowrap text-[18vw]">
+                            Webrahim
+                        </div>
                     </div>
                 </div>
-                <!-- BIG BLURRED TEXT -->
-                <h3 class="hero-word pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-[30px] lg:bottom-[50px] text-[80px] sm:text-[120px] md:text-[180px] lg:text-[260px] font-semibold text-white leading-none select-none op whitespace-nowrap">
-                    Webrahim
-                </h3>
             </section>
-            <section class="py-20 overflow-hidden">
+            <section class="pb-[150px] pt-[20px] panel overflow-hidden">
 
                 <div class="ribbon h-[60px] sm:h-[80px] lg:h-[100px] overflow-hidden bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] flex items-center">
 
@@ -1183,22 +1196,19 @@
 
             </section>
             <!-- SECTION 12: ACCORDION / LINKS LIST -->
-            <section class="faq-section lg:min-h-screen flex items-center pt-20 md:pt-28 pb-24 md:pb-32">
-                <div class="max-w-3xl mx-auto w-full px-6">
+            <section class="faq-section panel relative flex items-center pb-[320px] pt-[20px] z-20">
+                <div class="relative  max-w-3xl mx-auto w-full px-6">
                     <!-- Badge -->
                     <div class="text-center mb-5 animated-bage">
-                        <span class="px-5 py-4 rounded-full text-[16px] bg-[linear-gradient(180deg,#313131_0%,#1E1E1E_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,.15),0_20px_40px_rgba(0,0,0,.35)] text-white">
-                            <img loading="lazy" decoding="async" src="./assets/icons/site-icons/FAQs.gif" alt="FAQs" class="h-10 inline-block mr-1" onerror="this.style.display='none'">
+                        <span class="text-[16px]">
+                            <img loading="lazy" decoding="async" src="./assets/icons/site-icons/FAQs.gif" alt="FAQs" class="h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
                             FAQs
                         </span>
                     </div>
                     <!-- Heading -->
-                    <h3 class="faq-title text-center text-white font-bold leading-none text-5xl md:text-6xl  mb-20">
-
+                    <h3 class="faq-title w-[650px] mx-auto text-center text-white font-bold leading-[1.2] text-5xl md:text-6xl  mb-20">
                         Things You're Probably
-                        <br>
-                        Thinking Right Now.
-
+                        Thinking Right Now
                     </h3>
                     <div class="space-y-1">
                         <!-- Item -->
@@ -1288,61 +1298,89 @@
                 </div>
             </section>
             <!-- SECTION 13: FOOTER CALL TO ACTION -->
-            <footer class="relative overflow-hidden min-h-[100vh] md:min-h-[120vh] lg:min-h-[140vh]">
-                <!-- Background -->
-                <img
-                    src="./assets/images/footer.png"
-                    class="absolute inset-0 w-full h-full object-cover -z-10"
-                    alt=""
-                >
-
+            <footer style="background-image: url(./assets/images/footer.png);" class="footer relative z-10 h-screen bg-cover bg-center ">
+                <div class="absolute -top-[180px] left-0 w-full z-50 text-center ">
+                    <h3 class="text-[32px] sm:text-[40px] md:text-[50px] lg:text-[60px] leading-[1.05] font-semibold text-white mx-auto px-4">
+                        Every Week Your Funnel Is
+                        <br>
+                        Broken,
+                        <span class="text-[#FFB300]">You're Paying</span>
+                        For It.
+                    </h3>
+                    <p class="mt-6 md:mt-8 text-white text-[15px] sm:text-[17px] md:text-[20px] lg:text-[22px] leading-[1.6] max-w-[763px] mx-auto px-4">
+                        Not In Ad Spend. In The Leads That Visited, Got Curious, And
+                        Decided You Weren't Ready For Them. Book A Free Strategy Call
+                        And We'll Look At Exactly Where Your Funnel Is Leaking,
+                        Whether We Work Together Or Not.
+                    </p>
+                    <div class="mt-10">
+                        <button class="hero-btn mx-auto items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
+                            <span class="px-3 sm:px-4 lg:px-5">Talk With Ibrahim</span> <img loading="lazy" decoding="async" src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture" title="Call Me?"> 
+                        </button>
+                    </div>
+                </div>
                 <!-- Content -->
-                <div class="relative z-10 max-w-[1280px] mx-auto min-h-screen flex flex-col px-4 sm:px-6 md:px-8 pt-16">
-                    <!-- Top Content -->
-                    <div class="-pt-20 text-center">
-                        <h3 class="text-[32px] sm:text-[40px] md:text-[50px] lg:text-[60px] leading-[1.05] font-semibold text-white mx-auto px-4">
-                            Every Week Your Funnel Is
-                            <br>
-                            Broken,
-                            <span class="text-[#FFB300]">You're Paying</span>
-                            For It.
-                        </h3>
-                        <p class="mt-6 md:mt-8 text-white text-[15px] sm:text-[17px] md:text-[20px] lg:text-[22px] leading-[1.6] max-w-[763px] mx-auto px-4">
-                            Not In Ad Spend. In The Leads That Visited, Got Curious, And
-                            Decided You Weren't Ready For Them. Book A Free Strategy Call
-                            And We'll Look At Exactly Where Your Funnel Is Leaking,
-                            Whether We Work Together Or Not.
-                        </p>
-                        <div class="mt-10">
-                            <button class="hero-btn mx-auto items-center flex rounded-full bg-white text-black px-2 py-2 sm:px-3 lg:px-4 text-sm sm:text-base lg:text-lg transition-all">
-                                <span class="px-3 sm:px-4 lg:px-5">Talk With Ibrahim</span> <img loading="lazy" decoding="async" src="./assets/images/profile-image.png" class="h-8 sm:h-9 lg:h-10" alt="Profile Picture" title="Call Me?"> 
-                            </button>
+                
+                <!-- Big Footer Text -->
+                <div class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none">
+                    <div class="relative max-w-[1200px] mx-auto flex flex-col px-4 sm:px-6 md:px-8 pt-16">
+                        <!-- Bottom -->
+                        <div class="mt-auto">
+                            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                                <!-- Social -->
+                                <div class="flex gap-5">
+                                    <a href="#">
+                                        <i class="fa-brands fa-instagram text-white text-3xl"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa-brands fa-linkedin text-white text-3xl"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa-solid fa-envelope text-white text-3xl"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa-brands fa-whatsapp text-white text-3xl"></i>
+                                    </a>
+                                </div>
+                                <!-- Copyright -->
+                                <p class="text-white text-[14px] sm:text-[18px]  lg:text-[22px] text-center sm:text-right">
+                                    © 2026 Webrahim. All Rights Reserved.
+                                </p>
+                            </div>
+                            <div class="h-px bg-white/30 mt-12"></div>
                         </div>
                     </div>
-                    <!-- Bottom -->
-                    <div class="mt-auto pb-30">
-                        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
-                            <!-- Social -->
-                            <div class="flex gap-5">
-                                <a href="#">
-                                    <i class="fa-brands fa-instagram text-white text-3xl"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa-brands fa-linkedin text-white text-3xl"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa-solid fa-envelope text-white text-3xl"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa-brands fa-whatsapp text-white text-3xl"></i>
-                                </a>
-                            </div>
-                            <!-- Copyright -->
-                            <p class="text-white text-[14px] sm:text-[18px]  lg:text-[22px] text-center sm:text-right">
-                                © 2026 Webrahim. All Rights Reserved.
-                            </p>
+                    <div class="relative">
+                        <p class="footer-text text-center leading-none text-white text-[24vw] whitespace-nowrap">
+                            Webrahim
+                        </p>
+
+                        <!-- Blur Gradient Overlay -->
+                        <div class="absolute inset-x-0 bottom-0 h-[150px] pointer-events-none"
+                            style="
+                                backdrop-filter: blur(3px);
+                                -webkit-backdrop-filter: blur(3px);
+                                background: linear-gradient(
+                                    to bottom,
+                                    #ffb30000 0%,
+                                    #ffde59c8 25%,
+                                    #FFDD59 50%,
+                                    #FFB300 100%
+                                );
+                                mask-image: linear-gradient(
+                                    to bottom,
+                                    transparent 0%,
+                                    #FFB300%,
+                                    #FFB300
+                                );
+                                -webkit-mask-image: linear-gradient(
+                                    to bottom,
+                                    transparent 0%,
+                                    #FFB300%,
+                                    #FFB300
+                                );
+                            ">
                         </div>
-                        <div class="h-px bg-white/30 mt-12"></div>
                     </div>
                 </div>
             </footer>
@@ -1351,6 +1389,9 @@
 
 
     <script src="./assets/js/gsap.min.js"></script>
+    <script src="./assets/js/ScrollTrigger.min.js"></script>
+    <!-- CDN example -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/CustomEase.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>

@@ -44,15 +44,6 @@
 /* ==========================================
    1. RESET & BASE VARIABLE CONFIGURATION
    ========================================== */
-   :root {
-       --bg-color: #0A0A0A;
-       --text-primary: #FFFFFF;
-       --text-secondary: #A1A1AA;
-       --accent-color: #22D3EE;
-       --accent-glow: rgba(34, 211, 238, 0.15);
-       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-    
 html {
     scroll-behavior: smooth;
     font-family: var(--font-sans, sans-serif);
@@ -64,6 +55,33 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    scroll-behavior: auto !important;
+}
+/* Chrome, Edge, Safari */
+::selection {
+    background: #FFB300;
+    /* color: #000; */
+}
+
+/* Firefox */
+::-moz-selection {
+    background: #FFB300;
+    /* color: #000; */
+}
+
+/* H1 70px
+H2 50px
+H3 45px
+H4 40px
+H5 28px */
+h1{
+    font-size: 70px;
+    font-family: 'Coolvetica', sans-serif;
+}
+h2{
+    font-size: 50px;
+    font-family: 'Coolvetica', sans-serif;
+    text-transform: capitalize;
 }
 
 h3 {
@@ -71,10 +89,16 @@ h3 {
     text-transform: capitalize;
     letter-spacing: 2px;
     font-weight: 900;
+    font-size: 45px;
 }
-
-.hero-title {
-    font-family: "Coolvetica", sans-serif;
+h4{
+    font-family: 'Coolvetica', sans-serif;
+    font-size: 40px;
+}
+h5{
+    font-family: 'Coolvetica', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
 }
 
 p {
@@ -125,14 +149,6 @@ main {
     z-index: 1;
 }
 
-.section {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem 2rem;
-}
 
 .container {
     max-width: 800px;
@@ -157,7 +173,7 @@ main {
     height:30px;
     border-radius:50%;
     overflow:hidden;
-    border:2px solid white;
+    border:1px solid white;
     background-color: white;
     margin-left:-16px;
     transition:700ms;
@@ -187,19 +203,6 @@ main {
     z-index:100;
 }
 
-
-.hero-subtitle{
-
-font-size:clamp(1rem,2vw,1.4rem);
-
-max-width:780px;
-
-margin:auto;
-
-line-height:1.5;
-
-}
-
 .review-card{
     height: max-content;
     opacity:0;
@@ -218,8 +221,9 @@ line-height:1.5;
     width: 38px;
     opacity: 1;
 }
+
 .hero-title::first-line{
-    line-height: 91px;
+    line-height: 85px;
 }
 
 .hero-text-slider{
@@ -326,22 +330,16 @@ line-height:1.5;
     backdrop-filter: blur(16px); 
     -webkit-backdrop-filter: blur(16px); 
     border: 1px solid rgba(255,255,255,0.14); 
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06); 
     white-space: nowrap; 
 } 
 
 .lf-node.lf-key { 
     background: linear-gradient(90deg, #FFB300 0%, #FFCE55 50%, #FFB300 100%);
     border: 1px solid rgba(255,255,255,0.60); 
-    box-shadow: 0 8px 28px rgba(0,0,0,0.2); 
 } 
 .lf-node.lf-key .lf-label {
     color: #0A0A0A;
     font-weight: 600;
-}
-.lf-node.lf-key .lf-chip {
-    background: rgba(0,0,0,0.15);
-    border: 1px solid rgba(0,0,0,0.2);
 }
 
 /* Pipeline box: 12px font and reduced padding by 3px */
@@ -352,19 +350,10 @@ line-height:1.5;
     border-radius: 999px; 
     background: #FFFFFF; 
     border: 1px solid #EAEAEA; 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
     color: #0A0A0A; 
     font-size: 12px; 
     font-weight: 700; 
     white-space: nowrap; 
-} 
-.lf-chip { 
-    width: 34px; 
-    height: 34px; 
-    border-radius: 9px; 
-    background: linear-gradient(145deg, rgba(255,179,0,0.35), rgba(255,179,0,0.12)); 
-    border: 1px solid rgba(255,179,0,0.4); 
-    flex: none; 
 } 
 .lf-label { 
     color: #F3F1EC; 
@@ -375,7 +364,7 @@ line-height:1.5;
 .lf-icon { color: #FFFFFF; opacity: 0.95; } 
 .lf-icon circle.lf-badge { fill: currentColor; fill-opacity: 0.14; stroke: currentColor; stroke-opacity: 0.55; stroke-width: 1.2; } 
 .lf-icon .lf-glyph { fill: currentColor; } 
-@keyframes lfColorDown { 0% { color: #FFFFFF; } 20%, 100% { color: #FFB300; } } 
+@keyframes lfColorDown { 0% { color: #FFFFFF; } 0%, 100% { color: #FFB300; } } 
 .lf-tDown { animation: lfColorDown 3s linear infinite; } 
 .lf-tDown2 { animation: lfColorDown 3s linear infinite; animation-delay: -1.5s; }
 
@@ -462,17 +451,22 @@ body.modal-open{
 }
 
 /* section-7 */
-.video-wrapper{
-    position:relative;
-    width:80%;
-    margin:auto;
-    overflow:hidden;
+/* Scroll-based horizontal fixed width & transform behavior cleanup */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: visible; /* Cards animate smoothly without clipping */
 }
 
-.video-testimonial-container{
-    display:flex;
-    gap:20px;
-    width:max-content;
+.video-testimonial-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .testimonial-card{
@@ -571,29 +565,11 @@ body.modal-open{
 
 /* Offer Section */
 .offer-card{
-    position: relative;
-    overflow: hidden;
-
-    background: rgba(255,255,255,.03);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 24px;
+    height:fit-content;
 }
-
-.offer-card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background: radial-gradient(
-        circle at top left,
-        rgba(255,255,255,.05),
-        transparent 60%
-    );
-    pointer-events:none;
+.offer-card h5{
+    text-wrap: balance;
 }
-
 
 /* section 9 */
 #workflow-section{
@@ -617,12 +593,9 @@ body.modal-open{
 .timeline{
     position:absolute;
     left:150px;
-    top:145px;
-
+    top:160px;
     width:calc(100% - 300px); /* 150 left + 150 right */
-
     height:2px;
-
     z-index:1;
 }
 
@@ -642,33 +615,28 @@ body.modal-open{
     left:0;
     top:0;
 
-    width:520px;
+    width:100%;
     height:2px;
 
     background:#D6A019;
 }
 
 .step-card{
-    width:350px;
+    width:fit-content;
     flex-shrink:0;
     position:relative;
     z-index:2;
 }
 
 .number{
-    font-size:110px;
+    font-size:150px;
+    font-family: 'Coolvetica';
     font-weight:700;
     color:#fff;
     line-height:1;
-    margin-bottom:65px;
+    margin-bottom:40px;
 }
 
-.step-card h3{
-    font-size:46px;
-    line-height:1.1;
-    font-weight:700;
-    margin-bottom:20px;
-}
 
 .step-card p{
     width:260px;
@@ -809,6 +777,18 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 
 /* About section — hide extra decorative cards on smaller screens (keep image card1 only) */
+.hero-word{
+    font-family: 'Coolvetica';
+}
+.about-container{
+    max-height: 750px;
+}
+
+/* Footer */
+.footer-text{
+    font-family: 'Coolvetica';
+}
+
 @media (max-width: 1023px) {
     .about-section .card2,
     .about-section .card3,

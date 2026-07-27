@@ -1,118 +1,59 @@
-// const counterElement = document.getElementById('counter');
-// const loaderProgressBar = document.getElementById('progress-bar');
-// const loader = document.getElementById('loader');
+// Register All GSAP Plugins Centralized
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// let loaderProgress = { value: 0 };
-
-// gsap.to(loaderProgress, {
-//     value: 100,
-//     duration: 2.2,
-//     ease: "power4.inOut",
-//     onUpdate: function() {
-//         let currentVal = Math.round(loaderProgress.value);
-//         counterElement.textContent = currentVal < 10 ? "0" + currentVal : currentVal;
-//         loaderProgressBar.style.width = currentVal + "%";
-//     },
-//     onComplete: function() {
-//         // Curtain slide-up effect
-//         gsap.to(loader, {
-//             yPercent: -100,
-//             duration: 1.0,
-//             ease: "power4.inOut",
-//             onComplete: function() {
-//                 loader.style.display = 'none';
-//                 document.body.classList.remove('overflow-hidden');
-//             }
-//         });
-//     }
-// });
-
-
-
-
-
-gsap.registerPlugin(ScrollTrigger);
-
+// ==========================================
+// 2. AVATAR STACK
+// ==========================================
 const avatars = document.querySelectorAll(".avatar");
 const overlap = 10;
 const pushForce = 4;
 
 avatars.forEach((avatar, hoveredIndex) => {
-
     avatar.addEventListener("mouseenter", () => {
-
         avatars.forEach((item, i) => {
-
             item.classList.remove("active");
-
             let translateX = 0;
-
-            if(i > hoveredIndex){
-
-                translateX = Math.min(
-                    pushForce * (avatars.length - i - 1),
-                    overlap
-                );
-
-            }else if(i < hoveredIndex){
-
-                translateX = -Math.min(
-                    pushForce * i,
-                    overlap
-                );
-
+            if (i > hoveredIndex) {
+                translateX = Math.min(pushForce * (avatars.length - i - 1), overlap);
+            } else if (i < hoveredIndex) {
+                translateX = -Math.min(pushForce * i, overlap);
             }
-
             item.style.transform = `translateX(${translateX}px) scale(1)`;
             item.style.zIndex = i;
-
         });
 
         avatar.classList.add("active");
         avatar.style.transform = `translateX(0px) scale(1.25)`;
         avatar.style.zIndex = 100;
-
     });
-
 });
 
-document.querySelector(".elastic-stack").addEventListener("mouseleave", () => {
-
-    avatars.forEach((avatar,i)=>{
-        avatar.classList.remove("active");
-        avatar.style.transform="translateX(0px) scale(1)";
-        avatar.style.zIndex=i;
+const elasticStack = document.querySelector(".elastic-stack");
+if (elasticStack) {
+    elasticStack.addEventListener("mouseleave", () => {
+        avatars.forEach((avatar, i) => {
+            avatar.classList.remove("active");
+            avatar.style.transform = "translateX(0px) scale(1)";
+            avatar.style.zIndex = i;
+        });
     });
+}
 
-});
-
-// Review Slider
+// ==========================================
+// 3. REVIEW SLIDER
+// ==========================================
 document.querySelectorAll(".review-slider").forEach((slider, index) => {
-
     const cards = slider.querySelectorAll(".review-card");
+    if (cards.length === 0) return;
 
     let current = 0;
 
-    // Initial State
-    gsap.set(cards, {
-        opacity: 0,
-        y: 10,
-        filter: "blur(10px)"
-    });
+    gsap.set(cards, { opacity: 0, y: 10, filter: "blur(10px)" });
+    gsap.set(cards[0], { opacity: 1, y: 0, filter: "blur(0px)" });
 
-    gsap.set(cards[0], {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)"
-    });
-
-    // Second slider ko thoda delay de do
     setTimeout(() => {
-
         setInterval(() => {
-
             const next = (current + 1) % cards.length;
-
             const tl = gsap.timeline();
 
             tl.to(cards[current], {
@@ -124,714 +65,500 @@ document.querySelectorAll(".review-slider").forEach((slider, index) => {
             });
 
             tl.fromTo(cards[next],
-                {
-                    opacity: 0,
-                    y: 10,
-                    filter: "blur(10px)"
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    filter: "blur(0px)",
-                    duration: 0.8,
-                    ease: "power3.out"
-                },
+                { opacity: 0, y: 10, filter: "blur(10px)" },
+                { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power3.out" },
                 "-=0.25"
             );
 
             current = next;
-
         }, 5000);
-
-    }, index * 2500); // 2nd slider 2.5 sec baad start hoga
-
+    }, index * 2500);
 });
 
-// GSAP Animations for Hero Section
-const title = new SplitType(".hero-title", {
-    types: "lines"
-});
+// ==========================================
+// 4. HERO SECTION ANIMATION
+// ==========================================
+if (document.querySelector(".hero-title")) {
+    const title = new SplitType(".hero-title", { types: "lines" });
 
-const subtitle = document.querySelector(".hero-subtitle");
-const heroBtn = document.getElementById("hero-btn");
+    title.lines.forEach(line => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+    });
 
-title.lines.forEach(line => {
-    const wrapper = document.createElement("div");
-    wrapper.style.overflow = "hidden";
-    line.parentNode.insertBefore(wrapper, line);
-    wrapper.appendChild(line);
-});
+    gsap.set(title.lines, { yPercent: 110 });
+    gsap.set([".hero-subtitle", ".btn-box", ".hero-text-slider"], { opacity: 0, y: 2 });
+    gsap.set([".review-slider"], { opacity: 0, y: 2, filter: "blur(5px)" });
 
-gsap.set(title.lines, {
-    yPercent: 110
-});
+    const heroTl = gsap.timeline();
+    heroTl.to(title.lines, {
+        yPercent: 0,
+        duration: 1,
+        stagger: 0.4,
+        ease: "power4.out"
+    })
+    .to([".review-slider", ".hero-subtitle", ".btn-box", ".hero-text-slider"], {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 0.5,
+        ease: "power3.out"
+    });
+}
 
-gsap.to(title.lines, {
-    yPercent: 0,
-    duration: 1,
-    stagger: 0.4,
-    ease: "power4.out"
-});
-gsap.set(subtitle, {
-  filter: "blur(10px)",
-});
-
-gsap.to(subtitle, {
-    filter: "blur(0px)",
-    duration: 2.5,
-    ease: "power4.out"
-});
-
-// Slider
-const words = [
-    "Websites",
-    "Landing Pages",
-    "Content Design"
-];
-
-let left = 1;
-let center = 0;
-let right = 2;
+// ==========================================
+// 5. HERO TEXT ROTATOR SLIDER
+// ==========================================
+const words = ["Websites", "Landing Pages", "Content Design"];
+let left = 1, center = 0, right = 2;
 
 const leftCurrent = document.getElementById("leftCurrent");
 const centerCurrent = document.getElementById("centerCurrent");
 const rightCurrent = document.getElementById("rightCurrent");
-
 const leftNext = document.getElementById("leftNext");
 const centerNext = document.getElementById("centerNext");
 const rightNext = document.getElementById("rightNext");
 
-function updateCurrent() {
-    leftCurrent.textContent = words[left];
-    centerCurrent.textContent = words[center];
-    rightCurrent.textContent = words[right];
+if (leftCurrent && centerCurrent && rightCurrent && leftNext && centerNext && rightNext) {
+    function updateCurrent() {
+        leftCurrent.textContent = words[left];
+        centerCurrent.textContent = words[center];
+        rightCurrent.textContent = words[right];
+    }
+
+    function resetPositions() {
+        gsap.set(leftCurrent, { x: 0 });
+        gsap.set(centerCurrent, { x: 0 });
+        gsap.set(rightCurrent, { x: 0 });
+
+        gsap.set(leftNext, { x: leftCurrent.parentElement.offsetWidth });
+        gsap.set(centerNext, { x: centerCurrent.parentElement.offsetWidth });
+        gsap.set(rightNext, { x: rightNext.parentElement.offsetWidth });
+    }
+
+    updateCurrent();
+    resetPositions();
+    window.addEventListener("resize", resetPositions);
+
+    setInterval(() => {
+        const newLeft = center;
+        const newCenter = right;
+        const newRight = left;
+
+        leftNext.textContent = words[newLeft];
+        centerNext.textContent = words[newCenter];
+        rightNext.textContent = words[newRight];
+
+        const leftWidth = leftCurrent.parentElement.offsetWidth;
+        const centerWidth = centerCurrent.parentElement.offsetWidth;
+        const rightWidth = rightCurrent.parentElement.offsetWidth;
+
+        gsap.set(leftNext, { x: leftWidth });
+        gsap.set(centerNext, { x: centerWidth });
+        gsap.set(rightNext, { x: rightWidth });
+
+        gsap.timeline({
+            defaults: { duration: 0.6, ease: "power3.inOut" },
+            onComplete() {
+                left = newLeft;
+                center = newCenter;
+                right = newRight;
+                updateCurrent();
+                resetPositions();
+            }
+        })
+        .to(leftCurrent, { x: -leftWidth }, 0)
+        .to(centerCurrent, { x: -centerWidth }, 0)
+        .to(rightCurrent, { x: -rightWidth }, 0)
+        .to(leftNext, { x: 0 }, 0)
+        .to(centerNext, { x: 0 }, 0)
+        .to(rightNext, { x: 0 }, 0);
+    }, 3000);
 }
 
-function resetPositions() {
+// ==========================================
+// 6. PORTFOLIO PINNED CARDS (SECTION 2)
+// ==========================================
+if (document.querySelector(".portfolio")) {
+    const getDimensions = () => {
+        const isMobile = window.innerWidth < 768;
+        return {
+            smallWidth: isMobile ? "210px" : "324px",
+            smallHeight: isMobile ? "180px" : "274px",
+            centerWidth: isMobile ? "310px" : "472px",
+            centerHeight: isMobile ? "260px" : "400px",
+            insetPos: isMobile ? "5%" : "10%"
+        };
+    };
 
-    gsap.set(leftCurrent, { x: 0 });
-    gsap.set(centerCurrent, { x: 0 });
-    gsap.set(rightCurrent, { x: 0 });
+    const dim = getDimensions();
 
-    gsap.set(leftNext, {
-        x: leftCurrent.parentElement.offsetWidth
-    });
-
-    gsap.set(centerNext, {
-        x: centerCurrent.parentElement.offsetWidth
-    });
-
-    gsap.set(rightNext, {
-        x: rightCurrent.parentElement.offsetWidth
-    });
-
-}
-
-updateCurrent();
-resetPositions();
-
-window.addEventListener("resize", resetPositions);
-
-setInterval(() => {
-
-    const newLeft = center;
-    const newCenter = right;
-    const newRight = left;
-
-    leftNext.textContent = words[newLeft];
-    centerNext.textContent = words[newCenter];
-    rightNext.textContent = words[newRight];
-
-    const leftWidth = leftCurrent.parentElement.offsetWidth;
-    const centerWidth = centerCurrent.parentElement.offsetWidth;
-    const rightWidth = rightCurrent.parentElement.offsetWidth;
-
-    gsap.set(leftNext, { x: leftWidth });
-    gsap.set(centerNext, { x: centerWidth });
-    gsap.set(rightNext, { x: rightWidth });
-
-    gsap.timeline({
-        defaults: {
-            duration: 0.6,
-            ease: "power3.inOut"
-        },
-
-        onComplete() {
-
-            left = newLeft;
-            center = newCenter;
-            right = newRight;
-
-            updateCurrent();
-            resetPositions();
-
-        }
-
-    })
-
-    .to(leftCurrent, {
-        x: -leftWidth
-    }, 0)
-
-    .to(centerCurrent, {
-        x: -centerWidth
-    }, 0)
-
-    .to(rightCurrent, {
-        x: -rightWidth
-    }, 0)
-
-    .to(leftNext, {
-        x: 0
-    }, 0)
-
-    .to(centerNext, {
-        x: 0
-    }, 0)
-
-    .to(rightNext, {
-        x: 0
-    }, 0);
-
-}, 3000);
-
-
-
-
-// Section 2 
-gsap.registerPlugin(ScrollTrigger);
-
-// Helper function: Responsive sizes target dynamic screens
-const getDimensions = () => {
-  const isMobile = window.innerWidth < 768;
-  return {
-    smallWidth: isMobile ? "210px" : "324px",
-    smallHeight: isMobile ? "180px" : "274px",
-    centerWidth: isMobile ? "310px" : "472px",
-    centerHeight: isMobile ? "260px" : "400px",
-    insetPos: isMobile ? "5%" : "10%"
-  };
-};
-
-const dim = getDimensions();
-
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".portfolio",
-    // scroller: "[data-scroll-container]",
-    start: "top top",      
-    end: "+=300%", // Timeline ki scroll distance smooth animation ke liye
-    pin: true,
-    scrub: 1,
-    invalidateOnRefresh: true // Screen resize par positions auto-calculate hongi
-  }
-});
-
-// --- STAGE 1: Card 3 moves to Center, Card 4 moves to Bottom-Right ---
-tl.to(".card-3", {
-    left: "50%",
-    top: "50%",
-    xPercent: -50,
-    yPercent: -50,
-    right: "auto",
-    bottom: "auto",
-    width: dim.centerWidth,
-    height: dim.centerHeight,
-    opacity: 1,
-    zIndex: 10,
-    duration: 1
-  }, "step1")
-  .to(".card-4", {
-    bottom: dim.insetPos,
-    opacity: 0.25,
-    duration: 1
-  }, "step1")
-  .to(".card-5", {
-    bottom: "-10%",
-    opacity: 0,
-    duration: 1
-  }, "step1");
-
-// --- STAGE 2: Card 3 moves to Top-Left, Card 4 moves to Center, Card 5 enters ---
-tl.to(".card-3", {
-    left: dim.insetPos,
-    top: dim.insetPos,
-    xPercent: 0,
-    yPercent: 0,
-    width: dim.smallWidth,
-    height: dim.smallHeight,
-    opacity: 0.25,
-    zIndex: 1,
-    duration: 1
-  }, "step2")
-  .to(".card-4", {
-    left: "50%",
-    top: "50%",
-    xPercent: -50,
-    yPercent: -50,
-    right: "auto",
-    bottom: "auto",
-    width: dim.centerWidth,
-    height: dim.centerHeight,
-    opacity: 1,
-    zIndex: 10,
-    duration: 1
-  }, "step2")
-  .to(".card-5", {
-    bottom: dim.insetPos,
-    opacity: 0.25,
-    duration: 1
-  }, "step2")
-  .to(".card-6", {
-    bottom: "-10%",
-    opacity: 0,
-    duration: 1
-  }, "step2");
-
-// --- STAGE 3: Card 3 leaves screen, Card 4 to Top-Left, Card 5 to Center, Card 6 enters ---
-tl.to(".card-3", { top: "-50%", opacity: 0, duration: 1 }, "step3")
-  .to(".card-4", {
-    left: dim.insetPos,
-    top: dim.insetPos,
-    xPercent: 0,
-    yPercent: 0,
-    width: dim.smallWidth,
-    height: dim.smallHeight,
-    opacity: 0.25,
-    zIndex: 1,
-    duration: 1
-  }, "step3")
-  .to(".card-5", {
-    left: "50%",
-    top: "50%",
-    xPercent: -50,
-    yPercent: -50,
-    right: "auto",
-    bottom: "auto",
-    width: dim.centerWidth,
-    height: dim.centerHeight,
-    opacity: 1,
-    zIndex: 10,
-    duration: 1
-  }, "step3")
-  .to(".card-6", {
-    bottom: dim.insetPos,
-    opacity: 0.25,
-    duration: 1
-  }, "step3");
-
-
-// --- STAGE 4: Card 4 leaves screen, Card 5 to Top-Left, Card 6 to Center ---
-tl.to(".card-4", { top: "-50%", opacity: 0, duration: 1 }, "step4")
-  .to(".card-5", {
-    left: "10%",
-    top: "10%",
-    x: "0%",
-    y: "0%",
-    width: "324px",
-    height: "274px",
-    opacity: 0.25,
-    zIndex: 1,
-    duration: 1
-  }, "step4")
-  .to(".card-6", {
-    left: "50%",
-    top: "50%",
-    x: "-50%",
-    y: "-50%",
-    right: "auto",
-    bottom: "auto",
-    width: "472px",
-    height: "400px",
-    opacity: 1,
-    zIndex: 10,
-    duration: 1
-  }, "step4");
-
-
-// section 3,4
-document.addEventListener("DOMContentLoaded", () => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const mainWrapper = document.getElementById("scroll-pin-wrapper");
-    const innerCanvas = document.querySelector(".animation-inner-sticky-canvas");
-    
-    const leftBoxes = document.querySelector(".cards-left-group");
-    const rightBoxes = document.querySelector(".cards-right-group");
-    const innerCardLoop = document.querySelector(".flip-card-inner-box");
-    const flipBadge = document.querySelector(".flip-badge");
-    
-    const textLeftFinal = document.querySelector(".text-left-final");
-    const textRightFinal = document.querySelector(".text-right-final");
-
-    // Initialize SplitType text line split logic
-    const textTargets = document.querySelectorAll(".flip-title");
-    textTargets.forEach(target => {
-        new SplitType(target, { types: "lines" });
-    });
-
-    const compiledLines = document.querySelectorAll(".flip-title .line");
-    gsap.set(compiledLines, { y: "45px", opacity: 0, rotateX: -12 });
-
-    // Master Scroll Animation Timeline
-    const scrollMaster = gsap.timeline({
+    const tl = gsap.timeline({
         scrollTrigger: {
-            trigger: mainWrapper, 
-            start: "top top", 
-            end: "bottom bottom", 
-            pin: innerCanvas, 
-            pinSpacing: false, 
-            scrub: 1, 
+            trigger: ".portfolio",
+            start: "top top",
+            end: "+=300%",
+            pin: true,
+            scrub: 1,
             invalidateOnRefresh: true
         }
     });
 
-    scrollMaster
-    // Step 1: Displace and hide the top cards
-    .to([leftBoxes, rightBoxes, flipBadge], {
-        y: "-80%",
-        opacity: 0,
-        filter: "blur(12px)",
-        webkitFilter: "blur(12px)",
-        duration: 1.2,
-        ease: "power2.inOut"
-    }, 0)
+    // Stage 1
+    tl.to(".card-3", { left: "50%", top: "50%", xPercent: -50, yPercent: -50, right: "auto", bottom: "auto", width: dim.centerWidth, height: dim.centerHeight, opacity: 1, zIndex: 10, duration: 1 }, "step1")
+      .to(".card-4", { bottom: dim.insetPos, opacity: 0.25, duration: 1 }, "step1")
+      .to(".card-5", { bottom: "-10%", opacity: 0, duration: 1 }, "step1");
 
-    // Step 2: 3D Flip center box
-    .to(innerCardLoop, {
-        rotateY: 180,
-        duration: 1.6,
-        ease: "none"
-    }, 0)
+    // Stage 2
+    tl.to(".card-3", { left: dim.insetPos, top: dim.insetPos, xPercent: 0, yPercent: 0, width: dim.smallWidth, height: dim.smallHeight, opacity: 0.25, zIndex: 1, duration: 1 }, "step2")
+      .to(".card-4", { left: "50%", top: "50%", xPercent: -50, yPercent: -50, right: "auto", bottom: "auto", width: dim.centerWidth, height: dim.centerHeight, opacity: 1, zIndex: 10, duration: 1 }, "step2")
+      .to(".card-5", { bottom: dim.insetPos, opacity: 0.25, duration: 1 }, "step2")
+      .to(".card-6", { bottom: "-10%", opacity: 0, duration: 1 }, "step2");
 
-    // Step 3: Reveal revealable text sections
-    .to([textLeftFinal, textRightFinal], {
-        opacity: 1,
-        pointerEvents: "auto",
-        duration: 0.4
-    }, 1.2)
+    // Stage 3
+    tl.to(".card-3", { top: "-50%", opacity: 0, duration: 1 }, "step3")
+      .to(".card-4", { left: dim.insetPos, top: dim.insetPos, xPercent: 0, yPercent: 0, width: dim.smallWidth, height: dim.smallHeight, opacity: 0.25, zIndex: 1, duration: 1 }, "step3")
+      .to(".card-5", { left: "50%", top: "50%", xPercent: -50, yPercent: -50, right: "auto", bottom: "auto", width: dim.centerWidth, height: dim.centerHeight, opacity: 1, zIndex: 10, duration: 1 }, "step3")
+      .to(".card-6", { bottom: dim.insetPos, opacity: 0.25, duration: 1 }, "step3");
 
-    // Step 4: Staggered text line animation
-    .to(compiledLines, {
-        y: "0px",
-        opacity: 1,
-        rotateX: 0,
-        stagger: 0.08,
-        duration: 1.2,
-        ease: "power4.out"
-    }, 1.2);
-});
+    // Stage 4 (Fixed Hardcoded values to Dynamic Dimensions)
+    tl.to(".card-4", { top: "-50%", opacity: 0, duration: 1 }, "step4")
+      .to(".card-5", { left: dim.insetPos, top: dim.insetPos, xPercent: 0, yPercent: 0, width: dim.smallWidth, height: dim.smallHeight, opacity: 0.25, zIndex: 1, duration: 1 }, "step4")
+      .to(".card-6", { left: "50%", top: "50%", xPercent: -50, yPercent: -50, right: "auto", bottom: "auto", width: dim.centerWidth, height: dim.centerHeight, opacity: 1, zIndex: 10, duration: 1 }, "step4");
+}
 
-// section 5
-// Split Heading
-const solutionTitle = new SplitType(".solution-title", {
-    types: "lines"
-});
+// ==========================================
+// 7. SECTION 3 & 4 (FLIP CARD & TEXT)
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const mainWrapper = document.getElementById("scroll-pin-wrapper");
+    const innerCanvas = document.querySelector(".animation-inner-sticky-canvas");
+    if (!mainWrapper || !innerCanvas) return;
 
-// Wrap every line
-solutionTitle.lines.forEach(line => {
-    const wrapper = document.createElement("div");
-    wrapper.style.overflow = "hidden";
+    const leftBoxes = document.querySelector(".cards-left-group");
+    const rightBoxes = document.querySelector(".cards-right-group");
+    const innerCardLoop = document.querySelector(".flip-card-inner-box");
+    const flipBadge = document.querySelector(".flip-badge");
+    const textLeftFinal = document.querySelector(".text-left-final");
+    const textRightFinal = document.querySelector(".text-right-final");
 
-    line.parentNode.insertBefore(wrapper, line);
-    wrapper.appendChild(line);
-});
-
-// Initial State
-gsap.set(solutionTitle.lines, {
-    yPercent: 110
-});
-
-gsap.set(".solution-text", {
-    y: 40,
-    opacity: 0
-});
-gsap.set(".lf-wrap", {
-    y: 40,
-    opacity: 0
-});
-
-// Timeline
-const solutiontTl = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".section-5",
-        // scroller:"[data-scroll-container]",
-        start: "top top",
-        end: "top top",
-        toggleActions: "play none none none",
-    }
-});
-
-solutiontTl.to(solutionTitle.lines, {
-    yPercent: 0,
-    duration: 1,
-    stagger: 0.18,
-    ease: "power4.out"
-},0)
-.to(".solution-text, .lf-wrap", {
-    y: 0,
-    opacity: 1,
-    duration: 0.5,
-    ease: "power3.out"
-},0.2);
-
-
-let currentRevenue = 0; 
-const countTarget = document.getElementById('revenueValue'); 
-
-setInterval(() => { 
-currentRevenue += 1000; 
-countTarget.textContent = '$' + currentRevenue.toLocaleString(); 
-}, 1500);
-
-
-
-// Section 6
-const slider = document.querySelector(".portfolio-slider");
-const wrapper = document.querySelector(".portfolio-wrapper");
-
-function initSlider(){
-
-    const startOffset = wrapper.clientWidth * 0.5;
-
-    // Last card ko aur aage lane ke liye
-    const extraMove = wrapper.clientWidth * 0.25;
-
-    const moveDistance =
-        slider.scrollWidth -
-        wrapper.clientWidth +
-        startOffset +
-        extraMove;
-
-    gsap.set(slider,{
-        x:startOffset
+    document.querySelectorAll(".flip-title").forEach(target => {
+        const split = new SplitType(target, { types: "lines" });
+        split.lines.forEach(line => {
+            const wrapper = document.createElement("div");
+            wrapper.style.overflow = "hidden";
+            line.parentNode.insertBefore(wrapper, line);
+            wrapper.appendChild(line);
+        });
     });
 
-    gsap.to(slider,{
-        x:-(moveDistance-startOffset),
-        ease:"none",
-        scrollTrigger:{
-            trigger:".section-6",
-            // scroller:"[data-scroll-container]",
-            start:"top top",
-            end:()=>"+="+moveDistance,
-            scrub:true,
-            pin:".portfolio-pin-wrap",
-            anticipatePin:1,
-            invalidateOnRefresh:true
+    const compiledLines = document.querySelectorAll(".flip-title .line");
+    gsap.set(compiledLines, { yPercent: 110 });
+    gsap.set([textLeftFinal, textRightFinal], { autoAlpha: 0, pointerEvents: "none" });
+
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: mainWrapper,
+            start: "top top",
+            end: "bottom bottom",
+            pin: innerCanvas,
+            pinSpacing: false,
+            scrub: 1,
+            invalidateOnRefresh: true
+        }
+    })
+    .to([leftBoxes, rightBoxes, flipBadge], { y: "-80%", opacity: 0, filter: "blur(12px)", duration: 1.2, ease: "power2.inOut" }, 0)
+    .to(innerCardLoop, { rotateY: 180, duration: 1.6, ease: "none" }, 0);
+
+    let animating = false;
+    function animateText() {
+        if (animating) return;
+        animating = true;
+        gsap.killTweensOf(compiledLines);
+
+        gsap.set(compiledLines, { yPercent: 110 });
+        gsap.set(textRightFinal, { y: 20, filter: "blur(12px)", autoAlpha: 0 });
+
+        const tl = gsap.timeline({ onComplete() { animating = false; } });
+        tl.to(textLeftFinal, { autoAlpha: 1, duration: 0.2 }, 0)
+          .to(textRightFinal, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power3.out" }, 0.1)
+          .to(compiledLines, { yPercent: 0, duration: 1, stagger: 0.18, ease: "power4.out" }, 0);
+    }
+
+    function resetText() {
+        gsap.set(compiledLines, { yPercent: 110 });
+        gsap.set(textLeftFinal, { autoAlpha: 0 });
+        gsap.set(textRightFinal, { autoAlpha: 0, y: 20, filter: "blur(0px)" });
+    }
+
+    ScrollTrigger.create({
+        trigger: mainWrapper,
+        start: "top+=42% top",
+        onEnter: animateText,
+        onLeaveBack: resetText,
+        onEnterBack: animateText
+    });
+});
+
+// ==========================================
+// 8. SECTION 5 (SOLUTION & REVENUE)
+// ==========================================
+if (document.querySelector(".solution-title")) {
+    const solutionTitle = new SplitType(".solution-title", { types: "lines" });
+    solutionTitle.lines.forEach(line => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+    });
+
+    gsap.set(solutionTitle.lines, { yPercent: 110 });
+
+    const solutiontTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".section-5",
+            start: "-30% top",
+            end: "-20% top",
+            toggleActions: "play none none none"
         }
     });
 
+    solutiontTl.to(solutionTitle.lines, {
+        yPercent: 0,
+        duration: 1,
+        stagger: 0.18,
+        ease: "power4.out"
+    }, 0);
+
+    solutiontTl.to(solutionTitle.lines, {
+    })
+    .call(solutionCount);
 }
 
-initSlider();
+function solutionCount(){
+    let currentRevenue = 0;
+    const countTarget = document.getElementById('revenueValue');
+    if (countTarget) {
+        setInterval(() => {
+            currentRevenue += 1000;
+            countTarget.textContent = '$' + currentRevenue.toLocaleString();
+        }, 1000);
+    }
+}
 
-window.addEventListener("resize",()=>{
+// ==========================================
+// 9. SECTION 6 (PORTFOLIO HORIZONTAL SLIDER)
+// ==========================================
+// ==========================================
+// PORTFOLIO TITLE ANIMATION
+// ==========================================
 
-    ScrollTrigger.refresh();
+if (document.querySelector(".portfolio-title")) {
 
-});
+    const portfolioTitle = new SplitType(".portfolio-title", {
+        types: "lines"
+    });
 
-// Portfolio Mouse
-document.querySelectorAll(".portfolio-card").forEach(card=>{
+    portfolioTitle.lines.forEach(line => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+    });
 
-    const pCard = card.querySelector(".portfolio-card img");
+    gsap.set(portfolioTitle.lines, {
+        yPercent: 110
+    });
+
+    const portfolioTitleTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".section-6",
+            start: "-40% top",
+            end: "-20% top",
+            toggleActions: "play none none none"
+        }
+    });
+
+    portfolioTitleTl
+        .to(portfolioTitle.lines, {
+            yPercent: 0,
+            duration: 1,
+            stagger: 0.18,
+            ease: "power4.out"
+        }, 0)
+        .call(solutionCount);
+}
+
+const portfolioSlider = document.querySelector(".portfolio-slider");
+const portfolioWrapper = document.querySelector(".portfolio-wrapper");
+
+if (portfolioSlider && portfolioWrapper) {
+    function initSlider() {
+        const startOffset = portfolioWrapper.clientWidth * 0.5;
+        const extraMove = portfolioWrapper.clientWidth * 0.25;
+        const moveDistance = portfolioSlider.scrollWidth - portfolioWrapper.clientWidth + startOffset + extraMove;
+
+        gsap.set(portfolioSlider, { x: startOffset });
+
+        gsap.to(portfolioSlider, {
+            x: -(moveDistance - startOffset),
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".section-6",
+                start: "top top",
+                end: () => "+=" + moveDistance,
+                scrub: true,
+                pin: ".portfolio-pin-wrap",
+                anticipatePin: 1,
+                invalidateOnRefresh: true
+            }
+        });
+
+    }
+    initSlider();
+}
+
+// Portfolio Cards Cursor & Modal Interactivity
+document.querySelectorAll(".portfolio-card").forEach(card => {
+    const pCard = card.querySelector("img");
     const cursor = card.querySelector(".portfolio-cursor-glass");
+    if (!pCard || !cursor) return;
 
-    // smooth cursor
-    const moveX = gsap.quickTo(cursor,"x",{duration:.18,ease:"power3"});
-    const moveY = gsap.quickTo(cursor,"y",{duration:.18,ease:"power3"});
+    const moveX = gsap.quickTo(cursor, "x", { duration: .18, ease: "power3" });
+    const moveY = gsap.quickTo(cursor, "y", { duration: .18, ease: "power3" });
 
-    pCard.addEventListener("mouseenter",()=>{
-
-        gsap.to(cursor,{
-            opacity:1,
-            scale:1,
-            duration:.25
-        });
-
-    });
-
-    pCard.addEventListener("mouseleave",()=>{
-
-        gsap.to(cursor,{
-            opacity:0,
-            scale:.5,
-            duration:.2
-        });
-
-    });
-
-    card.addEventListener("mousemove",(e)=>{
-
+    pCard.addEventListener("mouseenter", () => gsap.to(cursor, { opacity: 1, scale: 1, duration: .25 }));
+    pCard.addEventListener("mouseleave", () => gsap.to(cursor, { opacity: 0, scale: .5, duration: .2 }));
+    card.addEventListener("mousemove", (e) => {
         const rect = card.getBoundingClientRect();
-
-        moveX(e.clientX-rect.left);
-        moveY(e.clientY-rect.top);
-
+        moveX(e.clientX - rect.left);
+        moveY(e.clientY - rect.top);
     });
-
 });
 
-// =========================
-// Portfolio Images Preload
-// =========================
-
-const portfolioImages = [
-    "./assets/images/web-1.png",
-    "./assets/images/web-2.png",
-    "./assets/images/web-3.png",
-    "./assets/images/web-4.png",
-    "./assets/images/web-5.png"
-];
-
-portfolioImages.forEach(src => {
-    const img = new Image();
-    img.src = src;
-});
-
+// Modal Logic
 const modal = document.getElementById("portfolioModal");
 const modalImage = document.getElementById("modalImage");
 const modalContent = document.getElementById("modalContent");
 const closeBtn = document.getElementById("closePortfolio");
 
-document.querySelectorAll(".portfolio-card").forEach(card => {
+if (modal && modalImage && modalContent && closeBtn) {
+    document.querySelectorAll(".portfolio-card").forEach(card => {
+        card.addEventListener("click", () => {
+            const imgSrc = card.dataset.full;
+            if (!imgSrc) return;
 
-    card.addEventListener("click", () => {
+            modalImage.src = imgSrc;
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            document.body.classList.add("modal-open");
+            modalContent.scrollTop = 0;
 
-        const imgSrc = card.dataset.full;
-
-        // Image cache se instantly load hogi
-        modalImage.src = imgSrc;
-
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-
-        document.body.classList.add("modal-open");
-
-        modalContent.scrollTop = 0;
-
-        gsap.fromTo(
-            modalContent,
-            {
-                scale: .85,
-                opacity: 0,
-                y: 60
-            },
-            {
-                scale: 1,
-                opacity: 1,
-                y: 0,
-                duration: .45,
-                ease: "power3.out"
-            }
-        );
-
-        gsap.fromTo(
-            closeBtn,
-            {
-                opacity: 0,
-                rotate: -180,
-                scale: 0
-            },
-            {
-                opacity: 1,
-                rotate: 0,
-                scale: 1,
-                duration: .5,
-                delay: .15,
-                ease: "back.out(1.8)"
-            }
-        );
-
+            gsap.fromTo(modalContent, { scale: .85, opacity: 0, y: 60 }, { scale: 1, opacity: 1, y: 0, duration: .45, ease: "power3.out" });
+            gsap.fromTo(closeBtn, { opacity: 0, rotate: -180, scale: 0 }, { opacity: 1, rotate: 0, scale: 1, duration: .5, delay: .15, ease: "back.out(1.8)" });
+        });
     });
 
-});
-function closeModal(){
+    function closeModal() {
+        gsap.to(modalContent, {
+            scale: .9, opacity: 0, y: 40, duration: .3, ease: "power2.in",
+            onComplete: () => {
+                modal.classList.remove("flex");
+                modal.classList.add("hidden");
+                document.body.classList.remove("modal-open");
+            }
+        });
+    }
 
-    gsap.to(modalContent,{
-        scale:.9,
-        opacity:0,
-        y:40,
-        duration:.3,
-        ease:"power2.in",
-        onComplete:()=>{
+    closeBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && modal.classList.contains("flex")) closeModal(); });
+}
 
-            modal.classList.remove("flex");
-            modal.classList.add("hidden");
-            document.body.classList.remove("modal-open");
+// ==========================================
+// 10. SECTION 7 (VIDEO TESTIMONIALS)
+// ==========================================
+// Title Animation Setup
+if (document.querySelector(".video-title")) {
+    const videoTitle = new SplitType(".video-title", {
+        types: "lines"
+    });
 
+    videoTitle.lines.forEach(line => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+    });
+
+    gsap.set(videoTitle.lines, { yPercent: 110 });
+
+    // Main Timeline: Runs when video section reaches view
+    const mainSectionTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".video-section",
+            start: "top 50%",
+            toggleActions: "play none none none"
         }
     });
 
-}
+    // Step 1: Text reveal animation
+    mainSectionTl.to(videoTitle.lines, {
+        yPercent: 0,
+        duration: 1,
+        stagger: 0.18,
+        ease: "power4.out"
+    });
 
-closeBtn.addEventListener("click",closeModal);
+    // Step 2: Cards Reveal Animation
+    const cards = document.querySelectorAll(".testimonial-card");
+    
+    if (cards.length > 0) {
+        const firstCard = cards[0];
+        const restCards = Array.from(cards).slice(1);
 
-modal.addEventListener("click",(e)=>{
-
-    if(e.target===modal){
-        closeModal();
-    }
-
-});
-
-document.addEventListener("keydown",(e)=>{
-
-    if(e.key==="Escape" && modal.classList.contains("flex")){
-        closeModal();
-    }
-
-});
-
-
-
-// Section 7 
-const videoSlider = document.querySelector(".video-testimonial-container");
-const videoWrapper = document.querySelector(".video-wrapper");
-
-function videoSliderFun(){
-
-    const videpStartOffset = videoWrapper.clientWidth * 0.5;
-
-    const extraMove = window.innerWidth * 0.4; // 30% aur aage
-
-    const moveDistance =
-        videoSlider.scrollWidth -
-        videoWrapper.clientWidth +
-        videpStartOffset +
-        extraMove;
+        // Initial setup for cards before scroll
+        gsap.set(cards, { opacity: 0 });
         
-    gsap.set(videoSlider,{
-        x:videpStartOffset
-    });
+        // Hide remaining cards directly behind the first card position initially
+        gsap.set(restCards, {
+            x: (index) => -((index + 1) * (firstCard.offsetWidth + 20)), 
+            scale: 0.85
+        });
 
-    gsap.to(videoSlider,{
-        x:-(moveDistance-videpStartOffset),
-        ease:"none",
-        scrollTrigger:{
-            trigger:".video-section",
-            // scroller:"[data-scroll-container]",
-            start:"10% top",
-            end:()=>"+="+moveDistance,
-            scrub:true,
-            pin:".video-section",
-            invalidateOnRefresh:true
-        }
-    });
+        // Set first card below the screen center
+        gsap.set(firstCard, {
+            y: 120,
+            scale: 0.9
+        });
 
+        // First Card rises up from below into the center
+        mainSectionTl.to(firstCard, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
+            ease: "back.out(1.2)"
+        }, "-=0.4"); // Starts right before text finishes
+
+        // Other 3 cards expand out from behind the first card to their places
+        mainSectionTl.to(restCards, {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: "power3.out"
+        }, "-=0.2");
+    }
 }
 
-videoSliderFun();
-
-
-let activeVideo = null;
-let activeCard = null;
-let activeState = null;
+// Video interactive state logic (Cursor hover, Play/Pause toggle, Volume popups)
+let activeVideo = null, activeCard = null, activeState = null;
 
 document.querySelectorAll(".testimonial-card").forEach(card => {
-
-    // 1. Elements ko pehle query karein
     const video = card.querySelector("video");
     const cursor = card.querySelector(".cursor-glass");
     const speaker = card.querySelector(".speaker-btn");
@@ -839,49 +566,26 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
     const volumeSlider = card.querySelector(".volume-slider");
     const speakerIcon = card.querySelector(".speaker-icon");
 
-    // 2. Initial state set karein
-    if (video) {
-        video.muted = true;
-        video.volume = 1;
-        video.loop = true;
-    }
-
-    if (volumeSlider) {
-        volumeSlider.value = 1;
-    }
-
-    if (speakerIcon) {
-        speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
-    }
+    if (video) { video.muted = true; video.volume = 1; video.loop = true; }
+    if (volumeSlider) volumeSlider.value = 1;
+    if (speakerIcon) speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
 
     let expanded = false;
-
-    // GSAP QuickTo setups
     const moveX = gsap.quickTo(cursor, "x", { duration: 0.18 });
     const moveY = gsap.quickTo(cursor, "y", { duration: 0.18 });
 
     function updateCursor() {
-        if (cursor) {
-            cursor.innerHTML = expanded ? "Pause" : "Play";
-        }
+        if (cursor) cursor.innerHTML = expanded ? "Pause" : "Play";
     }
-
     updateCursor();
 
-    // Hover Effects
     card.addEventListener("mouseenter", () => {
         updateCursor();
-        gsap.to(cursor, {
-            opacity: 1,
-            scale: 1
-        });
+        gsap.to(cursor, { opacity: 1, scale: 1 });
     });
 
     card.addEventListener("mouseleave", () => {
-        gsap.to(cursor, {
-            opacity: 0,
-            scale: 0.5
-        });
+        gsap.to(cursor, { opacity: 0, scale: 0.5 });
     });
 
     card.addEventListener("mousemove", e => {
@@ -890,32 +594,16 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
         moveY(e.clientY - rect.top);
     });
 
-    // Reset video function (DRY Principle)
     function resetVideoState() {
         expanded = false;
-        if (video) {
-            video.currentTime = 0;
-            video.muted = true;
-            video.loop = true;
-            video.volume = 1;
-            video.play();
-        }
-        if (volumeSlider) {
-            volumeSlider.value = 1;
-        }
-        if (speakerIcon) {
-            speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
-        }
-        if (volumePopup) {
-            volumePopup.classList.remove("show");
-        }
+        if (video) { video.currentTime = 0; video.muted = true; video.loop = true; video.volume = 1; video.play(); }
+        if (volumeSlider) volumeSlider.value = 1;
+        if (speakerIcon) speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
+        if (volumePopup) volumePopup.classList.remove("show");
         updateCursor();
     }
 
-    // Card Click Event
     card.addEventListener("click", () => {
-
-        // Agar same video clicked ho to pause/reset karein
         if (activeVideo === video) {
             resetVideoState();
             activeVideo = null;
@@ -923,487 +611,427 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
             return;
         }
 
-        // Agar koi doosri video active ho to usko reset karein
-        if (activeState && activeState.reset) {
-            activeState.reset();
-        }
+        if (activeState && activeState.reset) activeState.reset();
 
-        // Nayi video play karein
         expanded = true;
-        
-        if (video) {
-            video.currentTime = 0;
-            video.loop = false;
-            video.muted = false;
-            video.play();
-        }
+        if (video) { video.currentTime = 0; video.loop = false; video.muted = false; video.play(); }
 
         activeVideo = video;
         activeCard = card;
-        
-        activeState = {
-            video,
-            speaker,
-            volumeSlider,
-            reset: resetVideoState
-        };
-
+        activeState = { video, speaker, volumeSlider, reset: resetVideoState };
         updateCursor();
     });
 
-    // Volume Popup controls
     if (speaker) {
         speaker.addEventListener("click", (e) => {
             e.preventDefault();
-            e.stopPropagation(); // Prevents card click event
-
-            // Close other popups
-            document.querySelectorAll(".volume-popup").forEach(p => {
-                if (p !== volumePopup) p.classList.remove("show");
-            });
-
-            if (volumeSlider && video) {
-                volumeSlider.value = video.volume;
-            }
-
-            if (volumePopup) {
-                volumePopup.classList.toggle("show");
-            }
-        });
-    }
-
-    // Volume Popup ke clicks card tak na jayein
-    if (volumePopup) {
-        volumePopup.addEventListener("click", (e) => {
             e.stopPropagation();
+            document.querySelectorAll(".volume-popup").forEach(p => { if (p !== volumePopup) p.classList.remove("show"); });
+            if (volumeSlider && video) volumeSlider.value = video.volume;
+            if (volumePopup) volumePopup.classList.toggle("show");
         });
     }
 
-    // Volume Slider Input Handler
+    if (volumePopup) volumePopup.addEventListener("click", (e) => e.stopPropagation());
+
     if (volumeSlider && video) {
         volumeSlider.addEventListener("input", () => {
             video.volume = parseFloat(volumeSlider.value);
             video.muted = video.volume === 0;
 
             if (speakerIcon) {
-                if (video.volume === 0) {
-                    speakerIcon.className = "fa-solid fa-volume-xmark speaker-icon";
-                } else if (video.volume < 0.5) {
-                    speakerIcon.className = "fa-solid fa-volume-low speaker-icon";
-                } else {
-                    speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
-                }
+                if (video.volume === 0) speakerIcon.className = "fa-solid fa-volume-xmark speaker-icon";
+                else if (video.volume < 0.5) speakerIcon.className = "fa-solid fa-volume-low speaker-icon";
+                else speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
             }
         });
     }
 });
 
-// Outside click hone par volume popups close karne ke liye
 document.addEventListener("click", (e) => {
     if (!e.target.closest(".speaker-btn") && !e.target.closest(".volume-popup")) {
         document.querySelectorAll(".volume-popup").forEach(p => p.classList.remove("show"));
     }
 });
 
-
-
-
-// SECTION 9
-gsap.registerPlugin(ScrollTrigger);
-
-const section = document.querySelector("#workflow-section");
-const track = document.querySelector(".workflow-track");
-const progress = document.querySelector(".timeline-progress");
-
-function initWorkflow() {
-
-    // Purane triggers remove
-    ScrollTrigger.getAll().forEach(st => {
-        if (st.trigger === section) st.kill();
+// ==========================================
+// 11. SECTION 8 (OFFER)
+// ==========================================
+if (document.querySelector(".offer-title")) {
+    
+    const offerTitle = new SplitType(".offer-title", {
+        types: "lines"
+    });
+    
+    offerTitle.lines.forEach(line => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
     });
 
-    // Reset
-    gsap.set(track, { x: 0 });
-    gsap.set(progress, { width: 520 });
+    gsap.set(offerTitle.lines, {
+        yPercent: 110
+    });
 
-    const moveDistance = track.scrollWidth - window.innerWidth;
-
-    const tl = gsap.timeline({
+    const offerTitleTl = gsap.timeline({
         scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: () => "+=" + moveDistance,
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true
+            trigger: ".offer-section",
+            start: "-40% top",
+            end: "-20% top",
+            toggleActions: "play none none none"
         }
     });
 
-    // Cards move
-    tl.to(track, {
-        x: -moveDistance,
-        ease: "none"
-    }, 0);
-
-    // Golden line grow
-    tl.to(progress, {
-        width: track.scrollWidth - 200,
-        ease: "none"
-    }, 0);
-
+    offerTitleTl
+        .to(offerTitle.lines, {
+            yPercent: 0,
+            duration: 1,
+            stagger: 0.18,
+            ease: "power4.out"
+        }, 0)
+        .call(solutionCount);
 }
 
-initWorkflow();
 
-window.addEventListener("resize", () => {
-    ScrollTrigger.refresh();
-});
+// ==========================================
+// 11. SECTION 9 (WORKFLOW)
+// ==========================================
+// =========================================
+// WORKFLOW TITLE ANIMATION
+// =========================================
+
+const workflowSection = document.querySelector("#workflow-section");
+const track = document.querySelector(".workflow-track");
+const progress = document.querySelector(".timeline-progress");
+
+if (workflowSection && track && progress) {
+
+    // -------------------------
+    // Split Title
+    // -------------------------
+    let workTitle;
+
+    if (document.querySelector(".workflow-title")) {
+
+        workTitle = new SplitType(".workflow-title", {
+            types: "lines"
+        });
+
+        workTitle.lines.forEach(line => {
+            const wrapper = document.createElement("div");
+            wrapper.style.overflow = "hidden";
+            line.parentNode.insertBefore(wrapper, line);
+            wrapper.appendChild(line);
+        });
+
+        gsap.set(workTitle.lines, {
+            yPercent: 110
+        });
+    }
+
+    function initWorkflow() {
+
+        // Purane triggers remove
+        ScrollTrigger.getAll().forEach(st => {
+            if (st.trigger === workflowSection) {
+                st.kill();
+            }
+        });
+
+        gsap.set(track, {
+            x: 0
+        });
+
+        gsap.set(progress, {
+            width: 520
+        });
+
+        const moveDistance =
+            track.scrollWidth - window.innerWidth + 50;
+
+        // ======================================
+        // TITLE ANIMATION (Pin se pehle)
+        // ======================================
+
+        if (workTitle) {
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: workflowSection,
+                    start: "top 80%",
+                    end: "top 80%",
+                    once: true,
+                    invalidateOnRefresh: true
+                }
+            })
+            .to(workTitle.lines, {
+                yPercent: 0,
+                duration: 1,
+                stagger: 0.18,
+                ease: "power4.out"
+            })
+            .call(solutionCount);
+
+        }
+
+        // ======================================
+        // WORKFLOW PIN
+        // ======================================
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: workflowSection,
+                start: "top top",
+                end: () => "+=" + moveDistance,
+                scrub: 1,
+                pin: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true
+            }
+        });
+
+        tl.to(track, {
+            x: -moveDistance,
+            ease: "none"
+        }, 0);
+
+        tl.to(progress, {
+            width: track.scrollWidth - 200,
+            ease: "none"
+        }, 0);
+
+        ScrollTrigger.refresh();
+    }
+
+    initWorkflow();
+}
 
 
-
-
-
-// section 10
-gsap.registerPlugin();
-
+// ==========================================
+// 12. SECTION 10 (TESTIMONIAL SLIDER)
+// ==========================================
 const slides = gsap.utils.toArray(".testimonial-slide");
-
 const nextBtn = document.querySelector("#nextBtn");
 const prevBtn = document.querySelector("#prevBtn");
 const counter = document.querySelector("#slide-count");
 
-let current = 0;
-let isAnimating = false;
+if (slides.length > 0 && nextBtn && prevBtn && counter) {
+    let current = 0;
+    let isAnimating = false;
 
-// Initial State
-slides.forEach((slide, i) => {
-
-    if(i !== 0){
-
-        gsap.set(slide,{
-            x:120,
-            opacity:0,
-            pointerEvents:"none"
-        });
-
-    }else{
-
-        gsap.set(slide,{
-            x:0,
-            opacity:1
-        });
-
-    }
-
-});
-
-function updateCounter(){
-
-    counter.innerHTML =
-        `${String(current+1).padStart(2,"0")} / ${String(slides.length).padStart(2,"0")}`;
-
-}
-
-updateCounter();
-
-function goTo(index){
-
-    if(isAnimating) return;
-
-    if(index === current) return;
-
-    isAnimating = true;
-
-    const currentSlide = slides[current];
-    const nextSlide = slides[index];
-
-    gsap.set(nextSlide,{
-        x:120,
-        opacity:0,
-        pointerEvents:"auto"
+    slides.forEach((slide, i) => {
+        if (i !== 0) gsap.set(slide, { x: 120, opacity: 0, pointerEvents: "none" });
+        else gsap.set(slide, { x: 0, opacity: 1 });
     });
 
-    const tl = gsap.timeline({
+    function updateCounter() {
+        counter.innerHTML = `${String(current + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+    }
+    updateCounter();
 
-        defaults:{
-            duration:.75,
-            ease:"power3.inOut"
-        },
+    function goTo(index) {
+        if (isAnimating || index === current) return;
+        isAnimating = true;
 
-        onComplete(){
+        const currentSlide = slides[current];
+        const nextSlide = slides[index];
 
-            currentSlide.style.pointerEvents="none";
-            current=index;
-            updateCounter();
-            isAnimating=false;
+        gsap.set(nextSlide, { x: 120, opacity: 0, pointerEvents: "auto" });
 
+        const tl = gsap.timeline({
+            defaults: { duration: .75, ease: "power3.inOut" },
+            onComplete() {
+                currentSlide.style.pointerEvents = "none";
+                current = index;
+                updateCounter();
+                isAnimating = false;
+            }
+        });
+
+        tl.to(currentSlide, { x: -120, opacity: 0 }, 0);
+        tl.to(nextSlide, { x: 0, opacity: 1 }, 0.15);
+    }
+
+    nextBtn.addEventListener("click", () => goTo((current + 1) % slides.length));
+    prevBtn.addEventListener("click", () => goTo((current - 1 + slides.length) % slides.length));
+
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") nextBtn.click();
+        if (e.key === "ArrowLeft") prevBtn.click();
+    });
+
+    setInterval(() => nextBtn.click(), 10000);
+}
+
+// ==========================================
+// 13. SECTION 11 (ABOUT) & RIBBON
+// ==========================================
+if (document.querySelector(".about-title")) {
+    
+    const aboutTitle = new SplitType(".about-title", {
+        types: "lines"
+    });
+    
+    aboutTitle.lines.forEach(line => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+    });
+
+    gsap.set(aboutTitle.lines, {
+        yPercent: 110
+    });
+
+    const aboutTitleTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".about-section",
+            start: "-40% top",
+            end: "-20% top",
+            toggleActions: "play none none none"
         }
-
     });
 
-    tl.to(currentSlide,{
-        x:-120,
-        opacity:0
-    },0);
-
-    tl.to(nextSlide,{
-        x:0,
-        opacity:1
-    },0.15);
-
+    aboutTitleTl
+        .to(aboutTitle.lines, {
+            yPercent: 0,
+            duration: 1,
+            stagger: 0.18,
+            ease: "power4.out"
+        }, 0)
+        .call(solutionCount);
 }
 
-nextBtn.addEventListener("click",()=>{
+if (document.querySelector(".about-section")) {
+    const aboutTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".about-section",
+            start: "7% top",
+            end: "+=300",
+            scrub: 2,
+            pin: true,
+            anticipatePin: 1
+        }
+    });
 
-    let next=current+1;
-
-    if(next>=slides.length){
-
-        next=0;
-
-    }
-
-    goTo(next);
-
-});
-
-prevBtn.addEventListener("click",()=>{
-
-    let prev=current-1;
-
-    if(prev<0){
-
-        prev=slides.length-1;
-
-    }
-
-    goTo(prev);
-
-});
-
-
-// Keyboard Support
-
-window.addEventListener("keydown",(e)=>{
-
-    if(e.key==="ArrowRight"){
-
-        nextBtn.click();
-
-    }
-
-    if(e.key==="ArrowLeft"){
-
-        prevBtn.click();
-
-    }
-
-});
-
-
-// Auto Play
-
-let auto = setInterval(()=>{
-
-    nextBtn.click();
-
-},10000);
-
-
-// Pause on Hover
-
-// const testimonialSection = document.querySelector(".testimonial-section");
-
-// testimonialSection.addEventListener("mouseenter",()=>{
-
-//     clearInterval(auto);
-
-// });
-
-// testimonialSection.addEventListener("mouseleave",()=>{
-
-//     auto=setInterval(()=>{
-
-//         nextBtn.click();
-
-//     },2000);
-
-// });
-
-
-// section 11 About 
-const aboutTl = gsap.timeline({
-    scrollTrigger:{
-        trigger:".about-section",
-        start:"7% top",
-        end:"+=300",
-        scrub:2,
-        pin:true,
-        anticipatePin:1
-    }
-
-})
-// LEFT CONTENT
-aboutTl.to(".about-content",{
-    y:-70,
-    opacity:.25,
-    ease:"none"
-},0);
-// BIG TEXT
-aboutTl.fromTo(".hero-word",{
-    y:80,
-    opacity:0,
-    scale:0.8
-},{
-    y:0,
-    opacity:1,
-    scale:1,
-    ease:"none",
-    duration:2
-},0);
-// CARD 1
-aboutTl.to(".card1",{
-    y:-140,
-    rotation:0,
-    scale:0.98,
-    ease:"none",
-    duration:2
-},0);
-// CARD 2
-aboutTl.to(".card2",{
-    y:-140,
-    rotate:-20,
-    ease:"none",
-    duration:2
-},0);
-// CARD 3
-aboutTl.to(".card3",{
-    y:-140,
-    x:-100,
-    rotate:18,
-    ease:"none",
-    duration:2
-},0);
-// CARD 4
-aboutTl.to(".card4",{
-    y:-200,
-    x:-90,
-    rotate:18,
-    ease:"none",
-    duration:2
-},0);
-
-
-
+    aboutTl.to(".about-content", { y: -20, opacity: 0.9, ease: "none" }, 0)
+           .fromTo(".hero-word", { y: 0, opacity: 0 }, { y: 0, opacity: 1, ease: "none", duration: 2 }, 0)
+           .to(".card1", { y: -140, rotation: 0, scale: 0.98, ease: "none", duration: 2 }, 0)
+           .to(".card2", { y: -140, rotate: -20, ease: "none", duration: 2 }, 0)
+           .to(".card3", { y: -140, x: -100, rotate: 18, ease: "none", duration: 2 }, 0)
+           .to(".card4", { y: -200, x: -90, rotate: 18, ease: "none", duration: 2 }, 0);
+}
 
 const ribbonTrack = document.querySelector(".ribbon-track");
 const item = document.querySelector(".ribbon-item");
 
-function buildRibbon() {
+if (ribbonTrack && item) {
+    function buildRibbon() {
+        ribbonTrack.querySelectorAll(".clone").forEach(el => el.remove());
+        const itemWidth = item.offsetWidth;
+        const required = Math.ceil((window.innerWidth * 2) / itemWidth) + 6;
 
-    ribbonTrack.querySelectorAll(".clone").forEach(el => el.remove());
-
-    const itemWidth = item.offsetWidth;
-
-    // Screen se 2x zyada content
-    const required = Math.ceil((window.innerWidth * 2) / itemWidth) + 6;
-
-    for (let i = 0; i < required; i++) {
-        const clone = item.cloneNode(true);
-        clone.classList.add("clone");
-        ribbonTrack.appendChild(clone);
+        for (let i = 0; i < required; i++) {
+            const clone = item.cloneNode(true);
+            clone.classList.add("clone");
+            ribbonTrack.appendChild(clone);
+        }
+        ribbonTrack.style.width = "max-content";
     }
 
-    // Track ki width lock karo
-    ribbonTrack.style.width = "max-content";
+    buildRibbon();
+    window.addEventListener("resize", buildRibbon);
+
+    gsap.to(".ribbon-track", {
+        x: () => -(item.offsetWidth * 2),
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".about-section",
+            start: "20% top",
+            end: "+=2500",
+            scrub: 2
+        }
+    });
 }
 
-buildRibbon();
-window.addEventListener("resize", buildRibbon);
+// ==========================================
+// 14. SECTION 12 (FAQ ACCORDION)
+// ==========================================
+if (document.querySelector(".faq-title")) {
+    
+    const faqTitle = new SplitType(".faq-title", {
+        types: "lines"
+    });
+    
+    faqTitle.lines.forEach(line => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+    });
 
-gsap.to(".ribbon-track", {
-    x: () => -(item.offsetWidth * 2), // sirf 2 items jitna move
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".about-section",
-        start: "20% top",
-        end: "+=2500",      // jitna bada utna slow
-        scrub: 2            // smooth catch-up
-    }
-});
+    gsap.set(faqTitle.lines, {
+        yPercent: 110
+    });
 
+    const faqTitleTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".faq-section",
+            start: "-40% top",
+            end: "-20% top",
+            toggleActions: "play none none none"
+        }
+    });
 
-// section 12 FAQ
-gsap.registerPlugin();
+    faqTitleTl
+        .to(faqTitle.lines, {
+            yPercent: 0,
+            duration: 1,
+            stagger: 0.18,
+            ease: "power4.out"
+        }, 0)
+        .call(solutionCount);
+}
 
-gsap.set(".faq-content", {
-    height: 0
-});
+gsap.set(".faq-content", { height: 0 });
 
 document.querySelectorAll(".faq-item").forEach((item) => {
-
     const btn = item.querySelector(".faq-btn");
     const content = item.querySelector(".faq-content");
-    const inner = content.firstElementChild;
+    const inner = content?.firstElementChild;
     const plus = item.querySelector(".plus");
+
+    if (!btn || !content || !inner) return;
 
     let open = false;
 
     btn.addEventListener("click", () => {
-
         document.querySelectorAll(".faq-item").forEach((other) => {
-
             if (other !== item) {
-
-                gsap.to(other.querySelector(".faq-content"), {
-                    height: 0,
-                    duration: .45,
-                    ease: "power3.inOut"
-                });
-
-                gsap.to(other.querySelector(".plus"), {
-                    rotation: 0,
-                    duration: .35
-                });
-
-                other.open = false;
-
+                const otherContent = other.querySelector(".faq-content");
+                const otherPlus = other.querySelector(".plus");
+                if (otherContent) gsap.to(otherContent, { height: 0, duration: .45, ease: "power3.inOut" });
+                if (otherPlus) gsap.to(otherPlus, { rotation: 0, duration: .35 });
             }
-
         });
 
         if (!open) {
-
-            gsap.to(content, {
-                height: inner.offsetHeight,
-                duration: .55,
-                ease: "power3.inOut"
-            });
-
-            gsap.to(plus, {
-                rotation: 45,
-                duration: .35,
-                ease: "power2.out"
-            });
-
+            gsap.to(content, { height: inner.offsetHeight, duration: .55, ease: "power3.inOut" });
+            if (plus) gsap.to(plus, { rotation: 45, duration: .35, ease: "power2.out" });
         } else {
-
-            gsap.to(content, {
-                height: 0,
-                duration: .45,
-                ease: "power3.inOut"
-            });
-
-            gsap.to(plus, {
-                rotation: 0,
-                duration: .35
-            });
-
+            gsap.to(content, { height: 0, duration: .45, ease: "power3.inOut" });
+            if (plus) gsap.to(plus, { rotation: 0, duration: .35 });
         }
-
         open = !open;
-
     });
+});
 
+// Resize & Init Cleanup
+let resizeTimeout;
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        ScrollTrigger.refresh();
+    }, 200);
 });
