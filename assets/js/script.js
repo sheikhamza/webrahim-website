@@ -597,8 +597,16 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
     updateCursor();
 
     card.addEventListener("mouseenter", () => {
+        if (video.readyState < 3) {
+            video.preload = "auto";
+        }
         updateCursor();
-        gsap.to(cursor, { opacity: 1, scale: 1 });
+        gsap.to(cursor,{
+            opacity:1,
+            scale:1,
+            duration:0.2
+        });
+
     });
 
     card.addEventListener("mouseleave", () => {
@@ -613,16 +621,20 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
 
     function resetVideoState() {
         expanded = false;
-        if (video) { video.currentTime = 0; video.muted = true; video.loop = true; video.volume = 1; video.play(); }
-        if (volumeSlider) volumeSlider.value = 1;
-        if (speakerIcon) speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
-        if (volumePopup) volumePopup.classList.remove("show");
+        video.pause();
+        video.muted = true;
+        video.loop = true;
+        volumeSlider.value = 1;
+        speakerIcon.className =
+        "fa-solid fa-volume-high speaker-icon";
+        volumePopup.classList.remove("show");
         updateCursor();
     }
 
     card.addEventListener("click", () => {
         if (activeVideo === video) {
             resetVideoState();
+            
             activeVideo = null;
             activeState = null;
             return;
@@ -631,7 +643,7 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
         if (activeState && activeState.reset) activeState.reset();
 
         expanded = true;
-        if (video) { video.currentTime = 0; video.loop = false; video.muted = false; video.play(); }
+        if (video) { video.loop = false; video.muted = false; video.play(); }
 
         activeVideo = video;
         activeCard = card;
