@@ -689,18 +689,14 @@ body.modal-open{
 
 .faq-btn{
     transition:.35s;
+    text-transform: capitalize;
+    font-family: 'Inter Tight';
+    font-size: 18px;
 }
 
-.faq-item:hover .faq-btn{
-    padding-left:12px;
-}
 
 .faq-item{
     transition:.35s;
-}
-
-.faq-item:hover{
-    border-color:#D4A11E55;
 }
 
 .plus{
