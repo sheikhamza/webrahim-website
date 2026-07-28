@@ -439,6 +439,9 @@ if (portfolioSlider && portfolioWrapper) {
 
 // Portfolio Cards Cursor & Modal Interactivity
 document.querySelectorAll(".portfolio-card").forEach(card => {
+    const img = new Image();
+    img.src = card.dataset.full;
+
     const pCard = card.querySelector("img");
     const cursor = card.querySelector(".portfolio-cursor-glass");
     if (!pCard || !cursor) return;
@@ -467,9 +470,22 @@ if (modal && modalImage && modalContent && closeBtn) {
             const imgSrc = card.dataset.full;
             if (!imgSrc) return;
 
-            modalImage.src = imgSrc;
+            const loader = document.getElementById("modalLoader");
             modal.classList.remove("hidden");
             modal.classList.add("flex");
+            loader.classList.remove("hidden");
+            modalImage.style.opacity = 0;
+            modalImage.removeAttribute("src");
+            const img = new Image();
+            img.src = imgSrc;
+            img.onload = () => {
+                modalImage.src = img.src;
+                loader.classList.add("hidden");
+                gsap.to(modalImage,{
+                    opacity:1,
+                    duration:.35
+                });
+            };
             document.body.classList.add("modal-open");
             modalContent.scrollTop = 0;
 
