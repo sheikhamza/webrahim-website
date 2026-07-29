@@ -1,13 +1,13 @@
 @font-face {
     font-family: "Coolvetica-Bold";
     src: url("../fonts/coolvetica/coolvetica/CoolveticaRg-Bold.ttf") format("truetype");
-    font-weight: 900;
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: "Coolvetica";
-    src: url("../fonts/coolvetica/coolvetica/CoolveticaHv-Regular.ttf") format("truetype");
+    src: url("../fonts/coolvetica/coolvetica/Coolvetica-Rg.otf") format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -87,23 +87,22 @@ h1{
 }
 h2{
     font-size: 50px;
-    font-family: 'Coolvetica', sans-serif;
+    font-family: 'Coolvetica-Bold', sans-serif;
     text-transform: capitalize;
 }
 
 h3 {
-    font-family: 'Coolvetica', sans-serif;
+    font-family: 'Coolvetica-Bold', sans-serif;
     text-transform: capitalize;
     letter-spacing: 2px;
-    font-weight: 900;
     font-size: 45px;
 }
 h4{
-    font-family: 'Coolvetica', sans-serif;
+    font-family: 'Coolvetica-Bold', sans-serif;
     font-size: 40px;
 }
 h5{
-    font-family: 'Coolvetica', sans-serif;
+    font-family: 'Coolvetica-Bold', sans-serif;
     font-size: 28px;
     letter-spacing: 2px;
 }
@@ -240,7 +239,7 @@ main {
 }
 
 .hero-text-slider{
-    font-family: 'Coolvetica';
+    font-family: 'Coolvetica-Bold';
     letter-spacing: 1px;
 }
 
@@ -641,7 +640,7 @@ body.modal-open{
 
 .number{
     font-size:150px;
-    font-family: 'Coolvetica';
+    font-family: 'Coolvetica-Bold';
     font-weight:700;
     color:#fff;
     line-height:1;
@@ -688,7 +687,7 @@ body.modal-open{
 .ribbon-track{
     width:max-content;
     will-change:transform;
-    font-family: 'Coolvetica';
+    font-family: 'Coolvetica-Bold';
 }
 
 
@@ -812,7 +811,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
 /* About section — hide extra decorative cards on smaller screens (keep image card1 only) */
 .hero-word{
-    font-family: 'Coolvetica';
+    font-family: 'Coolvetica-Bold';
 }
 .about-container{
     max-height: 750px;
@@ -820,7 +819,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
 /* Footer */
 .footer-title{
-    font-family: 'Coolvetica';
+    font-family: 'Coolvetica-Bold';
 }
 
 @media (max-width: 1023px) {

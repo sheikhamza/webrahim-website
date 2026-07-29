@@ -1,6 +1,43 @@
 // Register All GSAP Plugins Centralized
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+document.addEventListener("DOMContentLoaded", () => {
+    // GSAP ScrollTo Plugin Register karein
+    // gsap.registerPlugin(ScrollToPlugin);
+
+    // Nav bar aur Mobile Nav ke sabhi anchor links select karein (jinke href '#' se start hote hain)
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+            const targetId = link.getAttribute("href");
+
+            // Agar empty '#' ho ya target element page par na mile toh ignore karein
+            if (targetId === "#" || !document.querySelector(targetId)) return;
+
+            e.preventDefault(); // Browser ki default instant jump ko rokein
+
+            const targetElement = document.querySelector(targetId);
+
+            // GSAP Animated Smooth Scroll
+            gsap.to(window, {
+                duration: 1, // 2.5 Seconds (isey aap 2 se 3 sec tak tune kar sakte hain)
+                scrollTo: {
+                    y: targetElement,
+                    offsetY: 20 // Agara top nav fixed hai toh yahan offset height ajust kar sakte hain
+                },
+                ease: "power3.inOut" // Smooth acceleration and deceleration
+            });
+
+            // Agar mobile menu open hai, toh click karne par close kar dein
+            const mobileMenu = document.getElementById("mobileNavMenu");
+            if (mobileMenu && mobileMenu.classList.contains("active")) {
+                mobileMenu.classList.remove("active");
+            }
+        });
+    });
+});
+
 // ==========================================
 // 2. AVATAR STACK
 // ==========================================
@@ -979,41 +1016,6 @@ if (slides.length > 0 && nextBtn && prevBtn && counter) {
 // ==========================================
 // 13. SECTION 11 (ABOUT) & RIBBON
 // ==========================================
-if (document.querySelector(".about-title") && !window.matchMedia("(max-width: 767px)").matches) {
-    
-    const aboutTitle = new SplitType(".about-title", {
-        types: "lines"
-    });
-    
-    aboutTitle.lines.forEach(line => {
-        const wrapper = document.createElement("div");
-        wrapper.style.overflow = "hidden";
-        line.parentNode.insertBefore(wrapper, line);
-        wrapper.appendChild(line);
-    });
-
-    gsap.set(aboutTitle.lines, {
-        yPercent: 110
-    });
-
-    const aboutTitleTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".about-section",
-            start: "-40% top",
-            end: "-20% top",
-            toggleActions: "play none none none"
-        }
-    });
-
-    aboutTitleTl
-        .to(aboutTitle.lines, {
-            yPercent: 0,
-            duration: 1,
-            stagger: 0.18,
-            ease: "power4.out"
-        }, 0);
-}
-
 if (document.querySelector(".about-section") && !window.matchMedia("(max-width: 767px)").matches) {
     const aboutTl = gsap.timeline({
         scrollTrigger: {
@@ -1026,7 +1028,7 @@ if (document.querySelector(".about-section") && !window.matchMedia("(max-width: 
         }
     });
 
-    aboutTl.to(".about-content", { y: -20, opacity: 0.9, ease: "none" }, 0)
+    aboutTl.to(".about-content", { y: -20, ease: "none" }, 0)
            .fromTo(".hero-word", { y: 0, opacity: 0 }, { y: 0, opacity: 1, ease: "none", duration: 2 }, 0)
            .to(".card1", { y: -50, rotation: 0, scale: 0.98, ease: "none", duration: 2 }, 0)
            .to(".card2", { y: -50, rotate: -20, ease: "none", duration: 2 }, 0)
