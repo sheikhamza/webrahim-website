@@ -962,7 +962,7 @@ if (document.querySelector(".about-section")) {
     const aboutTl = gsap.timeline({
         scrollTrigger: {
             trigger: ".about-section",
-            start: "7% top",
+            start: "15% top",
             end: "+=300",
             scrub: 2,
             pin: true,
