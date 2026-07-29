@@ -136,17 +136,33 @@ if (document.querySelector(".hero-title")) {
 // ==========================================
 // 5. HERO TEXT ROTATOR SLIDER
 // ==========================================
-const words = ["Content Design", "Landing Pages", "Websites"];
-let left = 1, center = 0, right = 2;
+const words = [
+    "Content Design",
+    "Landing Pages",
+    "Websites",
+    "LinkedIn Branding"
+];
+
+let left = 1;
+let center = 0;
+let right = 2;
 
 const leftCurrent = document.getElementById("leftCurrent");
 const centerCurrent = document.getElementById("centerCurrent");
 const rightCurrent = document.getElementById("rightCurrent");
+
 const leftNext = document.getElementById("leftNext");
 const centerNext = document.getElementById("centerNext");
 const rightNext = document.getElementById("rightNext");
 
-if (leftCurrent && centerCurrent && rightCurrent && leftNext && centerNext && rightNext) {
+if (
+    leftCurrent &&
+    centerCurrent &&
+    rightCurrent &&
+    leftNext &&
+    centerNext &&
+    rightNext
+) {
     function updateCurrent() {
         leftCurrent.textContent = words[left];
         centerCurrent.textContent = words[center];
@@ -154,23 +170,38 @@ if (leftCurrent && centerCurrent && rightCurrent && leftNext && centerNext && ri
     }
 
     function resetPositions() {
-        gsap.set(leftCurrent, { x: 0 });
-        gsap.set(centerCurrent, { x: 0 });
-        gsap.set(rightCurrent, { x: 0 });
+        gsap.set([leftCurrent, centerCurrent, rightCurrent], {
+            x: 0
+        });
 
-        gsap.set(leftNext, { x: leftCurrent.parentElement.offsetWidth });
-        gsap.set(centerNext, { x: centerCurrent.parentElement.offsetWidth });
-        gsap.set(rightNext, { x: rightNext.parentElement.offsetWidth });
+        gsap.set(leftNext, {
+            x: leftCurrent.parentElement.offsetWidth
+        });
+
+        gsap.set(centerNext, {
+            x: centerCurrent.parentElement.offsetWidth
+        });
+
+        gsap.set(rightNext, {
+            x: rightCurrent.parentElement.offsetWidth
+        });
     }
 
     updateCurrent();
     resetPositions();
+
     window.addEventListener("resize", resetPositions);
 
-    setInterval(() => {
-        const newLeft = center;
-        const newCenter = right;
-        const newRight = left;
+    let isAnimating = false;
+
+    function animateSlider() {
+
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const newLeft = (left + 1) % words.length;
+        const newCenter = (center + 1) % words.length;
+        const newRight = (right + 1) % words.length;
 
         leftNext.textContent = words[newLeft];
         centerNext.textContent = words[newCenter];
@@ -185,22 +216,32 @@ if (leftCurrent && centerCurrent && rightCurrent && leftNext && centerNext && ri
         gsap.set(rightNext, { x: rightWidth });
 
         gsap.timeline({
-            defaults: { duration: 0.6, ease: "power3.inOut" },
+            defaults: {
+                duration: 0.6,
+                ease: "power3.inOut"
+            },
             onComplete() {
+
                 left = newLeft;
                 center = newCenter;
                 right = newRight;
+
                 updateCurrent();
                 resetPositions();
+
+                isAnimating = false;
             }
         })
         .to(leftCurrent, { x: -leftWidth }, 0)
         .to(centerCurrent, { x: -centerWidth }, 0)
         .to(rightCurrent, { x: -rightWidth }, 0)
+
         .to(leftNext, { x: 0 }, 0)
         .to(centerNext, { x: 0 }, 0)
         .to(rightNext, { x: 0 }, 0);
-    }, 3000);
+    }
+
+    setInterval(animateSlider, 3000);
 }
 
 // ==========================================
