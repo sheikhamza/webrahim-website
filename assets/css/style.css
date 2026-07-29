@@ -226,6 +226,10 @@ main {
     transition: all 0.3s ease-in-out;
 }
 
+.hero-btn:hover{
+    cursor: pointer !important;
+}
+
 .hero-btn:hover img {
     width: 38px;
     opacity: 1;
