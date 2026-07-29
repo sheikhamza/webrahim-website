@@ -686,12 +686,14 @@ document.querySelectorAll(".video-card").forEach(card => {
     const volumePopup = card.querySelector(".volume-popup");
     const volumeSlider = card.querySelector(".volume-slider");
     const speakerIcon = card.querySelector(".speaker-icon");
+    const centerPlayBtn = card.querySelector(".center-play-btn");
+    const playIcon = card.querySelector(".play-icon");
+    const progressBar = card.querySelector(".progress-bar");
 
     if (video) { 
         video.muted = true; 
         video.volume = 1; 
         video.loop = true; 
-        // Page load hote hi browser ko video download start karne ko kehna
         video.preload = "auto";
         video.load(); 
     }
@@ -705,11 +707,13 @@ document.querySelectorAll(".video-card").forEach(card => {
 
     function updateCursor() {
         if (cursor) cursor.innerHTML = expanded ? "Pause" : "Play";
+        if (playIcon) playIcon.className = expanded ? "fa-solid fa-pause play-icon" : "fa-solid fa-play play-icon";
+        if (expanded) card.classList.add("playing");
+        else card.classList.remove("playing");
     }
     updateCursor();
 
     card.addEventListener("mouseenter", () => {
-        // Hover par extra preload logic ki zaroorat nahi hai
         updateCursor();
         gsap.to(cursor, {
             opacity: 1,
@@ -730,16 +734,25 @@ document.querySelectorAll(".video-card").forEach(card => {
 
     function resetVideoState() {
         expanded = false;
-        video.pause();
-        video.muted = true;
-        video.loop = true;
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+            video.muted = true;
+            video.loop = true;
+        }
         if (volumeSlider) volumeSlider.value = 1;
         if (speakerIcon) speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
         if (volumePopup) volumePopup.classList.remove("show");
+        if (progressBar) progressBar.value = 0;
         updateCursor();
     }
 
-    card.addEventListener("click", () => {
+    card.addEventListener("click", (e) => {
+        // Prevent click when user is interacting with volume or progress controls
+        if (e.target.closest(".speaker-btn") || e.target.closest(".volume-popup") || e.target.closest(".video-progress-container")) {
+            return;
+        }
+
         if (activeVideo === video) {
             resetVideoState();
             activeVideo = null;
@@ -761,6 +774,26 @@ document.querySelectorAll(".video-card").forEach(card => {
         activeState = { video, speaker, volumeSlider, reset: resetVideoState };
         updateCursor();
     });
+
+    // Time Progress Updates
+    if (video && progressBar) {
+        video.addEventListener("timeupdate", () => {
+            if (video.duration) {
+                const progressPercentage = (video.currentTime / video.duration) * 100;
+                progressBar.value = progressPercentage;
+            }
+        });
+
+        progressBar.addEventListener("input", (e) => {
+            e.stopPropagation();
+            if (video.duration) {
+                const seekTime = (parseFloat(progressBar.value) / 100) * video.duration;
+                video.currentTime = seekTime;
+            }
+        });
+
+        progressBar.addEventListener("click", (e) => e.stopPropagation());
+    }
 
     if (speaker) {
         speaker.addEventListener("click", (e) => {
