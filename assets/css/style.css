@@ -1,7 +1,14 @@
 @font-face {
+    font-family: "Coolvetica-Bold";
+    src: url("../fonts/coolvetica/coolvetica/CoolveticaRg-Bold.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
     font-family: "Coolvetica";
-    src: url("../fonts/coolvetica/CoolveticaRg-Bold.ttf") format("truetype");
-    font-weight: 700;
+    src: url("../fonts/coolvetica/coolvetica/CoolveticaHv-Regular.ttf") format("truetype");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
@@ -76,7 +83,7 @@ H4 40px
 H5 28px */
 h1{
     font-size: 70px;
-    font-family: 'Coolvetica', sans-serif;
+    font-family: 'Coolvetica-Bold', sans-serif;
 }
 h2{
     font-size: 50px;
@@ -100,7 +107,9 @@ h5{
     font-size: 28px;
     letter-spacing: 2px;
 }
-
+a{
+    cursor: pointer;
+}
 p {
     font-family: 'Inter Tight', sans-serif;
 }
@@ -806,7 +815,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 
 /* Footer */
-.footer-text{
+.footer-title{
     font-family: 'Coolvetica';
 }
 

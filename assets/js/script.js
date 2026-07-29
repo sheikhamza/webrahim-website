@@ -111,7 +111,7 @@ if (document.querySelector(".hero-title")) {
 // ==========================================
 // 5. HERO TEXT ROTATOR SLIDER
 // ==========================================
-const words = ["Websites", "Landing Pages", "Content Design"];
+const words = ["Content Design", "Landing Pages", "Websites"];
 let left = 1, center = 0, right = 2;
 
 const leftCurrent = document.getElementById("leftCurrent");
@@ -195,11 +195,16 @@ if (document.querySelector(".portfolio")) {
 
     const dim = getDimensions();
 
+    // Initial positioning via GSAP (so HTML page height doesn't stretch)
+    gsap.set(".card-4", { yPercent: 60, opacity: 0 });
+    gsap.set(".card-5", { yPercent: 120, opacity: 0 });
+    gsap.set(".card-6", { yPercent: 180, opacity: 0 });
+
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: ".portfolio",
             start: "top top",
-            end: "+=300%",
+            end: "+=180%", // Reduced scroll length for seamless transition
             pin: true,
             scrub: 1,
             invalidateOnRefresh: true
@@ -208,22 +213,22 @@ if (document.querySelector(".portfolio")) {
 
     // Stage 1
     tl.to(".card-3", { left: "50%", top: "50%", xPercent: -50, yPercent: -50, right: "auto", bottom: "auto", width: dim.centerWidth, height: dim.centerHeight, opacity: 1, zIndex: 10, duration: 1 }, "step1")
-      .to(".card-4", { bottom: dim.insetPos, opacity: 0.25, duration: 1 }, "step1")
-      .to(".card-5", { bottom: "-10%", opacity: 0, duration: 1 }, "step1");
+      .to(".card-4", { yPercent: 0, opacity: 0.25, duration: 1 }, "step1")
+      .to(".card-5", { yPercent: 60, opacity: 0, duration: 1 }, "step1");
 
     // Stage 2
     tl.to(".card-3", { left: dim.insetPos, top: dim.insetPos, xPercent: 0, yPercent: 0, width: dim.smallWidth, height: dim.smallHeight, opacity: 0.25, zIndex: 1, duration: 1 }, "step2")
       .to(".card-4", { left: "50%", top: "50%", xPercent: -50, yPercent: -50, right: "auto", bottom: "auto", width: dim.centerWidth, height: dim.centerHeight, opacity: 1, zIndex: 10, duration: 1 }, "step2")
-      .to(".card-5", { bottom: dim.insetPos, opacity: 0.25, duration: 1 }, "step2")
-      .to(".card-6", { bottom: "-10%", opacity: 0, duration: 1 }, "step2");
+      .to(".card-5", { yPercent: 0, opacity: 0.25, duration: 1 }, "step2")
+      .to(".card-6", { yPercent: 60, opacity: 0, duration: 1 }, "step2");
 
     // Stage 3
     tl.to(".card-3", { top: "-50%", opacity: 0, duration: 1 }, "step3")
       .to(".card-4", { left: dim.insetPos, top: dim.insetPos, xPercent: 0, yPercent: 0, width: dim.smallWidth, height: dim.smallHeight, opacity: 0.25, zIndex: 1, duration: 1 }, "step3")
       .to(".card-5", { left: "50%", top: "50%", xPercent: -50, yPercent: -50, right: "auto", bottom: "auto", width: dim.centerWidth, height: dim.centerHeight, opacity: 1, zIndex: 10, duration: 1 }, "step3")
-      .to(".card-6", { bottom: dim.insetPos, opacity: 0.25, duration: 1 }, "step3");
+      .to(".card-6", { yPercent: 0, opacity: 0.25, duration: 1 }, "step3");
 
-    // Stage 4 (Fixed Hardcoded values to Dynamic Dimensions)
+    // Stage 4 (Final Card 6 comes to Center & Animation completes)
     tl.to(".card-4", { top: "-50%", opacity: 0, duration: 1 }, "step4")
       .to(".card-5", { left: dim.insetPos, top: dim.insetPos, xPercent: 0, yPercent: 0, width: dim.smallWidth, height: dim.smallHeight, opacity: 0.25, zIndex: 1, duration: 1 }, "step4")
       .to(".card-6", { left: "50%", top: "50%", xPercent: -50, yPercent: -50, right: "auto", bottom: "auto", width: dim.centerWidth, height: dim.centerHeight, opacity: 1, zIndex: 10, duration: 1 }, "step4");
@@ -275,8 +280,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .to([leftBoxes, rightBoxes, flipBadge], { y: "-80%", opacity: 0, filter: "blur(12px)", duration: 1.2, ease: "power2.inOut" }, 0)
         .to(innerCardLoop, { rotateY: 180, duration: 1.6, ease: "none" }, 0);
     } else {
-        // Phone layout flows vertically, so use an entrance reveal instead of
-        // pinning a scene taller than the viewport. Desktop animation is untouched.
         gsap.from([innerCardLoop, leftBoxes, rightBoxes], {
             y: 28,
             opacity: 0,
@@ -288,21 +291,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let animating = false;
+    let textTl; // Timeline ko store karne ke liye variable
+
     function animateText() {
         if (animating) return;
         animating = true;
-        gsap.killTweensOf(compiledLines);
+        
+        // Agar pehle se koi timeline chal rahi hai toh usay kill karein
+        if (textTl) textTl.kill();
+        gsap.killTweensOf([compiledLines, textLeftFinal, textRightFinal]);
 
         gsap.set(compiledLines, { yPercent: 110 });
         gsap.set(textRightFinal, { y: 20, filter: "blur(12px)", autoAlpha: 0 });
 
-        const tl = gsap.timeline({ onComplete() { animating = false; } });
-        tl.to(textLeftFinal, { autoAlpha: 1, duration: 0.2 }, 0)
+        textTl = gsap.timeline({ onComplete() { animating = false; } });
+        textTl.to(textLeftFinal, { autoAlpha: 1, duration: 0.2 }, 0)
           .to(textRightFinal, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power3.out" }, 0.1)
           .to(compiledLines, { yPercent: 0, duration: 1, stagger: 0.18, ease: "power4.out" }, 0);
     }
 
     function resetText() {
+        // Reverse jane par chal rahi sabhi animations ko foran rokein
+        if (textTl) textTl.kill();
+        gsap.killTweensOf([compiledLines, textLeftFinal, textRightFinal]);
+        
+        animating = false; // Flag ko reset karein taake dobara neechay aane pe animation chal sake
+
         gsap.set(compiledLines, { yPercent: 110 });
         gsap.set(textLeftFinal, { autoAlpha: 0 });
         gsap.set(textRightFinal, { autoAlpha: 0, y: 20, filter: "blur(0px)" });
@@ -323,7 +337,11 @@ document.addEventListener("DOMContentLoaded", () => {
 // 8. SECTION 5 (SOLUTION & REVENUE)
 // ==========================================
 if (document.querySelector(".solution-title")) {
-    const solutionTitle = new SplitType(".solution-title", { types: "lines" });
+
+    const solutionTitle = new SplitType(".solution-title", {
+        types: "lines"
+    });
+
     solutionTitle.lines.forEach(line => {
         const wrapper = document.createElement("div");
         wrapper.style.overflow = "hidden";
@@ -331,27 +349,47 @@ if (document.querySelector(".solution-title")) {
         wrapper.appendChild(line);
     });
 
-    gsap.set(solutionTitle.lines, { yPercent: 110 });
+    const solutionText = document.querySelector(".solution-text");
 
-    const solutiontTl = gsap.timeline({
+    // Initial State
+    gsap.set(solutionTitle.lines, {
+        yPercent: 110
+    });
+
+    gsap.set(solutionText, {
+        autoAlpha: 0,
+        y: 30,
+        filter: "blur(8px)"
+    });
+
+    const solutionTl = gsap.timeline({
         scrollTrigger: {
             trigger: ".section-5",
-            start: "-30% top",
-            end: "-20% top",
+            start: "top 70%",
             toggleActions: "play none none none"
         }
     });
 
-    solutiontTl.to(solutionTitle.lines, {
+    // Title Animation
+    solutionTl.to(solutionTitle.lines, {
         yPercent: 0,
         duration: 1,
         stagger: 0.18,
         ease: "power4.out"
     }, 0);
 
-    solutiontTl.to(solutionTitle.lines, {
-    })
-    .call(solutionCount);
+    // Text Animation (same as your textTl)
+    solutionTl.to(solutionText, {
+        autoAlpha: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 0.8,
+        ease: "power3.out"
+    }, 0.1);
+
+    // Counter
+    solutionTl.call(solutionCount);
+
 }
 
 function solutionCount(){
@@ -404,8 +442,7 @@ if (document.querySelector(".portfolio-title")) {
             duration: 1,
             stagger: 0.18,
             ease: "power4.out"
-        }, 0)
-        .call(solutionCount);
+        }, 0);
 }
 
 const portfolioSlider = document.querySelector(".portfolio-slider");
@@ -544,54 +581,12 @@ if (document.querySelector(".video-title")) {
         stagger: 0.18,
         ease: "power4.out"
     });
-
-    // Step 2: Cards Reveal Animation
-    const cards = document.querySelectorAll(".testimonial-card");
-    
-    if (cards.length > 0) {
-        const firstCard = cards[0];
-        const restCards = Array.from(cards).slice(1);
-
-        // Initial setup for cards before scroll
-        gsap.set(cards, { opacity: 0 });
-        
-        // Hide remaining cards directly behind the first card position initially
-        gsap.set(restCards, {
-            x: (index) => -((index + 1) * (firstCard.offsetWidth + 20)), 
-            scale: 0.85
-        });
-
-        // Set first card below the screen center
-        gsap.set(firstCard, {
-            y: 120,
-            scale: 0.9
-        });
-
-        // First Card rises up from below into the center
-        mainSectionTl.to(firstCard, {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.5,
-            ease: "back.out(1.2)"
-        }, "-=0.4"); // Starts right before text finishes
-
-        // Other 3 cards expand out from behind the first card to their places
-        mainSectionTl.to(restCards, {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            duration: 0.7,
-            stagger: 0.12,
-            ease: "power3.out"
-        }, "-=0.2");
-    }
 }
 
 // Video interactive state logic (Cursor hover, Play/Pause toggle, Volume popups)
 let activeVideo = null, activeCard = null, activeState = null;
 
-document.querySelectorAll(".testimonial-card").forEach(card => {
+document.querySelectorAll(".video-card").forEach(card => {
     const video = card.querySelector("video");
     const cursor = card.querySelector(".cursor-glass");
     const speaker = card.querySelector(".speaker-btn");
@@ -599,7 +594,15 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
     const volumeSlider = card.querySelector(".volume-slider");
     const speakerIcon = card.querySelector(".speaker-icon");
 
-    if (video) { video.muted = true; video.volume = 1; video.loop = true; }
+    if (video) { 
+        video.muted = true; 
+        video.volume = 1; 
+        video.loop = true; 
+        // Page load hote hi browser ko video download start karne ko kehna
+        video.preload = "auto";
+        video.load(); 
+    }
+
     if (volumeSlider) volumeSlider.value = 1;
     if (speakerIcon) speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
 
@@ -613,16 +616,13 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
     updateCursor();
 
     card.addEventListener("mouseenter", () => {
-        if (video.readyState < 3) {
-            video.preload = "auto";
-        }
+        // Hover par extra preload logic ki zaroorat nahi hai
         updateCursor();
-        gsap.to(cursor,{
-            opacity:1,
-            scale:1,
-            duration:0.2
+        gsap.to(cursor, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.2
         });
-
     });
 
     card.addEventListener("mouseleave", () => {
@@ -640,17 +640,15 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
         video.pause();
         video.muted = true;
         video.loop = true;
-        volumeSlider.value = 1;
-        speakerIcon.className =
-        "fa-solid fa-volume-high speaker-icon";
-        volumePopup.classList.remove("show");
+        if (volumeSlider) volumeSlider.value = 1;
+        if (speakerIcon) speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
+        if (volumePopup) volumePopup.classList.remove("show");
         updateCursor();
     }
 
     card.addEventListener("click", () => {
         if (activeVideo === video) {
             resetVideoState();
-            
             activeVideo = null;
             activeState = null;
             return;
@@ -659,7 +657,11 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
         if (activeState && activeState.reset) activeState.reset();
 
         expanded = true;
-        if (video) { video.loop = false; video.muted = false; video.play(); }
+        if (video) { 
+            video.loop = false; 
+            video.muted = false; 
+            video.play().catch(err => console.log("Playback error:", err)); 
+        }
 
         activeVideo = video;
         activeCard = card;
@@ -671,7 +673,9 @@ document.querySelectorAll(".testimonial-card").forEach(card => {
         speaker.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            document.querySelectorAll(".volume-popup").forEach(p => { if (p !== volumePopup) p.classList.remove("show"); });
+            document.querySelectorAll(".volume-popup").forEach(p => { 
+                if (p !== volumePopup) p.classList.remove("show"); 
+            });
             if (volumeSlider && video) volumeSlider.value = video.volume;
             if (volumePopup) volumePopup.classList.toggle("show");
         });
@@ -734,8 +738,7 @@ if (document.querySelector(".offer-title")) {
             duration: 1,
             stagger: 0.18,
             ease: "power4.out"
-        }, 0)
-        .call(solutionCount);
+        }, 0);
 }
 
 
@@ -875,17 +878,22 @@ if (slides.length > 0 && nextBtn && prevBtn && counter) {
     }
     updateCounter();
 
-    function goTo(index) {
+    // Added direction parameter: 1 for next (right to left), -1 for prev (left to right)
+    function goTo(index, direction = 1) {
         if (isAnimating || index === current) return;
         isAnimating = true;
 
         const currentSlide = slides[current];
         const nextSlide = slides[index];
 
-        gsap.set(nextSlide, { x: 120, opacity: 0, pointerEvents: "auto" });
+        // Direction ke hisab se starting position set ki hai
+        const startX = 120 * direction;   // Next ke liye +120px, Prev ke liye -120px
+        const exitX = -120 * direction;   // Next ke liye -120px, Prev ke liye +120px
+
+        gsap.set(nextSlide, { x: startX, opacity: 0, pointerEvents: "auto" });
 
         const tl = gsap.timeline({
-            defaults: { duration: .75, ease: "power3.inOut" },
+            defaults: { duration: 0.75, ease: "power3.inOut" },
             onComplete() {
                 currentSlide.style.pointerEvents = "none";
                 current = index;
@@ -894,12 +902,15 @@ if (slides.length > 0 && nextBtn && prevBtn && counter) {
             }
         });
 
-        tl.to(currentSlide, { x: -120, opacity: 0 }, 0);
+        tl.to(currentSlide, { x: exitX, opacity: 0 }, 0);
         tl.to(nextSlide, { x: 0, opacity: 1 }, 0.15);
     }
 
-    nextBtn.addEventListener("click", () => goTo((current + 1) % slides.length));
-    prevBtn.addEventListener("click", () => goTo((current - 1 + slides.length) % slides.length));
+    // Next button: direction = 1
+    nextBtn.addEventListener("click", () => goTo((current + 1) % slides.length, 1));
+    
+    // Prev button: direction = -1
+    prevBtn.addEventListener("click", () => goTo((current - 1 + slides.length) % slides.length, -1));
 
     window.addEventListener("keydown", (e) => {
         if (e.key === "ArrowRight") nextBtn.click();
@@ -944,8 +955,7 @@ if (document.querySelector(".about-title")) {
             duration: 1,
             stagger: 0.18,
             ease: "power4.out"
-        }, 0)
-        .call(solutionCount);
+        }, 0);
 }
 
 if (document.querySelector(".about-section")) {
@@ -962,10 +972,10 @@ if (document.querySelector(".about-section")) {
 
     aboutTl.to(".about-content", { y: -20, opacity: 0.9, ease: "none" }, 0)
            .fromTo(".hero-word", { y: 0, opacity: 0 }, { y: 0, opacity: 1, ease: "none", duration: 2 }, 0)
-           .to(".card1", { y: -140, rotation: 0, scale: 0.98, ease: "none", duration: 2 }, 0)
-           .to(".card2", { y: -140, rotate: -20, ease: "none", duration: 2 }, 0)
-           .to(".card3", { y: -140, x: -100, rotate: 18, ease: "none", duration: 2 }, 0)
-           .to(".card4", { y: -200, x: -90, rotate: 18, ease: "none", duration: 2 }, 0);
+           .to(".card1", { y: -50, rotation: 0, scale: 0.98, ease: "none", duration: 2 }, 0)
+           .to(".card2", { y: -50, rotate: -20, ease: "none", duration: 2 }, 0)
+           .to(".card3", { y: -50, x: -100, rotate: 18, ease: "none", duration: 2 }, 0)
+           .to(".card4", { y: -110, x: -90, rotate: 18, ease: "none", duration: 2 }, 0);
 }
 
 const ribbonTrack = document.querySelector(".ribbon-track");
@@ -1022,9 +1032,8 @@ if (document.querySelector(".faq-title")) {
 
     const faqTitleTl = gsap.timeline({
         scrollTrigger: {
-            trigger: ".faq-section",
-            start: "-40% top",
-            end: "-20% top",
+            trigger: ".ribbon-section",
+            start: "top 30%",
             toggleActions: "play none none none"
         }
     });
@@ -1035,8 +1044,7 @@ if (document.querySelector(".faq-title")) {
             duration: 1,
             stagger: 0.18,
             ease: "power4.out"
-        }, 0)
-        .call(solutionCount);
+        }, 0);
 }
 
 gsap.set(".faq-content", { height: 0 });
@@ -1080,3 +1088,87 @@ window.addEventListener("resize", () => {
         ScrollTrigger.refresh();
     }, 200);
 });
+
+
+// Footer
+if (document.querySelector(".faqFooter-title")) {
+
+    const faqFooterTitle = new SplitType(".faqFooter-title", {
+        types: "lines"
+    });
+
+    faqFooterTitle.lines.forEach(line => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+    });
+
+    const faqFooterText = document.querySelector(".faqFooter-text");
+
+    // Initial State
+    gsap.set(faqFooterTitle.lines, {
+        yPercent: 110
+    });
+
+    gsap.set(faqFooterText, {
+        autoAlpha: 0,
+        y: 30,
+        filter: "blur(8px)"
+    });
+
+    const faqFooterTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".faq-section",
+            start: "30% top",
+            toggleActions: "play none none none"
+        }
+    });
+
+    // Title Animation
+    faqFooterTl.to(faqFooterTitle.lines, {
+        yPercent: 0,
+        duration: 1,
+        stagger: 0.18,
+        ease: "power4.out"
+    }, 0);
+
+    // Text Animation (same as your textTl)
+    faqFooterTl.to(faqFooterText, {
+        autoAlpha: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 0.8,
+        ease: "power3.out"
+    }, 0.1);
+
+}
+
+
+if (document.querySelector(".footer-title")) {
+    const footerTitle = new SplitType(".footer-title", { types: "lines" });
+    footerTitle.lines.forEach(line => {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+    });
+
+    gsap.set(footerTitle.lines, { yPercent: 110 });
+
+    const footertTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".footer",
+            start: "40% 60%",
+            toggleActions: "play none none none"
+        }
+    });
+
+    footertTl.to(footerTitle.lines, {
+        yPercent: 0,
+        duration: 1.5,
+        stagger: 0.18,
+        ease: "power4.out"
+    }, 0);
+
+}
