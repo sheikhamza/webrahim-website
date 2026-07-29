@@ -56,6 +56,12 @@ if (mobileMenuToggle && mobileNavMenu) {
         mobileNavMenu.setAttribute("aria-hidden", String(!open));
     });
     mobileNavMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMobileMenu));
+    document.addEventListener("click", event => {
+        if (!mobileNavMenu.classList.contains("open")) return;
+        if (!mobileNavMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+            closeMobileMenu();
+        }
+    });
 }
 
 // ==========================================
