@@ -904,30 +904,64 @@ html, body { max-width: 100%; overflow-x: hidden; }
     html { scroll-padding-top: 1rem; }
     body { -webkit-tap-highlight-color: transparent; }
 
-    .hero-section { min-height: 100svh; padding-inline: 1rem; }
-    .hero-section nav { gap: .5rem; padding: .55rem .75rem; }
-    .hero-section nav > img { height: 1.55rem; }
-    .hero-section nav > div { gap: .55rem; }
-    .hero-section nav a { font-size: .76rem !important; white-space: nowrap; }
-    .hero-section .call-btn img { height: 1.7rem; }
+    .hero-section { min-height: 100svh; padding: .7rem .75rem 0; }
+    /* Compact mobile-only pill nav. Desktop navigation is left untouched. */
+    .hero-section nav { width: 100%; gap: .4rem; padding: .42rem .55rem; }
+    .hero-section nav > img { height: 1.35rem; width: auto; }
+    .hero-section nav > div { gap: .42rem; min-width: 0; }
+    .hero-section nav a { font-size: .64rem !important; line-height: 1; white-space: nowrap; }
+    .hero-section .call-btn img { height: 1.45rem; }
     .hero-subtitle { font-size: clamp(1rem, 4.5vw, 1.35rem) !important; }
     .hero-text-slider { padding-block: 1.75rem !important; }
 
-    /* The original stacked 3D scene is too tall for a pinned phone viewport.
-       It becomes a flowing, touch-friendly scene while desktop remains pinned. */
-    #scroll-pin-wrapper { min-height: 0 !important; padding: 3rem 1rem; }
+    /* Sections 3–4 are deliberately static on mobile. The desktop pinned
+       flip/reveal composition remains unchanged above this breakpoint. */
+    #scroll-pin-wrapper { min-height: 0 !important; padding: 3.5rem 1rem 4rem; }
     .animation-inner-sticky-canvas { height: auto !important; overflow: visible !important; padding: 0 !important; }
     .animation-inner-sticky-canvas > div {
         display: flex !important;
         flex-direction: column;
         height: auto !important;
-        gap: 1.5rem !important;
+        gap: 1.25rem !important;
     }
-    .animation-inner-sticky-canvas > div > div { width: 100% !important; height: auto !important; min-height: 0 !important; }
-    .animation-inner-sticky-canvas > div > div:nth-child(2) { order: -1; height: min(112vw, 390px) !important; }
-    .cards-left-group, .cards-right-group { position: relative !important; inset: auto !important; height: auto !important; gap: 1rem !important; }
-    .cards-left-group > div, .cards-right-group > div { width: 100% !important; min-height: 150px; padding: 1.25rem !important; }
-    .text-left-final, .text-right-final, .flip-badge { display: none !important; }
+    .animation-inner-sticky-canvas > div > div:first-child,
+    .animation-inner-sticky-canvas > div > div:last-child { display: contents; }
+    .animation-inner-sticky-canvas > div > div:nth-child(2) {
+        order: 2;
+        width: 100% !important;
+        height: min(106vw, 365px) !important;
+        min-height: 0 !important;
+    }
+    .text-left-final {
+        display: flex !important;
+        order: 1;
+        position: static !important;
+        width: 100% !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        padding: 0 !important;
+    }
+    .text-left-final .animated-bage { margin-bottom: .65rem !important; }
+    .text-left-final .flip-title { font-size: clamp(2rem, 10vw, 2.6rem) !important; }
+    .cards-left-group, .cards-right-group {
+        position: static !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        gap: .85rem !important;
+    }
+    .cards-left-group { display: contents !important; }
+    .cards-right-group { display: contents !important; }
+    .cards-left-group > div, .cards-right-group > div {
+        width: 100% !important;
+        min-height: 118px;
+        padding: 1rem !important;
+    }
+    .cards-left-group > div:nth-child(1) { order: 3; }
+    .cards-left-group > div:nth-child(2) { order: 4; }
+    .cards-right-group > div:nth-child(1) { order: 5; }
+    .cards-right-group > div:nth-child(2) { order: 6; }
+    .text-right-final, .flip-badge { display: none !important; }
 
     .section-5, .section-6, .video-section, .offer-section, .work-section,
     .testimonial-section { padding-bottom: 5rem !important; }
@@ -968,4 +1002,64 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { scroll-behavior: auto !important; }
+}
+
+/* Reference mobile layout — intentionally isolated from desktop. */
+@media (max-width: 767px) {
+    .hero-section nav { position: relative; z-index: 30; }
+    .hero-section .desktop-nav-links,
+    .hero-section .call-btn { display: none !important; }
+    .mobile-menu-toggle { display: grid; gap: 3px; width: 25px; padding: 3px 1px; place-content: center; }
+    .mobile-menu-toggle span { display: block; width: 15px; height: 1.5px; border-radius: 2px; background: #FFCD56; transition: transform .2s ease, opacity .2s ease; }
+    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
+    .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-4.5px) rotate(-45deg); }
+    .mobile-nav-menu { display: none; position: absolute; top: 3.7rem; right: .75rem; z-index: 29; width: min(200px, calc(100vw - 1.5rem)); padding: .65rem; flex-direction: column; gap: .2rem; border: 1px solid rgba(255,255,255,.13); border-radius: 1rem; background: rgba(14,14,14,.94); backdrop-filter: blur(16px); box-shadow: 0 16px 35px rgba(0,0,0,.35); }
+    .mobile-nav-menu.open { display: flex !important; }
+    .mobile-nav-link { padding: .7rem .8rem; border-radius: .65rem; font: 400 .88rem/1 "Inter Tight", sans-serif; color: white; text-align: left; }
+    .mobile-nav-call { color: #151515; background: #FFCD56; text-align: center; margin-top: .2rem; }
+
+    /* This is a vertical visual stack, with the existing labels sliding sideways. */
+    .hero-text-slider { flex-direction: column; gap: .05rem; }
+    .hero-text-slider > div { flex: none; width: 100%; height: 1.75rem !important; min-height: 0; }
+    .hero-text-slider > div::before, .hero-text-slider > div::after { display: none; }
+    #leftCurrent, #centerCurrent, #rightCurrent,
+    #leftNext, #centerNext, #rightNext { font-size: .9rem !important; }
+
+    /* First static half: coach badge, visual, then the four pain cards. */
+    .text-left-final { display: none !important; }
+    .flip-badge { display: flex !important; top: -1.7rem !important; font-size: .72rem !important; }
+    .flip-badge img { height: 1.15rem !important; margin-right: .3rem !important; }
+    .animation-inner-sticky-canvas > div > div:nth-child(2) { order: 1; }
+    .cards-left-group > div:nth-child(1) { order: 2; }
+    .cards-left-group > div:nth-child(2) { order: 3; }
+    .cards-right-group > div:nth-child(1) { order: 4; }
+    .cards-right-group > div:nth-child(2) { order: 5; }
+
+    .mobile-real-problem { display: block; padding: .2rem 1rem 4rem; text-align: center; }
+    .mobile-real-problem .animated-bage { display: flex; align-items: center; justify-content: center; gap: .45rem; margin: 0 0 .9rem; font: 400 .72rem/1 "Inter Tight", sans-serif; }
+    .mobile-real-problem .animated-bage img { width: 18px; height: 18px; object-fit: contain; }
+    .mobile-real-problem h3 { margin: 0; font-size: clamp(1.65rem, 8vw, 2.1rem) !important; line-height: .94; letter-spacing: -.5px; }
+    .mobile-real-problem h3 span, .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }
+    .mobile-real-problem-image { display: block; width: 100%; margin: 1.4rem auto 1.6rem; border-radius: .6rem; }
+    .mobile-real-problem p { margin: 0 auto; max-width: 340px; font: 300 .86rem/1.42 "Inter Tight", sans-serif; color: white; }
+
+    /* Founder panel matches the reference's static text + portrait composition. */
+    .about-section { padding-top: 4rem !important; }
+    .about-container { max-height: none; min-height: 0; padding: 0 1rem 3rem !important; }
+    .about-section .about-content { text-align: center; }
+    .about-section .about-content .animated-bage { text-align: center; }
+    .about-section .about-title { font-size: 2rem !important; margin-bottom: .8rem !important; }
+    .about-section .hero-desc { font-size: .9rem !important; line-height: 1.42 !important; margin: 0 auto 1.2rem !important; }
+    .about-section .hero-actions { justify-content: center; flex-wrap: wrap; gap: .5rem; }
+    .about-section .hero-actions .hero-btn { font-size: .76rem; padding: .45rem .75rem; }
+    .about-section .hero-actions a { padding: .65rem .75rem; font-size: .72rem; }
+    .about-section .cards-wrap { display: block !important; height: 330px !important; margin-top: .5rem; }
+    .about-section .card1 { position: relative !important; top: auto !important; right: auto !important; width: min(100%, 330px) !important; height: 330px !important; margin: 0 auto; overflow: hidden; border-radius: 1.25rem !important; }
+    .about-section .card1 img { object-fit: cover; }
+    .about-section .hero-word { display: none; }
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-toggle, .mobile-nav-menu, .mobile-real-problem { display: none !important; }
 }

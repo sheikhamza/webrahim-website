@@ -39,6 +39,25 @@ if (elasticStack) {
     });
 }
 
+// Mobile navigation drawer
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+const mobileNavMenu = document.getElementById("mobileNavMenu");
+if (mobileMenuToggle && mobileNavMenu) {
+    const closeMobileMenu = () => {
+        mobileMenuToggle.classList.remove("is-open");
+        mobileMenuToggle.setAttribute("aria-expanded", "false");
+        mobileNavMenu.classList.remove("open");
+        mobileNavMenu.setAttribute("aria-hidden", "true");
+    };
+    mobileMenuToggle.addEventListener("click", () => {
+        const open = mobileNavMenu.classList.toggle("open");
+        mobileMenuToggle.classList.toggle("is-open", open);
+        mobileMenuToggle.setAttribute("aria-expanded", String(open));
+        mobileNavMenu.setAttribute("aria-hidden", String(!open));
+    });
+    mobileNavMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMobileMenu));
+}
+
 // ==========================================
 // 3. REVIEW SLIDER
 // ==========================================
@@ -242,6 +261,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const innerCanvas = document.querySelector(".animation-inner-sticky-canvas");
     if (!mainWrapper || !innerCanvas) return;
 
+    // On phones this section is intentionally a normal, readable story.  Do
+    // not set any initial GSAP values here: they would leave content hidden
+    // before a scroll trigger gets a chance to run.
+    if (window.matchMedia("(max-width: 767px)").matches) return;
+
     const leftBoxes = document.querySelector(".cards-left-group");
     const rightBoxes = document.querySelector(".cards-right-group");
     const innerCardLoop = document.querySelector(".flip-card-inner-box");
@@ -263,10 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.set(compiledLines, { yPercent: 110 });
     gsap.set([textLeftFinal, textRightFinal], { autoAlpha: 0, pointerEvents: "none" });
 
-    const isCompactLayout = window.matchMedia("(max-width: 767px)").matches;
-
-    if (!isCompactLayout) {
-        gsap.timeline({
+    gsap.timeline({
             scrollTrigger: {
                 trigger: mainWrapper,
                 start: "top top",
@@ -279,16 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .to([leftBoxes, rightBoxes, flipBadge], { y: "-80%", opacity: 0, filter: "blur(12px)", duration: 1.2, ease: "power2.inOut" }, 0)
         .to(innerCardLoop, { rotateY: 180, duration: 1.6, ease: "none" }, 0);
-    } else {
-        gsap.from([innerCardLoop, leftBoxes, rightBoxes], {
-            y: 28,
-            opacity: 0,
-            duration: 0.7,
-            stagger: 0.12,
-            ease: "power3.out",
-            scrollTrigger: { trigger: mainWrapper, start: "top 78%", once: true }
-        });
-    }
 
     let animating = false;
     let textTl; // Timeline ko store karne ke liye variable
@@ -322,15 +333,13 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.set(textRightFinal, { autoAlpha: 0, y: 20, filter: "blur(0px)" });
     }
 
-    if (!isCompactLayout) {
-        ScrollTrigger.create({
+    ScrollTrigger.create({
             trigger: mainWrapper,
             start: "top+=42% top",
             onEnter: animateText,
             onLeaveBack: resetText,
             onEnterBack: animateText
         });
-    }
 });
 
 // ==========================================
@@ -923,7 +932,7 @@ if (slides.length > 0 && nextBtn && prevBtn && counter) {
 // ==========================================
 // 13. SECTION 11 (ABOUT) & RIBBON
 // ==========================================
-if (document.querySelector(".about-title")) {
+if (document.querySelector(".about-title") && !window.matchMedia("(max-width: 767px)").matches) {
     
     const aboutTitle = new SplitType(".about-title", {
         types: "lines"
@@ -958,7 +967,7 @@ if (document.querySelector(".about-title")) {
         }, 0);
 }
 
-if (document.querySelector(".about-section")) {
+if (document.querySelector(".about-section") && !window.matchMedia("(max-width: 767px)").matches) {
     const aboutTl = gsap.timeline({
         scrollTrigger: {
             trigger: ".about-section",

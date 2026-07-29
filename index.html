@@ -55,7 +55,7 @@
                 <!-- Top Nav Info -->
                 <nav class="flex items-center justify-between gap-3 sm:gap-6 lg:gap-12 rounded-full border border-white/10 bg-black/20 backdrop-blur-md px-4 sm:px-6 lg:px-2 py-[10px]">
                     <img src="./assets/images/logo.png" class="sm:h-7 lg:h-9 xl:h-9">
-                    <div class="flex sm:gap-6 lg:gap-8 font-inter-tight font-thin">
+                    <div class="desktop-nav-links flex sm:gap-6 lg:gap-8 font-inter-tight font-thin">
                         <a href="#workflow-section" class="text-[16px]">How it works</a>
                         <a href="#offer-section" class="text-[16px]">Offers</a>
                         <a href="#testimonials" class="text-[16px]">Reviews</a>
@@ -67,7 +67,16 @@
                             Book Call
                         </span>
                     </a>
+                    <button type="button" class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNavMenu">
+                        <span></span><span></span><span></span>
+                    </button>
                 </nav>
+                <div id="mobileNavMenu" class="mobile-nav-menu" aria-hidden="true">
+                    <a class="mobile-nav-link" href="#workflow-section">How it works</a>
+                    <a class="mobile-nav-link" href="#offer-section">Offers</a>
+                    <a class="mobile-nav-link" href="#testimonials">Reviews</a>
+                    <a class="mobile-nav-link mobile-nav-call" href="#contact">Talk With Ibrahim</a>
+                </div>
 
                 <!-- Hero Content -->
                 <div class="relative w-[700px] mx-auto space-y-3 sm:space-y-8 lg:space-y-[19px]  mt-12 sm:mt-16 lg:mt-20">
@@ -411,6 +420,13 @@
 
                     </div>
                 </div>
+            </section>
+            <!-- Mobile-only static follow-up for the second half of the desktop flip sequence. -->
+            <section class="mobile-real-problem panel">
+                <div class="animated-bage"><img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Real-Problem.gif" alt="The Real Problem">The Real Problem</div>
+                <h3>You're <span>Not Losing</span><br>Leads Because You<br>Need More Traffic.</h3>
+                <img loading="lazy" decoding="async" src="./assets/images/3d-image-2.png" alt="The real problem" class="mobile-real-problem-image">
+                <p>Most coaches who come to me aren't marketing wrong. They are posting daily, showing up, making it work. But there's a quieter problem nobody talks about: <strong>Every prospect who visits your website and doesn't book is a real cost.</strong><br><br>If your website should convert at 4% but converts at 1.5%, and you get 300 visitors/month at a $5,000 offer, <strong>you're losing $37,500/month in opportunity cost.</strong></p>
             </section>
             <!-- section 5 -->
             <section class="section-5 panel pb-[150px] pt-[20px] text-center">
@@ -1144,7 +1160,6 @@
                             <a href="#" class="px-[18px] py-[15px] rounded-full border border-white/15 bg-black/50 text-white transition-all duration-300 hover:shadow-[0_4px_25px_rgba(0,0,0)]">
                                 Explore My Work
                             </a>
-                            <!-- <a href="#" class="px-6 py-3 rounded-full border border-white/15 bg-black/50 text-white">Explore My Work</a> -->
                             </div>
                         </div>
 
