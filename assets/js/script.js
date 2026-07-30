@@ -1133,9 +1133,10 @@ if (document.querySelector(".about-section") && !window.matchMedia("(max-width: 
     const aboutTl = gsap.timeline({
         scrollTrigger: {
             trigger: ".about-section",
-            start: "15% top",
+            start: "20% top",
             end: "+=300",
             scrub: 2,
+            markers:true,
             pin: true,
             anticipatePin: 1
         }
