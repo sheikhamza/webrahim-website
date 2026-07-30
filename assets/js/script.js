@@ -79,61 +79,108 @@ if (elasticStack) {
 // Mobile navigation drawer
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
 const mobileNavMenu = document.getElementById("mobileNavMenu");
+
 if (mobileMenuToggle && mobileNavMenu) {
+
     const closeMobileMenu = () => {
         mobileMenuToggle.classList.remove("is-open");
         mobileMenuToggle.setAttribute("aria-expanded", "false");
+
         mobileNavMenu.classList.remove("open");
         mobileNavMenu.setAttribute("aria-hidden", "true");
     };
-    mobileMenuToggle.addEventListener("click", () => {
-        const open = mobileNavMenu.classList.toggle("open");
+
+    mobileMenuToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        const open = !mobileNavMenu.classList.contains("open");
+
+        mobileNavMenu.classList.toggle("open", open);
         mobileMenuToggle.classList.toggle("is-open", open);
-        mobileMenuToggle.setAttribute("aria-expanded", String(open));
-        mobileNavMenu.setAttribute("aria-hidden", String(!open));
+
+        mobileMenuToggle.setAttribute("aria-expanded", open);
+        mobileNavMenu.setAttribute("aria-hidden", !open);
     });
-    mobileNavMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMobileMenu));
-    document.addEventListener("click", event => {
-        if (!mobileNavMenu.classList.contains("open")) return;
-        if (!mobileNavMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+
+    mobileNavMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
             closeMobileMenu();
-        }
+        });
     });
+
 }
 
 // ==========================================
 // 3. REVIEW SLIDER
 // ==========================================
 document.querySelectorAll(".review-slider").forEach((slider, index) => {
-    const cards = slider.querySelectorAll(".review-card");
-    if (cards.length === 0) return;
+    const cards = Array.from(slider.querySelectorAll(".review-card"));
+    if (!cards.length) return;
+
+    // 1. Force absolute stacking setup explicitly for all cards
+    gsap.set(cards, {
+        autoAlpha: 0,
+        y: 10,
+        filter: "blur(10px)",
+        pointerEvents: "none"
+    });
+
+    // 2. Make only first card visible initially
+    gsap.set(cards[0], {
+        autoAlpha: 1,
+        y: 0,
+        filter: "blur(0px)",
+        pointerEvents: "auto"
+    });
 
     let current = 0;
+    let isAnimating = false;
 
-    gsap.set(cards, { opacity: 0, y: 10, filter: "blur(10px)" });
-    gsap.set(cards[0], { opacity: 1, y: 0, filter: "blur(0px)" });
+    function playNextCard() {
+        if (isAnimating) return;
+        isAnimating = true;
 
-    setTimeout(() => {
-        setInterval(() => {
-            const next = (current + 1) % cards.length;
-            const tl = gsap.timeline();
+        const next = (current + 1) % cards.length;
 
-            tl.to(cards[current], {
-                opacity: 0,
-                y: -10,
+        const tl = gsap.timeline({
+            onComplete: () => {
+                current = next;
+                isAnimating = false;
+            }
+        });
+
+        // Hide current card
+        tl.to(cards[current], {
+            autoAlpha: 0,
+            y: -10,
+            filter: "blur(10px)",
+            duration: 0.7,
+            ease: "power3.inOut",
+            pointerEvents: "none"
+        })
+        // Show next card
+        .fromTo(cards[next],
+            {
+                autoAlpha: 0,
+                y: 10,
                 filter: "blur(10px)",
-                duration: 0.7,
-                ease: "power3.inOut"
-            });
+                pointerEvents: "none"
+            },
+            {
+                autoAlpha: 1,
+                y: 0,
+                filter: "blur(0px)",
+                duration: 0.8,
+                ease: "power3.out",
+                pointerEvents: "auto"
+            },
+            "-=0.25"
+        );
+    }
 
-            tl.fromTo(cards[next],
-                { opacity: 0, y: 10, filter: "blur(10px)" },
-                { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power3.out" },
-                "-=0.25"
-            );
-
-            current = next;
-        }, 5000);
+    // Delay start per slider index then run interval cleanly
+    setTimeout(() => {
+        setInterval(playNextCard, 5000);
     }, index * 2500);
 });
 
@@ -198,85 +245,57 @@ if (
     centerNext &&
     rightNext
 ) {
-
     function isMobile() {
         return window.innerWidth < 768;
     }
 
-    function getWordIndex(offset) {
-        return (currentIndex + offset + words.length) % words.length;
+    // Exact word retrieval for sequence logic
+    function getWord(offset) {
+        return words[(currentIndex + offset + words.length) % words.length];
     }
 
-    function updateCurrent() {
-        leftCurrent.textContent = words[getWordIndex(0)];
-        centerCurrent.textContent = words[getWordIndex(1)];
-        rightCurrent.textContent = words[getWordIndex(2)];
+    // Set text contents cleanly
+    function updateText() {
+        // Current slots state
+        leftCurrent.textContent = getWord(0);
+        centerCurrent.textContent = getWord(1);
+        rightCurrent.textContent = getWord(2);
+
+        // Next slots state (Exact 1-step ahead continuous sequence)
+        leftNext.textContent = getWord(1);
+        centerNext.textContent = getWord(2);
+        rightNext.textContent = getWord(3);
     }
 
     function resetPositions() {
         gsap.set(
-            [
-                leftCurrent,
-                centerCurrent,
-                rightCurrent,
-                leftNext,
-                centerNext,
-                rightNext
-            ],
-            {
-                clearProps: "transform"
-            }
+            [leftCurrent, centerCurrent, rightCurrent, leftNext, centerNext, rightNext],
+            { clearProps: "all" }
         );
 
-        if (isMobile()) {
-            gsap.set([leftCurrent, centerCurrent, rightCurrent], {
-                x: 0,
-                y: 0
-            });
+        const mobile = isMobile();
 
-            // Mobile: Next word upar se start hoga (Top-to-Bottom flow ke liye)
-            gsap.set(leftNext, {
-                x: 0,
-                y: -leftCurrent.parentElement.offsetHeight
-            });
+        gsap.set([leftCurrent, centerCurrent, rightCurrent], { x: 0, y: 0 });
 
-            gsap.set(centerNext, {
-                x: 0,
-                y: -centerCurrent.parentElement.offsetHeight
-            });
-
-            gsap.set(rightNext, {
-                x: 0,
-                y: -rightCurrent.parentElement.offsetHeight
-            });
-
+        if (mobile) {
+            // Next words niche se enter hone ke liye position baseline (Bottom to Top flow)
+            gsap.set(leftNext, { x: 0, y: leftCurrent.parentElement.offsetHeight });
+            gsap.set(centerNext, { x: 0, y: centerCurrent.parentElement.offsetHeight });
+            gsap.set(rightNext, { x: 0, y: rightCurrent.parentElement.offsetHeight });
         } else {
-            gsap.set([leftCurrent, centerCurrent, rightCurrent], {
-                x: 0,
-                y: 0
-            });
-
-            gsap.set(leftNext, {
-                x: leftCurrent.parentElement.offsetWidth,
-                y: 0
-            });
-
-            gsap.set(centerNext, {
-                x: centerCurrent.parentElement.offsetWidth,
-                y: 0
-            });
-
-            gsap.set(rightNext, {
-                x: rightCurrent.parentElement.offsetWidth,
-                y: 0
-            });
+            // Next words right side se enter honge (Right to Left flow)
+            gsap.set(leftNext, { x: leftCurrent.parentElement.offsetWidth, y: 0 });
+            gsap.set(centerNext, { x: centerCurrent.parentElement.offsetWidth, y: 0 });
+            gsap.set(rightNext, { x: rightCurrent.parentElement.offsetWidth, y: 0 });
         }
     }
 
-    updateCurrent();
+    updateText();
     resetPositions();
 
-    window.addEventListener("resize", resetPositions);
+    window.addEventListener("resize", () => {
+        resetPositions();
+    });
 
     let isAnimating = false;
 
@@ -284,69 +303,65 @@ if (
         if (isAnimating) return;
         isAnimating = true;
 
-        const nextIndex = (currentIndex + 1) % words.length;
+        const mobile = isMobile();
 
-        // Sequence sync
-        leftNext.textContent = words[(nextIndex + 0) % words.length];
-        centerNext.textContent = words[(nextIndex + 1) % words.length];
-        rightNext.textContent = words[(nextIndex + 2) % words.length];
+        const leftH = leftCurrent.parentElement.offsetHeight;
+        const centerH = centerCurrent.parentElement.offsetHeight;
+        const rightH = rightCurrent.parentElement.offsetHeight;
 
-        const leftWidth = leftCurrent.parentElement.offsetWidth;
-        const centerWidth = centerCurrent.parentElement.offsetWidth;
-        const rightWidth = rightCurrent.parentElement.offsetWidth;
+        const leftW = leftCurrent.parentElement.offsetWidth;
+        const centerW = centerCurrent.parentElement.offsetWidth;
+        const rightW = rightCurrent.parentElement.offsetWidth;
 
-        const leftHeight = leftCurrent.parentElement.offsetHeight;
-        const centerHeight = centerCurrent.parentElement.offsetHeight;
-        const rightHeight = rightCurrent.parentElement.offsetHeight;
-
-        if (isMobile()) {
-            // Top to Bottom flow initial setup
-            gsap.set(leftNext, { x: 0, y: -leftHeight });
-            gsap.set(centerNext, { x: 0, y: -centerHeight });
-            gsap.set(rightNext, { x: 0, y: -rightHeight });
+        // Ensure proper starting transforms before GSAP timeline
+        if (mobile) {
+            gsap.set(leftNext, { x: 0, y: leftH });
+            gsap.set(centerNext, { x: 0, y: centerH });
+            gsap.set(rightNext, { x: 0, y: rightH });
         } else {
-            gsap.set(leftNext, { x: leftWidth, y: 0 });
-            gsap.set(centerNext, { x: centerWidth, y: 0 });
-            gsap.set(rightNext, { x: rightWidth, y: 0 });
+            gsap.set(leftNext, { x: leftW, y: 0 });
+            gsap.set(centerNext, { x: centerW, y: 0 });
+            gsap.set(rightNext, { x: rightW, y: 0 });
         }
 
         const tl = gsap.timeline({
             defaults: {
-                duration: 0.6,
+                duration: 0.65,
                 ease: "power3.inOut"
             },
             onComplete() {
-                currentIndex = nextIndex;
+                // Advance main index by 1 step
+                currentIndex = (currentIndex + 1) % words.length;
 
-                updateCurrent();
+                // Instantly sync text content without visual pop
+                updateText();
                 resetPositions();
 
                 isAnimating = false;
             }
         });
 
-        if (isMobile()) {
-            // Top to Bottom animation (Current elements down slide hongi, Next upar se aayengi)
-            tl.to(leftCurrent, { y: leftHeight }, 0)
-                .to(centerCurrent, { y: centerHeight }, 0)
-                .to(rightCurrent, { y: rightHeight }, 0)
-                .to(leftNext, { y: 0 }, 0)
-                .to(centerNext, { y: 0 }, 0)
-                .to(rightNext, { y: 0 }, 0);
-
+        if (mobile) {
+            // Mobile Slide Up Animation: Purane words upar niklengay, naye niche se aayenge
+            tl.to(leftCurrent, { y: -leftH }, 0)
+              .to(centerCurrent, { y: -centerH }, 0)
+              .to(rightCurrent, { y: -rightH }, 0)
+              .to(leftNext, { y: 0 }, 0)
+              .to(centerNext, { y: 0 }, 0)
+              .to(rightNext, { y: 0 }, 0);
         } else {
-            tl.to(leftCurrent, { x: -leftWidth }, 0)
-                .to(centerCurrent, { x: -centerWidth }, 0)
-                .to(rightCurrent, { x: -rightWidth }, 0)
-                .to(leftNext, { x: 0 }, 0)
-                .to(centerNext, { x: 0 }, 0)
-                .to(rightNext, { x: 0 }, 0);
+            // Desktop Slide Left Animation: Purane words left niklengay, naye right se aayenge
+            tl.to(leftCurrent, { x: -leftW }, 0)
+              .to(centerCurrent, { x: -centerW }, 0)
+              .to(rightCurrent, { x: -rightW }, 0)
+              .to(leftNext, { x: 0 }, 0)
+              .to(centerNext, { x: 0 }, 0)
+              .to(rightNext, { x: 0 }, 0);
         }
     }
 
     setInterval(animateSlider, 3000);
 }
-
 // ==========================================
 // 6. PORTFOLIO PINNED CARDS (SECTION 2)
 // ==========================================

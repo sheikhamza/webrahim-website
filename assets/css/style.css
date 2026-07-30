@@ -220,18 +220,38 @@ main {
 }
 
 /* button hover effect */
-.hero-btn img {
-    width: 0;
-    transition: all 0.3s ease-in-out;
+.hero-btn{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    overflow: visible; /* important */
 }
 
 .hero-btn:hover{
-    cursor: pointer !important;
+    cursor: pointer;
 }
 
-.hero-btn:hover img {
+.hero-btn img{
+    position: absolute;
+    right: -48px; /* 38px image + 10px gap */
+    top: 50%;
     width: 38px;
+    height: 38px; /* button height ke barabar */
+    transform: translateY(-50%) scale(0.5);
+    opacity: 0;
+    transition: all .35s ease;
+    pointer-events: none;
+}
+
+.hero-btn:hover img{
     opacity: 1;
+    transform: translateY(-50%) scale(1);
 }
 
 .hero-title::first-line{
@@ -241,16 +261,6 @@ main {
 .hero-text-slider{
     font-family: 'Coolvetica-Bold';
     letter-spacing: 1px;
-}
-
-@media(max-width:640px){
-
-    .elastic-stack{
-
-    transform:scale(.85);
-
-    }
-
 }
 
 /* Hero Section style end */
@@ -783,9 +793,10 @@ body.modal-open{
 html, body { max-width: 100%; overflow-x: hidden; }
 
 /* Mobile nav overlay */
-#mobileNavMenu.open { display: flex; }
+#mobileNavMenu.open { display: flex; transition: 5s; }
 .mobile-nav-link { position: relative; }
 .mobile-nav-link:hover { color: #FFB300; }
+
 
 /* Hero title first-line huge line-height only on desktop */
 @media (max-width: 1023px) {
@@ -818,12 +829,21 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .step-card p { font-size: 14px; width: 200px; line-height: 1.5; }
 }
 @media (max-width: 479px) {
-    .workflow-track { gap: 28px; padding-left: 24px; }
+    .work-section{
+        min-height:max-content;
+    }
+    .workflow-track { gap: 40px; padding-left: 24px; }
     .timeline { left: 24px; width: calc(100% - 48px); top: 65px; }
-    .step-card { width: 200px; }
-    .number { font-size: 56px; margin-bottom: 24px; }
-    .step-card h3 { font-size: 22px; }
-    .step-card p { font-size: 13px; width: 180px; }
+    .step-card { width:auto; }
+    .number { font-size: 80px; margin-bottom: 24px; }
+    .step-card h3 { font-size: 35px; }
+    .step-card p { font-size: 16px; width: 180px; }
+    .timeline-base{
+        top: 30px;
+    }
+    .timeline-progress{
+        top: 30px;
+    }
 }
 
 /* Section 5 — funnel SVG scales down naturally via viewBox; nothing to change */
@@ -900,15 +920,13 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 
 /* FAQ heading on mobile */
-@media (max-width: 640px) {
-    .plus { display: none; }
-}
+
 
 /* Prevent portfolio modal overflow on small screens */
 @media (max-width: 640px) {
     #portfolioModal { padding: 1rem; }
     #modalContent { max-width: 100%; height: 85vh; }
-    #closePortfolio { top: 1rem; right: 1rem; width: 44px; height: 44px; font-size: 20px; }
+    #closePortfolio { top: 1rem; right: 1rem; width: 44px; height: 44px; font-size: 20px; z-index: 99;}
 }
 
 /* Ribbon square separators */
@@ -964,7 +982,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     html { scroll-padding-top: 1rem; }
     body { -webkit-tap-highlight-color: transparent; }
 
-    .hero-section { min-height: 100svh;  background-image: url(../images/hero-mobile-image.png)!important; }
+    .hero-section { min-height: 100svh;  background-image: url(../images/hero-mobile-image.webp)!important; }
     /* Compact mobile-only pill nav. Desktop navigation is left untouched. */
     .hero-section nav { width: 100%; gap: .4rem; padding: .42rem .55rem; }
     .hero-section nav > img { height: 1.35rem; width: auto; }
@@ -981,7 +999,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
         display: flex !important;
         flex-direction: column;
         height: auto !important;
-        gap: 1.25rem !important;
     }
     .animation-inner-sticky-canvas > div > div:first-child,
     .animation-inner-sticky-canvas > div > div:last-child { display: contents; }
@@ -1027,12 +1044,13 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .offer-card h5 { margin-bottom: 2rem; }
 
     .video-wrapper { width: 100% !important; padding-top: 2rem !important; }
-    .video-testimonial-container { gap: 1rem !important; padding-inline: max(1rem, calc((100vw - 214px) / 2)); }
+    .video-testimonial-container { gap: 1rem !important; }
     .video-card { width: 214px !important; height: 380px !important; }
 
+    .testimonial-section{ min-height: max-content;}
     .testimonial-section #testimonialTrack { height: 620px !important; }
     .testimonial-section .testimonial-slide .mt-16 { margin-top: 1.25rem; }
-    .testimonial-section .testimonial-slide p { font-size: clamp(1.05rem, 5vw, 1.35rem) !important; }
+    .testimonial-section .testimonial-slide .review { font-size: 22px !important; }
 
     .about-container { max-height: none; min-height: 620px; }
     .about-section .hero-actions { flex-wrap: wrap; }
@@ -1051,7 +1069,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .hero-section nav > img { height: 1.35rem; }
     .hero-section .call-btn img { height: 1.5rem; }
     .hero-text-slider { font-size: .9rem !important; }
-    .testimonial-section #testimonialTrack { height: 500px !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1080,7 +1097,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .mobile-nav-menu { display: none; position: absolute; top: 3.7rem; right: .75rem; z-index: 29; width: min(200px, calc(100vw - 1.5rem)); padding: .65rem; flex-direction: column; gap: .2rem; border: 1px solid rgba(255,255,255,.13); border-radius: 1rem; background: rgba(14,14,14,.94); backdrop-filter: blur(16px); box-shadow: 0 16px 35px rgba(0,0,0,.35); }
     .mobile-nav-menu.open { display: flex !important; }
     .mobile-nav-link { padding: .7rem .8rem; border-radius: .65rem; font: 400 .88rem/1 "Inter Tight", sans-serif; color: white; text-align: left; }
-    .mobile-nav-call { display: flex; align-items: center; justify-content: center; gap: .4rem; width: max-content; margin: .55rem auto .15rem; padding: .42rem .45rem .42rem .8rem; color: #151515; background: #fff; text-align: center; font-size: .72rem !important; }
+    .mobile-nav-call { display: flex; align-items: center; justify-content: center; gap: .4rem; margin-left: 5px; padding: .42rem .45rem .42rem .8rem; color: #151515; background: #fff; text-align: center; font-size: .72rem !important; }
     .mobile-nav-call img { width: 1.4rem; height: 1.4rem; border-radius: 999px; object-fit: cover; }
 
     /* This is a vertical visual stack, with the existing labels sliding sideways. */
@@ -1116,7 +1133,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .mobile-real-problem .animated-bage img { width: 25px; height: 25px; object-fit: contain; }
     .mobile-real-problem h3 { margin: 0; line-height: .94; letter-spacing: -.5px; }
     .mobile-real-problem h3 span, .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }
-    .mobile-real-problem-image { display: block; width: 100%; margin: 1.4rem auto 1.6rem; border-radius: .6rem; }
+    .mobile-real-problem-image { display: block; width: 100%; margin: 40px auto 40px; border-radius: .6rem; }
 
     /* Founder panel matches the reference's static text + portrait composition. */
     .about-section { padding-top: 20px !important; }
@@ -1126,7 +1143,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .about-section .about-title { margin-bottom: .8rem !important; }
     .about-section .hero-desc { line-height: 1.42 !important; margin: 0 auto 1.2rem !important; }
     .about-section .hero-actions { justify-content: center; flex-wrap: wrap; gap: .5rem; }
-    .about-section .hero-actions .hero-btn { padding: .45rem .75rem; }
     .about-section .hero-actions a { padding: .65rem .75rem; }
     .about-section .cards-wrap { display: block !important; height: 330px !important; }
     .about-section .card1 { position: relative !important; top: auto !important; right: auto !important; width: 270px !important; height: 337px !important; margin: 0 auto; overflow: hidden; border-radius: 1.25rem !important; }
@@ -1139,7 +1155,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .faq-section { min-height: 0 !important; }
 
     footer{
-        background-image: url(../images/footer-mobile.png) !important;
+        background-image: url(../images/footer-mobile.webp) !important;
     }
 }
 
