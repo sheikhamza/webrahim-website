@@ -180,9 +180,7 @@ const words = [
     "LinkedIn Branding"
 ];
 
-let left = 1;
-let center = 0;
-let right = 2;
+let currentIndex = 0;
 
 const leftCurrent = document.getElementById("leftCurrent");
 const centerCurrent = document.getElementById("centerCurrent");
@@ -200,28 +198,79 @@ if (
     centerNext &&
     rightNext
 ) {
+
+    function isMobile() {
+        return window.innerWidth < 768;
+    }
+
+    function getWordIndex(offset) {
+        return (currentIndex + offset + words.length) % words.length;
+    }
+
     function updateCurrent() {
-        leftCurrent.textContent = words[left];
-        centerCurrent.textContent = words[center];
-        rightCurrent.textContent = words[right];
+        leftCurrent.textContent = words[getWordIndex(0)];
+        centerCurrent.textContent = words[getWordIndex(1)];
+        rightCurrent.textContent = words[getWordIndex(2)];
     }
 
     function resetPositions() {
-        gsap.set([leftCurrent, centerCurrent, rightCurrent], {
-            x: 0
-        });
+        gsap.set(
+            [
+                leftCurrent,
+                centerCurrent,
+                rightCurrent,
+                leftNext,
+                centerNext,
+                rightNext
+            ],
+            {
+                clearProps: "transform"
+            }
+        );
 
-        gsap.set(leftNext, {
-            x: leftCurrent.parentElement.offsetWidth
-        });
+        if (isMobile()) {
+            gsap.set([leftCurrent, centerCurrent, rightCurrent], {
+                x: 0,
+                y: 0
+            });
 
-        gsap.set(centerNext, {
-            x: centerCurrent.parentElement.offsetWidth
-        });
+            // Mobile: Next word upar se start hoga (Top-to-Bottom flow ke liye)
+            gsap.set(leftNext, {
+                x: 0,
+                y: -leftCurrent.parentElement.offsetHeight
+            });
 
-        gsap.set(rightNext, {
-            x: rightCurrent.parentElement.offsetWidth
-        });
+            gsap.set(centerNext, {
+                x: 0,
+                y: -centerCurrent.parentElement.offsetHeight
+            });
+
+            gsap.set(rightNext, {
+                x: 0,
+                y: -rightCurrent.parentElement.offsetHeight
+            });
+
+        } else {
+            gsap.set([leftCurrent, centerCurrent, rightCurrent], {
+                x: 0,
+                y: 0
+            });
+
+            gsap.set(leftNext, {
+                x: leftCurrent.parentElement.offsetWidth,
+                y: 0
+            });
+
+            gsap.set(centerNext, {
+                x: centerCurrent.parentElement.offsetWidth,
+                y: 0
+            });
+
+            gsap.set(rightNext, {
+                x: rightCurrent.parentElement.offsetWidth,
+                y: 0
+            });
+        }
     }
 
     updateCurrent();
@@ -232,50 +281,67 @@ if (
     let isAnimating = false;
 
     function animateSlider() {
-
         if (isAnimating) return;
         isAnimating = true;
 
-        const newLeft = (left + 1) % words.length;
-        const newCenter = (center + 1) % words.length;
-        const newRight = (right + 1) % words.length;
+        const nextIndex = (currentIndex + 1) % words.length;
 
-        leftNext.textContent = words[newLeft];
-        centerNext.textContent = words[newCenter];
-        rightNext.textContent = words[newRight];
+        // Sequence sync
+        leftNext.textContent = words[(nextIndex + 0) % words.length];
+        centerNext.textContent = words[(nextIndex + 1) % words.length];
+        rightNext.textContent = words[(nextIndex + 2) % words.length];
 
         const leftWidth = leftCurrent.parentElement.offsetWidth;
         const centerWidth = centerCurrent.parentElement.offsetWidth;
         const rightWidth = rightCurrent.parentElement.offsetWidth;
 
-        gsap.set(leftNext, { x: leftWidth });
-        gsap.set(centerNext, { x: centerWidth });
-        gsap.set(rightNext, { x: rightWidth });
+        const leftHeight = leftCurrent.parentElement.offsetHeight;
+        const centerHeight = centerCurrent.parentElement.offsetHeight;
+        const rightHeight = rightCurrent.parentElement.offsetHeight;
 
-        gsap.timeline({
+        if (isMobile()) {
+            // Top to Bottom flow initial setup
+            gsap.set(leftNext, { x: 0, y: -leftHeight });
+            gsap.set(centerNext, { x: 0, y: -centerHeight });
+            gsap.set(rightNext, { x: 0, y: -rightHeight });
+        } else {
+            gsap.set(leftNext, { x: leftWidth, y: 0 });
+            gsap.set(centerNext, { x: centerWidth, y: 0 });
+            gsap.set(rightNext, { x: rightWidth, y: 0 });
+        }
+
+        const tl = gsap.timeline({
             defaults: {
                 duration: 0.6,
                 ease: "power3.inOut"
             },
             onComplete() {
-
-                left = newLeft;
-                center = newCenter;
-                right = newRight;
+                currentIndex = nextIndex;
 
                 updateCurrent();
                 resetPositions();
 
                 isAnimating = false;
             }
-        })
-        .to(leftCurrent, { x: -leftWidth }, 0)
-        .to(centerCurrent, { x: -centerWidth }, 0)
-        .to(rightCurrent, { x: -rightWidth }, 0)
+        });
 
-        .to(leftNext, { x: 0 }, 0)
-        .to(centerNext, { x: 0 }, 0)
-        .to(rightNext, { x: 0 }, 0);
+        if (isMobile()) {
+            // Top to Bottom animation (Current elements down slide hongi, Next upar se aayengi)
+            tl.to(leftCurrent, { y: leftHeight }, 0)
+                .to(centerCurrent, { y: centerHeight }, 0)
+                .to(rightCurrent, { y: rightHeight }, 0)
+                .to(leftNext, { y: 0 }, 0)
+                .to(centerNext, { y: 0 }, 0)
+                .to(rightNext, { y: 0 }, 0);
+
+        } else {
+            tl.to(leftCurrent, { x: -leftWidth }, 0)
+                .to(centerCurrent, { x: -centerWidth }, 0)
+                .to(rightCurrent, { x: -rightWidth }, 0)
+                .to(leftNext, { x: 0 }, 0)
+                .to(centerNext, { x: 0 }, 0)
+                .to(rightNext, { x: 0 }, 0);
+        }
     }
 
     setInterval(animateSlider, 3000);

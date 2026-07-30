@@ -963,7 +963,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     html { scroll-padding-top: 1rem; }
     body { -webkit-tap-highlight-color: transparent; }
 
-    .hero-section { min-height: 100svh; padding: .7rem .75rem 0; }
+    .hero-section { min-height: 100svh;  background-image: url(../images/hero-mobile-image.png)!important; }
     /* Compact mobile-only pill nav. Desktop navigation is left untouched. */
     .hero-section nav { width: 100%; gap: .4rem; padding: .42rem .55rem; }
     .hero-section nav > img { height: 1.35rem; width: auto; }
@@ -974,7 +974,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
     /* Sections 3–4 are deliberately static on mobile. The desktop pinned
        flip/reveal composition remains unchanged above this breakpoint. */
-    #scroll-pin-wrapper { min-height: 0 !important; padding: 3.5rem 1rem 4rem; }
+    #scroll-pin-wrapper { min-height: 0 !important; padding: 3.5rem 1rem 0; }
     .animation-inner-sticky-canvas { height: auto !important; overflow: visible !important; padding: 0 !important; }
     .animation-inner-sticky-canvas > div {
         display: flex !important;
@@ -1035,7 +1035,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
     .about-container { max-height: none; min-height: 620px; }
     .about-section .hero-actions { flex-wrap: wrap; }
-    .faq-section { padding-bottom: 10rem !important; }
     .faq-section .relative.max-w-3xl { padding-inline: 1.25rem; }
     .faq-title { margin-bottom: 2.5rem; }
     .faq-btn { gap: 1rem; padding-block: 1.25rem; }
@@ -1043,7 +1042,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .faq-content > div { padding-right: 1rem; line-height: 1.6; }
 
     .footer { min-height: 650px; height: 100svh; background-position: center bottom; }
-    .footer > div:first-child { top: -110px; }
 }
 
 @media (max-width: 479px) {
@@ -1053,7 +1051,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .hero-section .call-btn img { height: 1.5rem; }
     .hero-text-slider { font-size: .9rem !important; }
     .testimonial-section #testimonialTrack { height: 500px !important; }
-    .footer > div:first-child { top: -85px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1086,10 +1083,23 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .mobile-nav-call img { width: 1.4rem; height: 1.4rem; border-radius: 999px; object-fit: cover; }
 
     /* This is a vertical visual stack, with the existing labels sliding sideways. */
-    .hero-text-slider { flex-direction: column; gap: .05rem; }
-    .hero-text-slider > div { flex: none; width: 100%; height: 1.75rem !important; min-height: 0; }
-    .hero-text-slider > div::before, .hero-text-slider > div::after { display: none; }
-    #leftCurrent, #centerCurrent, #rightCurrent,
+    .hero-text-slider {
+        flex-direction: column !important;
+        gap: 0.25rem;
+    }
+    
+    .hero-text-slider > div {
+        flex: none;
+        width: 100%;
+        height: 2.25rem !important;
+        min-height: 0;
+    }
+    
+    /* Remove vertical divider pseudo-elements on mobile */
+    .hero-text-slider > div::before, 
+    .hero-text-slider > div::after {
+        display: none !important;
+    }
 
     /* First static half: coach badge, visual, then the four pain cards. */
     .text-left-final { display: none !important; }
@@ -1100,7 +1110,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .cards-right-group > div:nth-child(1) { order: 4; }
     .cards-right-group > div:nth-child(2) { order: 5; }
 
-    .mobile-real-problem { display: block; padding: .2rem 1rem 4rem; text-align: center; }
+    .mobile-real-problem { display: block; padding: .2rem 1rem 0; text-align: center; }
     .mobile-real-problem .animated-bage { display: flex; align-items: center; justify-content: center; gap: .45rem; margin-bottom: 20px; font: 16px "Inter Tight", sans-serif; }
     .mobile-real-problem .animated-bage img { width: 25px; height: 25px; object-fit: contain; }
     .mobile-real-problem h3 { margin: 0; line-height: .94; letter-spacing: -.5px; }
@@ -1108,8 +1118,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .mobile-real-problem-image { display: block; width: 100%; margin: 1.4rem auto 1.6rem; border-radius: .6rem; }
 
     /* Founder panel matches the reference's static text + portrait composition. */
-    .about-section { padding-top: 4rem !important; }
-    .about-container { max-height: none; min-height: 0; padding: 0 1rem 3rem !important; }
+    .about-section { padding-top: 20px !important; }
+    .about-container { max-height: none; min-height: 0; padding: 0 1rem 80px !important; }
     .about-section .about-content { text-align: center; }
     .about-section .about-content .animated-bage { text-align: center; }
     .about-section .about-title { margin-bottom: .8rem !important; }
@@ -1117,13 +1127,19 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .about-section .hero-actions { justify-content: center; flex-wrap: wrap; gap: .5rem; }
     .about-section .hero-actions .hero-btn { padding: .45rem .75rem; }
     .about-section .hero-actions a { padding: .65rem .75rem; }
-    .about-section .cards-wrap { display: block !important; height: 330px !important; margin-top: .5rem; }
-    .about-section .card1 { position: relative !important; top: auto !important; right: auto !important; width: min(100%, 330px) !important; height: 330px !important; margin: 0 auto; overflow: hidden; border-radius: 1.25rem !important; }
+    .about-section .cards-wrap { display: block !important; height: 330px !important; }
+    .about-section .card1 { position: relative !important; top: auto !important; right: auto !important; width: 270px !important; height: 337px !important; margin: 0 auto; overflow: hidden; border-radius: 1.25rem !important; }
+    .about-section .card2 { position: absolute !important; top: 0 !important; left: 0 !important; width: 270px !important; height: 337px !important; margin: 0 auto; overflow: hidden; display: block; }
+    .about-section .card3 { position: absolute !important; top: 0 !important; right: 0 !important; width: 270px !important; height: 337px !important; margin: 0 auto; overflow: hidden; display: block; border: 0.5px solid #ffffff69;}
     .about-section .card1 img { object-fit: cover; }
     .about-section .hero-word { display: none; }
 
-    .mobile-real-problem { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .mobile-real-problem { padding-top: 100px; }
     .faq-section { min-height: 0 !important; }
+
+    footer{
+        background-image: url(../images/footer-mobile.png) !important;
+    }
 }
 
 @media (min-width: 768px) {

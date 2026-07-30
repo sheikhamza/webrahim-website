@@ -79,7 +79,7 @@
                 </div>
 
                 <!-- Hero Content -->
-                <div class="relative w-[700px] mx-auto lg:mt-20">
+                <div class="relative w-[700px] mx-auto lg:mt-20 mt-10">
                     <!-- hero testimonial slider -->
                     <div class="review-slider hidden xl:block absolute -left-65  w-[220px] font-inter-tight tracking-[0.05em] font-thin">
                         <div class="review-card absolute inset-0 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-3">
@@ -251,19 +251,24 @@
                     </div>
                 </div>
                 <!-- Inline Navigation Tabs -->
-                <div class="hero-text-slider lg:w-[1000px] w-full flex items-center justify-center py-8 sm:py-10 lg:py-14 text-[clamp(1rem,4vw,2.5rem)]">
-                    <!-- Left -->
-                    <div class="relative flex-1 lg:min-w-[400px] h-[50px] sm:h-[60px] overflow-hidden">
+                <div class="hero-text-slider w-full max-w-[1000px] flex flex-col md:flex-row items-center justify-center py-4 sm:py-10 lg:py-14 text-[clamp(1.2rem,4vw,2.5rem)] gap-2 md:gap-0 mx-auto">
+                    <!-- Left / Top Slot -->
+                    <div class="relative flex-1 w-full md:w-auto md:min-w-[300px] lg:min-w-[400px] h-[40px] sm:h-[60px] overflow-hidden">
                         <div id="leftCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
                         <div id="leftNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
                     </div>
-                    <!-- Center -->
-                    <div class="relative flex-1 lg:min-w-[400px] h-[50px] sm:h-[60px] overflow-hidden before:absolute before:left-0 before:top-0 before:h-full before:w-[1.5px] before:bg-[linear-gradient(180deg,transparent_0%,rgba(255,255,255,.5)_50%,transparent_100%)] after:absolute after:right-0 after:top-0 after:h-full after:w-[1.5px] after:bg-[linear-gradient(180deg,transparent_0%,rgba(255,255,255,.5)_50%,transparent_100%)]">
-                        <div id="centerCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white"></div>
-                        <div id="centerNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white"></div>
+
+                    <!-- Center Slot (Borders adapted for Mobile/Desktop) -->
+                    <div class="relative flex-1 w-full md:w-auto md:min-w-[300px] lg:min-w-[400px] h-[45px] sm:h-[60px] overflow-hidden
+                                border-y border-white/20 md:border-y-0 
+                                before:hidden md:before:block before:absolute before:left-0 before:top-0 before:h-full before:w-[1.5px] before:bg-[linear-gradient(180deg,transparent_0%,rgba(255,255,255,.5)_50%,transparent_100%)] 
+                                after:hidden md:after:block after:absolute after:right-0 after:top-0 after:h-full after:w-[1.5px] after:bg-[linear-gradient(180deg,transparent_0%,rgba(255,255,255,.5)_50%,transparent_100%)]">
+                        <div id="centerCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white font-semibold"></div>
+                        <div id="centerNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white font-semibold"></div>
                     </div>
-                    <!-- Right -->
-                    <div class="relative flex-1 lg:min-w-[400px] h-[50px] sm:h-[60px] overflow-hidden">
+
+                    <!-- Right / Bottom Slot -->
+                    <div class="relative flex-1 w-full md:w-auto md:min-w-[300px] lg:min-w-[400px] h-[40px] sm:h-[60px] overflow-hidden">
                         <div id="rightCurrent" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
                         <div id="rightNext" class="absolute inset-0 flex items-center justify-center whitespace-nowrap text-white/50"></div>
                     </div>
@@ -433,7 +438,7 @@
                     <p class="text-[20px]">Most coaches who come to me aren't marketing wrong. They are posting daily, showing up, making it work. But there's a quieter problem nobody talks about: <strong>Every prospect who visits your website and doesn't book is a real cost.</strong><br><br>If your website should convert at 4% but converts at 1.5%, and you get 300 visitors/month at a $5,000 offer, <strong>you're losing $37,500/month in opportunity cost.</strong></p>
             </section>
             <!-- section 5 -->
-            <section class="section-5 panel pb-[180px] pt-[20px]text-center">
+            <section class="section-5 panel lg:pb-[180px] lg:pt-[20px] pt-[100px] text-center">
                 <div class="text-center mb-[20px] animated-bage">
                     <span class="text-[16px]">
                         <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Solution.gif" alt="The Solution" class="h-[25px] lg:h-9 inline-block mr-[10px]" onerror="this.style.display='none'">
@@ -572,7 +577,7 @@
                 </div>
             </section>
             <!-- section 6 -->
-            <section class="section-6 panel pb-[180px] pt-[20px] text-center">
+            <section class="section-6 panel lg:pb-[180px] lg:pt-[20px] pt-[100px] text-center">
                 <div class="portfolio-pin-wrap">
                     <div class="text-center mb-5 animated-bage">
                         <span class="text-[16px]">
@@ -630,7 +635,7 @@
                 <button id="closePortfolio"
                     class="absolute top-7 right-7 w-14 h-14 rounded-full bg-white/10 border border-white/20 text-white text-[18px] lg:text-2xl transition duration-300 hover:bg-white hover:text-black hover:rotate-90 hover:scale-110">
                     ✕
-lg:                </button m-0 text-[16px]>
+                </button>
 
                 <!-- Content -->
                 <div id="modalContent" class="relative w-full max-w-[900px] h-[90vh] overflow-y-auto rounded-2xl bg-[#111]">
@@ -643,7 +648,7 @@ lg:                </button m-0 text-[16px]>
 
             </div>
             <!-- section 7 -->
-            <section class="video-section panel pb-[180px] pt-[20px] text-center">
+            <section class="video-section panel lg:pb-[180px] lg:pt-[20px] pt-[100px] text-center">
                 <div class="text-center mb-5 animated-bage">
                     <span class="text-[16px]">
                         <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Video-Testimonials.gif" alt="Video Testimonials" class="h-[25px] lg:h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
@@ -754,7 +759,7 @@ lg:                </button m-0 text-[16px]>
                 </div>
             </section>
             <!-- Section 8 -->
-            <section id="offer-section" class="offer-section panel pb-[180px] pt-[20px] text-center">
+            <section id="offer-section" class="offer-section panel lg:pb-[180px] lg:pt-[20px] pt-[100px] text-center">
                 <div class="text-center mb-5 animated-bage">
                     <span class="text-[16px]">
                         <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Offer.gif" alt="The Offer" class="h-[25px] lg:h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
@@ -878,7 +883,7 @@ lg:                </button m-0 text-[16px]>
                 </div>
             </section>
             <!-- Section 9 -->
-            <section id="workflow-section" class="relative panel work-section pb-[180px] pt-[20px] overflow-hidden">
+            <section id="workflow-section" class="relative panel work-section lg:pb-[180px] lg:pt-[20px] pt-[100px] overflow-hidden">
                 <div class="container mx-auto">
                     <!-- Heading -->
                     <div class="text-center mb-5 animated-bage">
@@ -955,7 +960,7 @@ lg:                </button m-0 text-[16px]>
                 </div>
             </section>
             <!-- SECTION 10 -->
-            <section id="testimonials" class="testimonial-section panel pt-[20px] overflow-hidden">
+            <section id="testimonials" class="testimonial-section panel lg:pt-[20px] pt-[100px] overflow-hidden">
                 <div class="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-8">
                     <!-- ================= Header (Fixed) ================= -->
                     <div class="flex flex-wrap gap-4 justify-between items-center mb-10 md:mb-20">
@@ -1213,15 +1218,13 @@ lg:                </button m-0 text-[16px]>
 
                         <!-- RIGHT VISUAL -->
                         <div class="relative z-10 cards-wrap h-[420px] sm:h-[520px] md:h-[620px] lg:h-screen  hidden md:block">
-                                <div class="card card1 absolute top-[180px] z-4  right-15 h-[590px] w-[472px] rounded-[28px] border border-black/40">
+                                <div class="card card1 absolute top-[180px] z-4 right-15 h-[590px] w-[472px] rounded-[28px] border border-black/40">
                                     <img loading="lazy" decoding="async" src="./assets/images/ibrahim.png" alt="Ibrahim" class="h-full w-full">
                                 </div>
                                 <div class="card card2 absolute top-[180px]  right-35 h-[590px] w-[472px] rounded-[28px] bg-gradient-to-b from-[#FFB3005A] to-transparent backdrop-blur-[5px]"></div>
-                                <div class="card card3 absolute top-[180px] z-1 left-35 h-[590px] w-[472px] rounded-[28px] bg-black/50 backdrop-blur-[5px]"></div>
+                                <div class="card card3 absolute top-[180px] z-1 lg:left-35 h-[590px] w-[472px] rounded-[28px] lg:bg-black/50 bg-white/10 backdrop-blur-[5px]"></div>
                                 <div class="card card4 absolute top-[180px]  left-25 h-[590px] w-[472px] rounded-[28px] bg-[#c9a891]"></div>
-
                         </div>
-                        
                     </div>
                     <!-- BIG TEXT -->
                     <div class="absolute inset-x-0 bottom-0 overflow-hidden">
@@ -1231,7 +1234,7 @@ lg:                </button m-0 text-[16px]>
                     </div>
                 </div>
             </section>
-            <section class="ribbon-section pb-[180px] pt-[180px] panel overflow-hidden">
+            <section class="ribbon-section lg:pb-[180px] pb-[80px] lg:pt-[180px] panel overflow-hidden">
                 <div class="ribbon h-[60px] sm:h-[80px] lg:h-[100px] overflow-hidden bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] flex items-center">
                     <div class="ribbon-track flex items-center whitespace-nowrap">
                         <div class="ribbon-item flex items-center shrink-0">
@@ -1252,7 +1255,7 @@ lg:                </button m-0 text-[16px]>
                 </div>
             </section>
             <!-- SECTION 12: ACCORDION / LINKS LIST -->
-            <section class="faq-section panel relative flex items-center pb-[450px] z-20">
+            <section class="faq-section panel relative flex items-center lg:pb-[450px] pb-[300px] z-20">
                 <div class="relative  max-w-3xl mx-auto w-full px-6">
                     <!-- Badge -->
                     <div class="text-center mb-5 animated-bage">
@@ -1349,7 +1352,7 @@ lg:                </button m-0 text-[16px]>
             </section>
             <!-- SECTION 13: FOOTER CALL TO ACTION -->
             <footer style="background-image: url(./assets/images/footer.png);" class="footer relative z-10 h-screen bg-cover bg-center ">
-                <div class="absolute -top-[300px] left-0 w-full z-50 text-center ">
+                <div class="absolute lg:-top-[300px] -top-[200px]  left-0 w-full z-50 text-center ">
                     <h1 class="faqFooter-title sm:text-[40px] leading-[1.2] font-semibold text-white mx-auto px-4">
                         Every Week Your Funnel Is
                         <br class="lg:block hidden">
@@ -1374,10 +1377,10 @@ lg:                </button m-0 text-[16px]>
                 
                 <!-- Big Footer Text -->
                 <div class="absolute bottom-0 left-0 w-full overflow-hidden">
-                    <div class="relative max-w-[1200px] mx-auto flex flex-col px-4 sm:px-6 md:px-8 py-[52px] border-b border-white/50">
+                    <div class="relative max-w-[1200px] mx-auto flex flex-col px-4 lg:py-[52px] border-b border-white/50">
                         <!-- Bottom -->
                         <div class="mt-auto">
-                            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                            <div class="flex flex-col sm:flex-row items-center justify-between lg:gap-6 gap-[20px] lg:pb-0 pb-[20px]">
                                 <!-- Social -->
                                 <div class="flex gap-5 z-10">
                                     <a href="https://www.instagram.com/webrahim_/" target="_blank" rel="noopener noreferrer">
@@ -1409,7 +1412,7 @@ lg:                </button m-0 text-[16px]>
                         </p>
 
                         <!-- Blur Gradient Overlay -->
-                        <div class="absolute inset-x-0 bottom-0 h-[200px] pointer-events-none"
+                        <div class="absolute inset-x-0 bottom-0 lg:h-[200px] h-[50px] pointer-events-none"
                             style="
                                 backdrop-filter: blur(3px);
                                 -webkit-backdrop-filter: blur(3px);
