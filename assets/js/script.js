@@ -1136,7 +1136,6 @@ if (document.querySelector(".about-section") && !window.matchMedia("(max-width: 
             start: "20% top",
             end: "+=300",
             scrub: 2,
-            markers:true,
             pin: true,
             anticipatePin: 1
         }
