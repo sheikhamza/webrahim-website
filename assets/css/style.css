@@ -896,6 +896,11 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .about-container{
     max-height: 750px;
 }
+.about-cta:hover{
+    background-color: #1C1C1C;
+    /* background-color: #FFB300; */
+    color: white;
+}
 
 /* Footer */
 .footer-title{
@@ -942,7 +947,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 /* Hero inline nav tabs — reduce height */
 @media (max-width: 640px) {
     #leftCurrent, #centerCurrent, #rightCurrent,
-    #leftNext, #centerNext, #rightNext { font-size: 1.1rem; }
+    #leftNext, #centerNext, #rightNext { font-size: 25px; }
 }
 
 /* ==========================================================
@@ -1074,8 +1079,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
     .mobile-real-problem .animated-bage img { width: 28px; height: 28px; }
     .mobile-real-problem h3 { margin: 0; line-height: 1; letter-spacing: -.5px; }
-    .mobile-real-problem h3 span,
-    .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }
+        .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }
     .mobile-real-problem-image { width: 100%; margin: 2rem auto; border-radius: 1rem; }
     .mobile-real-problem p { font-size: 1.125rem; line-height: 1.6; }
 
@@ -1106,11 +1110,11 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .hero-section { min-height: 100svh;  background-image: url(../images/hero-mobile-image.webp)!important; }
     /* Compact mobile-only pill nav. Desktop navigation is left untouched. */
     .hero-section nav { width: 100%; gap: .4rem; padding: .42rem .55rem; }
-    .hero-section nav > img { height: 1.35rem; width: auto; }
+    .hero-section nav > img { height: 37px; width: auto; }
     .hero-section nav > div { gap: .42rem; min-width: 0; }
     .hero-section nav a { font-size: .64rem !important; line-height: 1; white-space: nowrap; }
     .hero-section .call-btn img { height: 1.45rem; }
-    .hero-text-slider { padding-block: 1.75rem !important; }
+    .hero-text-slider { padding-block: 1.75rem !important; width: 300px; }
 
     /* Sections 3–4 are deliberately static on mobile. The desktop pinned
        flip/reveal composition remains unchanged above this breakpoint. */
@@ -1187,9 +1191,9 @@ html, body { max-width: 100%; overflow-x: hidden; }
 @media (max-width: 479px) {
     .hero-section nav > div { gap: .35rem; }
     .hero-section nav a { font-size: .67rem !important; }
-    .hero-section nav > img { height: 50px; }
+    .hero-section nav > img { height: 35px; }
     .hero-section .call-btn img { height: 1.5rem; }
-    .hero-text-slider { font-size: .9rem !important; }
+    .hero-text-slider { font-size: 20px  !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1210,8 +1214,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .hero-section nav { position: relative; z-index: 30; }
     .hero-section .desktop-nav-links,
     .hero-section .call-btn { display: none !important; }
-    .mobile-menu-toggle { display: grid; gap: 10px; width: 60px; padding: 3px 1px; place-content: center; }
-    .mobile-menu-toggle span { display: block; width: 35px; height: 1.5px; border-radius: 2px; background: #FFCD56; transition: transform .2s ease, opacity .2s ease; }
+    .mobile-menu-toggle { display: grid; gap: 7px; width: 40px; padding: 3px 1px; place-content: center; }
+    .mobile-menu-toggle span { display: block; width: 20px; height: 1.5px; border-radius: 2px; background: #FFCD56; transition: transform .2s ease, opacity .2s ease; }
     .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
     .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
     .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-4.5px) rotate(-45deg); }
@@ -1230,7 +1234,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .hero-text-slider > div {
         flex: none;
         width: 100%;
-        height: 2.25rem !important;
+        height: 50px !important;
         min-height: 0;
     }
     
@@ -1253,7 +1257,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .mobile-real-problem .animated-bage { display: flex; align-items: center; justify-content: center; gap: .45rem; margin-bottom: 20px; font: 16px "Inter Tight", sans-serif; }
     .mobile-real-problem .animated-bage img { width: 25px; height: 25px; object-fit: contain; }
     .mobile-real-problem h3 { margin: 0; line-height: .94; letter-spacing: -.5px; }
-    .mobile-real-problem h3 span, .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }
+    .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }
     .mobile-real-problem-image { display: block; width: 100%; margin: 40px auto 40px; border-radius: .6rem; }
 
     /* Founder panel matches the reference's static text + portrait composition. */

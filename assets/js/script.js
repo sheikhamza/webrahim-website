@@ -1,6 +1,46 @@
 // Register All GSAP Plugins Centralized
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+const backToTop = document.getElementById("backToTop");
+
+gsap.set(backToTop, {
+    autoAlpha: 0,
+    y: 20
+});
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 400) {
+
+        gsap.to(backToTop, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+
+    } else {
+
+        gsap.to(backToTop, {
+            autoAlpha: 0,
+            y: 20,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+
+    }
+
+});
+
+backToTop.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     // GSAP ScrollTo Plugin Register karein
     // gsap.registerPlugin(ScrollToPlugin);
@@ -725,34 +765,45 @@ if (modal && modalImage && modalContent && closeBtn) {
 // ==========================================
 // Title Animation Setup
 if (document.querySelector(".video-title")) {
-    const videoTitle = new SplitType(".video-title", {
-        types: "lines"
+
+    const mm = gsap.matchMedia();
+
+    // Desktop only
+    mm.add("(min-width: 768px)", () => {
+
+        const videoTitle = new SplitType(".video-title", {
+            types: "lines"
+        });
+
+        videoTitle.lines.forEach(line => {
+            const wrapper = document.createElement("div");
+            wrapper.style.overflow = "hidden";
+            line.parentNode.insertBefore(wrapper, line);
+            wrapper.appendChild(line);
+        });
+
+        gsap.set(videoTitle.lines, { yPercent: 110 });
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".video-section",
+                start: "top 50%",
+                toggleActions: "play none none none"
+            }
+        }).to(videoTitle.lines, {
+            yPercent: 0,
+            duration: 1,
+            stagger: 0.18,
+            ease: "power4.out"
+        });
+
     });
 
-    videoTitle.lines.forEach(line => {
-        const wrapper = document.createElement("div");
-        wrapper.style.overflow = "hidden";
-        line.parentNode.insertBefore(wrapper, line);
-        wrapper.appendChild(line);
-    });
-
-    gsap.set(videoTitle.lines, { yPercent: 110 });
-
-    // Main Timeline: Runs when video section reaches view
-    const mainSectionTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".video-section",
-            start: "top 50%",
-            toggleActions: "play none none none"
-        }
-    });
-
-    // Step 1: Text reveal animation
-    mainSectionTl.to(videoTitle.lines, {
-        yPercent: 0,
-        duration: 1,
-        stagger: 0.18,
-        ease: "power4.out"
+    // Mobile: text normally visible
+    mm.add("(max-width: 767px)", () => {
+        gsap.set(".video-title", {
+            clearProps: "all"
+        });
     });
 }
 
@@ -961,60 +1012,58 @@ const progress = document.querySelector(".timeline-progress");
 
 if (workflowSection && track && progress) {
 
-    // -------------------------
-    // Split Title
-    // -------------------------
     let workTitle;
+    const mm = gsap.matchMedia();
 
-    if (document.querySelector(".workflow-title")) {
+    // ======================================
+    // DESKTOP ONLY TITLE ANIMATION
+    // ======================================
+    mm.add("(min-width: 768px)", () => {
 
-        workTitle = new SplitType(".workflow-title", {
-            types: "lines"
-        });
+        if (document.querySelector(".workflow-title")) {
 
-        workTitle.lines.forEach(line => {
-            const wrapper = document.createElement("div");
-            wrapper.style.overflow = "hidden";
-            line.parentNode.insertBefore(wrapper, line);
-            wrapper.appendChild(line);
-        });
+            workTitle = new SplitType(".workflow-title", {
+                types: "lines"
+            });
 
-        gsap.set(workTitle.lines, {
-            yPercent: 110
-        });
-    }
+            workTitle.lines.forEach(line => {
+                const wrapper = document.createElement("div");
+                wrapper.style.overflow = "hidden";
+                line.parentNode.insertBefore(wrapper, line);
+                wrapper.appendChild(line);
+            });
+
+            gsap.set(workTitle.lines, {
+                yPercent: 110
+            });
+        }
+
+    });
 
     function initWorkflow() {
 
-        // Purane triggers remove
         ScrollTrigger.getAll().forEach(st => {
             if (st.trigger === workflowSection) {
                 st.kill();
             }
         });
 
-        gsap.set(track, {
-            x: 0
-        });
-
-        gsap.set(progress, {
-            width: 520
-        });
+        gsap.set(track, { x: 0 });
+        gsap.set(progress, { width: 520 });
 
         const moveDistance =
             track.scrollWidth - window.innerWidth + 50;
 
         // ======================================
-        // TITLE ANIMATION (Pin se pehle)
+        // TITLE ANIMATION (Desktop only)
         // ======================================
 
-        if (workTitle) {
+        if (workTitle && window.innerWidth >= 768) {
 
             gsap.timeline({
                 scrollTrigger: {
                     trigger: workflowSection,
                     start: "top 80%",
-                    end: "top 80%",
                     once: true,
                     invalidateOnRefresh: true
                 }
@@ -1027,10 +1076,13 @@ if (workflowSection && track && progress) {
             })
             .call(solutionCount);
 
+        } else {
+            // Mobile
+            solutionCount();
         }
 
         // ======================================
-        // WORKFLOW PIN
+        // WORKFLOW PIN (Desktop + Mobile)
         // ======================================
 
         const tl = gsap.timeline({

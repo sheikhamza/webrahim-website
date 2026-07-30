@@ -47,6 +47,28 @@
         </div>
     </div> -->
 
+    <!-- Floating Buttons -->
+    <div class="fixed right-5 bottom-5 z-[9999] flex flex-col items-center gap-3">
+
+        <!-- Back to Top -->
+        <button
+            id="backToTop"
+            class="opacity-0 invisible translate-y-4 transition-all duration-300 w-12 h-12 rounded-full bg-white/50 text-black hover:scale-110 flex items-center justify-center cursor-pointer">
+            <i class="fa-solid fa-arrow-up text-lg"></i>
+        </button>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/message/XGPKK6UHPQ3NA1"
+        target="_blank"
+        class="w-14 h-14 group rounded-full bg-[#25D366] text-white shadow-2xl hover:scale-110 transition flex items-center justify-center">
+            <i class="fa-brands fa-whatsapp text-3xl"></i>
+            <span class="absolute  -left-[80px] px-2 py-1 rounded-full bg-white/50 text-black text-sm font-medium whitespace-nowrap opacity-0 invisible translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                Book Call
+            </span>
+        </a>
+
+    </div>
+
     <!-- Scrollable Website Content -->
     <div data-scroll-container>
         <main class="relative z-10">
@@ -436,7 +458,7 @@
             <section class="mobile-real-problem panel">
                 <div class="animated-bage">
                     <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Real-Problem.gif" alt="The Real Problem">The Real Problem</div>
-                    <h3>You're <span>Not Losing</span><br>Leads Because You<br>Need More Traffic.</h3>
+                    <h3>You're <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Not Losing</span><br>Leads Because You<br>Need More Traffic.</h3>
                     <img loading="lazy" decoding="async" src="./assets/images/3d-image-2.webp" alt="The real problem" class="mobile-real-problem-image h-[440px] object-cover">
                     <p class="text-[20px]">Most coaches who come to me aren't marketing wrong. They are posting daily, showing up, making it work. But there's a quieter problem nobody talks about: <strong>Every prospect who visits your website and doesn't book is a real cost.</strong><br><br>If your website should convert at 4% but converts at 1.5%, and you get 300 visitors/month at a $5,000 offer, <strong>you're losing $37,500/month in opportunity cost.</strong></p>
             </section>
@@ -659,7 +681,7 @@
                     </span>
                 </div>
                 <div class="w-full max-w-[650px] px-4 mx-auto">
-                    <h2 class="lg:video-title video-t text-center leading-[1.2] mt-7">
+                    <h2 class="video-title video-t text-center leading-[1.2] mt-7">
                         They had the <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">same<br class="block lg:hidden"> doubts</span> you do. Now <br class="block lg:hidden">they don't
                     </h2>
                 </div>
@@ -904,7 +926,7 @@
                             How It Works
                         </span>
                     </div>
-                    <h2 class="lg:workflow-title text-center  leading-[1.2] max-w-[760px] mx-auto mb-10 md:mb-24 px-4">
+                    <h2 class="workflow-title text-center  leading-[1.2] max-w-[760px] mx-auto mb-10 md:mb-24 px-4">
                         You Show Up <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Three <br class="block lg:hidden">Times</span>,
                         Everything<br class="block lg:hidden"> Else Is On Me
                     </h2>
@@ -1193,7 +1215,7 @@
                 </div>
             </section>
             <!-- SECTION 11: INTRO ABOUT ME SECTION -->
-            <section class="about-section panel relative lg:pt-[100px] pt-0 overflow-hidden">
+            <section class="about-section panel relative lg:pt-[100px] pt-0 ">
                 <div class="max-w-[1280px] about-container mx-auto px-4 sm:px-6 md:px-8 flex items-center py-16 lg:py-0 relative">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 relative w-full">
                         <!-- LEFT CONTENT -->
@@ -1215,7 +1237,7 @@
 
                             <div class="hero-actions flex items-center gap-4">
                                 <div>
-                                    <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" class="hero-btn shadow-[0_4px_25px_rgba(0,0,0,0.25)]">
+                                    <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" class="hero-btn about-cta shadow-[0_4px_25px_rgba(0,0,0,0.25)] transition-all duration-300">
                                         <span>Talk With Ibrahim</span>
                                     </a>
                                 </div>
@@ -1228,7 +1250,7 @@
                         <!-- RIGHT VISUAL -->
                         <div class="relative z-10 cards-wrap h-[420px] sm:h-[520px] md:h-[620px] lg:h-screen  hidden md:block">
                                 <div class="card card1 absolute top-[180px] z-4 right-15 h-[590px] w-[472px] rounded-[28px] border border-black/40">
-                                    <img loading="lazy" decoding="async" src="./assets/images/ibrahim.webp" alt="Ibrahim" class="h-full w-full">
+                                    <img loading="lazy" decoding="async" src="./assets/images/ibrahim.webp" alt="Ibrahim" class="h-full w-full object-contain object-center">
                                 </div>
                                 <div class="card card2 absolute top-[180px]  right-35 h-[590px] w-[472px] rounded-[28px] bg-gradient-to-b from-[#FFB3005A] to-transparent backdrop-blur-[5px]"></div>
                                 <div class="card card3 absolute top-[180px] z-1 lg:left-35 h-[590px] w-[472px] rounded-[28px] lg:bg-black/50 bg-white/10 backdrop-blur-[5px]"></div>
@@ -1250,15 +1272,19 @@
                             <span class="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] font-black text-[#121212] uppercase px-6 sm:px-8 md:px-12">
                                 Premium Websites
                             </span>
-                            <div class="w-8 h-8 rounded-md bg-[#121212] mx-16"></div>
+                            <div class="w-8 h-8 rounded-md bg-[#121212] mx-[17px]"></div>
                             <span class="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] font-black text-[#121212] uppercase px-6 sm:px-8 md:px-12">
                                 Landing Pages
                             </span>
-                            <div class="w-8 h-8 rounded-md bg-[#121212] mx-16"></div>
+                            <div class="w-8 h-8 rounded-md bg-[#121212] mx-[17px]"></div>
                             <span class="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] font-black text-[#121212] uppercase px-6 sm:px-8 md:px-12">
                                 Content Design
                             </span>
-                            <div class="w-8 h-8 rounded-md bg-[#121212] mx-16"></div>
+                            <div class="w-8 h-8 rounded-md bg-[#121212] mx-[17px]"></div>
+                            <span class="text-[28px] sm:text-[36px] md:text-[48px] lg:text-[60px] font-black text-[#121212] uppercase px-6 sm:px-8 md:px-12">
+                                LinkedIn Branding
+                            </span>
+                            <div class="w-8 h-8 rounded-md bg-[#121212] mx-[17px]"></div>
                         </div>
                     </div>
                 </div>
