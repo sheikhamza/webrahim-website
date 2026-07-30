@@ -378,6 +378,7 @@ main {
 .lf-tDown { animation: lfColorDown 3s linear infinite; } 
 .lf-tDown2 { animation: lfColorDown 3s linear infinite; animation-delay: -1.5s; }
 
+
 /* section 6 */
 .section-6{
     overflow: hidden;
