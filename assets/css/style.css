@@ -978,6 +978,127 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .footer { min-height: 720px; height: 100svh; }
 }
 
+/* ==========================================================
+   TABLET LAYOUT (768px–1023px)
+   Keep the desktop composition from 1024px upward and the
+   existing phone treatment below 768px completely independent.
+   ========================================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hero-section {
+        min-height: 100svh;
+        padding-inline: 2rem;
+    }
+
+    .hero-section nav {
+        width: min(100%, 680px);
+        gap: 1.25rem;
+        padding-inline: 1.25rem;
+    }
+
+    .hero-section .desktop-nav-links { gap: 1.5rem; }
+    .hero-section .desktop-nav-links a { font-size: .9rem !important; }
+    .hero-subtitle { max-width: 38rem; }
+
+    /* The desktop pinned composition needs more horizontal room than a tablet
+       provides. Present the same content as a readable vertical sequence. */
+    #scroll-pin-wrapper {
+        min-height: 0 !important;
+        max-width: 720px;
+        padding: 5rem 2rem 0;
+    }
+
+    .animation-inner-sticky-canvas {
+        height: auto !important;
+        overflow: visible !important;
+        padding: 0 !important;
+    }
+
+    .animation-inner-sticky-canvas > div {
+        display: flex !important;
+        flex-direction: column;
+        height: auto !important;
+        gap: 1.25rem !important;
+    }
+
+    .animation-inner-sticky-canvas > div > div:first-child,
+    .animation-inner-sticky-canvas > div > div:last-child { display: contents; }
+
+    .animation-inner-sticky-canvas > div > div:nth-child(2) {
+        order: 1;
+        width: min(100%, 420px) !important;
+        height: 520px !important;
+        margin: 2rem auto 1rem;
+    }
+
+    .cards-left-group,
+    .cards-right-group {
+        position: static !important;
+        inset: auto !important;
+        display: contents !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .cards-left-group > div,
+    .cards-right-group > div {
+        width: 100% !important;
+        min-height: 150px;
+        margin: 0 !important;
+        padding: 1.5rem !important;
+    }
+
+    .cards-left-group > div:nth-child(1) { order: 2; }
+    .cards-left-group > div:nth-child(2) { order: 3; }
+    .cards-right-group > div:nth-child(1) { order: 4; }
+    .cards-right-group > div:nth-child(2) { order: 5; }
+    .text-left-final,
+    .text-right-final { display: none !important; }
+    .flip-badge { display: flex !important; }
+
+    /* Reuse the existing second half of this story at a comfortable tablet width. */
+    .mobile-real-problem {
+        display: block !important;
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 5rem 2rem 0;
+        text-align: center;
+    }
+
+    .mobile-real-problem .animated-bage {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .mobile-real-problem .animated-bage img { width: 28px; height: 28px; }
+    .mobile-real-problem h3 { margin: 0; line-height: 1; letter-spacing: -.5px; }
+    .mobile-real-problem h3 span,
+    .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }
+    .mobile-real-problem-image { width: 100%; margin: 2rem auto; border-radius: 1rem; }
+    .mobile-real-problem p { font-size: 1.125rem; line-height: 1.6; }
+
+    .about-container {
+        max-width: 720px;
+        max-height: none;
+        min-height: 0;
+        padding-block: 5rem;
+    }
+
+    .about-section .about-content { padding-top: 0; text-align: center; }
+    .about-section .about-content .animated-bage { text-align: center; }
+    .about-section .hero-desc { margin-inline: auto; }
+    .about-section .hero-actions { justify-content: center; }
+    .about-section .cards-wrap { height: 510px; }
+    .about-section .card1 { height: 480px; width: 380px; }
+    .about-section .hero-word { display: none; }
+
+    .testimonial-section #testimonialTrack { height: 500px; }
+    .testimonial-section .review { font-size: clamp(1.8rem, 4vw, 2.4rem) !important; }
+    .footer { min-height: 680px; }
+}
+
 @media (max-width: 767px) {
     html { scroll-padding-top: 1rem; }
     body { -webkit-tap-highlight-color: transparent; }
@@ -1160,5 +1281,9 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 
 @media (min-width: 768px) {
-    .mobile-menu-toggle, .mobile-nav-menu, .mobile-real-problem { display: none !important; }
+    .mobile-menu-toggle, .mobile-nav-menu { display: none !important; }
+}
+
+@media (min-width: 1024px) {
+    .mobile-real-problem { display: none !important; }
 }

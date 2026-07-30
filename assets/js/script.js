@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // GSAP Animated Smooth Scroll
             gsap.to(window, {
-                duration: 1, // 2.5 Seconds (isey aap 2 se 3 sec tak tune kar sakte hain)
                 scrollTo: {
                     y: targetElement,
                     offsetY: 20 // Agara top nav fixed hai toh yahan offset height ajust kar sakte hain
@@ -426,10 +425,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const innerCanvas = document.querySelector(".animation-inner-sticky-canvas");
     if (!mainWrapper || !innerCanvas) return;
 
-    // On phones this section is intentionally a normal, readable story.  Do
+    // On phones and tablets this section is intentionally a normal, readable story. Do
     // not set any initial GSAP values here: they would leave content hidden
     // before a scroll trigger gets a chance to run.
-    if (window.matchMedia("(max-width: 767px)").matches) return;
+    if (window.matchMedia("(max-width: 1023px)").matches) return;
 
     const leftBoxes = document.querySelector(".cards-left-group");
     const rightBoxes = document.querySelector(".cards-right-group");
@@ -1130,7 +1129,7 @@ if (slides.length > 0 && nextBtn && prevBtn && counter) {
 // ==========================================
 // 13. SECTION 11 (ABOUT) & RIBBON
 // ==========================================
-if (document.querySelector(".about-section") && !window.matchMedia("(max-width: 767px)").matches) {
+if (document.querySelector(".about-section") && !window.matchMedia("(max-width: 1023px)").matches) {
     const aboutTl = gsap.timeline({
         scrollTrigger: {
             trigger: ".about-section",
