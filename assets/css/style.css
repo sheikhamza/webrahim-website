@@ -1187,7 +1187,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 @media (max-width: 479px) {
     .hero-section nav > div { gap: .35rem; }
     .hero-section nav a { font-size: .67rem !important; }
-    .hero-section nav > img { height: 1.35rem; }
+    .hero-section nav > img { height: 25px; }
     .hero-section .call-btn img { height: 1.5rem; }
     .hero-text-slider { font-size: .9rem !important; }
 }
