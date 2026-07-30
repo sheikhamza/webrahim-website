@@ -130,7 +130,7 @@
     const palette = [
       new THREE.Color("#9fb3cc"),
       new THREE.Color("#FFB300"),
-      new THREE.Color("#b79cff"),
+      new THREE.Color("#b69cff01"),
       new THREE.Color("#FFB300"),
       new THREE.Color("#ff9ed2")
     ];
