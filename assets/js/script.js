@@ -51,52 +51,6 @@ backToTop.addEventListener("click", () => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-
-    navLinks.forEach(link => {
-
-        link.addEventListener("click", (e) => {
-
-            const targetId = link.getAttribute("href");
-
-            if (targetId === "#" || !document.querySelector(targetId)) return;
-
-            e.preventDefault();
-
-            const targetElement = document.querySelector(targetId);
-
-            gsap.to(window, {
-                duration: 3, // 3 second smooth scroll
-                scrollTo: {
-                    y: targetElement,
-                    offsetY: 20,
-                    autoKill: false
-                },
-                ease: "expo.inOut",
-                overwrite: "auto"
-            });
-
-            // Close Mobile Menu
-            const mobileMenu = document.getElementById("mobileNavMenu");
-            const mobileToggle = document.querySelector(".mobile-menu-toggle");
-
-            if (mobileMenu && mobileMenu.classList.contains("open")) {
-                mobileMenu.classList.remove("open");
-                mobileMenu.setAttribute("aria-hidden", "true");
-
-                if (mobileToggle) {
-                    mobileToggle.classList.remove("is-open");
-                    mobileToggle.setAttribute("aria-expanded", "false");
-                }
-            });
-
-        });
-
-    });
-
-});
 
 // ==========================================
 // 2. AVATAR STACK
