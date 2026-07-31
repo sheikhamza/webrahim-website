@@ -608,15 +608,28 @@ if (document.querySelector(".solution-title")) {
 
 }
 
-function solutionCount(){
+let solutionCounterInterval = null;
+let solutionCounterStarted = false;
+
+function solutionCount() {
+
+    if (solutionCounterStarted) return; // sirf ek baar chale
+
+    solutionCounterStarted = true;
+
     let currentRevenue = 0;
-    const countTargets = document.querySelectorAll('.js-revenue');
-    if (countTargets.length) {
-        setInterval(() => {
-            currentRevenue += 1000;
-            countTargets.forEach(el => el.textContent = '$' + currentRevenue.toLocaleString());
-        }, 1000);
-    }
+    const countTargets = document.querySelectorAll(".js-revenue");
+
+    solutionCounterInterval = setInterval(() => {
+
+        currentRevenue += 1000;
+
+        countTargets.forEach(el => {
+            el.textContent = "$" + currentRevenue.toLocaleString();
+        });
+
+    }, 1000);
+
 }
 
 // ==========================================
