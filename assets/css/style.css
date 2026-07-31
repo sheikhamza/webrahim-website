@@ -1216,10 +1216,10 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .hero-section .call-btn { display: none !important; }
     .mobile-menu-toggle { display: grid; gap: 7px; width: 40px; padding: 3px 1px; place-content: center; }
     .mobile-menu-toggle span { display: block; width: 20px; height: 1.5px; border-radius: 2px; background: #FFCD56; transition: transform .2s ease, opacity .2s ease; }
-    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
+    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
-    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-4.5px) rotate(-45deg); }
-    .mobile-nav-menu { display: none; position: absolute; top: 3.7rem; right: .75rem; z-index: 29; width: min(200px, calc(100vw - 1.5rem)); padding: .65rem; flex-direction: column; gap: .2rem; border: 1px solid rgba(255,255,255,.13); border-radius: 1rem; background: rgba(14,14,14,.94); backdrop-filter: blur(16px); box-shadow: 0 16px 35px rgba(0,0,0,.35); }
+    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .mobile-nav-menu { display: none; position: absolute; top: 3.7rem; right: .75rem; z-index: 99; width: min(200px, calc(100vw - 1.5rem)); padding: .65rem; flex-direction: column; gap: .2rem; border: 1px solid rgba(255,255,255,.13); border-radius: 1rem; background: rgba(14,14,14,.94); backdrop-filter: blur(16px); box-shadow: 0 16px 35px rgba(0,0,0,.35); }
     .mobile-nav-menu.open { display: flex !important; }
     .mobile-nav-link { padding: .7rem .8rem; border-radius: .65rem; font: 400 .88rem/1 "Inter Tight", sans-serif; color: white; text-align: left; }
     .mobile-nav-call { display: flex; align-items: center; justify-content: center; gap: .4rem; margin-left: 5px; padding: .42rem .45rem .42rem .8rem; color: #151515; background: #fff; text-align: center; font-size: .72rem !important; }
@@ -1238,11 +1238,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
         min-height: 0;
     }
     
-    /* Remove vertical divider pseudo-elements on mobile */
-    .hero-text-slider > div::before, 
-    .hero-text-slider > div::after {
-        display: none !important;
-    }
+    
 
     /* First static half: coach badge, visual, then the four pain cards. */
     .text-left-final { display: none !important; }

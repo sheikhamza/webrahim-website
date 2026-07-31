@@ -42,24 +42,17 @@ backToTop.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    // GSAP ScrollTo Plugin Register karein
-    // gsap.registerPlugin(ScrollToPlugin);
-
-    // Nav bar aur Mobile Nav ke sabhi anchor links select karein (jinke href '#' se start hote hain)
     const navLinks = document.querySelectorAll('a[href^="#"]');
 
     navLinks.forEach(link => {
         link.addEventListener("click", (e) => {
             const targetId = link.getAttribute("href");
-
-            // Agar empty '#' ho ya target element page par na mile toh ignore karein
             if (targetId === "#" || !document.querySelector(targetId)) return;
 
-            e.preventDefault(); // Browser ki default instant jump ko rokein
+            e.preventDefault();
 
             const targetElement = document.querySelector(targetId);
 
-            // GSAP Animated Smooth Scroll
             gsap.to(window, {
                 scrollTo: {
                     y: targetElement,
