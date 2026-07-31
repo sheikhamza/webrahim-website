@@ -1,4 +1,29 @@
+document.addEventListener("DOMContentLoaded", () => {
 
+    const loaderBar = document.getElementById("loaderBar");
+    const loaderPercent = document.getElementById("loaderPercent");
+
+    let progress = 0;
+
+    const interval = setInterval(() => {
+
+        progress += Math.floor(Math.random() * 6) + 2;
+
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+
+            setTimeout(() => {
+                document.body.classList.add("loaded");
+            }, 500);
+        }
+
+        loaderBar.style.width = progress + "%";
+        loaderPercent.textContent = progress + "%";
+
+    }, 50);
+
+});
 
 // Register All GSAP Plugins Centralized
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -241,16 +266,8 @@ document.querySelectorAll(".review-slider").forEach((slider, index) => {
 // ==========================================
 // 4. HERO SECTION ANIMATION
 // ==========================================
-const loaderBar = document.getElementById("loaderBar");
-
-// Hero animation ko function bana do
-function startHeroAnimation() {
-
-    if (!document.querySelector(".hero-title")) return;
-
-    const title = new SplitType(".hero-title", {
-        types: "lines"
-    });
+if (document.querySelector(".hero-title")) {
+    const title = new SplitType(".hero-title", { types: "lines" });
 
     title.lines.forEach(line => {
         const wrapper = document.createElement("div");
@@ -259,73 +276,25 @@ function startHeroAnimation() {
         wrapper.appendChild(line);
     });
 
-    gsap.set(title.lines,{yPercent:110});
-    gsap.set([".hero-subtitle",".btn-box",".hero-text-slider"],{
-        opacity:0,
-        y:20
-    });
+    gsap.set(title.lines, { yPercent: 110 });
+    gsap.set([".hero-subtitle", ".btn-box", ".hero-text-slider"], { opacity: 0, y: 2 });
+    gsap.set([".review-slider"], { opacity: 0, y: 2, filter: "blur(5px)" });
 
-    gsap.set(".review-slider",{
-        opacity:0,
-        y:20,
-        filter:"blur(5px)"
-    });
-
-    gsap.timeline()
-
-    .to(loaderBar,{
-        width:"90%",
-        duration:1.5,
-        ease:"power2.out"
+    const heroTl = gsap.timeline();
+    heroTl.to(title.lines, {
+        yPercent: 0,
+        duration: 1,
+        stagger: 0.4,
+        ease: "power4.out"
     })
-
-    .to(title.lines,{
-        yPercent:0,
-        duration:1,
-        stagger:.25,
-        ease:"power4.out"
-    })
-
-    .to([
-        ".review-slider",
-        ".hero-subtitle",
-        ".btn-box",
-        ".hero-text-slider"
-    ],{
-        opacity:1,
-        y:0,
-        filter:"blur(0px)",
-        duration:.5
+    .to([".review-slider", ".hero-subtitle", ".btn-box", ".hero-text-slider"], {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 0.5,
+        ease: "power3.out"
     });
-
 }
-
-// Jab page complete load ho
-window.addEventListener("load", async ()=>{
-
-    if(document.fonts){
-        await document.fonts.ready;
-    }
-
-    // Progress ko 100 tak le jao
-    gsap.to(loaderBar,{
-        width:"100%",
-        duration:.8,
-        ease:"power2.out",
-        onComplete(){
-
-            startHeroAnimation();
-
-            setTimeout(()=>{
-
-                document.body.classList.add("loaded");
-
-            },1200);
-
-        }
-    });
-
-});
 
 // ==========================================
 // 5. HERO TEXT ROTATOR SLIDER
@@ -1480,19 +1449,3 @@ if (document.querySelector(".footer-title")) {
 
 }
 
-
-window.addEventListener("load", async () => {
-
-    if (document.fonts) {
-        await document.fonts.ready;
-    }
-
-    // Hero animation start
-    startHeroAnimation();
-
-    // Loader hide
-    setTimeout(() => {
-        document.body.classList.add("loaded");
-    }, 1200);
-
-});
