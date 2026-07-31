@@ -1219,11 +1219,15 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
     .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    .mobile-nav-menu { display: none; position: absolute; top: 3.7rem; right: .75rem; z-index: 99; width: min(200px, calc(100vw - 1.5rem)); padding: .65rem; flex-direction: column; gap: .2rem; border: 1px solid rgba(255,255,255,.13); border-radius: 1rem; background: rgba(14,14,14,.94); backdrop-filter: blur(16px); box-shadow: 0 16px 35px rgba(0,0,0,.35); }
+    .mobile-nav-menu { display: none; position: absolute; top: 75px; right: .75rem; z-index: 99; width: min(200px, calc(100vw - 1.5rem)); padding: .65rem; flex-direction: column; gap: .2rem; border: 1px solid rgba(255,255,255,.13); border-radius: 1rem; background: rgba(14,14,14,.94); backdrop-filter: blur(16px); box-shadow: 0 16px 35px rgba(0,0,0,.35); }
     .mobile-nav-menu.open { display: flex !important; }
     .mobile-nav-link { padding: .7rem .8rem; border-radius: .65rem; font: 400 .88rem/1 "Inter Tight", sans-serif; color: white; text-align: left; }
     .mobile-nav-call { display: flex; align-items: center; justify-content: center; gap: .4rem; margin-left: 5px; padding: .42rem .45rem .42rem .8rem; color: #151515; background: #fff; text-align: center; font-size: .72rem !important; }
     .mobile-nav-call img { width: 1.4rem; height: 1.4rem; border-radius: 999px; object-fit: cover; }
+
+    .hero-title::first-line{
+        line-height: 48px;
+    }
 
     /* This is a vertical visual stack, with the existing labels sliding sideways. */
     .hero-text-slider {

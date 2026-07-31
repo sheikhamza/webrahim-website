@@ -8,37 +8,47 @@ gsap.set(backToTop, {
     y: 20
 });
 
+// Hover
+backToTop.addEventListener("mouseenter", () => {
+    gsap.to(backToTop, {
+        scale: 1.1,
+        duration: 0.2,
+        ease: "power2.out"
+    });
+});
+
+backToTop.addEventListener("mouseleave", () => {
+    gsap.to(backToTop, {
+        scale: 1,
+        duration: 0.2,
+        ease: "power2.out"
+    });
+});
+
+// Show / Hide
 window.addEventListener("scroll", () => {
-
     if (window.scrollY > 400) {
-
         gsap.to(backToTop, {
             autoAlpha: 1,
             y: 0,
             duration: 0.3,
             ease: "power2.out"
         });
-
     } else {
-
         gsap.to(backToTop, {
             autoAlpha: 0,
             y: 20,
             duration: 0.3,
             ease: "power2.out"
         });
-
     }
-
 });
 
 backToTop.addEventListener("click", () => {
-
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-
 });
 
 document.addEventListener("DOMContentLoaded", () => {
