@@ -610,11 +610,11 @@ if (document.querySelector(".solution-title")) {
 
 function solutionCount(){
     let currentRevenue = 0;
-    const countTarget = document.getElementById('revenueValue');
-    if (countTarget) {
+    const countTargets = document.querySelectorAll('.js-revenue');
+    if (countTargets.length) {
         setInterval(() => {
             currentRevenue += 1000;
-            countTarget.textContent = '$' + currentRevenue.toLocaleString();
+            countTargets.forEach(el => el.textContent = '$' + currentRevenue.toLocaleString());
         }, 1000);
     }
 }
