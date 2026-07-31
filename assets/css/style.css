@@ -390,6 +390,7 @@ main {
   .lf-mobile-only { display: none; }
 
   @media (max-width: 768px) {
+    .lf-label{font-size: 13px; font-weight: normal;}
     .lf-desktop-only { display: none; }
     .lf-mobile-only { display: block; }
     .lf-mobile-only .lf-wrap { max-width: 420px; }
