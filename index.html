@@ -20,33 +20,26 @@
     <canvas id="atmosphere"></canvas>
     <canvas id="webgl"></canvas>
 
-    <!-- Loader Overlay -->
-    <!-- <div id="loader" class="fixed inset-0 z-50 flex flex-col justify-between p-8 md:p-12 bg-[#080808] select-none">
-        <div class="flex justify-between items-center text-xs tracking-widest text-zinc-500 uppercase">
-            <span>[ SYSTEM INITIALIZATION ]</span>
-            <span>AXISFORM // 2026</span>
-        </div>
+    <!-- Loader Component -->
+    <div class="loader-wrapper">
+        <div class="loader-content">
 
-        <div class="flex items-end justify-between">
-            <div>
-                <p class="text-xs text-zinc-400 mb-2 tracking-wider">LOADING EXPERIENCE</p>
-                <div class="flex items-center gap-2">
-                    <span class="inline-block w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                    <span class="text-xs text-orange-500 font-mono">ESTABLISHING SECURE PIPELINE</span>
-                </div>
-            </div>
-            
-            <div class="text-right">
-                <span id="counter" class="text-7xl md:text-9xl font-bold tracking-tighter text-zinc-100 font-mono">00</span>
-                <span class="text-3xl md:text-5xl text-orange-500 font-light">%</span>
-            </div>
-        </div>
+            <h1 class="loader-logo">
+                <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">WEBRAHIM</span><i></i>
+            </h1>
 
-        
-        <div class="w-full bg-zinc-900 h-[2px] relative overflow-hidden">
-            <div id="progress-bar" class="absolute top-0 left-0 h-full bg-orange-500 w-0"></div>
+            <div class="loader-progress">
+                <div class="loader-bar" id="loaderBar"></div>
+            </div>
+
+            <div class="loader-bottom">
+                <span id="loaderPercent">0%</span>
+                <span>LOADING EXPERIENCE</span>
+            </div>
+
         </div>
-    </div> -->
+    </div>
+
 
     <!-- Floating Buttons -->
     <div class="fixed right-5 bottom-5 z-[9999] flex flex-col items-center gap-3">

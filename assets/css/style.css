@@ -52,6 +52,7 @@
    1. RESET & BASE VARIABLE CONFIGURATION
    ========================================== */
 html {
+    /* scroll-behavior: smooth; */
     font-family: var(--font-sans, sans-serif);
     color: var(--text-primary, #ffffff);
 }
@@ -63,6 +64,82 @@ body {
     overflow-x: hidden;
     scroll-behavior: auto !important;
 }
+
+
+/* --- LOADER STYLES --- */
+.loader-wrapper {
+    position: fixed;
+    inset: 0;
+    background: #1C1C1C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: transform .8s cubic-bezier(.77,0,.175,1);
+}
+
+.loader-content{
+    width: min(90%,520px);
+}
+
+.loader-logo{
+    font-size: clamp(50px,7vw,90px);
+    color:#f4efe8;
+    margin:0;
+    font-family: 'Coolvetica';
+    display:flex;
+    align-items:center;
+}
+
+
+.loader-logo i{
+    width:14px;
+    height:14px;
+    background:#FFB300;
+    border-radius:50%;
+    display:block;
+    margin-left:18px;
+}
+
+.loader-progress{
+    margin-top:35px;
+    width:100%;
+    height:3px;
+    background:#3d3d3d;
+    overflow:hidden;
+    border-radius:50px;
+}
+
+.loader-bar{
+    width:0%;
+    height:100%;
+    background: linear-gradient(90deg,#FFB300 0%, #FFD97E 36%, #FFB300 100%);
+    transition:width .15s linear;
+}
+
+.loader-bottom{
+    margin-top:18px;
+    display:flex;
+    justify-content:space-between;
+    color:#777;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.loader-bottom span:first-child{
+    color:#9c9c9c;
+    font-weight:600;
+}
+
+body.loaded .loader-wrapper{
+    transform:translateY(-100%);
+}
+
+
+
+
 /* Chrome, Edge, Safari */
 ::selection {
     background: #FFB300;
