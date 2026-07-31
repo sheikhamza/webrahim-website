@@ -48,6 +48,7 @@
         font-family: "Inter Tight", sans-serif;
     }
 }
+
 /* ==========================================
    1. RESET & BASE VARIABLE CONFIGURATION
    ========================================== */
@@ -55,69 +56,64 @@ html {
     scroll-behavior: smooth;
     font-family: var(--font-sans, sans-serif);
     color: var(--text-primary, #ffffff);
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
-    background-color: transparent; /* Solid background removed so atmosphere canvas renders cleanly */
+    background-color: transparent;
     margin: 0;
     padding: 0;
+    max-width: 100%;
     overflow-x: hidden;
     scroll-behavior: auto !important;
 }
-/* Chrome, Edge, Safari */
+
 ::selection {
     background: #FFB300;
-    /* color: #000; */
 }
 
-/* Firefox */
 ::-moz-selection {
     background: #FFB300;
-    /* color: #000; */
 }
 
-/* H1 70px
-H2 50px
-H3 45px
-H4 40px
-H5 28px */
-h1{
+h1 {
     font-size: 70px;
     font-family: 'Coolvetica', sans-serif;
 }
-h2{
+h2 {
     font-size: 50px;
     font-family: 'Coolvetica-Bold', sans-serif;
     text-transform: capitalize;
 }
-
 h3 {
     font-family: 'Coolvetica-Bold', sans-serif;
     text-transform: capitalize;
     letter-spacing: 2px;
     font-size: 45px;
 }
-h4{
+h4 {
     font-family: 'Coolvetica-Bold', sans-serif;
     font-size: 40px;
 }
-h5{
+h5 {
     font-family: 'Coolvetica-Bold', sans-serif;
     font-size: 28px;
     letter-spacing: 2px;
 }
-a{
+a {
     cursor: pointer;
 }
 p {
     font-family: 'Inter Tight', sans-serif;
 }
-ul li{
+ul li {
     font-family: 'Inter Tight';
 }
-/* ================================
-   BACKGROUND ANIMATION
-   ================================ */
+
+/* ==========================================
+   2. BACKGROUND ANIMATIONS & LAYOUT STACK
+   ========================================== */
 #atmosphere {
     position: fixed;
     top: 0;
@@ -139,8 +135,6 @@ ul li{
     pointer-events: none;
 }
 
-
-/* Keep site content above the canvases */
 div[data-scroll-container],
 main,
 header,
@@ -151,12 +145,10 @@ section {
     z-index: 2;
 }
 
-/* Structural Layout */
 main {
     position: relative;
     z-index: 1;
 }
-
 
 .container {
     max-width: 800px;
@@ -164,63 +156,52 @@ main {
     text-align: center;
 }
 
-/* Hero Section style start */
-
-/* Profile Animation */
-.elastic-stack{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    flex-wrap:wrap;
-    row-gap:12px;
+/* ==========================================
+   3. HERO SECTION STYLES
+   ========================================== */
+.elastic-stack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-wrap: wrap;
+    row-gap: 12px;
 }
 
-.avatar{
-    width:30px;
-    height:30px;
-    border-radius:50%;
-    overflow:hidden;
-    border:1px solid white;
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid white;
     background-color: white;
-    margin-left:-16px;
-    transition:700ms;
-    transition-timing-function:
-        linear(
-            0,
-            .79 14.4%,
-            1.026 22.4%,
-            1.164 31.2%,
-            1.207 38.2%,
-            1.208 46.2%,
-            1.033 80%,
-            1
-        );
-    position:relative;
-    z-index:1;
+    margin-left: -16px;
+    transition: 700ms;
+    transition-timing-function: linear(0, .79 14.4%, 1.026 22.4%, 1.164 31.2%, 1.207 38.2%, 1.208 46.2%, 1.033 80%, 1);
+    position: relative;
+    z-index: 1;
 }
 
-.avatar img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.avatar.active{
-    transform:scale(1.25);
-    z-index:100;
+.avatar.active {
+    transform: scale(1.25);
+    z-index: 100;
 }
 
-.review-card{
+.review-card {
     height: max-content;
-    opacity:0;
-    filter:blur(2px);
-    transform:translateY(20px);
-    pointer-events:none;
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateY(20px);
+    pointer-events: none;
 }
 
-/* button hover effect */
-.hero-btn{
+.hero-btn {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -230,44 +211,42 @@ main {
     background: #fff;
     color: #000;
     text-decoration: none;
-    overflow: visible; /* important */
+    overflow: visible;
 }
 
-.hero-btn:hover{
+.hero-btn:hover {
     cursor: pointer;
 }
 
-.hero-btn img{
+.hero-btn img {
     position: absolute;
-    right: -48px; /* 38px image + 10px gap */
+    right: -48px;
     top: 50%;
     width: 38px;
-    height: 38px; /* button height ke barabar */
+    height: 38px;
     transform: translateY(-50%) scale(0.5);
     opacity: 0;
     transition: all .35s ease;
     pointer-events: none;
 }
 
-.hero-btn:hover img{
+.hero-btn:hover img {
     opacity: 1;
     transform: translateY(-50%) scale(1);
 }
 
-.hero-title::first-line{
+.hero-title::first-line {
     line-height: 85px;
 }
 
-.hero-text-slider{
+.hero-text-slider {
     font-family: 'Coolvetica-Bold';
     letter-spacing: 1px;
 }
 
-/* Hero Section style end */
-
-/* section 3 */
-/* Core 3D engine properties */
-/* Container stays naturally inline within standard document grids */
+/* ==========================================
+   4. SECTION 3: 3D ENGINE & FLIP CARDS
+   ========================================== */
 #scroll-pin-wrapper {
     position: relative;
     z-index: 10;
@@ -309,8 +288,9 @@ main {
     transform-style: preserve-3d;
 }
 
-
-/* Section 5 */
+/* ==========================================
+   5. SECTION 5: PIPELINE ANIMATION
+   ========================================== */
 .lf-wrap { 
     position: relative; 
     width: 100%; 
@@ -362,7 +342,6 @@ main {
     font-weight: 600;
 }
 
-/* Pipeline box: 12px font and reduced padding by 3px */
 .lf-counter-pill { 
     display: flex; 
     align-items: center; 
@@ -388,91 +367,89 @@ main {
 .lf-tDown { animation: lfColorDown 3s linear infinite; } 
 .lf-tDown2 { animation: lfColorDown 3s linear infinite; animation-delay: -1.5s; }
 
-
-/* section 6 */
-.section-6{
+/* ==========================================
+   6. SECTION 6: PORTFOLIO SLIDER & MODAL
+   ========================================== */
+.section-6 {
     overflow: hidden;
 }
 
-.portfolio-wrapper{
-    position:relative;
-    margin:auto;
-    overflow:hidden;
+.portfolio-wrapper {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
 }
 
-.portfolio-slider{
-    display:flex;
-    width:max-content;
+.portfolio-slider {
+    display: flex;
+    width: max-content;
+    transition: .4s;
 }
 
-.portfolio-card{
-    flex-shrink:0;
+.portfolio-card {
+    flex-shrink: 0;
     cursor: none;
+    transition: .4s;
 }
 
-.portfolio-cursor-glass{
-    position:absolute;
-    left:0;
-    top:0;
+.portfolio-card:hover {
+    transform: translateY(-8px);
+}
 
-    width:110px;
-    height:110px;
-
-    border-radius:50%;
+.portfolio-cursor-glass {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.18);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:#fff;
-    font-size:25px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 25px;
     padding: 10px;
-
-    pointer-events:none;
-
-    opacity:0;
-    scale:.5;
-
-    z-index:20;
+    pointer-events: none;
+    opacity: 0;
+    scale: .5;
+    z-index: 20;
 }
 
-.portfolio-slider{
-    display:flex;
-    width:max-content;
+#modalContent::-webkit-scrollbar {
+    width: 8px;
 }
 
-#modalContent::-webkit-scrollbar{
-    width:8px;
+#modalContent::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 20px;
 }
 
-#modalContent::-webkit-scrollbar-thumb{
-    background:#666;
-    border-radius:20px;
+#modalContent::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-#modalContent::-webkit-scrollbar-track{
-    background:transparent;
+body.modal-open {
+    overflow: hidden;
 }
 
-body.modal-open{
-    overflow:hidden;
+#modalLoader {
+    background: linear-gradient(90deg, #151515 25%, #252525 50%, #151515 75%);
+    background-size: 200% 100%;
+    animation: skeleton 1s linear infinite;
 }
 
-.portfolio-card{
-    transition:.4s;
+@keyframes skeleton {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
 }
 
-.portfolio-card:hover{
-    transform:translateY(-8px);
-}
-
-/* section-7 */
-/* Scroll-based horizontal fixed width & transform behavior cleanup */
+/* ==========================================
+   7. SECTION 7: VIDEO TESTIMONIALS
+   ========================================== */
 .video-wrapper {
     position: relative;
     width: 100%;
@@ -495,7 +472,6 @@ body.modal-open{
     cursor: none;
 }
 
-/* Center Glass Play/Pause Button */
 .center-play-btn {
     position: absolute;
     top: 50%;
@@ -530,7 +506,6 @@ body.modal-open{
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* Custom Cursor Glass */
 .cursor-glass {
     position: absolute;
     left: 0;
@@ -555,7 +530,6 @@ body.modal-open{
     z-index: 20;
 }
 
-/* Speaker Controls */
 .speaker-btn {
     position: absolute;
     top: 15px;
@@ -603,7 +577,6 @@ body.modal-open{
     cursor: pointer;
 }
 
-/* Bottom Progress Bar Container */
 .video-progress-container {
     position: absolute;
     bottom: 0;
@@ -643,330 +616,237 @@ body.modal-open{
     cursor: pointer;
 }
 
-/* Offer Section */
-.offer-card{
-    height:fit-content;
+/* ==========================================
+   8. SECTION 8, 9, 10, 11, 12: OTHER SECTIONS
+   ========================================== */
+.offer-card {
+    height: fit-content;
 }
-.offer-card h5{
+
+.offer-card h5 {
     text-wrap: balance;
 }
 
-/* section 9 */
-#workflow-section{
-    overflow:hidden;
+#workflow-section {
+    overflow: hidden;
 }
 
-.workflow-wrapper{
-    width:100%;
-    overflow:hidden;
+.workflow-wrapper {
+    width: 100%;
+    overflow: hidden;
 }
 
-.workflow-track{
-    position:relative;
-    display:flex;
-    gap:100px;
-    width:max-content;
-
-    padding-left:150px;
+.workflow-track {
+    position: relative;
+    display: flex;
+    gap: 100px;
+    width: max-content;
+    padding-left: 150px;
 }
 
-.timeline{
-    position:absolute;
-    left:150px;
-    top:160px;
-    width:calc(100% - 300px); /* 150 left + 150 right */
-    height:2px;
-    z-index:1;
+.timeline {
+    position: absolute;
+    left: 150px;
+    top: 160px;
+    width: calc(100% - 300px);
+    height: 2px;
+    z-index: 1;
 }
 
-.timeline-base{
-    position:absolute;
-    left:0;
-    top:0;
-
-    width:100%;
-    height:2px;
-
-    background:#3b3b3b;
+.timeline-base {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background: #3b3b3b;
 }
 
-.timeline-progress{
-    position:absolute;
-    left:0;
-    top:0;
-
-    width:100%;
-    height:2px;
-
-    background:#D6A019;
+.timeline-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background: #D6A019;
 }
 
-.step-card{
-    width:fit-content;
-    flex-shrink:0;
-    position:relative;
-    z-index:2;
+.step-card {
+    width: fit-content;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
 }
 
-.number{
-    font-size:150px;
+.number {
+    font-size: 150px;
     font-family: 'Coolvetica-Bold';
-    font-weight:700;
-    color:#fff;
-    line-height:1;
-    margin-bottom:40px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 40px;
 }
 
-
-.step-card p{
-    width:260px;
-    font-size:17px;
-    line-height:1.6;
+.step-card p {
+    width: 260px;
+    font-size: 17px;
+    line-height: 1.6;
 }
 
-
-/* section 10 */
-
-.testimonial-slide{
+.testimonial-slide {
     will-change: transform, opacity;
 }
 
-.testimonial-slide h3{
-    letter-spacing:-2px;
+.testimonial-slide h3 {
+    letter-spacing: -2px;
 }
 
-#prevBtn,
-#nextBtn{
-    transition:all .35s ease;
+#prevBtn, #nextBtn {
+    transition: all .35s ease;
 }
 
-#prevBtn:hover,
-#nextBtn:hover{
-    transform:translateY(-2px);
+#prevBtn:hover, #nextBtn:hover {
+    transform: translateY(-2px);
 }
 
-#testimonialTrack{
-    overflow:hidden;
+#testimonialTrack {
+    overflow: hidden;
 }
 
-
-
-
-
-/* section 11 ribbon */
-.ribbon-track{
-    width:max-content;
-    will-change:transform;
+.ribbon-track {
+    width: max-content;
+    will-change: transform;
     font-family: 'Coolvetica-Bold';
 }
 
-
-
-/* section 12 */
-.faq-content{
-    height:0;
+.faq-content {
+    height: 0;
 }
 
-.faq-btn{
-    transition:.35s;
+.faq-btn {
+    transition: .35s;
     text-transform: capitalize;
     font-family: 'Inter Tight';
     font-size: 18px;
 }
 
-
-.faq-item{
-    transition:.35s;
+.faq-item, .plus {
+    transition: .35s;
 }
 
-.plus{
-    transition:.35s;
+.hero-word {
+    font-family: 'Coolvetica-Bold';
 }
+
+.about-container {
+    max-height: 750px;
+}
+
+.about-cta:hover {
+    background-color: #1C1C1C;
+    color: white;
+}
+
+.footer-title, .faqFooter-title {
+    font-family: 'Coolvetica-Bold';
+}
+
 
 /* ==========================================================
-   RESPONSIVE LAYER — appended
-   Preserves desktop pixel-perfect design; only adjusts
-   fixed-px CSS values at <= specific breakpoints.
-   Breakpoints: 1536, 1440, 1280, 1024, 768, 640, 480, 375
+   CONSOLIDATED & CLEANED RESPONSIVE MEDIA QUERIES
    ========================================================== */
 
-html, body { max-width: 100%; overflow-x: hidden; }
-
-/* Mobile nav overlay */
-#mobileNavMenu.open { display: flex; transition: 5s; }
-.mobile-nav-link { position: relative; }
-.mobile-nav-link:hover { color: #FFB300; }
-
-
-/* Hero title first-line huge line-height only on desktop */
-@media (max-width: 1023px) {
-    .hero-title::first-line { line-height: 1.05; }
+/* ----------------------------------------------------------
+   A. GLOBAL MOBILE NAV & ACCESSIBILITY (< 1024px)
+   ---------------------------------------------------------- */
+#mobileNavMenu.open {
+    display: flex;
+    transition: 0.5s;
 }
 
-/* Section 9 — workflow horizontal scroll */
+.mobile-nav-link {
+    position: relative;
+}
+
+.mobile-nav-link:hover {
+    color: #FFB300;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ----------------------------------------------------------
+   B. LARGE DESKTOP & LAPTOP ADJUSTMENTS (1024px to 1279px)
+   ---------------------------------------------------------- */
 @media (max-width: 1279px) {
-    .workflow-track { gap: 70px; padding-left: 100px; }
-    .timeline { left: 100px; width: calc(100% - 200px); top: 110px; }
-    .step-card { width: 300px; }
-    .number { font-size: 90px; margin-bottom: 45px; }
-    .step-card h3 { font-size: 38px; }
-    .step-card p { font-size: 16px; width: 240px; }
+    .workflow-track {
+        gap: 70px;
+        padding-left: 100px;
+    }
+    .timeline {
+        left: 100px;
+        width: calc(100% - 200px);
+        top: 110px;
+    }
+    .step-card {
+        width: 300px;
+    }
+    .number {
+        font-size: 90px;
+        margin-bottom: 45px;
+    }
+    .step-card h3 {
+        font-size: 38px;
+    }
+    .step-card p {
+        font-size: 16px;
+        width: 240px;
+    }
 }
+
+/* ----------------------------------------------------------
+   C. GENERAL TABLET & BELOW LAYER (max-width: 1023px)
+   ---------------------------------------------------------- */
 @media (max-width: 1023px) {
+    h1 { font-size: 42px; }
+    h2 { font-size: clamp(2.2rem, 6vw, 3.1rem); }
+    h3 { font-size: clamp(1.9rem, 5vw, 2.7rem); }
+
+    .hero-title::first-line { line-height: 1.05; }
+    .hero-section nav { width: min(100%, 680px); }
+    .hero-section > .relative.w-\[700px\] { width: min(100%, 700px); padding-inline: .5rem; }
+    .hero-title { width: min(100%, 640px) !important; }
+
     .workflow-track { gap: 50px; padding-left: 60px; }
     .timeline { left: 60px; width: calc(100% - 120px); top: 90px; }
     .step-card { width: 260px; }
     .number { font-size: 76px; margin-bottom: 35px; }
     .step-card h3 { font-size: 32px; }
     .step-card p { font-size: 15px; width: 220px; }
-}
-@media (max-width: 767px) {
-    .workflow-track { gap: 36px; padding-left: 32px; }
-    .timeline { left: 32px; width: calc(100% - 64px); top: 80px;}
-    .step-card { width: 220px; }
-    .number { font-size: 64px; margin-bottom: 28px; }
-    .step-card h3 { font-size: 26px; margin-bottom: 14px; }
-    .step-card p { font-size: 14px; width: 200px; line-height: 1.5; }
-}
-@media (max-width: 479px) {
-    .work-section{
-        min-height:max-content;
-    }
-    .workflow-track { gap: 40px; padding-left: 24px; }
-    .timeline { left: 24px; width: calc(100% - 48px); top: 65px; }
-    .step-card { width:auto; }
-    .number { font-size: 80px; margin-bottom: 24px; }
-    .step-card h3 { font-size: 35px; }
-    .step-card p { font-size: 16px; width: 180px; }
-    .timeline-base{
-        top: 30px;
-    }
-    .timeline-progress{
-        top: 30px;
-    }
-}
 
-/* Section 5 — funnel SVG scales down naturally via viewBox; nothing to change */
-
-/* Portfolio cursor smaller on touch */
-#modalLoader{
-
-    background:
-    linear-gradient(
-    90deg,
-    #151515 25%,
-    #252525 50%,
-    #151515 75%);
-
-    background-size:200% 100%;
-
-    animation:skeleton 1s linear infinite;
-
-}
-
-@keyframes skeleton{
-
-    from{
-        background-position:200% 0;
-    }
-
-    to{
-        background-position:-200% 0;
-    }
-
-}
-
-@media (max-width: 1023px) {
     .portfolio-cursor-glass, .cursor-glass { width: 80px; height: 80px; font-size: 18px; }
     .portfolio-card, .video-card { cursor: pointer; }
-}
-@media (max-width: 767px) {
-    .portfolio-cursor-glass, .cursor-glass { display: none; }
-}
 
-/* Section 8 offer cards padding */
-@media (max-width: 767px) {
-    .offer-card, [class*="rounded-3xl"].p-8 { padding: 1.5rem; }
-}
-
-/* About section — hide extra decorative cards on smaller screens (keep image card1 only) */
-.hero-word{
-    font-family: 'Coolvetica-Bold';
-}
-.about-container{
-    max-height: 750px;
-}
-.about-cta:hover{
-    background-color: #1C1C1C;
-    /* background-color: #FFB300; */
-    color: white;
-}
-
-/* Footer */
-.footer-title{
-    font-family: 'Coolvetica-Bold';
-}
-.faqFooter-title{
-    font-family: 'Coolvetica-Bold';
-}
-@media (max-width: 1023px) {
     .about-section .card2,
     .about-section .card3,
     .about-section .card4 { display: none; }
     .about-section .card1 { position: relative !important; right: auto !important; margin: 0 auto; height: 480px; width: 380px; max-width: 100%; }
-}
-@media (max-width: 640px) {
-    .about-section .card1 { height: 380px; width: 300px; }
-}
 
-/* Testimonial slide bottom info spacing */
-@media (max-width: 1023px) {
     .testimonial-slide .mt-16 { margin-top: 1.5rem; }
-}
 
-/* FAQ heading on mobile */
+    .faq-title { width: min(100%, 650px) !important; }
+    .footer { min-height: 720px; height: 100svh; }
 
-
-/* Prevent portfolio modal overflow on small screens */
-@media (max-width: 640px) {
-    #portfolioModal { padding: 1rem; }
-    #modalContent { max-width: 100%; height: 85vh; }
-    #closePortfolio { top: 1rem; right: 1rem; width: 44px; height: 44px; font-size: 20px; z-index: 99;}
-}
-
-/* Ribbon square separators */
-@media (max-width: 767px) {
-    .ribbon-item .w-8.h-8 { width: 18px; height: 18px; margin-left: 1.5rem; margin-right: 1.5rem; }
-}
-
-/* Video volume popup — keep tappable */
-@media (max-width: 640px) {
-    .speaker-btn { width: 38px; height: 38px; top: 10px; right: 10px; }
-}
-
-/* Hero inline nav tabs — reduce height */
-@media (max-width: 640px) {
-    #leftCurrent, #centerCurrent, #rightCurrent,
-    #leftNext, #centerNext, #rightNext { font-size: 25px; }
-}
-
-/* ==========================================================
-   MOBILE + TABLET SAFETY LAYER
-   These rules deliberately begin below the desktop breakpoint.
-   Desktop composition and animation values remain unchanged.
-   ========================================================== */
-@media (max-width: 1023px) {
-    h1 { font-size: 42px; }
-    h2 { font-size: clamp(2.2rem, 6vw, 3.1rem); }
-    h3 { font-size: clamp(1.9rem, 5vw, 2.7rem); }
-
-    .hero-section nav { width: min(100%, 680px); }
-    .hero-section > .relative.w-\[700px\] { width: min(100%, 700px); padding-inline: .5rem; }
-    .hero-title { width: min(100%, 640px) !important; }
-
-    .offer-section > .flex { flex-wrap: wrap; padding-inline: 1.5rem; }
-    .offer-card { width: min(380px, calc(50vw - 2.25rem)); }
-
+    .offer-section > .flex { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 1.5rem; 
+        padding-inline: 1.5rem; 
+    }
+    
     .video-testimonial-container {
         justify-content: flex-start;
         overflow-x: auto;
@@ -978,17 +858,17 @@ html, body { max-width: 100%; overflow-x: hidden; }
     }
     .video-testimonial-container::-webkit-scrollbar { display: none; }
     .video-card { scroll-snap-align: center; }
-
-    .faq-title { width: min(100%, 650px) !important; }
-    .footer { min-height: 720px; height: 100svh; }
 }
 
-/* ==========================================================
-   TABLET LAYOUT (768px–1023px)
-   Keep the desktop composition from 1024px upward and the
-   existing phone treatment below 768px completely independent.
-   ========================================================== */
+/* ----------------------------------------------------------
+   D. DEDICATED TABLET RESPONSIVE FIXES (768px to 1023px)
+   ---------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 1023px) {
+    .mobile-menu-toggle, 
+    .mobile-nav-menu { 
+        display: none !important; 
+    }
+
     .hero-section {
         min-height: 100svh;
         padding-inline: 2rem;
@@ -1004,12 +884,22 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .hero-section .desktop-nav-links a { font-size: .9rem !important; }
     .hero-subtitle { max-width: 38rem; }
 
-    /* The desktop pinned composition needs more horizontal room than a tablet
-       provides. Present the same content as a readable vertical sequence. */
+    .hero-text-slider {
+        width: 100%;
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    .hero-text-slider > div {
+        min-width: 220px !important;
+    }
+
+    /* Section 3 Scroll Wrapper Tablet Restructure */
     #scroll-pin-wrapper {
         min-height: 0 !important;
         max-width: 720px;
-        padding: 5rem 2rem 0;
+        margin: 0 auto;
+        padding: 4rem 1.5rem 0;
     }
 
     .animation-inner-sticky-canvas {
@@ -1022,50 +912,60 @@ html, body { max-width: 100%; overflow-x: hidden; }
         display: flex !important;
         flex-direction: column;
         height: auto !important;
-        gap: 1.25rem !important;
+        gap: 1.5rem !important;
     }
 
     .animation-inner-sticky-canvas > div > div:first-child,
-    .animation-inner-sticky-canvas > div > div:last-child { display: contents; }
+    .animation-inner-sticky-canvas > div > div:last-child { 
+        display: contents; 
+    }
 
     .animation-inner-sticky-canvas > div > div:nth-child(2) {
         order: 1;
-        width: min(100%, 420px) !important;
-        height: 520px !important;
-        margin: 2rem auto 1rem;
+        width: min(100%, 400px) !important;
+        height: 480px !important;
+        margin: 1.5rem auto 1rem;
     }
 
     .cards-left-group,
     .cards-right-group {
         position: static !important;
         inset: auto !important;
-        display: contents !important;
+        display: flex !important;
+        flex-direction: column !important;
         width: 100% !important;
         height: auto !important;
+        gap: 1rem !important;
     }
 
     .cards-left-group > div,
     .cards-right-group > div {
         width: 100% !important;
-        min-height: 150px;
+        min-height: 140px;
         margin: 0 !important;
-        padding: 1.5rem !important;
+        padding: 1.25rem !important;
     }
 
     .cards-left-group > div:nth-child(1) { order: 2; }
     .cards-left-group > div:nth-child(2) { order: 3; }
     .cards-right-group > div:nth-child(1) { order: 4; }
     .cards-right-group > div:nth-child(2) { order: 5; }
-    .text-left-final,
-    .text-right-final { display: none !important; }
-    .flip-badge { display: flex !important; }
 
-    /* Reuse the existing second half of this story at a comfortable tablet width. */
+    .text-left-final,
+    .text-right-final { 
+        display: none !important; 
+    }
+    
+    .flip-badge { 
+        display: flex !important; 
+    }
+
+    /* Mobile Real Problem Section on Tablet */
     .mobile-real-problem {
         display: block !important;
         max-width: 680px;
         margin: 0 auto;
-        padding: 5rem 2rem 0;
+        padding: 4rem 1.5rem 0;
         text-align: center;
     }
 
@@ -1078,16 +978,22 @@ html, body { max-width: 100%; overflow-x: hidden; }
     }
 
     .mobile-real-problem .animated-bage img { width: 28px; height: 28px; }
-    .mobile-real-problem h3 { margin: 0; line-height: 1; letter-spacing: -.5px; }
-        .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }
+    .mobile-real-problem h3 { margin: 0; line-height: 1.05; letter-spacing: -.5px; }
+    .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }
     .mobile-real-problem-image { width: 100%; margin: 2rem auto; border-radius: 1rem; }
     .mobile-real-problem p { font-size: 1.125rem; line-height: 1.6; }
+
+    /* Offer Cards Gap Fix on Tablet */
+    .offer-card { 
+        width: calc(50% - 1rem) !important; 
+        max-width: 380px;
+    }
 
     .about-container {
         max-width: 720px;
         max-height: none;
         min-height: 0;
-        padding-block: 5rem;
+        padding-block: 4rem;
     }
 
     .about-section .about-content { padding-top: 0; text-align: center; }
@@ -1103,21 +1009,55 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .footer { min-height: 680px; }
 }
 
+/* ----------------------------------------------------------
+   E. MOBILE RESPONSIVE LAYER (max-width: 767px)
+   ---------------------------------------------------------- */
 @media (max-width: 767px) {
     html { scroll-padding-top: 1rem; }
     body { -webkit-tap-highlight-color: transparent; }
 
-    .hero-section { min-height: 100svh;  background-image: url(../images/hero-mobile-image.webp)!important; }
-    /* Compact mobile-only pill nav. Desktop navigation is left untouched. */
-    .hero-section nav { width: 100%; gap: .4rem; padding: .42rem .55rem; }
+    h2 { font-size: 35px; }
+    h3 { font-size: 35px; }
+    h5 { font-size: 25px; }
+
+    .hero-section { min-height: 100svh; background-image: url(../images/hero-mobile-image.webp) !important; }
+    .hero-section nav { position: relative; z-index: 30; width: 100%; gap: .4rem; padding: .42rem .55rem; }
     .hero-section nav > img { height: 37px; width: auto; }
     .hero-section nav > div { gap: .42rem; min-width: 0; }
     .hero-section nav a { font-size: .64rem !important; line-height: 1; white-space: nowrap; }
     .hero-section .call-btn img { height: 1.45rem; }
-    .hero-text-slider { padding-block: 1.75rem !important; width: 300px; }
+    
+    .hero-section .desktop-nav-links,
+    .hero-section .call-btn { display: none !important; }
 
-    /* Sections 3–4 are deliberately static on mobile. The desktop pinned
-       flip/reveal composition remains unchanged above this breakpoint. */
+    .mobile-menu-toggle { display: grid; gap: 7px; width: 40px; padding: 3px 1px; place-content: center; }
+    .mobile-menu-toggle span { display: block; width: 20px; height: 1.5px; border-radius: 2px; background: #FFCD56; transition: transform .2s ease, opacity .2s ease; }
+    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    
+    .mobile-nav-menu { display: none; position: absolute; top: 75px; right: .75rem; z-index: 99; width: min(200px, calc(100vw - 1.5rem)); padding: .65rem; flex-direction: column; gap: .2rem; border: 1px solid rgba(255,255,255,.13); border-radius: 1rem; background: rgba(14,14,14,.94); backdrop-filter: blur(16px); box-shadow: 0 16px 35px rgba(0,0,0,.35); }
+    .mobile-nav-menu.open { display: flex !important; }
+    .mobile-nav-link { padding: .7rem .8rem; border-radius: .65rem; font: 400 .88rem/1 "Inter Tight", sans-serif; color: white; text-align: left; }
+    .mobile-nav-call { display: flex; align-items: center; justify-content: center; gap: .4rem; margin-left: 5px; padding: .42rem .45rem .42rem .8rem; color: #151515; background: #fff; text-align: center; font-size: .72rem !important; }
+    .mobile-nav-call img { width: 1.4rem; height: 1.4rem; border-radius: 999px; object-fit: cover; }
+
+    .hero-title::first-line { line-height: 48px; }
+
+    .hero-text-slider {
+        flex-direction: column !important;
+        gap: 0.25rem;
+        padding-block: 1.75rem !important;
+        width: 300px;
+    }
+    
+    .hero-text-slider > div {
+        flex: none;
+        width: 100%;
+        height: 50px !important;
+        min-height: 0;
+    }
+
     #scroll-pin-wrapper { min-height: 0 !important; padding: 3.5rem 1rem 0; }
     .animation-inner-sticky-canvas { height: auto !important; overflow: visible !important; padding: 0 !important; }
     .animation-inner-sticky-canvas > div {
@@ -1128,22 +1068,15 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .animation-inner-sticky-canvas > div > div:first-child,
     .animation-inner-sticky-canvas > div > div:last-child { display: contents; }
     .animation-inner-sticky-canvas > div > div:nth-child(2) {
-        order: 2;
+        order: 1;
         width: 100% !important;
         height: 440px !important;
         min-height: 0 !important;
     }
-    .text-left-final {
-        display: flex !important;
-        order: 1;
-        position: static !important;
-        width: 100% !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        padding: 0 !important;
-    }
-    .text-left-final .animated-bage { margin-bottom: .65rem !important; }
-    .text-left-final .flip-title { font-size: clamp(2rem, 10vw, 2.6rem) !important; }
+
+    .text-left-final { display: none !important; }
+    .flip-badge { display: flex !important; }
+
     .cards-left-group, .cards-right-group {
         position: static !important;
         inset: auto !important;
@@ -1158,111 +1091,45 @@ html, body { max-width: 100%; overflow-x: hidden; }
         min-height: 118px;
         padding: 1rem !important;
     }
-    .cards-left-group > div:nth-child(1) { order: 3; }
-    .cards-left-group > div:nth-child(2) { order: 4; }
-    .cards-right-group > div:nth-child(1) { order: 5; }
-    .cards-right-group > div:nth-child(2) { order: 6; }
-    .text-right-final, .flip-badge { display: none !important; }
-
-    .offer-section > .flex { flex-direction: column; align-items: stretch; margin-top: 2.5rem; padding-inline: 1rem; }
-    .offer-card { width: 100%; padding: 2rem 1.5rem; }
-    .offer-card h5 { margin-bottom: 2rem; }
-
-    .video-wrapper { width: 100% !important; padding-top: 2rem !important; }
-    .video-testimonial-container { gap: 1rem !important; }
-    .video-card { width: 214px !important; height: 380px !important; }
-
-    .testimonial-section{ min-height: max-content;}
-    .testimonial-section #testimonialTrack { height: 620px !important; }
-    .testimonial-section .testimonial-slide .mt-16 { margin-top: 1.25rem; }
-    .testimonial-section .testimonial-slide .review { font-size: 22px !important; }
-
-    .about-container { max-height: none; min-height: 620px; }
-    .about-section .hero-actions { flex-wrap: wrap; }
-    .faq-section .relative.max-w-3xl { padding-inline: 1.25rem; }
-    .faq-title { margin-bottom: 2.5rem; }
-    .faq-btn { gap: 1rem; padding-block: 1.25rem; }
-    .faq-btn span:first-child { font-size: 1rem; }
-    .faq-content > div { padding-right: 1rem; line-height: 1.6; }
-
-    .footer { min-height: 650px; height: 100svh; background-position: center bottom; }
-}
-
-@media (max-width: 479px) {
-    .hero-section nav > div { gap: .35rem; }
-    .hero-section nav a { font-size: .67rem !important; }
-    .hero-section nav > img { height: 35px; }
-    .hero-section .call-btn img { height: 1.5rem; }
-    .hero-text-slider { font-size: 20px  !important; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { scroll-behavior: auto !important; }
-}
-
-/* Reference mobile layout — intentionally isolated from desktop. */
-@media (max-width: 767px) {
-    h2{
-        font-size: 35px;
-    }
-    h3{
-        font-size: 35px;
-    }
-    h5{
-        font-size: 25px;
-    }
-    .hero-section nav { position: relative; z-index: 30; }
-    .hero-section .desktop-nav-links,
-    .hero-section .call-btn { display: none !important; }
-    .mobile-menu-toggle { display: grid; gap: 7px; width: 40px; padding: 3px 1px; place-content: center; }
-    .mobile-menu-toggle span { display: block; width: 20px; height: 1.5px; border-radius: 2px; background: #FFCD56; transition: transform .2s ease, opacity .2s ease; }
-    .mobile-menu-toggle.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .mobile-menu-toggle.is-open span:nth-child(2) { opacity: 0; }
-    .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    .mobile-nav-menu { display: none; position: absolute; top: 75px; right: .75rem; z-index: 99; width: min(200px, calc(100vw - 1.5rem)); padding: .65rem; flex-direction: column; gap: .2rem; border: 1px solid rgba(255,255,255,.13); border-radius: 1rem; background: rgba(14,14,14,.94); backdrop-filter: blur(16px); box-shadow: 0 16px 35px rgba(0,0,0,.35); }
-    .mobile-nav-menu.open { display: flex !important; }
-    .mobile-nav-link { padding: .7rem .8rem; border-radius: .65rem; font: 400 .88rem/1 "Inter Tight", sans-serif; color: white; text-align: left; }
-    .mobile-nav-call { display: flex; align-items: center; justify-content: center; gap: .4rem; margin-left: 5px; padding: .42rem .45rem .42rem .8rem; color: #151515; background: #fff; text-align: center; font-size: .72rem !important; }
-    .mobile-nav-call img { width: 1.4rem; height: 1.4rem; border-radius: 999px; object-fit: cover; }
-
-    .hero-title::first-line{
-        line-height: 48px;
-    }
-
-    /* This is a vertical visual stack, with the existing labels sliding sideways. */
-    .hero-text-slider {
-        flex-direction: column !important;
-        gap: 0.25rem;
-    }
-    
-    .hero-text-slider > div {
-        flex: none;
-        width: 100%;
-        height: 50px !important;
-        min-height: 0;
-    }
-    
-    
-
-    /* First static half: coach badge, visual, then the four pain cards. */
-    .text-left-final { display: none !important; }
-    .flip-badge { display: flex !important; }
-    .animation-inner-sticky-canvas > div > div:nth-child(2) { order: 1; }
     .cards-left-group > div:nth-child(1) { order: 2; }
     .cards-left-group > div:nth-child(2) { order: 3; }
     .cards-right-group > div:nth-child(1) { order: 4; }
     .cards-right-group > div:nth-child(2) { order: 5; }
+    
+    .text-right-final { display: none !important; }
 
-    .mobile-real-problem { display: block; padding: .2rem 1rem 0; text-align: center; }
+    .mobile-real-problem { display: block; padding: 100px 1rem 0; text-align: center; }
     .mobile-real-problem .animated-bage { display: flex; align-items: center; justify-content: center; gap: .45rem; margin-bottom: 20px; font: 16px "Inter Tight", sans-serif; }
     .mobile-real-problem .animated-bage img { width: 25px; height: 25px; object-fit: contain; }
     .mobile-real-problem h3 { margin: 0; line-height: .94; letter-spacing: -.5px; }
     .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }
     .mobile-real-problem-image { display: block; width: 100%; margin: 40px auto 40px; border-radius: .6rem; }
 
-    /* Founder panel matches the reference's static text + portrait composition. */
+    .workflow-track { gap: 36px; padding-left: 32px; }
+    .timeline { left: 32px; width: calc(100% - 64px); top: 80px; }
+    .step-card { width: 220px; }
+    .number { font-size: 64px; margin-bottom: 28px; }
+    .step-card h3 { font-size: 26px; margin-bottom: 14px; }
+    .step-card p { font-size: 14px; width: 200px; line-height: 1.5; }
+
+    .portfolio-cursor-glass, .cursor-glass { display: none; }
+
+    .offer-section > .flex { flex-direction: column; align-items: stretch; margin-top: 2.5rem; padding-inline: 1rem; }
+    .offer-card { width: 100% !important; max-width: 100% !important; padding: 2rem 1.5rem; }
+    .offer-card, [class*="rounded-3xl"].p-8 { padding: 1.5rem; }
+    .offer-card h5 { margin-bottom: 2rem; }
+
+    .video-wrapper { width: 100% !important; padding-top: 2rem !important; }
+    .video-testimonial-container { gap: 1rem !important; }
+    .video-card { width: 214px !important; height: 380px !important; }
+
+    .testimonial-section { min-height: max-content; }
+    .testimonial-section #testimonialTrack { height: 620px !important; }
+    .testimonial-section .testimonial-slide .mt-16 { margin-top: 1.25rem; }
+    .testimonial-section .testimonial-slide .review { font-size: 22px !important; }
+
     .about-section { padding-top: 20px !important; }
-    .about-container { max-height: none; min-height: 0; padding: 0 1rem 80px !important; }
+    .about-container { max-height: none; min-height: 620px; padding: 0 1rem 80px !important; }
     .about-section .about-content { text-align: center; }
     .about-section .about-content .animated-bage { text-align: center; }
     .about-section .about-title { margin-bottom: .8rem !important; }
@@ -1272,22 +1139,62 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .about-section .cards-wrap { display: block !important; height: 330px !important; }
     .about-section .card1 { position: relative !important; top: auto !important; right: auto !important; width: 270px !important; height: 337px !important; margin: 0 auto; overflow: hidden; border-radius: 1.25rem !important; }
     .about-section .card2 { position: absolute !important; top: 0 !important; left: 0 !important; width: 270px !important; height: 337px !important; margin: 0 auto; overflow: hidden; display: block; }
-    .about-section .card3 { position: absolute !important; top: 0 !important; right: 0 !important; width: 270px !important; height: 337px !important; margin: 0 auto; overflow: hidden; display: block; border: 0.5px solid #ffffff69;}
+    .about-section .card3 { position: absolute !important; top: 0 !important; right: 0 !important; width: 270px !important; height: 337px !important; margin: 0 auto; overflow: hidden; display: block; border: 0.5px solid #ffffff69; }
     .about-section .card1 img { object-fit: cover; }
     .about-section .hero-word { display: none; }
 
-    .mobile-real-problem { padding-top: 100px; }
-    .faq-section { min-height: 0 !important; }
+    .ribbon-item .w-8.h-8 { width: 18px; height: 18px; margin-left: 1.5rem; margin-right: 1.5rem; }
 
-    footer{
+    .faq-section { min-height: 0 !important; }
+    .faq-section .relative.max-w-3xl { padding-inline: 1.25rem; }
+    .faq-title { margin-bottom: 2.5rem; }
+    .faq-btn { gap: 1rem; padding-block: 1.25rem; }
+    .faq-btn span:first-child { font-size: 1rem; }
+    .faq-content > div { padding-right: 1rem; line-height: 1.6; }
+
+    footer {
+        min-height: 650px; 
+        height: 100svh; 
+        background-position: center bottom;
         background-image: url(../images/footer-mobile.webp) !important;
     }
 }
 
-@media (min-width: 768px) {
-    .mobile-menu-toggle, .mobile-nav-menu { display: none !important; }
+/* ----------------------------------------------------------
+   F. SMALL MOBILE SCREENS (< 640px & < 480px)
+   ---------------------------------------------------------- */
+@media (max-width: 640px) {
+    .about-section .card1 { height: 380px; width: 300px; }
+    #portfolioModal { padding: 1rem; }
+    #modalContent { max-width: 100%; height: 85vh; }
+    #closePortfolio { top: 1rem; right: 1rem; width: 44px; height: 44px; font-size: 20px; z-index: 99; }
+    .speaker-btn { width: 38px; height: 38px; top: 10px; right: 10px; }
+    #leftCurrent, #centerCurrent, #rightCurrent,
+    #leftNext, #centerNext, #rightNext { font-size: 25px; }
 }
 
+@media (max-width: 479px) {
+    .work-section { min-height: max-content; }
+    .workflow-track { gap: 40px; padding-left: 24px; }
+    .timeline { left: 24px; width: calc(100% - 48px); top: 65px; }
+    .step-card { width: auto; }
+    .number { font-size: 80px; margin-bottom: 24px; }
+    .step-card h3 { font-size: 35px; }
+    .step-card p { font-size: 16px; width: 180px; }
+    .timeline-base, .timeline-progress { top: 30px; }
+
+    .hero-section nav > div { gap: .35rem; }
+    .hero-section nav a { font-size: .67rem !important; }
+    .hero-section nav > img { height: 35px; }
+    .hero-section .call-btn img { height: 1.5rem; }
+    .hero-text-slider { font-size: 20px !important; }
+}
+
+/* ----------------------------------------------------------
+   G. DESKTOP ONLY VISIBILITY OVERRIDES (>= 1024px)
+   ---------------------------------------------------------- */
 @media (min-width: 1024px) {
-    .mobile-real-problem { display: none !important; }
+    .mobile-real-problem { 
+        display: none !important; 
+    }
 }
