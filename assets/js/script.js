@@ -52,11 +52,15 @@ backToTop.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+
     const navLinks = document.querySelectorAll('a[href^="#"]');
 
     navLinks.forEach(link => {
+
         link.addEventListener("click", (e) => {
+
             const targetId = link.getAttribute("href");
+
             if (targetId === "#" || !document.querySelector(targetId)) return;
 
             e.preventDefault();
@@ -64,20 +68,34 @@ document.addEventListener("DOMContentLoaded", () => {
             const targetElement = document.querySelector(targetId);
 
             gsap.to(window, {
+                duration: 3, // 3 second smooth scroll
                 scrollTo: {
                     y: targetElement,
-                    offsetY: 20 // Agara top nav fixed hai toh yahan offset height ajust kar sakte hain
+                    offsetY: 20,
+                    autoKill: false
                 },
-                ease: "power3.inOut" // Smooth acceleration and deceleration
+                ease: "expo.inOut",
+                overwrite: "auto"
             });
 
-            // Agar mobile menu open hai, toh click karne par close kar dein
+            // Close Mobile Menu
             const mobileMenu = document.getElementById("mobileNavMenu");
-            if (mobileMenu && mobileMenu.classList.contains("active")) {
-                mobileMenu.classList.remove("active");
-            }
+            const mobileToggle = document.querySelector(".mobile-menu-toggle");
+
+            if (mobileMenu && mobileMenu.classList.contains("open")) {
+                mobileMenu.classList.remove("open");
+                mobileMenu.setAttribute("aria-hidden", "true");
+
+                if (mobileToggle) {
+                    mobileToggle.classList.remove("is-open");
+                    mobileToggle.setAttribute("aria-expanded", "false");
+                }
+            });
+
         });
+
     });
+
 });
 
 // ==========================================
