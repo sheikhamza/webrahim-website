@@ -52,6 +52,44 @@ backToTop.addEventListener("click", () => {
 });
 
 
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (!targetElement) return;
+
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        
+        // Yahan speed/duration set karein (ms mein) - 1500ms = 1.5 Seconds
+        const duration = 3000; 
+        let start = null;
+
+        // Smooth Easing Function (Slow and natural acceleration/deceleration)
+        function animation(currentTime) {
+            if (start === null) start = currentTime;
+            const timeElapsed = currentTime - start;
+            const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        function easeInOutQuad(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+    });
+});
+
 // ==========================================
 // 2. AVATAR STACK
 // ==========================================
@@ -301,7 +339,7 @@ if (
             gsap.set(leftNext, { x: leftCurrent.parentElement.offsetWidth, y: 0 });
             gsap.set(centerNext, { x: centerCurrent.parentElement.offsetWidth, y: 0 });
             gsap.set(rightNext, { x: rightCurrent.parentElement.offsetWidth, y: 0 });
-        }
+        }       
     }
 
     updateText();

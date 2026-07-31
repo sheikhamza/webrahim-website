@@ -52,7 +52,6 @@
    1. RESET & BASE VARIABLE CONFIGURATION
    ========================================== */
 html {
-    scroll-behavior: smooth;
     font-family: var(--font-sans, sans-serif);
     color: var(--text-primary, #ffffff);
 }
