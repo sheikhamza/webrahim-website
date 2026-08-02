@@ -101,7 +101,7 @@ body {
 }
 
 .loader-logo{
-    font-size: clamp(65px,7vw,105px);
+    font-size: clamp(65px,6.5vw,105px);
     color:#f4efe8;
     margin:0;
     font-family: 'Inter Tight';
