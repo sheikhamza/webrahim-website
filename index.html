@@ -103,7 +103,7 @@
         </button>
 
         <!-- WhatsApp -->
-        <a href="https://wa.me/message/XGPKK6UHPQ3NA1"
+        <a data-popup href="#"
         target="_blank"
         class="w-14 h-14 group rounded-full bg-[#25D366] text-white shadow-2xl hover:scale-110 transition flex items-center justify-center">
             <i class="fa-brands fa-whatsapp text-3xl"></i>
@@ -129,6 +129,238 @@
             <a class="mobile-nav-link" href="#offer-section">Offers</a>
             <a class="mobile-nav-link" href="#testimonials">Faqs</a>
             <a class="mobile-nav-link mobile-nav-call hero-btn" href="#contact"><span>Talk With Ibrahim</span><img src="./assets/images/profile-image.webp" alt=""></a>
+        </div>
+    </div>
+
+
+    <!-- Form -->
+    <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-label="See if we are a fit">
+        <div class="popup-modal" id="popupModal">
+            <button class="popup-close" onclick="closePopup()" aria-label="Close">&times;</button>
+
+            <div class="popup-inner">
+
+            <!-- ── FORM VIEW ── -->
+            <div id="p-form-view">
+
+                <!-- Header -->
+                <div id="p-header">
+                <span class="popup-eyebrow">Free Conversion Audit</span>
+                <h2 class="popup-title">Let's see if we're<br><em>the right fit.</em></h2>
+                <p class="popup-subtitle">Five quick questions. Under 2 minutes. If it looks like a match, you'll book a time right here.</p>
+                </div>
+
+                <!-- Progress -->
+                <div class="p-progress" id="p-progress">
+                <div class="p-progress-meta">
+                    <span class="p-progress-label" id="p-prog-label">Question 1 of 5</span>
+                    <span class="p-progress-pct" id="p-prog-pct">20%</span>
+                </div>
+                <div class="p-bar">
+                    <div class="p-bar-fill" id="p-bar-fill" style="width:20%"></div>
+                </div>
+                </div>
+
+                <!-- Steps -->
+                <div id="p-steps">
+
+                <!-- Q1 -->
+                <div class="p-step active" data-step="1">
+                    <div class="p-q-label">Where is your coaching business right now?</div>
+                    <div class="p-q-sub">Pick the one that feels most accurate.</div>
+                    <div class="p-options">
+                    <div class="p-option" data-value="0" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Just getting started — still building my offer</span>
+                    </div>
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Generating revenue but growth feels inconsistent</span>
+                    </div>
+                    <div class="p-option" data-value="2" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Doing well — I want to convert better and scale</span>
+                    </div>
+                    <div class="p-option" data-value="3" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Established and profitable — I need infrastructure to match</span>
+                    </div>
+                    </div>
+                    <div class="p-btn-row">
+                    <button class="p-btn-back" disabled onclick="pBack(1)">←</button>
+                    <button class="p-btn-next" id="p-btn-1" onclick="pNext(1)">Continue →</button>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="p-step" data-step="2">
+                    <div class="p-q-label">What's the most frustrating thing about your current online presence?</div>
+                    <div class="p-q-sub">Be honest — this is exactly where the audit starts.</div>
+                    <div class="p-options">
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">I'm embarrassed to send anyone to my website</span>
+                    </div>
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">I get traffic but calls aren't converting the way they should</span>
+                    </div>
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Too many wrong-fit people are booking my time</span>
+                    </div>
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">My presence doesn't reflect what I've actually built</span>
+                    </div>
+                    </div>
+                    <div class="p-btn-row">
+                    <button class="p-btn-back" onclick="pBack(2)">←</button>
+                    <button class="p-btn-next" id="p-btn-2" onclick="pNext(2)">Continue →</button>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="p-step" data-step="3">
+                    <div class="p-q-label">Where do most of your clients come from right now?</div>
+                    <div class="p-q-sub">Pick the channel that drives most of your revenue.</div>
+                    <div class="p-options">
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Referrals — almost everything is word of mouth</span>
+                    </div>
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">LinkedIn — content, DMs, or outreach</span>
+                    </div>
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Instagram or YouTube</span>
+                    </div>
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Paid ads — I'm already running traffic</span>
+                    </div>
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Honestly, it's all over the place</span>
+                    </div>
+                    </div>
+                    <div class="p-btn-row">
+                    <button class="p-btn-back" onclick="pBack(3)">←</button>
+                    <button class="p-btn-next" id="p-btn-3" onclick="pNext(3)">Continue →</button>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="p-step" data-step="4">
+                    <div class="p-q-label">What's making you look at this now?</div>
+                    <div class="p-q-sub">No wrong answer — this just helps me understand where you are.</div>
+                    <div class="p-options">
+                    <div class="p-option" data-value="2" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">I've been putting it off and I'm finally ready to fix it</span>
+                    </div>
+                    <div class="p-option" data-value="2" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Something specific is coming up — a launch, campaign, or push</span>
+                    </div>
+                    <div class="p-option" data-value="3" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">I'm losing leads and I can see it's costing me</span>
+                    </div>
+                    <div class="p-option" data-value="0" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">Just exploring for now — not in a rush</span>
+                    </div>
+                    </div>
+                    <div class="p-btn-row">
+                    <button class="p-btn-back" onclick="pBack(4)">←</button>
+                    <button class="p-btn-next" id="p-btn-4" onclick="pNext(4)">Continue →</button>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="p-step" data-step="5">
+                    <div class="p-q-label">If the audit confirms your funnel is leaking — what happens next for you?</div>
+                    <div class="p-q-sub">This one matters. Answer it honestly.</div>
+                    <div class="p-options">
+                    <div class="p-option" data-value="3" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">I'm ready to move. If the fit is right, let's go.</span>
+                    </div>
+                    <div class="p-option" data-value="1" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">I'd need to think it over and discuss with someone</span>
+                    </div>
+                    <div class="p-option" data-value="0" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">I'm a few months out but want to understand the process</span>
+                    </div>
+                    <div class="p-option" data-value="0" onclick="pSelect(this)">
+                        <div class="p-radio"></div>
+                        <span class="p-option-text">I'm not sure yet</span>
+                    </div>
+                    </div>
+                    <div class="p-btn-row">
+                    <button class="p-btn-back" onclick="pBack(5)">←</button>
+                    <button class="p-btn-next" id="p-btn-5" onclick="pSubmit()">See My Result →</button>
+                    </div>
+                </div>
+
+                </div><!-- /p-steps -->
+
+                <!-- Trust strip -->
+                <div class="p-trust" id="p-trust">
+                <div class="p-trust-item"><div class="p-trust-dot"></div>No obligation</div>
+                <div class="p-trust-item"><div class="p-trust-dot"></div>Coaches across 10 countries</div>
+                <div class="p-trust-item"><div class="p-trust-dot"></div>Answer honestly — it helps us both</div>
+                </div>
+
+            </div><!-- /p-form-view -->
+
+            <!-- ── QUALIFIED RESULT ── -->
+            <div class="p-result" id="p-qualified">
+                <div class="p-qualified-badge">✓ Looks like a fit</div>
+                <h2 class="p-qualified-title">Let's find exactly where<br>your funnel is leaking.</h2>
+                <p class="p-qualified-sub">Pick a time below. 30 minutes — no pitch, no package rundown. Just a real look at what's broken and what to fix first.</p>
+
+                <div class="p-cal-card">
+                <div class="p-cal-header">
+                    <div class="p-cal-icon">📅</div>
+                    <div>
+                    <div class="p-cal-title">Free Conversion Audit Call</div>
+                    <div class="p-cal-sub">30 min · Video call · Ibrahim</div>
+                    </div>
+                </div>
+                <div class="p-cal-body">
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/ibrahim-website-designer/discovery-call?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:100%;height:700px;"></div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    <!-- Calendly inline widget end -->
+                </div>
+                </div>
+
+                <div class="p-qtrust">
+                <div class="p-qtrust-item"><div class="p-qtrust-check">✓</div>No pitch on the call</div>
+                <div class="p-qtrust-item"><div class="p-qtrust-check">✓</div>30 minutes max</div>
+                <div class="p-qtrust-item"><div class="p-qtrust-check">✓</div>You'll leave with clarity either way</div>
+                </div>
+            </div>
+
+            <!-- ── NOT QUALIFIED RESULT ── -->
+            <div class="p-result" id="p-notfit">
+                <div class="p-notfit-wrap">
+                <div class="p-notfit-icon">✉</div>
+                <h2 class="p-notfit-title">We could still be a fit.</h2>
+                <p class="p-notfit-sub">Fill out this quick form and I'll be in touch within 24 hours. I'll ask a few questions before we book a call — so when we do speak, it's worth both our time.</p>
+                <div class="p-notfit-form">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScF2aL_BHixV5WJLvK0J3JcXezGgOhZAm0HT_yVBbx-AkBRIg/viewform?embedded=true" width="100%" height="1713" frameborder="0" marginheight="0" marginwidth="0" title="Contact form">Loading…</iframe>
+                </div>
+                </div>
+            </div>
+
+            </div><!-- /popup-inner -->
         </div>
     </div>
 
@@ -332,7 +564,7 @@
                         I build conversion systems for coaches that qualify leads before they book a call, so you can confidently send your dream clients to your website.
                     </p>
                     <div class="btn-box mt-[25px]">
-                        <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" class="hero-btn">
+                        <a data-popup href="#" target="_blank" class="hero-btn" data-popup>
                             <span>Talk With Ibrahim</span>
 
                             <img
@@ -1062,7 +1294,7 @@
                             </ul>
                         </div>
                         <div class="btn-box mt-[25px]">
-                            <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" class="hero-btn">
+                            <a data-popup href="#" target="_blank" class="hero-btn">
                                 <span>Talk With Ibrahim</span>
 
                                 <img
@@ -1098,7 +1330,7 @@
                             </ul>
                         </div>
                         <div class="btn-box mt-[25px]">
-                            <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" class="hero-btn">
+                            <a data-popup href="#" target="_blank" class="hero-btn">
                                 <span>Talk With Ibrahim</span>
 
                                 <img
@@ -1130,7 +1362,7 @@
                             </ul>
                         </div>
                         <div class="btn-box mt-[25px]">
-                            <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" class="hero-btn">
+                            <a data-popup href="#" target="_blank" class="hero-btn">
                                 <span>Talk With Ibrahim</span>
 
                                 <img
@@ -1536,7 +1768,7 @@
 
                             <div class="hero-actions flex items-center gap-4">
                                 <div>
-                                    <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" class="hero-btn about-cta shadow-[0_4px_25px_rgba(0,0,0,0.25)] transition-all duration-300">
+                                    <a data-popup href="#" target="_blank" class="hero-btn about-cta shadow-[0_4px_25px_rgba(0,0,0,0.25)] transition-all duration-300">
                                         <span>Talk With Ibrahim</span>
                                     </a>
                                 </div>
@@ -1697,7 +1929,7 @@
                         Not in ad spend. In the leads that visited, got curious, and decided you weren't ready for them. Book a free strategy call and we'll look at exactly where your funnel is leaking, whether we work together or not.
                     </p>
                     <div class="mt-10">
-                        <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" class="hero-btn">
+                        <a data-popup href="#" target="_blank" class="hero-btn">
                             <span>Talk With Ibrahim</span>
 
                             <img
@@ -1730,7 +1962,7 @@
                                         <img src="./assets/icons/site-icons/email-icon.svg" class="cursor-pointer" alt="Email">
                                     </a>
 
-                                    <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" rel="noopener noreferrer">
+                                    <a data-popup href="#" target="_blank" rel="noopener noreferrer">
                                         <img src="./assets/icons/site-icons/whatsapp.svg" class="cursor-pointer" alt="WhatsApp">
                                     </a>
                                 </div>

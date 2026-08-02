@@ -48,6 +48,24 @@
         font-family: "Inter Tight";
     }
 }
+  :root {
+    --p-bg:       #1c1c1c;
+    --p-surface:  #242424;
+    --p-surface2: #2e2e2e;
+    --p-border:   #333;
+    --p-border2:  #444;
+    --p-gold:     #FFB300;
+    --p-gold-dim: #996B00;
+    --p-gold-bg:  rgba(255,179,0,0.09);
+    --p-text:     #F5F3EE;
+    --p-mid:      #A09D97;
+    --p-dim:      #666360;
+    --p-green:    #22C55E;
+    --p-green-bg: rgba(34,197,94,0.1);
+    --p-green-br: rgba(34,197,94,0.28);
+  }
+
+
 /* ==========================================
    1. RESET & BASE VARIABLE CONFIGURATION
    ========================================== */
@@ -1446,3 +1464,556 @@ html, body { max-width: 100%; overflow-x: hidden; }
 @media (min-width: 1024px) {
     .mobile-real-problem { display: none !important; }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Overlay */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s ease;
+  }
+
+  .popup-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Modal shell */
+  .popup-modal {
+    background: var(--p-bg);
+    border: 1px solid var(--p-border);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 92vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    scrollbar-width: thin;
+    scrollbar-color: var(--p-border) transparent;
+  }
+
+  .popup-overlay.open .popup-modal {
+    transform: translateY(0) scale(1);
+  }
+
+  /* Scrollbar webkit */
+  .popup-modal::-webkit-scrollbar { width: 4px; }
+  .popup-modal::-webkit-scrollbar-track { background: transparent; }
+  .popup-modal::-webkit-scrollbar-thumb { background: var(--p-border); border-radius: 2px; }
+
+  /* Close button */
+  .popup-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 30px;
+    height: 30px;
+    background: var(--p-surface2);
+    border: 1px solid var(--p-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--p-dim);
+    line-height: 1;
+    transition: color 0.15s, border-color 0.15s;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .popup-close:hover { color: var(--p-text); border-color: var(--p-border2); }
+
+  /* Inner padding */
+  .popup-inner {
+    padding: 36px 32px 32px;
+  }
+
+  /* ── POPUP HEADER ── */
+  .popup-eyebrow {
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--p-gold);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .popup-title {
+    font-family: 'Coolvetica';
+    font-size: clamp(1.35rem, 3.5vw, 1.7rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--p-text);
+    margin-bottom: 8px;
+  }
+
+  .popup-title em {
+    font-style: italic;
+    color: var(--p-gold);
+  }
+
+  .popup-subtitle {
+    font-size: 0.83rem;
+    color: var(--p-mid);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  /* ── PROGRESS ── */
+  .p-progress {
+    margin-bottom: 28px;
+  }
+
+  .p-progress-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .p-progress-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--p-dim);
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+  }
+
+  .p-progress-pct {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--p-gold);
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+  }
+
+  .p-bar {
+    height: 2px;
+    background: var(--p-border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .p-bar-fill {
+    height: 100%;
+    background: var(--p-gold);
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ── STEPS ── */
+  .p-step {
+    display: none;
+  }
+
+  .p-step.active {
+    display: block;
+    animation: pFadeUp 0.3s ease;
+  }
+
+  @keyframes pFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── QUESTION ── */
+  .p-q-label {
+    font-family: 'Coolvetica';
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--p-text);
+    line-height: 1.35;
+    margin-bottom: 5px;
+  }
+
+  .p-q-sub {
+    font-size: 0.77rem;
+    color: var(--p-dim);
+    line-height: 1.5;
+    margin-bottom: 18px;
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+  }
+
+  /* ── OPTIONS ── */
+  .p-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .p-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--p-border);
+    border-radius: 7px;
+    cursor: pointer;
+    background: var(--p-surface);
+    transition: border-color 0.16s, background 0.16s;
+    user-select: none;
+  }
+
+  .p-option:hover {
+    border-color: var(--p-border2);
+    background: var(--p-surface2);
+  }
+
+  .p-option.selected {
+    border-color: var(--p-gold);
+    background: var(--p-gold-bg);
+  }
+
+  .p-radio {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--p-border2);
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.16s, background 0.16s;
+  }
+
+  .p-option.selected .p-radio {
+    border-color: var(--p-gold);
+    background: var(--p-gold);
+  }
+
+  .p-option.selected .p-radio::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #111;
+    display: block;
+  }
+
+  .p-option-text {
+    font-size: 0.84rem;
+    color: var(--p-mid);
+    line-height: 1.45;
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+    transition: color 0.16s;
+  }
+
+  .p-option.selected .p-option-text {
+    color: var(--p-text);
+    font-weight: 500;
+  }
+
+  /* ── BUTTONS ROW ── */
+  .p-btn-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .p-btn-back {
+    width: 40px;
+    height: 40px;
+    border-radius: 7px;
+    border: 1px solid var(--p-border);
+    background: var(--p-surface);
+    color: var(--p-mid);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.16s, color 0.16s, background 0.16s;
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+  }
+
+  .p-btn-back:hover {
+    border-color: var(--p-border2);
+    color: var(--p-text);
+    background: var(--p-surface2);
+  }
+
+  .p-btn-back:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .p-btn-next {
+    flex: 1;
+    padding: 12px 20px;
+    background: var(--p-gold);
+    color: #111;
+    border: none;
+    border-radius: 7px;
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.86rem;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    opacity: 0.32;
+    pointer-events: none;
+    transition: opacity 0.18s, transform 0.18s, box-shadow 0.18s;
+  }
+
+  .p-btn-next.enabled {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .p-btn-next.enabled:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 18px rgba(255,179,0,0.3);
+  }
+
+  /* ── TRUST ── */
+  .p-trust {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--p-border);
+  }
+
+  .p-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.71rem;
+    color: var(--p-dim);
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+  }
+
+  .p-trust-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--p-gold);
+    opacity: 0.65;
+    flex-shrink: 0;
+  }
+
+  /* ── RESULT VIEWS ── */
+  .p-result { display: none; }
+  .p-result.show {
+    display: block;
+    animation: pFadeUp 0.35s ease;
+  }
+
+  /* Qualified */
+  .p-qualified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    background: var(--p-green-bg);
+    border: 1px solid var(--p-green-br);
+    border-radius: 100px;
+    font-size: 0.71rem;
+    font-weight: 600;
+    color: var(--p-green);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+  }
+
+  .p-qualified-title {
+    font-family: 'Coolvetica';
+    font-size: clamp(1.2rem, 3vw, 1.55rem);
+    font-weight: 400;
+    color: var(--p-text);
+    margin-bottom: 8px;
+    line-height: 1.22;
+  }
+
+  .p-qualified-sub {
+    font-size: 0.83rem;
+    color: var(--p-mid);
+    line-height: 1.65;
+    margin-bottom: 24px;
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+  }
+
+  /* Calendly card */
+  .p-cal-card {
+    background: var(--p-surface);
+    border: 1px solid var(--p-border);
+    border-top: 2px solid var(--p-gold);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .p-cal-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--p-border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .p-cal-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    background: var(--p-gold-bg);
+    border: 1px solid var(--p-gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .p-cal-title {
+    font-family: 'Coolvetica';
+    font-size: 0.88rem;
+    color: var(--p-text);
+    margin-bottom: 1px;
+    font-weight: 400;
+  }
+
+  .p-cal-sub {
+    font-size: 0.73rem;
+    color: var(--p-dim);
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+  }
+
+  .p-cal-body {
+    padding: 0;
+  }
+
+  /* Calendly widget override for dark background */
+  .p-cal-body .calendly-inline-widget {
+    min-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Qualified trust row */
+  .p-qtrust {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .p-qtrust-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.73rem;
+    color: var(--p-dim);
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+  }
+
+  .p-qtrust-check {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--p-gold-bg);
+    border: 1px solid var(--p-gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.58rem;
+    color: var(--p-gold);
+    flex-shrink: 0;
+  }
+
+  /* Not qualified */
+  .p-notfit-wrap {
+    text-align: center;
+    padding: 8px 0 0;
+  }
+
+  .p-notfit-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--p-surface2);
+    border: 1px solid var(--p-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin: 0 auto 18px;
+  }
+
+  .p-notfit-title {
+    font-family: 'Coolvetica';
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 400;
+    color: var(--p-text);
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .p-notfit-sub {
+    font-size: 0.84rem;
+    color: var(--p-mid);
+    line-height: 1.65;
+    margin-bottom: 22px;
+    font-family: 'Inter Tight', 'Inter', sans-serif;
+  }
+
+  .p-notfit-form {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--p-border);
+    margin-top: 4px;
+    text-align: left;
+  }
+
+  .p-notfit-form iframe {
+    display: block;
+    width: 100%;
+    border: none;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .popup-inner { padding: 28px 20px 24px; }
+    .popup-modal { border-radius: 10px; max-height: 95vh; }
+    .popup-overlay { padding: 10px; }
+    .p-trust { gap: 10px; }
+    .p-qtrust { gap: 10px; }
+    .p-cal-body .calendly-inline-widget { height: 580px !important; }
+    .p-notfit-form iframe { height: 1400px !important; }
+  }
+
+  @media (max-width: 400px) {
+    .popup-title { font-size: 1.2rem; }
+    .p-q-label { font-size: 0.95rem; }
+  }

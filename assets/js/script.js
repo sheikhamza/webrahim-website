@@ -78,6 +78,9 @@
 
 // })();
 
+// Wire all CTA buttons on the page
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const loaderBar = document.getElementById("loaderBar");
@@ -1630,3 +1633,142 @@ if (document.querySelector(".footer-title")) {
 
 }
 
+
+
+
+// ── POPUP STATE ──────────────────────────────────────
+  let pStep     = 1;
+  const P_TOTAL = 5;
+  const pAnswers = {};
+  const pScores  = {};
+  // Threshold: 7 / 11
+  const P_THRESHOLD = 7;
+
+  // ── OPEN / CLOSE ─────────────────────────────────────
+  function openPopup() {
+    // ── Reset form to Q1 every time ──
+    // Clear state
+    pStep = 1;
+    for (var k in pAnswers) { delete pAnswers[k]; }
+    for (var k in pScores)  { delete pScores[k];  }
+
+    // Hide result views
+    document.querySelectorAll('.p-result').forEach(function(el) {
+      el.classList.remove('show');
+    });
+
+    // Show form view
+    document.getElementById('p-form-view').style.display = '';
+
+    // Reset all steps — show only Q1
+    document.querySelectorAll('.p-step').forEach(function(el) {
+      el.classList.remove('active');
+    });
+    document.querySelector('.p-step[data-step="1"]').classList.add('active');
+
+    // Deselect all options
+    document.querySelectorAll('.p-option').forEach(function(el) {
+      el.classList.remove('selected');
+    });
+
+    // Disable all next buttons
+    document.querySelectorAll('.p-btn-next').forEach(function(btn) {
+      btn.classList.remove('enabled');
+    });
+
+    // Reset progress bar to 20%
+    document.getElementById('p-bar-fill').style.width   = '20%';
+    document.getElementById('p-prog-pct').textContent   = '20%';
+    document.getElementById('p-prog-label').textContent = 'Question 1 of 5';
+
+    // Open overlay
+    document.getElementById('popupOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('popupModal').scrollTop = 0;
+  }
+
+  function closePopup() {
+    document.getElementById('popupOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close on overlay click
+  document.getElementById('popupOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closePopup();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePopup();
+  });
+
+  // Wire all CTA buttons on the page
+  document.querySelectorAll('[data-popup]').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openPopup();
+    });
+  });
+
+  // ── SELECT OPTION ────────────────────────────────────
+  function pSelect(el) {
+    const step = el.closest('.p-step').dataset.step;
+    el.closest('.p-options').querySelectorAll('.p-option').forEach(function(o) {
+      o.classList.remove('selected');
+    });
+    el.classList.add('selected');
+    pScores[step]  = parseInt(el.dataset.value);
+    pAnswers[step] = true;
+    var btn = document.getElementById('p-btn-' + step);
+    if (btn) btn.classList.add('enabled');
+  }
+
+  // ── NEXT ─────────────────────────────────────────────
+  function pNext(from) {
+    if (!pAnswers[from]) return;
+    document.querySelector('.p-step[data-step="' + from + '"]').classList.remove('active');
+    document.querySelector('.p-step[data-step="' + (from + 1) + '"]').classList.add('active');
+    pStep = from + 1;
+    pUpdateProgress();
+    document.getElementById('popupModal').scrollTop = 0;
+  }
+
+  // ── BACK ─────────────────────────────────────────────
+  function pBack(from) {
+    if (from <= 1) return;
+    document.querySelector('.p-step[data-step="' + from + '"]').classList.remove('active');
+    document.querySelector('.p-step[data-step="' + (from - 1) + '"]').classList.add('active');
+    pStep = from - 1;
+    pUpdateProgress();
+    document.getElementById('popupModal').scrollTop = 0;
+    // Re-enable next button on previous step if already answered
+    if (pAnswers[from - 1]) {
+      var btn = document.getElementById('p-btn-' + (from - 1));
+      if (btn) btn.classList.add('enabled');
+    }
+  }
+
+  // ── PROGRESS ─────────────────────────────────────────
+  function pUpdateProgress() {
+    var pct = Math.round((pStep / P_TOTAL) * 100);
+    document.getElementById('p-bar-fill').style.width   = pct + '%';
+    document.getElementById('p-prog-pct').textContent   = pct + '%';
+    document.getElementById('p-prog-label').textContent = 'Question ' + pStep + ' of ' + P_TOTAL;
+  }
+
+  // ── SUBMIT ───────────────────────────────────────────
+  function pSubmit() {
+    if (!pAnswers[5]) return;
+
+    var total = 0;
+    for (var k in pScores) { total += pScores[k]; }
+    var qualified = total >= P_THRESHOLD;
+
+    // Hide form view
+    document.getElementById('p-form-view').style.display = 'none';
+
+    // Show correct result
+    var resultId = qualified ? 'p-qualified' : 'p-notfit';
+    document.getElementById(resultId).classList.add('show');
+    document.getElementById('popupModal').scrollTop = 0;
+  }
