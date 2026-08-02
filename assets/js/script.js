@@ -1,88 +1,109 @@
-// (() => {
+(() => {
 
-//     // Right Click Disable
-//     document.addEventListener("contextmenu", e => e.preventDefault());
+    // Right Click Disable
+    document.addEventListener("contextmenu", e => e.preventDefault());
 
-//     // Keyboard Shortcuts Disable
-//     document.addEventListener("keydown", e => {
+    // Keyboard Shortcuts Disable
+    document.addEventListener("keydown", e => {
 
-//         if (
-//             e.key === "F12" ||
-//             (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
-//             (e.ctrlKey && ["U"].includes(e.key.toUpperCase()))
-//         ) {
-//             e.preventDefault();
-//             return false;
-//         }
+        if (
+            e.key === "F12" ||
+            (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
+            (e.ctrlKey && ["U"].includes(e.key.toUpperCase()))
+        ) {
+            e.preventDefault();
+            return false;
+        }
 
-//     });
+    });
 
-//     // Drag Disable
-//     document.addEventListener("dragstart", e => e.preventDefault());
+    // Drag Disable
+    document.addEventListener("dragstart", e => e.preventDefault());
 
-//     // ❌ Remove this line
-//     // document.addEventListener("selectstart", e => e.preventDefault());
+    // ❌ Remove this line
+    // document.addEventListener("selectstart", e => e.preventDefault());
 
-//     // DevTools Detection
-//     setInterval(() => {
+    // DevTools Detection
+    setInterval(() => {
 
-//         const w = window.outerWidth - window.innerWidth > 160;
-//         const h = window.outerHeight - window.innerHeight > 160;
+        const w = window.outerWidth - window.innerWidth > 160;
+        const h = window.outerHeight - window.innerHeight > 160;
 
-//         if (w || h) {
+        if (w || h) {
 
-//             if (!document.querySelector("#shield")) {
+            if (!document.querySelector("#shield")) {
 
-//                 const x = document.createElement("div");
+                const x = document.createElement("div");
 
-//                 x.id = "shield";
+                x.id = "shield";
 
-//                 x.style.cssText = `
-//                     position:fixed;
-//                     inset:0;
-//                     background:#111;
-//                     display:flex;
-//                     justify-content:center;
-//                     align-items:center;
-//                     z-index:999999;
-//                     font-size:40px;
-//                     color:#fff;
-//                     backdrop-filter:blur(20px);
-//                 `;
+                x.style.cssText = `
+                    position:fixed;
+                    inset:0;
+                    background:#111;
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    z-index:999999;
+                    font-size:40px;
+                    color:#fff;
+                    backdrop-filter:blur(20px);
+                `;
 
-//                 x.innerHTML = "Inspection Disabled";
+                x.innerHTML = "Inspection Disabled";
 
-//                 document.body.appendChild(x);
+                document.body.appendChild(x);
 
-//                 document.body.style.filter = "blur(20px)";
+                document.body.style.filter = "blur(20px)";
 
-//                 // ❌ Remove this
-//                 // document.body.style.pointerEvents = "none";
-//             }
+                // ❌ Remove this
+                // document.body.style.pointerEvents = "none";
+            }
 
-//         }
+        }
 
-//     }, 1000);
+    }, 1000);
 
-//     console.clear();
+    console.clear();
 
-//     Object.defineProperty(window, "console", {
-//         value: {
-//             log() {},
-//             warn() {},
-//             error() {},
-//             info() {},
-//             clear() {}
-//         }
-//     });
+    Object.defineProperty(window, "console", {
+        value: {
+            log() {},
+            warn() {},
+            error() {},
+            info() {},
+            clear() {}
+        }
+    });
 
-// })();
-
-// Wire all CTA buttons on the page
+})();
 
 
+// ==========================================
+// 4. HERO SECTION ANIMATION
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
 
+    // ==========================
+    // Initial Hidden State
+    // ==========================
+    gsap.set([
+        ".hero-subtitle",
+        ".btn-box",
+        ".hero-text-slider",
+        ".review-slider"
+    ], {
+        opacity: 0,
+        y: 20
+    });
+
+    gsap.set(".hero-title", {
+        opacity: 0
+    });
+
+    // ==========================
+    // Loader
+    // ==========================
     const loaderBar = document.getElementById("loaderBar");
     const loaderPercent = document.getElementById("loaderPercent");
 
@@ -97,7 +118,14 @@ document.addEventListener("DOMContentLoaded", () => {
             clearInterval(interval);
 
             setTimeout(() => {
+
                 document.body.classList.add("loaded");
+
+                // Wait for loader hide animation
+                setTimeout(() => {
+                    startHeroAnimation();
+                }, 600);
+
             }, 500);
         }
 
@@ -107,6 +135,63 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 50);
 
 });
+
+
+// ===================================
+// Hero Animation
+// ===================================
+function startHeroAnimation() {
+
+    if (!document.querySelector(".hero-title")) return;
+
+    const title = new SplitType(".hero-title", {
+        types: "lines"
+    });
+
+    title.lines.forEach(line => {
+
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "hidden";
+
+        line.parentNode.insertBefore(wrapper, line);
+        wrapper.appendChild(line);
+
+    });
+
+    gsap.set(".hero-title", {
+        opacity: 1
+    });
+
+    gsap.set(title.lines, {
+        yPercent: 110
+    });
+
+    const heroTl = gsap.timeline();
+
+    heroTl
+        .to(title.lines, {
+            yPercent: 0,
+            duration: 1,
+            stagger: 0.4,
+            ease: "power4.out"
+        })
+        .to([
+            ".review-slider",
+            ".hero-subtitle",
+            ".btn-box",
+            ".hero-text-slider"
+        ], {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.5,
+            stagger: 0.08,
+            ease: "power3.out"
+        }, "-=0.2");
+
+}
+
+
 
 // Register All GSAP Plugins Centralized
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -446,39 +531,6 @@ document.querySelectorAll(".review-slider").forEach((slider, index) => {
         setInterval(playNextCard, 5000);
     }, index * 2500);
 });
-
-// ==========================================
-// 4. HERO SECTION ANIMATION
-// ==========================================
-if (document.querySelector(".hero-title")) {
-    const title = new SplitType(".hero-title", { types: "lines" });
-
-    title.lines.forEach(line => {
-        const wrapper = document.createElement("div");
-        wrapper.style.overflow = "hidden";
-        line.parentNode.insertBefore(wrapper, line);
-        wrapper.appendChild(line);
-    });
-
-    gsap.set(title.lines, { yPercent: 110 });
-    gsap.set([".hero-subtitle", ".btn-box", ".hero-text-slider"], { opacity: 0, y: 2 });
-    gsap.set([".review-slider"], { opacity: 0, y: 2, filter: "blur(5px)" });
-
-    const heroTl = gsap.timeline();
-    heroTl.to(title.lines, {
-        yPercent: 0,
-        duration: 1,
-        stagger: 0.4,
-        ease: "power4.out"
-    })
-    .to([".review-slider", ".hero-subtitle", ".btn-box", ".hero-text-slider"], {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 0.5,
-        ease: "power3.out"
-    });
-}
 
 // ==========================================
 // 5. HERO TEXT ROTATOR SLIDER
