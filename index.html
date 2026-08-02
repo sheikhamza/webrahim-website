@@ -41,7 +41,7 @@
     </div>
 
     <!-- Fixed Navbar only for desktop -->
-    <nav class="section-nav">
+    <nav id="desktop-fixed-nav" class="section-nav">
         <a href="#hero-section" class="nav-item active">
             <span>Webrahim</span>
             <div class="nav-line"></div>
@@ -122,11 +122,11 @@
         </button>
 
         <div id="mobileNavFix" class="fix-mobile-nav-menu" aria-hidden="true">
-            <a class="mobile-nav-link" href="#about-section">The Story</a>
-            <a class="mobile-nav-link" href="#video-section">Proof</a>
-            <a class="mobile-nav-link" href="#workflow-section">Process</a>
             <a class="mobile-nav-link" href="#portfolio-section">Portfolio</a>
+            <a class="mobile-nav-link" href="#video-section">Proof</a>
             <a class="mobile-nav-link" href="#offer-section">Offers</a>
+            <a class="mobile-nav-link" href="#workflow-section">Process</a>
+            <a class="mobile-nav-link" href="#about-section">The Story</a>
             <a class="mobile-nav-link" href="#testimonials">Faqs</a>
             <a class="mobile-nav-link mobile-nav-call hero-btn" href="#" data-popup><span>See if we are a fit</span><img src="./assets/images/profile-image.webp" alt=""></a>
         </div>
@@ -370,15 +370,15 @@
             <!-- SECTION 1: HERO & HEADER -->
             <header id="hero-section" style="background-image:url('./assets/images/hero-image.webp');" class="relative panel hero-section lg:min-h-screen flex flex-col justify-between items-center py-[20px] px-4 text-center bg-cover bg-center overflow-hidden">
                 <!-- Top Nav Info -->
-                <nav class="flex items-center justify-between gap-3 sm:gap-6 lg:gap-12 rounded-full border border-white/10 bg-black/20 backdrop-blur-md px-4 sm:px-6 lg:px-2 py-[10px]">
+                <nav class="flex items-center justify-between gap-3 sm:gap-6 lg:gap-10 rounded-full border border-white/10 bg-black/20 backdrop-blur-md px-4 sm:px-6 lg:px-2 py-[10px]">
                     <img src="./assets/images/logo.webp" class="sm:h-7 lg:h-9 xl:h-9">
-                    <div class="desktop-nav-links flex sm:gap-6 lg:gap-[15px] font-inter-tight font-thin">
-                        <a href="#about-section" class="text-[16px]">The Story</a>
-                        <a href="#video-section" class="text-[16px]">Proof</a>
-                        <a href="#workflow-section" class="text-[16px]">Process</a>
-                        <a href="#portfolio-section" class="text-[16px]">Portfolio</a>
-                        <a href="#offer-section" class="text-[16px]">Offers</a>
-                        <a href="#faq-section" class="text-[16px]">Faqs</a>
+                    <div class="desktop-nav-links flex sm:gap-6 lg:gap-[20px] font-inter-tight font-thin">
+                        <a href="#portfolio-section" class="text-[14px] nav-link nav-link-ltr">Portfolio</a>
+                        <a href="#video-section" class="text-[14px] nav-link nav-link-ltr">Proof</a>
+                        <a href="#offer-section" class="text-[14px] nav-link nav-link-ltr">Offers</a>
+                        <a href="#workflow-section" class="text-[14px] nav-link nav-link-ltr">Process</a>
+                        <a href="#about-section" class="text-[14px] nav-link nav-link-ltr">The Story</a>
+                        <a href="#faq-section" class="text-[14px] nav-link nav-link-ltr">Faqs</a>
                     </div>
                     <a href="#contact" class="call-btn relative inline-flex items-center justify-center group">
                         <img src="./assets/images/profile-image.webp" class="sm:h-7 lg:h-9 xl:h-9" alt="Profile">
@@ -392,11 +392,11 @@
                     </button>
                 </nav>
                 <div id="mobileNavMenu" class="mobile-nav-menu" aria-hidden="true">
-                    <a class="mobile-nav-link" href="#about-section">The Story</a>
-                    <a class="mobile-nav-link" href="#video-section">Proof</a>
-                    <a class="mobile-nav-link" href="#workflow-section">Process</a>
                     <a class="mobile-nav-link" href="#portfolio-section">Portfolio</a>
+                    <a class="mobile-nav-link" href="#video-section">Proof</a>
                     <a class="mobile-nav-link" href="#offer-section">Offers</a>
+                    <a class="mobile-nav-link" href="#workflow-section">Process</a>
+                    <a class="mobile-nav-link" href="#about-section">The Story</a>
                     <a class="mobile-nav-link" href="#testimonials">Faqs</a>
                     <a class="mobile-nav-link mobile-nav-call hero-btn" href="#" data-popup><span>See if we are a fit</span><img src="./assets/images/profile-image.webp" alt=""></a>
                 </div>
@@ -1400,54 +1400,66 @@
                         <!-- Card -->
                         <div class="step-card">
                             <div class="number">01</div>
-                            <h3>Onboarding</h3>
-                            <p>
-                                You answer a few questions. I turn that
-                                into your Offer Doc and ICP Doc,
-                                the brief everything else runs on.
-                            </p>
+                            <div class="content">
+                                <h3>Onboarding</h3>
+                                <p>
+                                    You answer a few questions. I turn that
+                                    into your Offer Doc and ICP Doc,
+                                    the brief everything else runs on.
+                                </p>
+                            </div>
                         </div>
                         <!-- Card -->
                         <div class="step-card">
                             <div class="number">02</div>
-                            <h3>Wireframe</h3>
-                            <p>
-                                I map the full layout and conversion
-                                architecture using my proven
-                                structure frameworks.
-                            </p>
+                            <div class="content">
+                                <h3>Wireframe</h3>
+                                <p>
+                                    I map the full layout and conversion
+                                    architecture using my proven
+                                    structure frameworks.
+                                </p>
+                            </div>
                         </div>
                         <!-- Card -->
                         <div class="step-card">
                             <div class="number">03</div>
-                            <h3>Design Review</h3>
-                            <p>
-                                I send the full design. You look at it, tell me what to change, I fix it.
-                            </p>
+                            <div class="content">
+                                <h3>Design Review</h3>
+                                <p>
+                                    I send the full design. You look at it, tell me what to change, I fix it.
+                                </p>
+                            </div>
                         </div>
                         <!-- Card -->
                         <div class="step-card">
                             <div class="number">04</div>
-                            <h3>LinkedIn Rebrand</h3>
-                            <p>
-                                If you're on Scale or Aura, I'll rebuild your LinkedIn profile while your website moves from design to development.
-                            </p>
+                            <div class="content">
+                                <h3>LinkedIn Rebrand</h3>
+                                <p>
+                                    If you're on Scale or Aura, I'll rebuild your LinkedIn profile while your website moves from design to development.
+                                </p>
+                            </div>
                         </div>
                         <!-- Card -->
                         <div class="step-card">
                             <div class="number">05</div>
-                            <h3>Development</h3>
-                            <p>
-                                I build it, optimize it for AI visibility and take it live. You click around and make sure everything feels right.
-                            </p>
+                            <div class="content">
+                                <h3>Development</h3>
+                                <p>
+                                    I build it, optimize it for AI visibility and take it live. You click around and make sure everything feels right.
+                                </p>
+                            </div>
                         </div>
                         <!-- Card -->
                         <div class="step-card">
                             <div class="number">06</div>
-                            <h3>Launch</h3>
-                            <p>
-                                We go live. You get a conversion system ready for traffic, plus 30 days of launch support.
-                            </p>
+                            <div class="content">
+                                <h3>Launch</h3>
+                                <p>
+                                    We go live. You get a conversion system ready for traffic, plus 30 days of launch support.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1479,7 +1491,7 @@
                     </div>
                     <!-- ================= Slider ================= -->
                     <div class="relative overflow-hidden">
-                        <div id="testimonialTrack" class="relative h-[560px] lg:h-[460px]">
+                        <div id="testimonialTrack" class="relative h-[560px]">
                             <!-- Slide 1 -->
                             <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
                                 <!-- Left -->
@@ -1739,7 +1751,7 @@
             <!-- SECTION 11: INTRO ABOUT ME SECTION -->
             <section id="about-section" class="about-section panel relative lg:pt-[100px] pt-0 ">
                 <div class="max-w-[1280px] about-container mx-auto px-4 sm:px-6 md:px-8 flex items-center py-16 lg:py-0 relative">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 relative w-full">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-[10px] relative w-full">
                         <!-- LEFT CONTENT -->
                         <div class="about-content relative z-10 lg:pt-[180px]">
                             <div class="text-start mb-5 animated-bage">
@@ -1751,17 +1763,17 @@
 
                             <h2 class="about-title mb-6 lg:mb-8">Hey, I’m Ibrahim</h2>
 
-                            <div class="flex flex-col gap-[5px]">
-                                <p class="text-white text-[18px] lg:text-[14px]  max-w-[460px]">
+                            <div class="flex flex-col gap-[20px] pr-[25px]">
+                                <p class="text-white text-[18px] lg:text-[15px]">
                                     I didn't start as a "website guy." I actually wanted to become a doctor. Life took me in a different direction, and instead of treating patients, I started diagnosing and fixing websites.
                                 </p>
-                                <p class="text-white text-[18px] lg:text-[14px]  max-w-[460px]">
+                                <p class="text-white text-[18px] lg:text-[15px]">
                                     Funny enough, one thing stayed the same: I still look for the hidden problems others overlook. After 3 years of experimenting with design, marketing, and building online businesses, I realized most coaches don't have a traffic problem.
                                 </p>
-                                <p class="text-white text-[18px] lg:text-[14px]  max-w-[460px]">
+                                <p class="text-white text-[18px] lg:text-[15px]">
                                     Their website feels disconnected from their expertise, and their LinkedIn presence doesn't reflect the authority they've built. And honestly, watching a great coach struggle because their online presence doesn't represent their value feels like watching a doctor ignore a patient's symptoms.
                                 </p>
-                                <p class="text-white text-[18px] lg:text-[14px]  max-w-[460px] mb-10">
+                                <p class="text-white text-[18px] lg:text-[15px] mb-10">
                                     That's why I built Webrahim around one goal: helping coaches create an online presence that builds trust, qualifies leads, and converts attention into opportunities.
                                 </p>
                             </div>

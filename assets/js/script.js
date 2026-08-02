@@ -1,82 +1,82 @@
-(() => {
+// (() => {
 
-    // Right Click Disable
-    document.addEventListener("contextmenu", e => e.preventDefault());
+//     // Right Click Disable
+//     document.addEventListener("contextmenu", e => e.preventDefault());
 
-    // Keyboard Shortcuts Disable
-    document.addEventListener("keydown", e => {
+//     // Keyboard Shortcuts Disable
+//     document.addEventListener("keydown", e => {
 
-        if (
-            e.key === "F12" ||
-            (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
-            (e.ctrlKey && ["U"].includes(e.key.toUpperCase()))
-        ) {
-            e.preventDefault();
-            return false;
-        }
+//         if (
+//             e.key === "F12" ||
+//             (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
+//             (e.ctrlKey && ["U"].includes(e.key.toUpperCase()))
+//         ) {
+//             e.preventDefault();
+//             return false;
+//         }
 
-    });
+//     });
 
-    // Drag Disable
-    document.addEventListener("dragstart", e => e.preventDefault());
+//     // Drag Disable
+//     document.addEventListener("dragstart", e => e.preventDefault());
 
-    // ❌ Remove this line
-    // document.addEventListener("selectstart", e => e.preventDefault());
+//     // ❌ Remove this line
+//     // document.addEventListener("selectstart", e => e.preventDefault());
 
-    // DevTools Detection
-    setInterval(() => {
+//     // DevTools Detection
+//     setInterval(() => {
 
-        const w = window.outerWidth - window.innerWidth > 160;
-        const h = window.outerHeight - window.innerHeight > 160;
+//         const w = window.outerWidth - window.innerWidth > 160;
+//         const h = window.outerHeight - window.innerHeight > 160;
 
-        if (w || h) {
+//         if (w || h) {
 
-            if (!document.querySelector("#shield")) {
+//             if (!document.querySelector("#shield")) {
 
-                const x = document.createElement("div");
+//                 const x = document.createElement("div");
 
-                x.id = "shield";
+//                 x.id = "shield";
 
-                x.style.cssText = `
-                    position:fixed;
-                    inset:0;
-                    background:#111;
-                    display:flex;
-                    justify-content:center;
-                    align-items:center;
-                    z-index:999999;
-                    font-size:40px;
-                    color:#fff;
-                    backdrop-filter:blur(20px);
-                `;
+//                 x.style.cssText = `
+//                     position:fixed;
+//                     inset:0;
+//                     background:#111;
+//                     display:flex;
+//                     justify-content:center;
+//                     align-items:center;
+//                     z-index:999999;
+//                     font-size:40px;
+//                     color:#fff;
+//                     backdrop-filter:blur(20px);
+//                 `;
 
-                x.innerHTML = "Inspection Disabled";
+//                 x.innerHTML = "Inspection Disabled";
 
-                document.body.appendChild(x);
+//                 document.body.appendChild(x);
 
-                document.body.style.filter = "blur(20px)";
+//                 document.body.style.filter = "blur(20px)";
 
-                // ❌ Remove this
-                // document.body.style.pointerEvents = "none";
-            }
+//                 // ❌ Remove this
+//                 // document.body.style.pointerEvents = "none";
+//             }
 
-        }
+//         }
 
-    }, 1000);
+//     }, 1000);
 
-    console.clear();
+//     console.clear();
 
-    Object.defineProperty(window, "console", {
-        value: {
-            log() {},
-            warn() {},
-            error() {},
-            info() {},
-            clear() {}
-        }
-    });
+//     Object.defineProperty(window, "console", {
+//         value: {
+//             log() {},
+//             warn() {},
+//             error() {},
+//             info() {},
+//             clear() {}
+//         }
+//     });
 
-})();
+// })();
 
 
 // ==========================================
@@ -135,8 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 50);
 
 });
-
-
 // ===================================
 // Hero Animation
 // ===================================
@@ -198,12 +196,13 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const backToTop = document.getElementById("backToTop");
 const mobileFixNav = document.getElementById("mobileFixNav");
+const desktopFixedNav = document.getElementById("desktop-fixed-nav");
 
 gsap.set(backToTop, {
     autoAlpha: 0,
     y: 20
 });
-gsap.set(mobileFixNav, {
+gsap.set([mobileFixNav, desktopFixedNav], {
     autoAlpha: 0,
     x:20
 });
@@ -234,7 +233,7 @@ window.addEventListener("scroll", () => {
             duration: 0.3,
             ease: "power2.out"
         });
-        gsap.to(mobileFixNav, {
+        gsap.to([mobileFixNav, desktopFixedNav], {
             autoAlpha: 1,
             x: 0,
             duration: 0.3,
@@ -250,7 +249,7 @@ window.addEventListener("scroll", () => {
             duration: 0.3,
             ease: "power2.out"
         });
-        gsap.to(mobileFixNav, {
+        gsap.to([mobileFixNav, desktopFixedNav], {
             autoAlpha: 0,
             x: 20,
             duration: 0.3,
@@ -1338,6 +1337,18 @@ if (document.querySelector(".offer-title")) {
 // =========================================
 // WORKFLOW TITLE ANIMATION
 // =========================================
+
+document.querySelectorAll(".step-card").forEach(card => {
+    const heading = card.querySelector("h3");
+    const paragraph = card.querySelector("p");
+
+    if (heading && paragraph) {
+        const width = heading.getBoundingClientRect().width;
+
+        card.style.width = `${width}px`;
+        paragraph.style.width = `${width}px`;
+    }
+});
 
 const workflowSection = document.querySelector("#workflow-section");
 const track = document.querySelector(".workflow-track");
