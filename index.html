@@ -34,12 +34,63 @@
 
             <div class="loader-bottom">
                 <span id="loaderPercent">0%</span>
-                <span>LOADING EXPERIENCE</span>
+                <span>LOADING</span>
             </div>
 
         </div>
     </div>
 
+    <!-- Fixed Navbar only for desktop -->
+    <nav class="section-nav">
+        <a href="#hero-section" class="nav-item active">
+            <span>Webrahim</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#second-section" class="nav-item">
+            <span>Work</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#scroll-pin-wrapper" class="nav-item">
+            <span>Your Pain Points</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#solution-section" class="nav-item">
+            <span>The Solution</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#portfolio-section" class="nav-item">
+            <span>Portfolio</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#video-section" class="nav-item">
+            <span>Video Testimonials</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#offer-section" class="nav-item">
+            <span>Offers</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#workflow-section" class="nav-item">
+            <span>Process</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#testimonials" class="nav-item">
+            <span>Happy Clients</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#about-section" class="nav-item">
+            <span>The Story</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#faq-section" class="nav-item">
+            <span>FAQs</span>
+            <div class="nav-line"></div>
+        </a>
+        <a href="#footer-section" class="nav-item">
+            <span>Last Call</span>
+            <div class="nav-line"></div>
+        </a>
+    </nav>
 
     <!-- Floating Buttons -->
     <div class="fixed right-5 bottom-5 z-[9999] flex flex-col items-center gap-3">
@@ -62,19 +113,40 @@
         </a>
 
     </div>
+    <div class="nav-fix-box fixed right-5 top-5 flex flex-col items-center gap-3 lg:hidden d-block">
+        <!-- Back to Top -->
+        <button
+            id="mobileFixNav"
+            class="opacity-0 invisible translate-y-4 transform transition-all duration-300 w-10 h-10 rounded-full bg-[#FFB300] flex items-center justify-center cursor-pointer" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNavFix">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div id="mobileNavFix" class="fix-mobile-nav-menu" aria-hidden="true">
+            <a class="mobile-nav-link" href="#about-section">The Story</a>
+            <a class="mobile-nav-link" href="#video-section">Proof</a>
+            <a class="mobile-nav-link" href="#workflow-section">Process</a>
+            <a class="mobile-nav-link" href="#portfolio-section">Portfolio</a>
+            <a class="mobile-nav-link" href="#offer-section">Offers</a>
+            <a class="mobile-nav-link" href="#testimonials">Faqs</a>
+            <a class="mobile-nav-link mobile-nav-call hero-btn" href="#contact"><span>Talk With Ibrahim</span><img src="./assets/images/profile-image.webp" alt=""></a>
+        </div>
+    </div>
 
     <!-- Scrollable Website Content -->
     <div data-scroll-container>
         <main class="relative z-10">
             <!-- SECTION 1: HERO & HEADER -->
-            <header style="background-image:url('./assets/images/hero-image.webp');" class="relative panel hero-section lg:min-h-screen flex flex-col justify-between items-center py-[20px] px-4 text-center bg-cover bg-center overflow-hidden">
+            <header id="hero-section" style="background-image:url('./assets/images/hero-image.webp');" class="relative panel hero-section lg:min-h-screen flex flex-col justify-between items-center py-[20px] px-4 text-center bg-cover bg-center overflow-hidden">
                 <!-- Top Nav Info -->
                 <nav class="flex items-center justify-between gap-3 sm:gap-6 lg:gap-12 rounded-full border border-white/10 bg-black/20 backdrop-blur-md px-4 sm:px-6 lg:px-2 py-[10px]">
                     <img src="./assets/images/logo.webp" class="sm:h-7 lg:h-9 xl:h-9">
-                    <div class="desktop-nav-links flex sm:gap-6 lg:gap-8 font-inter-tight font-thin">
-                        <a href="#workflow-section" class="text-[16px]">How it works</a>
+                    <div class="desktop-nav-links flex sm:gap-6 lg:gap-[15px] font-inter-tight font-thin">
+                        <a href="#about-section" class="text-[16px]">The Story</a>
+                        <a href="#video-section" class="text-[16px]">Proof</a>
+                        <a href="#workflow-section" class="text-[16px]">Process</a>
+                        <a href="#portfolio-section" class="text-[16px]">Portfolio</a>
                         <a href="#offer-section" class="text-[16px]">Offers</a>
-                        <a href="#testimonials" class="text-[16px]">Reviews</a>
+                        <a href="#faq-section" class="text-[16px]">Faqs</a>
                     </div>
                     <a href="#contact" class="call-btn relative inline-flex items-center justify-center group">
                         <img src="./assets/images/profile-image.webp" class="sm:h-7 lg:h-9 xl:h-9" alt="Profile">
@@ -88,9 +160,12 @@
                     </button>
                 </nav>
                 <div id="mobileNavMenu" class="mobile-nav-menu" aria-hidden="true">
-                    <a class="mobile-nav-link" href="#workflow-section">How it works</a>
+                    <a class="mobile-nav-link" href="#about-section">The Story</a>
+                    <a class="mobile-nav-link" href="#video-section">Proof</a>
+                    <a class="mobile-nav-link" href="#workflow-section">Process</a>
+                    <a class="mobile-nav-link" href="#portfolio-section">Portfolio</a>
                     <a class="mobile-nav-link" href="#offer-section">Offers</a>
-                    <a class="mobile-nav-link" href="#testimonials">Reviews</a>
+                    <a class="mobile-nav-link" href="#testimonials">Faqs</a>
                     <a class="mobile-nav-link mobile-nav-call hero-btn" href="#contact"><span>Talk With Ibrahim</span><img src="./assets/images/profile-image.webp" alt=""></a>
                 </div>
 
@@ -244,7 +319,7 @@
                         <div class="px-2">
                             <p class="text-start lg:text-[12px] text-[13px] leading-[14px] font-inter-tight font-thin">
                                 Trusted By Coaches <br>
-                                Across 7 Countries
+                                Across 11 Countries
                             </p>
                         </div>
                     </div>
@@ -254,8 +329,7 @@
                         Your Funnel's Fault.
                     </h1>
                     <p class="hero-subtitle mx-auto mt-[25px] max-w-3xl font-inter-tight font-medium text-white text-[22px] leading-[1.2]">
-                        I build conversion systems for coaches that qualify leads before they
-                        book and make you proud to send anyone to your site.
+                        I build conversion systems for coaches that qualify leads before they book a call, so you can confidently send your dream clients to your website.
                     </p>
                     <div class="btn-box mt-[25px]">
                         <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" class="hero-btn">
@@ -317,7 +391,7 @@
 
             </header>
             <!-- SECTION 2: THREE-CARD OVERLAP SHOWCASE -->
-            <section class="portfolio panel relative">
+            <section id="second-section" class="portfolio panel relative">
                 <div class="cards-container lg:h-screen h-[75vh] w-full overflow-hidden flex justify-center items-center">
                     <div class="cards-wrapper relative flex justify-center items-center w-full h-full">
 
@@ -457,11 +531,18 @@
                             </div>
 
                             <!-- State 2: Bottom Reveal Text -->
-                            <div class="text-right-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-2 md:pt-4 flex">
+                            <div class="text-right-final absolute inset-0 opacity-0 pointer-events-none z-10 pt-2 md:pt-4 flex flex-col gap-[15px]">
                                 <p class="text-[13px] sm:text-[15px] md:text-[17px] lg:text-[20px] text-white  font-thin leading-relaxed">
-                                    Most coaches who come to me aren't marketing wrong. They are posting daily, showing up, making it work. But there's a quieter problem nobody talks about: <span class="text-[#FFCD56]">Every prospect who visits your website and doesn't book is a real cost.</span> 
-                                    <br class="hidden sm:block"><br class="hidden sm:block">
-                                    If your website should convert at 4% but converts at 1.5%, and you get 300 visitors/month at a $5,000 offer, <span class="text-[#FFCD56]">you're losing $37,500/month in opportunity cost.</span>
+                                    Most coaches who come to me aren't doing their marketing wrong. They're posting consistently, showing up, and putting in the work. But there's a quieter problem almost nobody talks about:
+                                </p>
+                                <p class="text-[13px] sm:text-[15px] md:text-[17px] lg:text-[20px] text-white  font-thin leading-relaxed">
+                                    <span class="text-[#FFCD56]">Every prospect who visits your website and doesn't book a call has a real cost.</span>
+                                </p> 
+                                <p class="text-[13px] sm:text-[15px] md:text-[17px] lg:text-[20px] text-white  font-thin leading-relaxed">
+                                    If your website should convert at 4% but only converts at 1.5%, and you're getting 300 visitors a month with a $5,000 offer, <span class="text-[#FFCD56]">you're leaving roughly $37,500 in potential revenue on the table every month.</span>
+                                </p>
+                                <p class="text-[13px] sm:text-[15px] md:text-[17px] lg:text-[20px] text-white  font-thin leading-relaxed">
+                                    That's the hidden leak most of you never notice.
                                 </p>
                             </div>
 
@@ -476,10 +557,23 @@
                     <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Real-Problem.gif" alt="The Real Problem">The Real Problem</div>
                     <h3>You're <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Not Losing</span><br>Leads Because You<br>Need More Traffic</h3>
                     <img loading="lazy" decoding="async" src="./assets/images/3d-image-2.webp" alt="The real problem" class="mobile-real-problem-image h-[440px] object-cover">
-                    <p class="text-[20px]">Most coaches who come to me aren't marketing wrong. They are posting daily, showing up, making it work. But there's a quieter problem nobody talks about: <strong>Every prospect who visits your website and doesn't book is a real cost.</strong><br><br>If your website should convert at 4% but converts at 1.5%, and you get 300 visitors/month at a $5,000 offer, <strong>you're losing $37,500/month in opportunity cost.</strong></p>
+                    <div class="flex flex-col gap-[15px]">
+                        <p class="text-[20px] text-white  font-thin leading-relaxed">
+                            Most coaches who come to me aren't doing their marketing wrong. They're posting consistently, showing up, and putting in the work. But there's a quieter problem almost nobody talks about:
+                        </p>
+                        <p class="text-[20px] text-white  font-thin leading-relaxed">
+                            <span class="text-[#FFCD56]">Every prospect who visits your website and doesn't book a call has a real cost.</span>
+                        </p> 
+                        <p class="text-[20px] text-white  font-thin leading-relaxed">
+                            If your website should convert at 4% but only converts at 1.5%, and you're getting 300 visitors a month with a $5,000 offer, <span class="text-[#FFCD56]">you're leaving roughly $37,500 in potential revenue on the table every month.</span>
+                        </p>
+                        <p class="text-[20px] text-white  font-thin leading-relaxed">
+                            That's the hidden leak most of you never notice.
+                        </p>
+                    </div>
             </section>
             <!-- section 5 -->
-            <section class="section-5 panel lg:pb-[142px] lg:pt-[50px] pt-[100px] text-center">
+            <section id="solution-section" class="section-5 panel lg:pb-[142px] lg:pt-[50px] pt-[100px] text-center">
                 <div class="text-center mb-[20px] animated-bage">
                     <span class="text-[16px]">
                         <img loading="lazy" decoding="async" src="./assets/icons/site-icons/The-Solution.gif" alt="The Solution" class="h-[25px] lg:h-9 inline-block mr-[10px]" onerror="this.style.display='none'">
@@ -491,7 +585,7 @@
                         The Fix Isn't <br class="block lg:hidden"> More <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Content</span>
                     </h2>
                     <p class="solution-text text-[20px] text-center text-white font-inter-tight tracking-tight font-[200] lg:mt-[30px] mt-[40px] leading-[1.4]">
-                        It's three things: a website, a landing page, and a LinkedIn profile built to convert. At 4% instead of 1.5%, 300 visitors and a $5,000 offer means 12 calls instead of 4 - that's $40,000 in pipeline your current funnel is leaving on the table every month.
+                        It's four things: a website, a landing page, a lead qualification system, and a LinkedIn profile built to convert. If your funnel converts at 4% instead of 1.5%, 300 monthly visitors and a $5,000 offer could generate 12 booked calls instead of 4. <span class="text-[#FFCD56]">That's an extra $40,000 in potential pipeline</span> your current funnel is leaving on the table every month.
                     </p>
                 </div>
                 <!-- ============================================================ -->
@@ -735,17 +829,17 @@
                 </div>
             </section>
             <!-- section 6 -->
-            <section class="section-6 panel lg:pb-[180px] lg:pt-[20px] pt-[100px] text-center">
+            <section id="portfolio-section" class="section-6 panel lg:pb-[180px] lg:pt-[20px] pt-[100px] text-center">
                 <div class="portfolio-pin-wrap">
                     <div class="text-center mb-5 animated-bage">
                         <span class="text-[16px]">
                             <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Portfolio-And-Results.gif" alt="Portfolio And Results" class="h-[25px] lg:h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
-                            Portfolio And Results
+                            Portfolio
                         </span>
                     </div>
                     <div class="mx-auto">
                         <h2 class="portfolio-title text-center leading-[1.2] mt-7 mb-5">
-                            They Could Be Your <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Online Presence</span>
+                            Imagine If This Were Your <span class="bg-[linear-gradient(90deg,#FFB300_0%,#FFD97E_36%,#FFB300_100%)] bg-clip-text text-transparent">Online Presence</span>
                         </h2>
                     </div>
                     <div class="portfolio-wrapper mx-auto">
@@ -806,7 +900,7 @@
 
             </div>
             <!-- section 7 -->
-            <section class="video-section panel lg:pb-[180px] lg:pt-[20px] pt-[100px] text-center">
+            <section id="video-section" class="video-section panel lg:pb-[180px] lg:pt-[20px] pt-[100px] text-center">
                 <div class="text-center mb-5 animated-bage">
                     <span class="text-[16px]">
                         <img loading="lazy" decoding="async" src="./assets/icons/site-icons/Video-Testimonials.gif" alt="Video Testimonials" class="h-[25px] lg:h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
@@ -934,11 +1028,11 @@
                     <div class="offer-card relative w-[400px] rounded-3xl py-[45px] px-[25px] bg-white/8 backdrop-blur-[1.8px] border border-white/10 text-start">
                         <div class="relative z-10">
                             <p class="text-white/70 text-[20px] font-light mb-3">
-                                Launch
+                                LAUNCH
                             </p>
                             <h5 class="text-white leading-[1] mb-[60px]">
-                                Convert The Traffic<br>
-                                You Already Have.
+                                Build Trust Before Traffic<br>
+                                Even Hits Your Site
                             </h5>
                             <ul class="space-y-[19px] text-white">
                                 <li class="flex gap-3">
@@ -983,10 +1077,10 @@
                     <div class="offer-card relative w-[400px] rounded-3xl py-[45px] px-[25px] bg-white/8 backdrop-blur-[1.8px] border border-white/10 text-start">
                         <div class="relative z-10">
                             <p class="text-white/70 text-[20px] font-light mb-3">
-                                Scale
+                                SCALE
                             </p>
                             <h5 class="text-white leading-[1] mb-[60px]">
-                                Build Trust Before Traffic Even Hits Your Site
+                                Convert The Traffic You Already Have
                             </h5>
                             <ul class="space-y-[19px] text-white">
                                 <li class="flex gap-3">
@@ -1019,10 +1113,10 @@
                     <div class="offer-card relative w-[400px] rounded-3xl py-[45px] px-[25px] bg-white/8 backdrop-blur-[1.8px] border border-white/10 text-start">
                         <div class="relative z-10">
                             <p class="text-white/70 text-[20px] font-light mb-3">
-                                Aura
+                                SCALE
                             </p>
-                            <h5 class="text-white  leading-[1] mb-[60px]">
-                                Build The Full Attention-To-Revenue System.
+                            <h5 class="text-white  leading-[1] mb-[60px] font-thin">
+                                Build The Full Attention-To-Revenue System
                             </h5>
                             <ul class="space-y-[19px] text-white">
                                 <li class="flex gap-3">
@@ -1096,7 +1190,7 @@
                             <div class="number">03</div>
                             <h3>Design Review</h3>
                             <p>
-                                I send the full design. You look at it, tell me what to change, I fix it. One round and we're moving.
+                                I send the full design. You look at it, tell me what to change, I fix it.
                             </p>
                         </div>
                         <!-- Card -->
@@ -1104,7 +1198,7 @@
                             <div class="number">04</div>
                             <h3>LinkedIn Rebrand</h3>
                             <p>
-                                If you're on Scale or Aura, while design is approved and dev kicks off, I'm rebuilding your LinkedIn in parallel.
+                                If you're on Scale or Aura, I'll rebuild your LinkedIn profile while your website moves from design to development.
                             </p>
                         </div>
                         <!-- Card -->
@@ -1112,7 +1206,7 @@
                             <div class="number">05</div>
                             <h3>Development</h3>
                             <p>
-                                I build it live. You click around, make sure everything feels right.
+                                I build it, optimize it for AI visibility and take it live. You click around and make sure everything feels right.
                             </p>
                         </div>
                         <!-- Card -->
@@ -1120,7 +1214,7 @@
                             <div class="number">06</div>
                             <h3>Launch</h3>
                             <p>
-                                We go live. You get a conversion system that's ready for traffic, not a project that needs three more weeks of your attention to actually work.
+                                We go live. You get a conversion system ready for traffic, plus 30 days of launch support.
                             </p>
                         </div>
                     </div>
@@ -1139,7 +1233,7 @@
                                 </span>
                             </div>
                             <div id="slide-count" class="text-[#7D7D7D] text-xl tracking-wide">
-                                01 / 09
+                                01 / 12
                             </div>
                         </div>
                         <div class="flex gap-3">
@@ -1184,7 +1278,7 @@
                                 <!-- Right -->
                                 <div class="flex-1">
                                     <p class="review lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
-                                        “Now I know, anyone coming my way asking for a website will be instantly redirected to Ibrahim… because he DESERVES IT, and honestly, way more than just the credit.”
+                                        “Now I know, anyone coming my way asking for a website will be instantly redirected to Ibrahim… because he DESERVES IT, and honestly, way more than just the credit. But what makes him even better? He’s responsive, easy to communicate with, and doesn’t need 50 back-and-forths to get things right.”
                                     </p>
                                     <div class="mt-16">
                                         <p class="text-white text-[18px] lg:text-2xl">
@@ -1317,7 +1411,7 @@
                                             Francis
                                         </p>
                                         <p class="text-[#7C7C7C] lg:mt-1 m-0 text-[16px]">
-                                            Founder @Mentoriadigitals
+                                            Founder @Rampup Marketing
                                         </p>
                                     </div>
                                 </div>
@@ -1343,12 +1437,75 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Slide 10 -->
+                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                                <!-- Left -->
+                                <div class="w-[183px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                    <img loading="lazy" decoding="async" src="./assets/images/noman.webp" class="rounded-2xl w-full">
+                                </div>
+                                <!-- Right -->
+                                <div class="flex-1">
+                                    <p class="review lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                        “If you are looking for someone who will not waste your time, who will give you the product which actually matters to you, then I think you should go with Ibrahim. And the good thing is, you don't have to be available for the whole process. You just need to explain what you need and this guy will come back like everything is ready, being served to you on a plate.”
+                                    </p>
+                                    <div class="mt-16">
+                                        <p class="text-white text-[18px] lg:text-2xl">
+                                            Noman Akram
+                                        </p>
+                                        <p class="text-[#7C7C7C] lg:mt-1 m-0 text-[16px]">
+                                            Co-Founder @Podcutz
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 11 -->
+                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                                <!-- Left -->
+                                <div class="w-[183px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                    <img loading="lazy" decoding="async" src="./assets/images/rick-wong.webp" class="rounded-2xl w-full">
+                                </div>
+                                <!-- Right -->
+                                <div class="flex-1">
+                                    <p class="review lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                        “I was looking for someone to create a website for my recruitment business recently and I found Ibrahim on LinkedIn and I decided to give him a try. In the process, he is a professional, he's patient and also quick on doing the necessary amendments and at the end of the day, I really like my website and I will say it's a job well done.”
+                                    </p>
+                                    <div class="mt-16">
+                                        <p class="text-white text-[18px] lg:text-2xl">
+                                            Rick Wong
+                                        </p>
+                                        <p class="text-[#7C7C7C] lg:mt-1 m-0 text-[16px]">
+                                            Founder @iPro Career
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 11 -->
+                            <div class="testimonial-slide absolute inset-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16">
+                                <!-- Left -->
+                                <div class="w-[183px] md:w-[140px] lg:w-[170px] flex-shrink-0">
+                                    <img loading="lazy" decoding="async" src="./assets/images/Marisa-Wood.webp" class="rounded-2xl w-full">
+                                </div>
+                                <!-- Right -->
+                                <div class="flex-1">
+                                    <p class="review lg:text-[38px] xl:text-[45px] leading-[1.15] lg:leading-[1.05] font-light text-white">
+                                        “I want to talk about the jam I was in with my website, and Ibrahim fixed this for me. He knew exactly what I wanted, even when I didn’t know how to articulate it or what I was looking for. He guided me through every step and was very patient. I’ve got a lot of balls in the air at the moment, doing lots of different things, but he made the process easy. When I saw the end result, I was so pleased. It was really great.”
+                                    </p>
+                                    <div class="mt-16">
+                                        <p class="text-white text-[18px] lg:text-2xl">
+                                            Marisa Wood
+                                        </p>
+                                        <p class="text-[#7C7C7C] lg:mt-1 m-0 text-[16px]">
+                                            Founder @Marisa Wood Fitness
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
             <!-- SECTION 11: INTRO ABOUT ME SECTION -->
-            <section class="about-section panel relative lg:pt-[100px] pt-0 ">
+            <section id="about-section" class="about-section panel relative lg:pt-[100px] pt-0 ">
                 <div class="max-w-[1280px] about-container mx-auto px-4 sm:px-6 md:px-8 flex items-center py-16 lg:py-0 relative">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 relative w-full">
                         <!-- LEFT CONTENT -->
@@ -1356,17 +1513,26 @@
                             <div class="text-start mb-5 animated-bage">
                                 <span class="text-[16px]">
                                     <img loading="lazy" decoding="async" src="./assets/icons/site-icons/about-founder.gif" alt="About Founder" class="h-[25px] lg:h-8 inline-block mr-[10px]" onerror="this.style.display='none'">
-                                    About Founder
+                                    About Me
                                 </span>
                             </div>
 
-                            <h2 class="about-title mb-6 lg:mb-8">
-                            Hey, It’s Ibrahim
-                            </h2>
+                            <h2 class="about-title mb-6 lg:mb-8">Hey, I’m Ibrahim</h2>
 
-                            <p class="hero-desc text-white text-[20px] leading-8 max-w-[460px] mb-10">
-                            The coaches I work with aren’t starting from zero. They have real proof, real results, and real audiences. What they don’t have is a system designed to capture all of it. That’s the gap I close.
-                            </p>
+                            <div class="flex flex-col gap-[5px]">
+                                <p class="text-white text-[14px]  max-w-[460px]">
+                                    I didn't start as a "website guy." I actually wanted to become a doctor. Life took me in a different direction, and instead of treating patients, I started diagnosing and fixing websites.
+                                </p>
+                                <p class="text-white text-[14px]  max-w-[460px]">
+                                    Funny enough, one thing stayed the same: I still look for the hidden problems others overlook. After 3 years of experimenting with design, marketing, and building online businesses, I realized most coaches don't have a traffic problem.
+                                </p>
+                                <p class="text-white text-[14px]  max-w-[460px]">
+                                    Their website feels disconnected from their expertise, and their LinkedIn presence doesn't reflect the authority they've built. And honestly, watching a great coach struggle because their online presence doesn't represent their value feels like watching a doctor ignore a patient's symptoms.
+                                </p>
+                                <p class="text-white text-[14px]  max-w-[460px] mb-10">
+                                    That's why I built Webrahim around one goal: helping coaches create an online presence that builds trust, qualifies leads, and converts attention into opportunities.
+                                </p>
+                            </div>
 
                             <div class="hero-actions flex items-center gap-4">
                                 <div>
@@ -1374,7 +1540,7 @@
                                         <span>Talk With Ibrahim</span>
                                     </a>
                                 </div>
-                                <a href="#" class="text-[16px] px-[18px] py-[10px] rounded-full border border-white/15 bg-black/25 backdrop-blur-[8px] text-white transition-all duration-300 hover:bg-[#1c1c1c]">
+                                <a href="#portfolio-section" class="text-[16px] px-[18px] py-[10px] rounded-full border border-white/15 bg-black/25 backdrop-blur-[8px] text-white transition-all duration-300 hover:bg-[#1c1c1c]">
                                     Explore My Work
                                 </a>
                             </div>
@@ -1423,7 +1589,7 @@
                 </div>
             </section>
             <!-- SECTION 12: ACCORDION / LINKS LIST -->
-            <section class="faq-section panel relative flex items-center lg:pb-[450px] pb-[300px] z-20">
+            <section id="faq-section" class="faq-section panel relative flex items-center lg:pb-[450px] pb-[300px] z-20">
                 <div class="relative  max-w-3xl mx-auto w-full px-6">
                     <!-- Badge -->
                     <div class="text-center mb-5 animated-bage">
@@ -1458,6 +1624,36 @@
                         <div class="faq-item border-b border-white/10">
                             <button class="faq-btn w-full flex justify-between items-center py-[30px]">
                                 <span class="text-white">
+                                    How is this different from hiring a web designer?
+                                </span>
+                                <span class="plus text-[#FFB300] text-3xl">
+                                    +
+                                </span>
+                            </button>
+                            <div class="faq-content overflow-hidden">
+                                <div class="pb-[30px] leading-6 text-white/60">
+                                    A web designer asks you what you want it to look like. I start by asking why prospects aren't booking, then build the answer to that question. Positioning strategy, buyer psychology, and conversion architecture come before design. Most designers skip that entirely and hand you something pretty that still doesn't convert.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="faq-item border-b border-white/10">
+                            <button class="faq-btn w-full flex justify-between items-center py-[30px]">
+                                <span class="text-white">
+                                    "Can I just fix my website myself using templates or AI tools?"
+                                </span>
+                                <span class="plus text-[#FFB300] text-3xl">
+                                    +
+                                </span>
+                            </button>
+                            <div class="faq-content overflow-hidden">
+                                <div class="pb-[30px] leading-6 text-white/60">
+                                    You can and you'd probably produce something that looks reasonable. What you won't produce is a system where every word, every section, and every CTA is engineered against one specific goal: getting a qualified prospect to book a call. Templates are built for everyone, which means they're optimised for no one.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="faq-item border-b border-white/10">
+                            <button class="faq-btn w-full flex justify-between items-center py-[30px]">
+                                <span class="text-white">
                                     Can you guarantee results?
                                 </span>
                                 <span class="plus text-[#FFB300] text-3xl">
@@ -1473,7 +1669,7 @@
                         <div class="faq-item border-b border-white/10">
                             <button class="faq-btn w-full flex justify-between items-center py-[30px]">
                                 <span class="text-white">
-                                    Why not just hire someone cheaper?
+                                    "What happens after the site launches, do you disappear?"
                                 </span>
                                 <span class="plus text-[#FFB300] text-3xl">
                                     +
@@ -1481,37 +1677,7 @@
                             </button>
                             <div class="faq-content overflow-hidden">
                                 <div class="pb-[30px] leading-6 text-white/60">
-                                    You can. The difference: cheaper freelancers build sites. I build conversion systems — with messaging strategy, AI search visibility, and 36+ coaching builds behind every decision. The cost of a site that doesn't convert isn't the fee. It's the leads you keep losing.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="faq-item border-b border-white/10">
-                            <button class="faq-btn w-full flex justify-between items-center py-[30px]">
-                                <span class="text-white">
-                                    How long does it actually take?
-                                </span>
-                                <span class="plus text-[#FFB300] text-3xl">
-                                    +
-                                </span>
-                            </button>
-                            <div class="faq-content overflow-hidden">
-                                <div class="pb-[30px] leading-6 text-white/60">
-                                    Most projects go live within 10 days of kickoff. You're not waiting 6 weeks for a first draft.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="faq-item border-b border-white/10">
-                            <button class="faq-btn w-full flex justify-between items-center py-[30px]">
-                                <span class="text-white">
-                                    What if I need changes after launch?
-                                </span>
-                                <span class="plus text-[#FFB300] text-3xl">
-                                    +
-                                </span>
-                            </button>
-                            <div class="faq-content overflow-hidden">
-                                <div class="pb-[30px] leading-6 text-white/60">
-                                    Every project includes a post-launch revision window. Because we align on direction before anything gets built, major surprises don't happen. Minor tweaks are expected and covered.
+                                    Every project includes a post-launch revision window, and I'm available for questions through the handoff. The goal is that you leave with a system you understand, not a black box you depend on me to maintain. Most clients don't need ongoing support because the documentation covers it but I'm reachable if something comes up.
                                 </div>
                             </div>
                         </div>
@@ -1519,7 +1685,7 @@
                 </div>
             </section>
             <!-- SECTION 13: FOOTER CALL TO ACTION -->
-            <footer style="background-image: url(./assets/images/footer.webp);" class="footer relative z-10 h-screen bg-cover bg-center ">
+            <footer id="footer-section" style="background-image: url(./assets/images/footer.webp);" class="footer relative z-10 h-screen bg-cover bg-center ">
                 <div class="absolute lg:-top-[300px] -top-[200px]  left-0 w-full z-50 text-center ">
                     <h1 class="faqFooter-title sm:text-[40px] leading-[1.2] font-semibold text-white mx-auto px-4">
                         Every Week Your Funnel Is
@@ -1528,10 +1694,7 @@
                         For It.
                     </h1>
                     <p class="faqFooter-text mt-6 md:mt-8 text-white text-[22px] leading-[1.6] max-w-[763px] mx-auto px-4">
-                        Not In Ad Spend. In The Leads That Visited, Got Curious, And
-                        Decided You Weren't Ready For Them. Book A Free Strategy Call
-                        And We'll Look At Exactly Where Your Funnel Is Leaking,
-                        Whether We Work Together Or Not.
+                        Not in ad spend. In the leads that visited, got curious, and decided you weren't ready for them. Book a free strategy call and we'll look at exactly where your funnel is leaking, whether we work together or not.
                     </p>
                     <div class="mt-10">
                         <a href="https://wa.me/message/XGPKK6UHPQ3NA1" target="_blank" class="hero-btn">

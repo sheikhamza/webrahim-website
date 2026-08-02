@@ -45,7 +45,7 @@
 
 @layer utilities {
     .font-inter-tight {
-        font-family: "Inter Tight", sans-serif;
+        font-family: "Inter Tight";
     }
 }
 /* ==========================================
@@ -53,7 +53,7 @@
    ========================================== */
 html {
     /* scroll-behavior: smooth; */
-    font-family: var(--font-sans, sans-serif);
+    font-family: 'Inter Tight';
     color: var(--text-primary, #ffffff);
 }
 
@@ -86,7 +86,8 @@ body {
     font-size: clamp(50px,7vw,90px);
     color:#f4efe8;
     margin:0;
-    font-family: 'Coolvetica';
+    font-family: 'Inter Tight';
+    font-weight: 900;
     display:flex;
     align-items:center;
 }
@@ -125,7 +126,7 @@ body {
     font-size:12px;
     letter-spacing:2px;
     text-transform:uppercase;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family: 'Inter Tight';
 }
 
 .loader-bottom span:first-child{
@@ -137,6 +138,77 @@ body.loaded .loader-wrapper{
     transform:translateY(-100%);
 }
 
+
+.section-nav{
+    position:fixed;
+    right:10px;
+    top:10%;
+    width:130px;
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    z-index:9999;
+    transition:transform .5s ease;
+}
+
+.section-nav.scrolled{
+    transform:translateY(18px);
+}
+
+.nav-item{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+
+    text-decoration:none;
+    color:#9d9d9d;
+    font-size:12px;
+    font-weight:400;
+
+    transition:.35s;
+}
+
+.nav-item span{
+    white-space:nowrap;
+    margin-right:12px;
+}
+
+.nav-line{
+    flex:1;
+    height:2px;
+    border-radius:100px;
+    background:#555;
+    transition:.4s ease;
+}
+
+.nav-item.active{
+    color:#fff;
+    font-weight:700;
+}
+
+.nav-item.active .nav-line{
+    background: linear-gradient(90deg,#FFB300 0%, #f9d98f 100%);
+}
+
+.nav-item:hover{
+    color:#fff;
+}
+
+@media (max-width:1023px){
+    .section-nav{
+        display:none;
+    }
+}
+
+
+#mobileFixNav { display: grid; gap: 6px; width: 40px;  place-content: center; }
+#mobileFixNav span { display: block; width: 20px; height: 1.5px; border-radius: 2px; background: white; transition: transform .2s ease, opacity .2s ease; }
+#mobileFixNav.is-open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+#mobileFixNav.is-open span:nth-child(2) { opacity: 0; }
+#mobileFixNav.is-open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+.fix-mobile-nav-menu { display: none; position: absolute; top: 50px; right: 0; z-index: 99; width: min(200px, calc(100vw - 1.5rem)); padding: .65rem; flex-direction: column; gap: .2rem; border: 1px solid rgba(255,255,255,.13); border-radius: 1rem; background: rgba(14,14,14,.94); backdrop-filter: blur(16px); box-shadow: 0 16px 35px rgba(0,0,0,.35); }
+.fix-mobile-nav-menu.open { display: flex !important; }
 
 
 
@@ -159,26 +231,26 @@ H4 40px
 H5 28px */
 h1{
     font-size: 70px;
-    font-family: 'Coolvetica', sans-serif;
+    font-family: 'Coolvetica', 'Inter Tight';
 }
 h2{
     font-size: 50px;
-    font-family: 'Coolvetica-Bold', sans-serif;
+    font-family: 'Coolvetica-Bold', 'Inter Tight';
     text-transform: capitalize;
 }
 
 h3 {
-    font-family: 'Coolvetica-Bold', sans-serif;
+    font-family: 'Coolvetica-Bold', 'Inter Tight';
     text-transform: capitalize;
     letter-spacing: 2px;
     font-size: 45px;
 }
 h4{
-    font-family: 'Coolvetica-Bold', sans-serif;
+    font-family: 'Coolvetica-Bold', 'Inter Tight';
     font-size: 40px;
 }
 h5{
-    font-family: 'Coolvetica-Bold', sans-serif;
+    font-family: 'Coolvetica-Bold', 'Inter Tight';
     font-size: 28px;
     letter-spacing: 2px;
 }
@@ -186,7 +258,7 @@ a{
     cursor: pointer;
 }
 p {
-    font-family: 'Inter Tight', sans-serif;
+    font-family: 'Inter Tight';
 }
 ul li{
     font-family: 'Inter Tight';
@@ -394,7 +466,7 @@ main {
       margin: 0 auto;
       border-radius: 20px;
       overflow: hidden;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Inter Tight';
   }
   .lf-svg {
       display: block;
@@ -732,6 +804,7 @@ body.modal-open{
 }
 .offer-card h5{
     text-wrap: balance;
+    font-family: 'Coolvetica';
 }
 
 /* section 9 */
@@ -878,7 +951,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
 /* Mobile nav overlay */
 #mobileNavMenu.open { display: flex; transition: 5s; }
 .mobile-nav-link { position: relative; }
-.mobile-nav-link:hover { color: #FFB300; }
 
 
 /* Hero title first-line huge line-height only on desktop */
@@ -1304,7 +1376,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .mobile-menu-toggle.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     .mobile-nav-menu { display: none; position: absolute; top: 75px; right: .75rem; z-index: 99; width: min(200px, calc(100vw - 1.5rem)); padding: .65rem; flex-direction: column; gap: .2rem; border: 1px solid rgba(255,255,255,.13); border-radius: 1rem; background: rgba(14,14,14,.94); backdrop-filter: blur(16px); box-shadow: 0 16px 35px rgba(0,0,0,.35); }
     .mobile-nav-menu.open { display: flex !important; }
-    .mobile-nav-link { padding: .7rem .8rem; border-radius: .65rem; font: 400 .88rem/1 "Inter Tight", sans-serif; color: white; text-align: left; }
+    .mobile-nav-link { padding: .7rem .8rem; border-radius: .65rem; font: 400 .88rem/1 "Inter Tight"; color: white; text-align: left; }
     .mobile-nav-call { display: flex; align-items: center; justify-content: center; gap: .4rem; margin-left: 5px; padding: .42rem .45rem .42rem .8rem; color: #151515; background: #fff; text-align: center; font-size: .72rem !important; }
     .mobile-nav-call img { width: 1.4rem; height: 1.4rem; border-radius: 999px; object-fit: cover; }
 
@@ -1337,7 +1409,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .cards-right-group > div:nth-child(2) { order: 5; }
 
     .mobile-real-problem { display: block; padding: .2rem 1rem 0; text-align: center; }
-    .mobile-real-problem .animated-bage { display: flex; align-items: center; justify-content: center; gap: .45rem; margin-bottom: 20px; font: 16px "Inter Tight", sans-serif; }
+    .mobile-real-problem .animated-bage { display: flex; align-items: center; justify-content: center; gap: .45rem; margin-bottom: 20px; font: 16px "Inter Tight"; }
     .mobile-real-problem .animated-bage img { width: 25px; height: 25px; object-fit: contain; }
     .mobile-real-problem h3 { margin: 0; line-height: .94; letter-spacing: -.5px; }
     .mobile-real-problem strong { color: #FFCD56; font-weight: inherit; }

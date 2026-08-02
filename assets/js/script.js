@@ -1,3 +1,83 @@
+// (() => {
+
+//     // Right Click Disable
+//     document.addEventListener("contextmenu", e => e.preventDefault());
+
+//     // Keyboard Shortcuts Disable
+//     document.addEventListener("keydown", e => {
+
+//         if (
+//             e.key === "F12" ||
+//             (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
+//             (e.ctrlKey && ["U"].includes(e.key.toUpperCase()))
+//         ) {
+//             e.preventDefault();
+//             return false;
+//         }
+
+//     });
+
+//     // Drag Disable
+//     document.addEventListener("dragstart", e => e.preventDefault());
+
+//     // ❌ Remove this line
+//     // document.addEventListener("selectstart", e => e.preventDefault());
+
+//     // DevTools Detection
+//     setInterval(() => {
+
+//         const w = window.outerWidth - window.innerWidth > 160;
+//         const h = window.outerHeight - window.innerHeight > 160;
+
+//         if (w || h) {
+
+//             if (!document.querySelector("#shield")) {
+
+//                 const x = document.createElement("div");
+
+//                 x.id = "shield";
+
+//                 x.style.cssText = `
+//                     position:fixed;
+//                     inset:0;
+//                     background:#111;
+//                     display:flex;
+//                     justify-content:center;
+//                     align-items:center;
+//                     z-index:999999;
+//                     font-size:40px;
+//                     color:#fff;
+//                     backdrop-filter:blur(20px);
+//                 `;
+
+//                 x.innerHTML = "Inspection Disabled";
+
+//                 document.body.appendChild(x);
+
+//                 document.body.style.filter = "blur(20px)";
+
+//                 // ❌ Remove this
+//                 // document.body.style.pointerEvents = "none";
+//             }
+
+//         }
+
+//     }, 1000);
+
+//     console.clear();
+
+//     Object.defineProperty(window, "console", {
+//         value: {
+//             log() {},
+//             warn() {},
+//             error() {},
+//             info() {},
+//             clear() {}
+//         }
+//     });
+
+// })();
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const loaderBar = document.getElementById("loaderBar");
@@ -29,10 +109,15 @@ document.addEventListener("DOMContentLoaded", () => {
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const backToTop = document.getElementById("backToTop");
+const mobileFixNav = document.getElementById("mobileFixNav");
 
 gsap.set(backToTop, {
     autoAlpha: 0,
     y: 20
+});
+gsap.set(mobileFixNav, {
+    autoAlpha: 0,
+    x:20
 });
 
 // Hover
@@ -61,12 +146,32 @@ window.addEventListener("scroll", () => {
             duration: 0.3,
             ease: "power2.out"
         });
+        gsap.to(mobileFixNav, {
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.3,
+            ease: "power2.out",
+            onStart: () => {
+                document.querySelector(".nav-fix-box").style.zIndex = "999";
+            }
+        });
     } else {
         gsap.to(backToTop, {
             autoAlpha: 0,
             y: 20,
             duration: 0.3,
             ease: "power2.out"
+        });
+        gsap.to(mobileFixNav, {
+            autoAlpha: 0,
+            x: 20,
+            duration: 0.3,
+            ease: "power2.out",
+            onStart: () => {
+                document.querySelector(".nav-fix-box").style.zIndex = "0";
+                document.getElementById("mobileNavFix").classList.remove("open");
+
+            }
         });
     }
 });
@@ -116,6 +221,48 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         requestAnimationFrame(animation);
     });
 });
+
+// ==========================================
+// ACTIVE NAV (Pure JavaScript)
+// Works with pinned sections
+// ==========================================
+
+const navItems = document.querySelectorAll(".section-nav .nav-item");
+
+const sections = [...navItems].map(item => ({
+    nav: item,
+    section: document.querySelector(item.getAttribute("href"))
+})).filter(item => item.section);
+
+function setActive(activeNav) {
+    navItems.forEach(nav => nav.classList.remove("active"));
+    activeNav.classList.add("active");
+}
+
+function updateActiveNav() {
+
+    // Screen ke 25% niche ek imaginary line
+    const triggerLine = window.innerHeight * 0.25;
+
+    let active = sections[0];
+
+    sections.forEach(item => {
+
+        const rect = item.section.getBoundingClientRect();
+
+        // Jab section ka top trigger line cross kar jaye
+        if (rect.top <= triggerLine) {
+            active = item;
+        }
+
+    });
+
+    setActive(active.nav);
+}
+
+window.addEventListener("scroll", updateActiveNav);
+window.addEventListener("resize", updateActiveNav);
+window.addEventListener("load", updateActiveNav);
 
 // ==========================================
 // 2. AVATAR STACK
@@ -182,6 +329,40 @@ if (mobileMenuToggle && mobileNavMenu) {
     });
 
     mobileNavMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            closeMobileMenu();
+        });
+    });
+
+}
+
+// fix 
+// const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+const mobileNavFix = document.getElementById("mobileNavFix");
+
+if (mobileFixNav && mobileNavFix) {
+
+    const closeMobileMenu = () => {
+        mobileFixNav.classList.remove("is-open");
+        mobileFixNav.setAttribute("aria-expanded", "false");
+
+        mobileNavFix.classList.remove("open");
+        mobileNavFix.setAttribute("aria-hidden", "true");
+    };
+
+    mobileFixNav.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        const open = !mobileNavFix.classList.contains("open");
+
+        mobileNavFix.classList.toggle("open", open);
+        mobileFixNav.classList.toggle("is-open", open);
+
+        mobileFixNav.setAttribute("aria-expanded", open);
+        mobileNavFix.setAttribute("aria-hidden", !open);
+    });
+
+    mobileNavFix.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", () => {
             closeMobileMenu();
         });
