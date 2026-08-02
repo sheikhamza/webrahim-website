@@ -1338,18 +1338,6 @@ if (document.querySelector(".offer-title")) {
 // WORKFLOW TITLE ANIMATION
 // =========================================
 
-document.querySelectorAll(".step-card").forEach(card => {
-    const heading = card.querySelector("h3");
-    const paragraph = card.querySelector("p");
-
-    if (heading && paragraph) {
-        const width = heading.getBoundingClientRect().width;
-
-        card.style.width = `${width}px`;
-        paragraph.style.width = `${width}px`;
-    }
-});
-
 const workflowSection = document.querySelector("#workflow-section");
 const track = document.querySelector(".workflow-track");
 const progress = document.querySelector(".timeline-progress");
