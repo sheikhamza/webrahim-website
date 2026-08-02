@@ -101,12 +101,13 @@ body {
 }
 
 .loader-logo{
-    font-size: clamp(50px,7vw,90px);
+    font-size: clamp(65px,7vw,105px);
     color:#f4efe8;
     margin:0;
     font-family: 'Inter Tight';
     font-weight: 900;
     display:flex;
+    justify-content: center;
     align-items:center;
 }
 

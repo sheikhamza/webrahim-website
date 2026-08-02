@@ -1109,6 +1109,7 @@ document.querySelectorAll(".video-card").forEach(card => {
     const centerPlayBtn = card.querySelector(".center-play-btn");
     const playIcon = card.querySelector(".play-icon");
     const progressBar = card.querySelector(".progress-bar");
+    let pauseIconTimeout;
 
     if (video) { 
         video.muted = true; 
@@ -1126,10 +1127,47 @@ document.querySelectorAll(".video-card").forEach(card => {
     const moveY = gsap.quickTo(cursor, "y", { duration: 0.18 });
 
     function updateCursor() {
-        if (cursor) cursor.innerHTML = expanded ? "Pause" : "Play";
-        if (playIcon) playIcon.className = expanded ? "fa-solid fa-pause play-icon" : "fa-solid fa-play play-icon";
-        if (expanded) card.classList.add("playing");
-        else card.classList.remove("playing");
+
+        if (cursor) {
+            cursor.innerHTML = expanded ? "Pause" : "Play";
+        }
+
+        if (playIcon) {
+            playIcon.className = expanded
+                ? "fa-solid fa-pause play-icon"
+                : "fa-solid fa-play play-icon";
+        }
+
+        if (expanded) {
+            card.classList.add("playing");
+
+            // Mobile: hide pause icon after 2 seconds
+            clearTimeout(pauseIconTimeout);
+
+            gsap.set(centerPlayBtn, {
+                opacity: 1,
+                scale: 1
+            });
+
+            pauseIconTimeout = setTimeout(() => {
+                gsap.to(centerPlayBtn, {
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 0.3
+                });
+            }, 2000);
+
+        } else {
+
+            clearTimeout(pauseIconTimeout);
+
+            gsap.set(centerPlayBtn, {
+                opacity: 1,
+                scale: 1
+            });
+
+            card.classList.remove("playing");
+        }
     }
     updateCursor();
 
@@ -1165,6 +1203,12 @@ document.querySelectorAll(".video-card").forEach(card => {
         if (volumePopup) volumePopup.classList.remove("show");
         if (progressBar) progressBar.value = 0;
         updateCursor();
+        clearTimeout(pauseIconTimeout);
+
+        gsap.set(centerPlayBtn, {
+            opacity: 1,
+            scale: 1
+        });
     }
 
     card.addEventListener("click", (e) => {
