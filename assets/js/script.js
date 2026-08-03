@@ -19,11 +19,6 @@
 
     // Drag Disable
     document.addEventListener("dragstart", e => e.preventDefault());
-
-    // ❌ Remove this line
-    // document.addEventListener("selectstart", e => e.preventDefault());
-
-    // DevTools Detection
     setInterval(() => {
 
         const w = window.outerWidth - window.innerWidth > 160;
@@ -55,9 +50,6 @@
                 document.body.appendChild(x);
 
                 document.body.style.filter = "blur(20px)";
-
-                // ❌ Remove this
-                // document.body.style.pointerEvents = "none";
             }
 
         }
@@ -563,19 +555,15 @@ if (
         return window.innerWidth < 768;
     }
 
-    // Exact word retrieval for sequence logic
     function getWord(offset) {
         return words[(currentIndex + offset + words.length) % words.length];
     }
 
-    // Set text contents cleanly
     function updateText() {
-        // Current slots state
         leftCurrent.textContent = getWord(0);
         centerCurrent.textContent = getWord(1);
         rightCurrent.textContent = getWord(2);
 
-        // Next slots state (Exact 1-step ahead continuous sequence)
         leftNext.textContent = getWord(1);
         centerNext.textContent = getWord(2);
         rightNext.textContent = getWord(3);
@@ -592,12 +580,10 @@ if (
         gsap.set([leftCurrent, centerCurrent, rightCurrent], { x: 0, y: 0 });
 
         if (mobile) {
-            // Next words niche se enter hone ke liye position baseline (Bottom to Top flow)
             gsap.set(leftNext, { x: 0, y: leftCurrent.parentElement.offsetHeight });
             gsap.set(centerNext, { x: 0, y: centerCurrent.parentElement.offsetHeight });
             gsap.set(rightNext, { x: 0, y: rightCurrent.parentElement.offsetHeight });
         } else {
-            // Next words right side se enter honge (Right to Left flow)
             gsap.set(leftNext, { x: leftCurrent.parentElement.offsetWidth, y: 0 });
             gsap.set(centerNext, { x: centerCurrent.parentElement.offsetWidth, y: 0 });
             gsap.set(rightNext, { x: rightCurrent.parentElement.offsetWidth, y: 0 });
@@ -627,7 +613,6 @@ if (
         const centerW = centerCurrent.parentElement.offsetWidth;
         const rightW = rightCurrent.parentElement.offsetWidth;
 
-        // Ensure proper starting transforms before GSAP timeline
         if (mobile) {
             gsap.set(leftNext, { x: 0, y: leftH });
             gsap.set(centerNext, { x: 0, y: centerH });
@@ -644,19 +629,14 @@ if (
                 ease: "power3.inOut"
             },
             onComplete() {
-                // Advance main index by 1 step
                 currentIndex = (currentIndex + 1) % words.length;
-
-                // Instantly sync text content without visual pop
                 updateText();
                 resetPositions();
-
                 isAnimating = false;
             }
         });
 
         if (mobile) {
-            // Mobile Slide Up Animation: Purane words upar niklengay, naye niche se aayenge
             tl.to(leftCurrent, { y: -leftH }, 0)
               .to(centerCurrent, { y: -centerH }, 0)
               .to(rightCurrent, { y: -rightH }, 0)
@@ -664,7 +644,6 @@ if (
               .to(centerNext, { y: 0 }, 0)
               .to(rightNext, { y: 0 }, 0);
         } else {
-            // Desktop Slide Left Animation: Purane words left niklengay, naye right se aayenge
             tl.to(leftCurrent, { x: -leftW }, 0)
               .to(centerCurrent, { x: -centerW }, 0)
               .to(rightCurrent, { x: -rightW }, 0)
@@ -740,9 +719,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const innerCanvas = document.querySelector(".animation-inner-sticky-canvas");
     if (!mainWrapper || !innerCanvas) return;
 
-    // On phones and tablets this section is intentionally a normal, readable story. Do
-    // not set any initial GSAP values here: they would leave content hidden
-    // before a scroll trigger gets a chance to run.
     if (window.matchMedia("(max-width: 1023px)").matches) return;
 
     const leftBoxes = document.querySelector(".cards-left-group");
@@ -781,13 +757,12 @@ document.addEventListener("DOMContentLoaded", () => {
         .to(innerCardLoop, { rotateY: 180, duration: 1.6, ease: "none" }, 0);
 
     let animating = false;
-    let textTl; // Timeline ko store karne ke liye variable
+    let textTl;
 
     function animateText() {
         if (animating) return;
         animating = true;
         
-        // Agar pehle se koi timeline chal rahi hai toh usay kill karein
         if (textTl) textTl.kill();
         gsap.killTweensOf([compiledLines, textLeftFinal, textRightFinal]);
 
@@ -801,12 +776,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function resetText() {
-        // Reverse jane par chal rahi sabhi animations ko foran rokein
         if (textTl) textTl.kill();
         gsap.killTweensOf([compiledLines, textLeftFinal, textRightFinal]);
         
-        animating = false; // Flag ko reset karein taake dobara neechay aane pe animation chal sake
-
+        animating = false;
         gsap.set(compiledLines, { yPercent: 110 });
         gsap.set(textLeftFinal, { autoAlpha: 0 });
         gsap.set(textRightFinal, { autoAlpha: 0, y: 20, filter: "blur(0px)" });
@@ -839,7 +812,6 @@ if (document.querySelector(".solution-title")) {
 
     const solutionText = document.querySelector(".solution-text");
 
-    // Initial State
     gsap.set(solutionTitle.lines, {
         yPercent: 110
     });
@@ -858,7 +830,6 @@ if (document.querySelector(".solution-title")) {
         }
     });
 
-    // Title Animation
     solutionTl.to(solutionTitle.lines, {
         yPercent: 0,
         duration: 1,
@@ -866,7 +837,6 @@ if (document.querySelector(".solution-title")) {
         ease: "power4.out"
     }, 0);
 
-    // Text Animation (same as your textTl)
     solutionTl.to(solutionText, {
         autoAlpha: 1,
         y: 0,
@@ -875,7 +845,6 @@ if (document.querySelector(".solution-title")) {
         ease: "power3.out"
     }, 0.1);
 
-    // Counter
     solutionTl.call(solutionCount);
 
 }
@@ -885,8 +854,7 @@ let solutionCounterStarted = false;
 
 function solutionCount() {
 
-    if (solutionCounterStarted) return; // sirf ek baar chale
-
+    if (solutionCounterStarted) return;
     solutionCounterStarted = true;
 
     let currentRevenue = 0;
@@ -1274,7 +1242,6 @@ if (document.querySelector(".video-title")) {
 
     });
 
-    // Mobile: text normally visible
     mm.add("(max-width: 767px)", () => {
         gsap.set(".video-title", {
             clearProps: "all"
