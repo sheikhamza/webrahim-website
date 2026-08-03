@@ -1,82 +1,82 @@
-// (() => {
+(() => {
 
-//     // Right Click Disable
-//     document.addEventListener("contextmenu", e => e.preventDefault());
+    // Right Click Disable
+    document.addEventListener("contextmenu", e => e.preventDefault());
 
-//     // Keyboard Shortcuts Disable
-//     document.addEventListener("keydown", e => {
+    // Keyboard Shortcuts Disable
+    document.addEventListener("keydown", e => {
 
-//         if (
-//             e.key === "F12" ||
-//             (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
-//             (e.ctrlKey && ["U"].includes(e.key.toUpperCase()))
-//         ) {
-//             e.preventDefault();
-//             return false;
-//         }
+        if (
+            e.key === "F12" ||
+            (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
+            (e.ctrlKey && ["U"].includes(e.key.toUpperCase()))
+        ) {
+            e.preventDefault();
+            return false;
+        }
 
-//     });
+    });
 
-//     // Drag Disable
-//     document.addEventListener("dragstart", e => e.preventDefault());
+    // Drag Disable
+    document.addEventListener("dragstart", e => e.preventDefault());
 
-//     // ❌ Remove this line
-//     // document.addEventListener("selectstart", e => e.preventDefault());
+    // ❌ Remove this line
+    // document.addEventListener("selectstart", e => e.preventDefault());
 
-//     // DevTools Detection
-//     setInterval(() => {
+    // DevTools Detection
+    setInterval(() => {
 
-//         const w = window.outerWidth - window.innerWidth > 160;
-//         const h = window.outerHeight - window.innerHeight > 160;
+        const w = window.outerWidth - window.innerWidth > 160;
+        const h = window.outerHeight - window.innerHeight > 160;
 
-//         if (w || h) {
+        if (w || h) {
 
-//             if (!document.querySelector("#shield")) {
+            if (!document.querySelector("#shield")) {
 
-//                 const x = document.createElement("div");
+                const x = document.createElement("div");
 
-//                 x.id = "shield";
+                x.id = "shield";
 
-//                 x.style.cssText = `
-//                     position:fixed;
-//                     inset:0;
-//                     background:#111;
-//                     display:flex;
-//                     justify-content:center;
-//                     align-items:center;
-//                     z-index:999999;
-//                     font-size:40px;
-//                     color:#fff;
-//                     backdrop-filter:blur(20px);
-//                 `;
+                x.style.cssText = `
+                    position:fixed;
+                    inset:0;
+                    background:#111;
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    z-index:999999;
+                    font-size:40px;
+                    color:#fff;
+                    backdrop-filter:blur(20px);
+                `;
 
-//                 x.innerHTML = "Inspection Disabled";
+                x.innerHTML = "Inspection Disabled";
 
-//                 document.body.appendChild(x);
+                document.body.appendChild(x);
 
-//                 document.body.style.filter = "blur(20px)";
+                document.body.style.filter = "blur(20px)";
 
-//                 // ❌ Remove this
-//                 // document.body.style.pointerEvents = "none";
-//             }
+                // ❌ Remove this
+                // document.body.style.pointerEvents = "none";
+            }
 
-//         }
+        }
 
-//     }, 1000);
+    }, 1000);
 
-//     console.clear();
+    console.clear();
 
-//     Object.defineProperty(window, "console", {
-//         value: {
-//             log() {},
-//             warn() {},
-//             error() {},
-//             info() {},
-//             clear() {}
-//         }
-//     });
+    Object.defineProperty(window, "console", {
+        value: {
+            log() {},
+            warn() {},
+            error() {},
+            info() {},
+            clear() {}
+        }
+    });
 
-// })();
+})();
 
 
 // ==========================================
