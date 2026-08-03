@@ -1196,12 +1196,18 @@ document.querySelectorAll(".video-card").forEach(card => {
             video.currentTime = 0;
             video.muted = true;
             video.loop = true;
+
+            // Force poster to show again
+            video.load();
         }
+
         if (volumeSlider) volumeSlider.value = 1;
         if (speakerIcon) speakerIcon.className = "fa-solid fa-volume-high speaker-icon";
         if (volumePopup) volumePopup.classList.remove("show");
         if (progressBar) progressBar.value = 0;
+
         updateCursor();
+
         clearTimeout(pauseIconTimeout);
 
         gsap.set(centerPlayBtn, {
