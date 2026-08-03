@@ -1213,7 +1213,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 @media (max-width: 640px) {
     #portfolioModal { padding: 1rem; }
     #modalContent { max-width: 100%; height: 85vh; }
-    #closePortfolio { top: 1rem; right: 1rem; width: 44px; height: 44px; font-size: 20px; z-index: 99;}
+    #closePortfolio { width: 40px; height: 40px; font-size: 20px; z-index: 99;}
 }
 
 /* Ribbon square separators */
