@@ -613,11 +613,11 @@ main {
     border:none;
     background:transparent;
     color:#fff;
-    padding:14px 28px;
+    padding:5px 28px;
     border-radius:999px;
     cursor:pointer;
     transition:.3s;
-    font-size:15px;
+    font-size:14px;
     font-family:'Inter Tight';
     white-space:nowrap;
 }
