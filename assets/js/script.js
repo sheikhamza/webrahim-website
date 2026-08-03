@@ -946,107 +946,320 @@ if (document.querySelector(".portfolio-title")) {
         }, 0);
 }
 
-const portfolioSlider = document.querySelector(".portfolio-slider");
-const portfolioWrapper = document.querySelector(".portfolio-wrapper");
 
-if (portfolioSlider && portfolioWrapper) {
-    function initSlider() {
-        const startOffset = portfolioWrapper.clientWidth * 0.5;
-        const extraMove = portfolioWrapper.clientWidth * 0.25;
-        const moveDistance = portfolioSlider.scrollWidth - portfolioWrapper.clientWidth + startOffset + extraMove;
+// ===============================
+// Portfolio Slider
+// ===============================
 
-        gsap.set(portfolioSlider, { x: startOffset });
+let portfolioST = null;
 
-        gsap.to(portfolioSlider, {
-            x: -(moveDistance - startOffset),
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".section-6",
-                start: "top top",
-                end: () => "+=" + moveDistance,
-                scrub: true,
-                pin: ".portfolio-pin-wrap",
-                anticipatePin: 1,
-                invalidateOnRefresh: true
-            }
-        });
+function initPortfolioSlider(wrapper) {
 
+    if (!wrapper) return;
+
+    const slider = wrapper.querySelector(".portfolio-slider");
+
+    if (!slider) return;
+
+    // Kill old ScrollTrigger
+    if (portfolioST) {
+        portfolioST.kill();
     }
-    initSlider();
+
+    // Reset position
+    gsap.set(".portfolio-slider", {
+        clearProps: "transform"
+    });
+
+    const startOffset = wrapper.clientWidth * 0.5;
+    const extraMove = wrapper.clientWidth * 0.25;
+
+    const moveDistance =
+        slider.scrollWidth -
+        wrapper.clientWidth +
+        startOffset +
+        extraMove;
+
+    gsap.set(slider, {
+        x: startOffset
+    });
+
+    portfolioST = gsap.to(slider, {
+        x: -(moveDistance - startOffset),
+        ease: "none",
+        scrollTrigger: {
+            trigger: "#portfolio-section",
+            start: "top top",
+            end: () => "+=" + moveDistance,
+            scrub: true,
+            pin: ".portfolio-pin-wrap",
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+        }
+    }).scrollTrigger;
+
+    ScrollTrigger.refresh();
 }
 
-// Portfolio Cards Cursor & Modal Interactivity
-document.querySelectorAll(".portfolio-card").forEach(card => {
-    const img = new Image();
-    img.src = card.dataset.full;
+// Initial Slider
+initPortfolioSlider(document.querySelector("#websites"));
 
-    const pCard = card.querySelector("img");
-    const cursor = card.querySelector(".portfolio-cursor-glass");
-    if (!pCard || !cursor) return;
 
-    const moveX = gsap.quickTo(cursor, "x", { duration: .18, ease: "power3" });
-    const moveY = gsap.quickTo(cursor, "y", { duration: .18, ease: "power3" });
+// ===============================
+// Portfolio Tabs
+// ===============================
+const tabs = document.querySelectorAll(".portfolio-tab");
+const contents = document.querySelectorAll(".portfolio-content");
+const tabSlider = document.querySelector(".portfolio-tab-slider");
 
-    pCard.addEventListener("mouseenter", () => gsap.to(cursor, { opacity: 1, scale: 1, duration: .25 }));
-    pCard.addEventListener("mouseleave", () => gsap.to(cursor, { opacity: 0, scale: .5, duration: .2 }));
-    card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        moveX(e.clientX - rect.left);
-        moveY(e.clientY - rect.top);
+function moveTabSlider(button) {
+
+    if (!tabSlider || !button) return;
+
+    gsap.to(tabSlider, {
+        x: button.offsetLeft,
+        width: button.offsetWidth,
+        duration: 0.45,
+        ease: "power3.out"
     });
+
+}
+
+// Initial Position
+moveTabSlider(document.querySelector(".portfolio-tab.active"));
+
+tabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        if (tab.classList.contains("active")) return;
+
+        tabs.forEach(btn => btn.classList.remove("active"));
+        contents.forEach(box => box.classList.remove("active"));
+
+        tab.classList.add("active");
+
+        moveTabSlider(tab);
+
+        const wrapper = document.getElementById(tab.dataset.target);
+
+        wrapper.classList.add("active");
+
+        initPortfolioSlider(wrapper);
+
+        if (typeof lenis !== "undefined") {
+
+            lenis.scrollTo("#portfolio-section", {
+                duration: 1
+            });
+
+        } else {
+
+            window.scrollTo({
+                top: document.querySelector("#portfolio-section").offsetTop,
+                behavior: "smooth"
+            });
+
+        }
+
+    });
+
 });
 
-// Modal Logic
+window.addEventListener("resize", () => {
+    moveTabSlider(document.querySelector(".portfolio-tab.active"));
+});
+
+
+
+// ===============================
+// Cursor Effect
+// ===============================
+
+document.querySelectorAll(".portfolio-card").forEach(card => {
+
+    const preload = new Image();
+    preload.src = card.dataset.full;
+
+    const image = card.querySelector("img");
+    const cursor = card.querySelector(".portfolio-cursor-glass");
+
+    if (!image || !cursor) return;
+
+    const moveX = gsap.quickTo(cursor, "x", {
+        duration: .18,
+        ease: "power3"
+    });
+
+    const moveY = gsap.quickTo(cursor, "y", {
+        duration: .18,
+        ease: "power3"
+    });
+
+    image.addEventListener("mouseenter", () => {
+
+        gsap.to(cursor, {
+            opacity: 1,
+            scale: 1,
+            duration: .25
+        });
+
+    });
+
+    image.addEventListener("mouseleave", () => {
+
+        gsap.to(cursor, {
+            opacity: 0,
+            scale: .5,
+            duration: .2
+        });
+
+    });
+
+    card.addEventListener("mousemove", e => {
+
+        const rect = card.getBoundingClientRect();
+
+        moveX(e.clientX - rect.left);
+        moveY(e.clientY - rect.top);
+
+    });
+
+});
+
+
+
+// ===============================
+// Modal
+// ===============================
+
 const modal = document.getElementById("portfolioModal");
 const modalImage = document.getElementById("modalImage");
 const modalContent = document.getElementById("modalContent");
 const closeBtn = document.getElementById("closePortfolio");
+const loader = document.getElementById("modalLoader");
 
-if (modal && modalImage && modalContent && closeBtn) {
-    document.querySelectorAll(".portfolio-card").forEach(card => {
-        card.addEventListener("click", () => {
-            const imgSrc = card.dataset.full;
-            if (!imgSrc) return;
 
-            const loader = document.getElementById("modalLoader");
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
-            loader.classList.remove("hidden");
-            modalImage.style.opacity = 0;
-            modalImage.removeAttribute("src");
-            const img = new Image();
-            img.src = imgSrc;
-            img.onload = () => {
-                modalImage.src = img.src;
-                loader.classList.add("hidden");
-                gsap.to(modalImage,{
-                    opacity:1,
-                    duration:.35
-                });
-            };
-            document.body.classList.add("modal-open");
-            modalContent.scrollTop = 0;
+// Event Delegation
+document.addEventListener("click", e => {
 
-            gsap.fromTo(modalContent, { scale: .85, opacity: 0, y: 60 }, { scale: 1, opacity: 1, y: 0, duration: .45, ease: "power3.out" });
-            gsap.fromTo(closeBtn, { opacity: 0, rotate: -180, scale: 0 }, { opacity: 1, rotate: 0, scale: 1, duration: .5, delay: .15, ease: "back.out(1.8)" });
+    const card = e.target.closest(".portfolio-card");
+
+    if (!card) return;
+
+    const imgSrc = card.dataset.full;
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+
+    loader.classList.remove("hidden");
+
+    modalImage.style.opacity = 0;
+    modalImage.removeAttribute("src");
+
+    const img = new Image();
+
+    img.src = imgSrc;
+
+    img.onload = () => {
+
+        modalImage.src = img.src;
+
+        loader.classList.add("hidden");
+
+        gsap.to(modalImage, {
+            opacity: 1,
+            duration: .35
         });
+
+    };
+
+    document.body.classList.add("modal-open");
+
+    modalContent.scrollTop = 0;
+
+    gsap.fromTo(
+        modalContent,
+        {
+            scale: .85,
+            opacity: 0,
+            y: 60
+        },
+        {
+            scale: 1,
+            opacity: 1,
+            y: 0,
+            duration: .45,
+            ease: "power3.out"
+        }
+    );
+
+    gsap.fromTo(
+        closeBtn,
+        {
+            opacity: 0,
+            rotate: -180,
+            scale: 0
+        },
+        {
+            opacity: 1,
+            rotate: 0,
+            scale: 1,
+            duration: .5,
+            delay: .15,
+            ease: "back.out(1.8)"
+        }
+    );
+
+});
+
+function closeModal() {
+
+    gsap.to(modalContent, {
+
+        scale: .9,
+        opacity: 0,
+        y: 40,
+        duration: .3,
+        ease: "power2.in",
+
+        onComplete() {
+
+            modal.classList.remove("flex");
+            modal.classList.add("hidden");
+
+            document.body.classList.remove("modal-open");
+
+        }
+
     });
 
-    function closeModal() {
-        gsap.to(modalContent, {
-            scale: .9, opacity: 0, y: 40, duration: .3, ease: "power2.in",
-            onComplete: () => {
-                modal.classList.remove("flex");
-                modal.classList.add("hidden");
-                document.body.classList.remove("modal-open");
-            }
-        });
+}
+
+closeBtn.addEventListener("click", closeModal);
+
+modal.addEventListener("click", e => {
+
+    if (e.target === modal) {
+
+        closeModal();
+
     }
 
-    closeBtn.addEventListener("click", closeModal);
-    modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && modal.classList.contains("flex")) closeModal(); });
-}
+});
+
+document.addEventListener("keydown", e => {
+
+    if (
+        e.key === "Escape" &&
+        modal.classList.contains("flex")
+    ) {
+
+        closeModal();
+
+    }
+
+});
 
 // ==========================================
 // 10. SECTION 7 (VIDEO TESTIMONIALS)
