@@ -1173,6 +1173,15 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
 /* About section — hide extra decorative cards on smaller screens (keep image card1 only) */
 .hero-word{
+    background: linear-gradient(
+        180deg,
+        #414141 0%,
+        #E3E3E3 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
     font-family: 'Coolvetica-Bold';
 }
 .about-container{

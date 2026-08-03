@@ -1,82 +1,82 @@
-(() => {
+// (() => {
 
-    // Right Click Disable
-    document.addEventListener("contextmenu", e => e.preventDefault());
+//     // Right Click Disable
+//     document.addEventListener("contextmenu", e => e.preventDefault());
 
-    // Keyboard Shortcuts Disable
-    document.addEventListener("keydown", e => {
+//     // Keyboard Shortcuts Disable
+//     document.addEventListener("keydown", e => {
 
-        if (
-            e.key === "F12" ||
-            (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
-            (e.ctrlKey && ["U"].includes(e.key.toUpperCase()))
-        ) {
-            e.preventDefault();
-            return false;
-        }
+//         if (
+//             e.key === "F12" ||
+//             (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) ||
+//             (e.ctrlKey && ["U"].includes(e.key.toUpperCase()))
+//         ) {
+//             e.preventDefault();
+//             return false;
+//         }
 
-    });
+//     });
 
-    // Drag Disable
-    document.addEventListener("dragstart", e => e.preventDefault());
+//     // Drag Disable
+//     document.addEventListener("dragstart", e => e.preventDefault());
 
-    // ❌ Remove this line
-    // document.addEventListener("selectstart", e => e.preventDefault());
+//     // ❌ Remove this line
+//     // document.addEventListener("selectstart", e => e.preventDefault());
 
-    // DevTools Detection
-    setInterval(() => {
+//     // DevTools Detection
+//     setInterval(() => {
 
-        const w = window.outerWidth - window.innerWidth > 160;
-        const h = window.outerHeight - window.innerHeight > 160;
+//         const w = window.outerWidth - window.innerWidth > 160;
+//         const h = window.outerHeight - window.innerHeight > 160;
 
-        if (w || h) {
+//         if (w || h) {
 
-            if (!document.querySelector("#shield")) {
+//             if (!document.querySelector("#shield")) {
 
-                const x = document.createElement("div");
+//                 const x = document.createElement("div");
 
-                x.id = "shield";
+//                 x.id = "shield";
 
-                x.style.cssText = `
-                    position:fixed;
-                    inset:0;
-                    background:#111;
-                    display:flex;
-                    justify-content:center;
-                    align-items:center;
-                    z-index:999999;
-                    font-size:40px;
-                    color:#fff;
-                    backdrop-filter:blur(20px);
-                `;
+//                 x.style.cssText = `
+//                     position:fixed;
+//                     inset:0;
+//                     background:#111;
+//                     display:flex;
+//                     justify-content:center;
+//                     align-items:center;
+//                     z-index:999999;
+//                     font-size:40px;
+//                     color:#fff;
+//                     backdrop-filter:blur(20px);
+//                 `;
 
-                x.innerHTML = "Inspection Disabled";
+//                 x.innerHTML = "Inspection Disabled";
 
-                document.body.appendChild(x);
+//                 document.body.appendChild(x);
 
-                document.body.style.filter = "blur(20px)";
+//                 document.body.style.filter = "blur(20px)";
 
-                // ❌ Remove this
-                // document.body.style.pointerEvents = "none";
-            }
+//                 // ❌ Remove this
+//                 // document.body.style.pointerEvents = "none";
+//             }
 
-        }
+//         }
 
-    }, 1000);
+//     }, 1000);
 
-    console.clear();
+//     console.clear();
 
-    Object.defineProperty(window, "console", {
-        value: {
-            log() {},
-            warn() {},
-            error() {},
-            info() {},
-            clear() {}
-        }
-    });
+//     Object.defineProperty(window, "console", {
+//         value: {
+//             log() {},
+//             warn() {},
+//             error() {},
+//             info() {},
+//             clear() {}
+//         }
+//     });
 
-})();
+// })();
 
 
 // ==========================================
@@ -910,7 +910,6 @@ function solutionCount() {
 // ==========================================
 // PORTFOLIO TITLE ANIMATION
 // ==========================================
-
 if (document.querySelector(".portfolio-title")) {
 
     const portfolioTitle = new SplitType(".portfolio-title", {
@@ -946,11 +945,9 @@ if (document.querySelector(".portfolio-title")) {
         }, 0);
 }
 
-
 // ===============================
 // Portfolio Slider
 // ===============================
-
 let portfolioST = null;
 
 function initPortfolioSlider(wrapper) {
@@ -1004,7 +1001,6 @@ function initPortfolioSlider(wrapper) {
 // Initial Slider
 initPortfolioSlider(document.querySelector("#websites"));
 
-
 // ===============================
 // Portfolio Tabs
 // ===============================
@@ -1047,20 +1043,18 @@ tabs.forEach(tab => {
 
         initPortfolioSlider(wrapper);
 
-        if (typeof lenis !== "undefined") {
+        requestAnimationFrame(() => {
+            ScrollTrigger.refresh(true);
+        });
 
-            lenis.scrollTo("#portfolio-section", {
-                duration: 1
-            });
+        setTimeout(() => {
+            ScrollTrigger.refresh(true);
+        }, 500);
 
-        } else {
-
-            window.scrollTo({
-                top: document.querySelector("#portfolio-section").offsetTop,
-                behavior: "smooth"
-            });
-
-        }
+        window.scrollTo({
+            top: document.querySelector("#portfolio-section").offsetTop,
+            behavior: "smooth"
+        });
 
     });
 
@@ -1070,12 +1064,9 @@ window.addEventListener("resize", () => {
     moveTabSlider(document.querySelector(".portfolio-tab.active"));
 });
 
-
-
 // ===============================
 // Cursor Effect
 // ===============================
-
 document.querySelectorAll(".portfolio-card").forEach(card => {
 
     const preload = new Image();
@@ -1126,19 +1117,14 @@ document.querySelectorAll(".portfolio-card").forEach(card => {
     });
 
 });
-
-
-
 // ===============================
 // Modal
 // ===============================
-
 const modal = document.getElementById("portfolioModal");
 const modalImage = document.getElementById("modalImage");
 const modalContent = document.getElementById("modalContent");
 const closeBtn = document.getElementById("closePortfolio");
 const loader = document.getElementById("modalLoader");
-
 
 // Event Delegation
 document.addEventListener("click", e => {
@@ -1237,28 +1223,16 @@ function closeModal() {
 }
 
 closeBtn.addEventListener("click", closeModal);
-
 modal.addEventListener("click", e => {
-
     if (e.target === modal) {
-
         closeModal();
-
     }
-
 });
 
 document.addEventListener("keydown", e => {
-
-    if (
-        e.key === "Escape" &&
-        modal.classList.contains("flex")
-    ) {
-
+    if (e.key === "Escape" && modal.classList.contains("flex")) {
         closeModal();
-
     }
-
 });
 
 // ==========================================
@@ -1616,7 +1590,8 @@ if (workflowSection && track && progress) {
                     trigger: workflowSection,
                     start: "top 80%",
                     once: true,
-                    invalidateOnRefresh: true
+                    invalidateOnRefresh: true,
+                    refreshPriority:-1
                 }
             })
             .to(workTitle.lines, {
@@ -1644,7 +1619,8 @@ if (workflowSection && track && progress) {
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
-                invalidateOnRefresh: true
+                invalidateOnRefresh: true,
+                refreshPriority:-1
             }
         });
 
@@ -1740,12 +1716,13 @@ if (document.querySelector(".about-section") && !window.matchMedia("(max-width: 
             end: "+=300",
             scrub: 2,
             pin: true,
-            anticipatePin: 1
+            anticipatePin: 1,
+            refreshPriority:-1
         }
     });
 
     aboutTl.to(".about-content", { y: -20, ease: "none" }, 0)
-           .fromTo(".hero-word", { y: 0, opacity: 0 }, { y: 0, opacity: 1, ease: "none", duration: 5 }, 0)
+           .fromTo(".hero-word", { y: 0, opacity: 0 }, { y: 0, opacity: 1, ease: "none", duration: 2 }, 0)
            .to(".card1", { y: -50, rotation: 0, scale: 0.98, ease: "none", duration: 2 }, 0)
            .to(".card2", { y: -50, rotate: -20, ease: "none", duration: 2 }, 0)
            .to(".card3", { y: -50, x: -100, rotate: 18, ease: "none", duration: 2 }, 0)
@@ -1779,7 +1756,8 @@ if (ribbonTrack && item) {
             trigger: ".about-section",
             start: "20% top",
             end: "+=2500",
-            scrub: 2
+            scrub: 2,
+            refreshPriority:-1
         }
     });
 }
@@ -1808,7 +1786,8 @@ if (document.querySelector(".faq-title")) {
         scrollTrigger: {
             trigger: ".ribbon-section",
             start: "top 30%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
+            refreshPriority:-1
         }
     });
 
@@ -1895,7 +1874,8 @@ if (document.querySelector(".faqFooter-title")) {
         scrollTrigger: {
             trigger: ".faq-section",
             start: "30% top",
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
+            refreshPriority:-1
         }
     });
 
@@ -1934,7 +1914,8 @@ if (document.querySelector(".footer-title")) {
         scrollTrigger: {
             trigger: ".footer",
             start: "40% 60%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
+            refreshPriority:-1
         }
     });
 
