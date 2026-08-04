@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy | Webrahim</title>
+<meta name="description" content="Privacy policy for Webrahim — conversion infrastructure for coaches. How we collect, use, and protect your data.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/coolvectia" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #1c1c1c;
+    --surface:  #242424;
+    --border:   #2e2e2e;
+    --gold:     #FFB300;
+    --gold-dim: #996B00;
+    --text:     #F5F3EE;
+    --text-mid: #A09D97;
+    --text-dim: #666360;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(28,28,28,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+  }
+
+  .nav-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+    .nav-logo{
+        display: flex;
+        align-items: end;
+        justify-content: center;
+    }
+
+  .nav-logo img{
+    height: 40px;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-back {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--text); }
+
+  /* LAYOUT */
+  .page-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 72px 24px 100px;
+  }
+
+  /* HEADER */
+  .page-header {
+    margin-bottom: 56px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .page-title {
+    font-family: 'Coolvectia', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+
+  .page-meta {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+
+  .page-meta span {
+    color: var(--text-mid);
+  }
+
+  /* CONTENT */
+  .policy-body {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .policy-section {}
+
+  .section-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Coolvectia', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+  }
+
+  .policy-section p {
+    font-size: 0.93rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .policy-section p:last-child { margin-bottom: 0; }
+
+  .policy-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .policy-section ul li {
+    font-size: 0.93rem;
+    color: var(--text-mid);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .policy-section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  strong { color: var(--text); font-weight: 600; }
+
+  /* THIRD PARTY TABLE */
+  .third-party-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+
+  .third-party-item {
+    background: var(--surface);
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .tp-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .tp-detail {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .tp-detail a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-dim);
+    transition: opacity 0.2s;
+  }
+
+  .tp-detail a:hover { opacity: 0.7; }
+
+  /* DIVIDER */
+  .policy-divider {
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* CONTACT BOX */
+  .contact-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-top: 16px;
+  }
+
+  .contact-box p {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .contact-box p:last-child { margin-bottom: 0; }
+
+  .contact-box a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-dim);
+    transition: opacity 0.2s;
+    font-size: 0.88rem;
+  }
+
+  .contact-box a:hover { opacity: 0.7; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
+    margin-top: 0;
+  }
+
+  .footer-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  .footer-link {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-link:hover { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .page-wrap { padding: 48px 20px 72px; }
+    .third-party-item { grid-template-columns: 1fr; gap: 6px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="./assets/images/logo.webp" alt="Webrahim Logo"></a>
+    <a href="index.html" class="nav-back">← Back to site</a>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <span class="page-eyebrow">Legal</span>
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="page-meta">Last updated: <span>August 2026</span></p>
+  </div>
+
+  <!-- BODY -->
+  <div class="policy-body">
+
+    <!-- 01 -->
+    <div class="policy-section">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Who We Are</h2>
+      <p>This privacy policy applies to Webrahim, operated by Ibrahim, a conversion infrastructure specialist serving coaches and consultants across 10 countries. Webrahim builds websites, landing pages, LinkedIn profiles, and conversion systems that help coaches turn existing attention into booked calls and revenue.</p>
+      <p>If you have any questions about this policy or how your data is handled, contact us at <strong>Contact@webrahim.com</strong> and we will respond within 48 hours.</p>
+    </div>
+
+    <div class="policy-divider"></div>
+
+    <!-- 02 -->
+    <div class="policy-section">
+      <span class="section-num">02</span>
+      <h2 class="section-title">What Information We Collect</h2>
+      <p><strong>Information you provide directly:</strong> When you fill out the qualification form, book a discovery call, or get in touch via email or social media, you may provide:</p>
+      <ul>
+        <li>Your name and email address</li>
+        <li>Your website URL and LinkedIn profile link</li>
+        <li>Details about your coaching business, goals, and challenges</li>
+        <li>Any other information you choose to share in your messages</li>
+      </ul>
+      <p>We only collect what is necessary to assess whether a working relationship makes sense and to deliver the work if we proceed.</p>
+      <p><strong>Information collected automatically:</strong> When you visit webrahim.com, basic data may be collected automatically including your browser type, device type, pages visited, and approximate location. This is standard behaviour for any website and is used only to understand how the site is performing.</p>
+    </div>
+
+    <div class="policy-divider"></div>
+
+    <!-- 03 -->
+    <div class="policy-section">
+      <span class="section-num">03</span>
+      <h2 class="section-title">How We Use Your Information</h2>
+      <p>We use the information you provide to:</p>
+      <ul>
+        <li>Respond to your inquiry and assess whether a discovery call makes sense</li>
+        <li>Prepare for and conduct your free conversion audit call</li>
+        <li>Deliver project work and communicate about active engagements</li>
+        <li>Improve the website and how we communicate with potential clients</li>
+        <li>Send relevant follow-up if you have expressed interest in working together</li>
+      </ul>
+      <p>We do not sell your data. We do not share your data with third parties for marketing purposes. We do not use your information to send unsolicited emails or add you to mailing lists without your consent.</p>
+    </div>
+
+    <div class="policy-divider"></div>
+
+    <!-- 04 -->
+    <div class="policy-section">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Cookies</h2>
+      <p>webrahim.com does not use tracking cookies or advertising cookies. Basic session behaviour may be logged by Hostinger for security and performance purposes. Analytics tools (Google Analytics, Microsoft Clarity) use cookies to distinguish unique visitors and sessions.</p>
+      <p>You can disable cookies in your browser settings at any time without affecting your ability to view or use this site.</p>
+    </div>
+
+    <div class="policy-divider"></div>
+
+    <!-- 05 -->
+    <div class="policy-section">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Discovery Call Recordings</h2>
+      <p>If we conduct a video call together and you consent to recording, that recording is stored securely and used only to review the conversation and prepare deliverables. Recordings are not shared with any third parties.</p>
+      <p>You can request deletion of your recording at any time by emailing Contact@webrahim.com with the subject line "Recording Deletion Request." We will confirm deletion within 5 business days.</p>
+    </div>
+
+    <div class="policy-divider"></div>
+
+    <!-- 06 -->
+    <div class="policy-section">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Data Retention</h2>
+      <p>We retain your inquiry and project details for as long as there is an active or potential working relationship. If no engagement follows an initial inquiry, we delete contact details within 12 months.</p>
+      <p>To request deletion of your data at any time, email Contact@webrahim.com with the subject line "Data Deletion Request." We will action your request within 30 days.</p>
+    </div>
+
+    <div class="policy-divider"></div>
+
+    <!-- 07 -->
+    <div class="policy-section">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Your Rights</h2>
+      <p>Depending on where you are located, you may have the right to:</p>
+      <ul>
+        <li>Access the personal data we hold about you</li>
+        <li>Request correction of inaccurate or incomplete data</li>
+        <li>Request deletion of your data</li>
+        <li>Withdraw consent for any processing you previously agreed to</li>
+        <li>Object to how we are using your data</li>
+        <li>Lodge a complaint with your local data protection authority</li>
+      </ul>
+      <p>To exercise any of these rights, contact us at Contact@webrahim.com. We will respond within 30 days.</p>
+    </div>
+
+    <div class="policy-divider"></div>
+
+    <!-- 08 -->
+    <div class="policy-section">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Children</h2>
+      <p>This website is not directed at anyone under the age of 18. We do not knowingly collect personal data from minors. If you believe a minor has submitted information through this site, contact us at Contact@webrahim.com and we will delete it promptly.</p>
+    </div>
+
+    <div class="policy-divider"></div>
+
+    <!-- 09 -->
+    <div class="policy-section">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Changes to This Policy</h2>
+      <p>We may update this policy occasionally to reflect changes in how we operate or changes in applicable law. When we do, the date at the top of this page will be updated. We recommend checking back periodically if you are a regular visitor.</p>
+      <p>Continued use of webrahim.com after a policy update constitutes acceptance of the revised policy.</p>
+    </div>
+
+    <div class="policy-divider"></div>
+
+    <!-- 10 -->
+    <div class="policy-section">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Contact</h2>
+      <p>For any privacy-related questions, requests, or complaints, reach out directly:</p>
+      <div class="contact-box">
+        <p><strong>Email</strong><br><a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@webrahim.com" target="_blank">Contact@webrahim.com</a></p>
+        <p><strong>Instagram</strong><br><a href="https://www.instagram.com/webrahim_" target="_blank" rel="noopener">instagram.com/webrahim_</a></p>
+        <p><strong>LinkedIn</strong><br><a href="https://www.linkedin.com/in/muhammad-ibrahim-website-designer/" target="_blank" rel="noopener">linkedin.com/in/muhammad-ibrahim-website-designer</a></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Webrahim. All rights reserved.</span>
+    <a href="index.html" class="footer-link">← Back to site</a>
+  </div>
+</footer>
+
+</body>
+</html>
+

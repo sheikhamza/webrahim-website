@@ -1605,11 +1605,12 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
 
 
- /* Overlay */
+
+  /* Overlay */
   .popup-overlay {
     position: fixed;
     inset: 0;
-    background: transparent;
+    background: rgba(0,0,0,0.82);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     z-index: 9000;
@@ -1979,7 +1980,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
   }
 
   .p-cal-sub { font-size: 0.73rem; color: var(--p-dim); font-family: 'Inter Tight', sans-serif; }
-  .p-cal-body { padding: 0; overflow: hidden; max-height: 570px; }
+  .p-cal-body { padding: 0; }
 
   .p-cal-body .calendly-inline-widget {
     min-width: 100% !important;
@@ -2108,11 +2109,39 @@ html, body { max-width: 100%; overflow-x: hidden; }
   .p-input:focus,
   .p-textarea:focus { border-color: var(--p-gold); }
 
-  input[type="url"].p-input,
-  input[type="text"].p-input {
+  input.p-input {
     background: var(--p-surface2) !important;
     color: var(--p-text) !important;
-    -webkit-text-fill-color: var(--p-text);
+    -webkit-text-fill-color: var(--p-text) !important;
+    border: 1px solid var(--p-border) !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    font-size: 0.84rem !important;
+    font-family: 'Inter Tight', sans-serif !important;
+    line-height: 1.5 !important;
+  }
+
+  input.p-input::placeholder {
+    color: var(--p-dim) !important;
+    -webkit-text-fill-color: var(--p-dim) !important;
+    opacity: 1;
+  }
+
+  input.p-input:focus {
+    border: 1px solid var(--p-gold) !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  input.p-input:-webkit-autofill,
+  input.p-input:-webkit-autofill:hover,
+  input.p-input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px var(--p-surface2) inset !important;
+    -webkit-text-fill-color: var(--p-text) !important;
+    border: 1px solid var(--p-border) !important;
+    caret-color: var(--p-text);
   }
 
   .p-submit {
